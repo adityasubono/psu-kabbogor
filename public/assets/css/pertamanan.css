@@ -1,0 +1,67 @@
+.table-pertamanan thead > tr > th {
+    text-align: center;
+    vertical-align: middle;
+    padding: 6px;
+}
+
+.cctv {
+    width: 300px;
+    height: 300px;
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 10px;
+    float: right;
+}
+
+
+.center {
+    margin-top:50px;
+}
+
+.btn:focus, .btn:active, button:focus, button:active {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+#image-gallery .modal-footer{
+    display: block;
+}
+
+.thumb{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.kotak {
+    border-radius: 5px;
+    width: 10px;
+    height: 10px;
+    padding: 20px;
+}
+
+.rata_kanan {
+    float: right;
+    display: flex;
+    margin-top: 7px;
+    margin-right: 7px;
+}
+
+fieldset.data-border {
+    border: 1px groove #ddd !important;
+    padding: 0 1.4em 1.4em 1.4em !important;
+    margin: 0 0 1.5em 0 !important;
+    -webkit-box-shadow:  0px 0px 0px 0px #000;
+    box-shadow:  0px 0px 0px 0px #000;
+    border-radius: 10px;
+}
+
+legend.legend-border {
+    width:200px; /* Or auto */
+    padding:0 5px; /* To give a bit of padding on the left and right */
+    border-bottom:none;
+    font-size: 15px;
+
+}
+
+
+

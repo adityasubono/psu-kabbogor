@@ -1,0 +1,75 @@
+
+Wjavascript:S1481ã":Remove the declaration of the unused 'sThisType' variable.(øÁ¼î
+Ojavascript:S1481À"2Remove the declaration of the unused 'i' variable.(¶î¨Ã
+Qjavascript:S1481Ù-"5Remove the declaration of the unused 'iLen' variable.(Ãê®S
+Ojavascript:S1117”B"-'idx' is already declared in the upper scope.(±íë–ùÿÿÿÿ
+Wjavascript:S1481î"5Remove the declaration of the unused 'kLen' variable.(Üº™ìúÿÿÿÿ
+Mjavascript:S1117ì1"+'i' is already declared in the upper scope.(ÆûÂ’úÿÿÿÿ
+Ojavascript:S1854ç"2Remove this useless assignment to variable "data".(“Õš
+Tjavascript:S1481ä "2Remove the declaration of the unused 'n' variable.(î§¥‘ıÿÿÿÿ
+Qjavascript:S1854ä "/Remove this useless assignment to variable "n".(î§¥‘ıÿÿÿÿ
+Sjavascript:S1481+"6Remove the declaration of the unused 'width' variable.(ŒÍ „
+Ojavascript:S1481À"2Remove the declaration of the unused 'n' variable.(¶î¨Ã
+Xjavascript:S1481+";Remove the declaration of the unused 'outerWidth' variable.(ŒÍ „
+Tjavascript:S1481î"2Remove the declaration of the unused 'k' variable.(Üº™ìúÿÿÿÿ
+Tjavascript:S1481¡."2Remove the declaration of the unused 'k' variable.(Ø¼Óûşÿÿÿÿ
+Wjavascript:S1481¡."5Remove the declaration of the unused 'kLen' variable.(Ø¼Óûşÿÿÿÿ
+Pjavascript:S1481¢."4Remove the declaration of the unused 'nTh' variable.(°r
+Tjavascript:S1854¦."7Remove this useless assignment to variable "aoColumns".(èû÷¶
+Yjavascript:S1481Û-"7Remove the declaration of the unused 'aiOrig' variable.(ñÇÈÇùÿÿÿÿ
+Qjavascript:S1481—8"4Remove the declaration of the unused 'jen' variable.(ĞãÌÀ
+Ijavascript:S1117å8"-'src' is already declared in the upper scope.(‰øŒP
+Mjavascript:S1117æ8"+'i' is already declared in the upper scope.(¨™âöşÿÿÿÿ
+Hjavascript:S1117Œ"+'k' is already declared in the upper scope.(–öË‰
+Ojavascript:S1481Ä="2Remove the declaration of the unused 'i' variable.(™Ûœ
+Rjavascript:S1481Ö"5Remove the declaration of the unused 'kLen' variable.(áÊ’¬
+Qjavascript:S1481ã"4Remove the declaration of the unused 'nTd' variable.(øÁ¼î
+Sjavascript:S1481˜8"6Remove the declaration of the unused 'inner' variable.(ß«õì
+Wjavascript:S1481î"5Remove the declaration of the unused 'jLen' variable.(Üº™ìúÿÿÿÿ
+Hjavascript:S1117À	"+'i' is already declared in the upper scope.(•ÿÌ
+Njavascript:S1117¥",'td' is already declared in the upper scope.(İ‹¸íşÿÿÿÿ
+Ojavascript:S1481ş."2Remove the declaration of the unused 'l' variable.(•ÄŞ„
+Fjavascript:S1472;"*Make those call arguments start on line 58(ÿ¨±Ö
+Wjavascript:S1481Å"5Remove the declaration of the unused 'cell' variable.(î­Ñşÿÿÿÿÿ
+Vjavascript:S1481ßB"4Remove the declaration of the unused 'row' variable.(›Àåµıÿÿÿÿ
+Sjavascript:S1117Àq"1'buttons' is already declared in the upper scope.(àâ¸ïûÿÿÿÿ
+Rjavascript:S1481§."5Remove the declaration of the unused 'iCol' variable.(‚¶Îç
+Mjavascript:S1117³I"+'i' is already declared in the upper scope.(è†Š±ûÿÿÿÿ
+Wjavascript:S1481¦.":Remove the declaration of the unused 'aoColumns' variable.(èû÷¶
+Mjavascript:S1117â."+'k' is already declared in the upper scope.(ã€©ÿÿÿÿÿ
+Jjavascript:S1117å8".'name' is already declared in the upper scope.(‰øŒP
+Wjavascript:S1481Å":Remove the declaration of the unused 'iOpenRows' variable.(‡±İ 
+Kjavascript:S1117ª".'attr' is already declared in the upper scope.(À¹Œ
+Tjavascript:S1481¡."2Remove the declaration of the unused 'j' variable.(Ø¼Óûşÿÿÿÿ
+Hjavascript:S1117ş."+'k' is already declared in the upper scope.(•ÄŞ„
+Ojavascript:S1117æ8"-'ien' is already declared in the upper scope.(¨™âöşÿÿÿÿ
+Wjavascript:S1481‰"5Remove the declaration of the unused 'jLen' variable.(÷Ü²€øÿÿÿÿ
+Tjavascript:S1481š"2Remove the declaration of the unused 'o' variable.(¬™“øÿÿÿÿ
+Sjavascript:S1481§."6Remove the declaration of the unused 'sType' variable.(‚¶Îç
+Mjavascript:S1117¹D"+'i' is already declared in the upper scope.(œ‹ÓÆûÿÿÿÿ
+Qjavascript:S1481Ä="4Remove the declaration of the unused 'ien' variable.(™Ûœ
+Vjavascript:S1481¢.":Remove the declaration of the unused 'sDataType' variable.(°r
+Hjavascript:S1117‹"+'i' is already declared in the upper scope.(îá™
+Xjavascript:S930ƒ%"7This function expects 3 arguments, but 4 were provided.(ë¹§Ïüÿÿÿÿ
+Mjavascript:S1117ã"+'i' is already declared in the upper scope.(ºÙü¦ûÿÿÿÿ
+Rjavascript:S1481§."5Remove the declaration of the unused 'data' variable.(‚¶Îç
+Ojavascript:S1117ì1"-'col' is already declared in the upper scope.(ÆûÂ’úÿÿÿÿ
+Wjavascript:S1481¡."5Remove the declaration of the unused 'jLen' variable.(Ø¼Óûşÿÿÿÿ
+Ljavascript:S1117™8"/'scope' is already declared in the upper scope.(£…›
+ljavascript:S3403¼r"JRemove this "!==" check; it will always be true. Did you mean to use "!="?(–¡òÏúÿÿÿÿ
+Wjavascript:S1481§.":Remove the declaration of the unused 'aDataSort' variable.(‚¶Îç
+Cjavascript:S1110“*"!Remove these useless parentheses.(ç•ş«ûÿÿÿÿ
+6javascript:S2814•="'ien' is already defined.(œÑÁ
+4javascript:S2814•="'i' is already defined.(œÑÁ
+Hjavascript:S1117	"+'i' is already declared in the upper scope.(Ò™ 
+Rjavascript:S1481À"5Remove the declaration of the unused 'iLen' variable.(¶î¨Ã
+Sjavascript:S1481§."6Remove the declaration of the unused 'oSort' variable.(‚¶Îç
+Tjavascript:S1481ûp"2Remove the declaration of the unused 'i' variable.(ÍĞÇ³øÿÿÿÿ
+Ojavascript:S1481—8"2Remove the declaration of the unused 'j' variable.(ĞãÌÀ
+Mjavascript:S1117Û"+'i' is already declared in the upper scope.(÷ŸµÀûÿÿÿÿ
+Tjavascript:S1481î"2Remove the declaration of the unused 'j' variable.(Üº™ìúÿÿÿÿ
+Ojavascript:S1481ğH"2Remove the declaration of the unused 'i' variable.(™Ûœ
+Ojavascript:S1117&"2'settings' is already declared in the upper scope.(Ã­ãã
+Tjavascript:S1854Å"7Remove this useless assignment to variable "iOpenRows".(‡±İ 
+Ojavascript:S1117&"2'settings' is already declared in the upper scope.(Êøä•
+]javascript:S2137;"ADo not use "undefined" to declare a parameter - use another name.(ÿ¨±Ö
