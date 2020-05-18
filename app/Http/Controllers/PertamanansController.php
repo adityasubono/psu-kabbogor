@@ -85,11 +85,6 @@ class PertamanansController extends Controller
 
         Pertamanan::create($request->all());
 
-        foreach ($request->data_petugas as $key => $value){
-            Petugas::create($value);
-        }
-
-
         return redirect('/pertamanans')->with('status','Data Success Insert');
 
 

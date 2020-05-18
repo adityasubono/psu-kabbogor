@@ -136,31 +136,67 @@ Route::get('/perumahans/rekapitulasi', 'RekapitulasiPerumahanController@index');
 //==========================================================================================
 //ROUTE PSU PERTANAMAN =====================================================================
 //==========================================================================================
-//PSU Pertamanan
+//PSU PERTAMANAN
 Route::get('/pertamanans', 'PertamanansController@index');
 Route::get('/pertamanans/create', 'PertamanansController@create');
 Route::post('/pertamanans', 'PertamanansController@store');
 Route::get('/pertamanans/edit/{pertamanan}', 'PertamanansController@edit');
 Route::patch('/pertamanans/update/{pertamanan}', 'PertamanansController@update');
 Route::delete('/pertamanans/delete/{pertamanan}', 'PertamanansController@destroy');
-//PSU Rekapitulasi Pertamanan....
+//PSU PERTAMANAN (REKAPITULASI)
 Route::get('/pertamanans/rekapitulasi', 'RekapitulasiPertamananController@index');
 
-//PSU Petugas ( Pertamanan )=============================================================
+//PSU PERTAMANAN ( PETUGAS )=============================================================
 Route::get('/petugas/{id}', 'PetugasController@index');
 Route::post('/petugas/store', 'PetugasController@store');
 Route::get('/petugas/edit/{petugas}', 'PetugasController@edit');
 Route::patch('/petugas/update/{petugas}', 'PetugasController@update');
 Route::delete('/petugas/delete/{petugas}', 'PetugasController@destroy');
 
-//PSU Foto Pertamanan ( Pertamanan )=============================================================
+//PSU PERTAMANAN ( FOTO PERTAMANAN )=============================================================
 Route::get('/fotopertamanans/{id}', 'FotoPertamanansController@index');
 Route::post('/fotopertamanans/store', 'FotoPertamanansController@store');
-Route::get('/fotopertamanans/edit/{fotoPertamanan}', 'FotoPertamanansController@edit');
-Route::patch('/fotopertamanans/update/{fotoPertamanan}', 'FotoPertamanansController@update');
+Route::get('/fotopertamanans/edit/{id}', 'FotoPertamanansController@edit');
+Route::put('/fotopertamanans/update/{id}', 'FotoPertamanansController@update');
 Route::post('/fotopertamanans/delete', 'FotoPertamanansController@destroy');
 
+//PSU PERTAMANAN ( PEMELIHARAAN )=============================================================
+Route::get('/pemeliharaans/{id}', 'PemeliharaansController@index');
+Route::post('/pemeliharaans/store', 'PemeliharaansController@store');
+Route::get('/pemeliharaans/edit/{pemeliharaan}', 'PemeliharaansController@edit');
+Route::patch('/pemeliharaans/update/{pemeliharaan}', 'PemeliharaansController@update');
+Route::delete('/pemeliharaans/delete/{pemeliharaan}', 'PemeliharaansController@destroy');
 
+
+//PSU PERTAMANAN ( HARDSCAPE )=============================================================
+Route::get('/hardscapes/{id}', 'HardscapesController@index');
+Route::post('/hardscapes/store', 'HardscapesController@store');
+Route::get('/hardscapes/edit/{id}', 'HardscapesController@edit');
+Route::patch('/hardscapes/update/{id}', 'HardscapesController@update');
+Route::delete('/hardscapes/delete', 'HardscapesController@destroy');
+
+
+//PSU PERTAMANAN ( SOFTSCAPE )=============================================================
+Route::get('/softscapes/{id}', 'SoftscapesController@index');
+Route::post('/softscapes/store', 'SoftscapesController@store');
+Route::get('/softscapes/edit/{id}', 'SoftscapesController@edit');
+Route::put('/softscapes/update/{id}', 'SoftscapesController@update');
+Route::post('/softscapes/delete', 'SoftscapesController@destroy');
+
+//PSU PERTAMANAN ( KOORDINAT PERTAMANAN )//=========================================================
+Route::get('/koordinatpertamanans/{id}', 'KoordinatPertamanasController@index');
+Route::post('/koordinatpertamanans/store', 'KoordinatPertamanasController@store');
+Route::get('/koordinatpertamanans/edit/{id}', 'KoordinatPertamanasController@edit');
+Route::put('/koordinatpertamanans/update/{id}', 'KoordinatPertamanasController@update');
+Route::post('/koordinatpertamanans/delete', 'KoordinatPertamanasController@destroy');
+
+
+//PSU PERTAMANAN ( CCTV PERTAMANAN )=============================================================
+Route::get('/cctvpertamanans/{id}', 'CCTVPertamanasController@index');
+Route::post('/cctvpertamanans/store', 'CCTVPertamanasController@store');
+Route::get('/cctvpertamanans/edit/{id}', 'CCTVPertamanasController@edit');
+Route::put('/cctvpertamanans/update/{id}', 'CCTVPertamanasController@update');
+Route::post('/cctvpertamanans/delete', 'CCTVPertamanasController@destroy');
 
 
 

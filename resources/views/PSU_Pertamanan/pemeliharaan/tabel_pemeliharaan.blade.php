@@ -1,6 +1,6 @@
 <div class="card shadow mb-4">
     <div class="card-header py-3 bg-gray-500">
-        <h6 class="m-0 font-weight-bold text-primary">Tabel Data Foto </h6>
+        <h6 class="m-0 font-weight-bold text-primary">Tabel Data Pemeliharaan</h6>
     </div>
 
     <div class="card-body bg-gray-200" id="data_sarana">
@@ -11,20 +11,27 @@
                 <thead class="thead-dark">
                 <tr>
                     <th>No.</th>
-                    <th>Nama Foto</th>
-                    <th>File Foto</th>
+                    <th>ID</th>
+                    <th>Nama Alat</th>
+                    <th>Merk / Tipe</th>
+                    <th>Tahun Perolehan</th>
+                    <th>Kondisi</th>
+                    <th>Keterangan</th>
                     <th>Aksi</th>
                 </tr>
                 </thead>
                 <tbody class="bg-light">
-                @forelse( $data_foto_pertamanan as $foto )
+                @forelse( $data_pemeliharaan as $pemeliharaan )
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $foto->nama_foto }}</td>
-                    <td>@include('PSU_Pertamanan.foto.foto_galery')</td>
+                    <td>{{ $pemeliharaan->id }}</td>
+                    <td>{{ $pemeliharaan->nama_alat }}</td>
+                    <td>{{ $pemeliharaan->tipe }}</td>
+                    <td>{{ $pemeliharaan->tahun_perolehan }}</td>
+                    <td>{{ $pemeliharaan->kondisi }}</td>
+                    <td>{{ $pemeliharaan->keterangan }}</td>
                     <td>
-                        <a href="/fotopertamanans/edit/{{ $foto->id }}" class="btn
-                        btn-warning
+                        <a href="/pemeliharaans/edit/{{$pemeliharaan->id }}" class="btn btn-warning
                             btn-icon-split">
                             <span class="icon text-white-50">
                                 <i class="fas fa-pen"></i>
@@ -54,21 +61,21 @@
                                 <i class="fas fa-exclamation-triangle fa-2x"> Perhatian</i>
                             </div>
                             <div class="modal-body">
-                                <b>Apakah Anda Akan Menghapus Data Ini ID {{ $foto->id }}?</b>
+                                <b>Apakah Anda Akan Menghapus Data Dengan ID
+                                    {{ $pemeliharaan->id }} ?</b>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-success" data-dismiss="modal">
                                     Cancel
                                 </button>
-                                <form action="/fotopertamanans/delete" method="post" class="d-inline">
-                                    <input type="hidden" name="filename" value="{{$foto->file_foto}}">
+                                <form action="/pemeliharaans/delete/{{ $pemeliharaan->id }}"
+                                      method="post"
+                                      class="d-inline">
+                                    @method('delete')
                                     <input type="hidden" name="pertamanan_id"
-                                           value="{{$foto->pertamanan_id}}">
-                                    <input type="hidden" name="id" value="{{$foto->id}}">
-
+                                           value="{{$pemeliharaan->pertamanan_id}}">
                                     @csrf
-                                    <button type="submit" class="btn btn-danger btn-ok">Delete
-                                    </button>
+                                    <button type="submit" class="btn btn-danger btn-ok">Delete</button>
                                 </form>
                             </div>
                         </div>
@@ -76,15 +83,14 @@
                 </div>
                 @empty
                 <tr>
-                    <td colspan="6" class="text-center"><b style="color: red">
+                    <td colspan="7" class="text-center"><b style="color: red">
                             Data Tidak Tersedia<b></td>
                 </tr>
                 @endforelse
                 </tbody>
             </table>
 
-            <a href="/pertamanans" class="btn btn-primary
-            btn-icon-split">
+            <a href="/pertamanans" class="btn btn-primary btn-icon-split">
                 <span class="icon text-white-50">
                 <i class="fas fa-arrow-alt-circle-left"></i>
                 </span>

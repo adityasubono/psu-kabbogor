@@ -13,12 +13,17 @@
                 </div>
                 <div class="col-sm-6">
                     <h6 class="m-0 font-weight-bold text-primary text-right">
-                        @foreach( $pertamanan_id as $id )
+                        @forelse( $pertamanan_id as $id )
                         @php
                         $id_plus= $id->id + 1;
                         echo "ID: $id_plus";
                         @endphp
-                        @endforeach
+                        @empty
+                        @php
+                        $id_plus= 1;
+                        echo "ID: $id_plus";
+                        @endphp
+                        @endforelse
                     </h6>
                 </div>
             </div>
@@ -83,9 +88,9 @@
                             <label for="tahun_dibangun">Tahun Dibangun</label><br>
                             <select
                                 class="custom-select @error('tahun_dibangun') is-invalid @enderror"
-                                id="tahun_dibangun" name="tahun_dibangun"
-                                value="{{ old('tahun_dibangun') }}">
-                                <option value="">--Pilih Tahun Dibangun--</option>
+                                id="tahun_dibangun" name="tahun_dibangun">
+                                <option value=""selected>--Pilih Tahun Dibangun--</option>
+                                <option value="{{ old('tahun_dibangun') }}" selected>{{old('tahun_dibangun')}}</option>
                                 @php
                                 $tahun=getdate();
                                 @endphp
@@ -122,9 +127,10 @@
                             <label for="kecamatan">Kecamatan</label><br>
                             <select
                                 class="custom-select @error('kecamatan') is-invalid @enderror"
-                                id="kecamatan" name="kecamatan"
-                                value="{{ old('kecamatan') }}">
-                                <option value="">--Pilih Kecamatan--</option>
+                                id="kecamatan" name="kecamatan">
+                                <option value="" selected>--Pilih Kecamatan--</option>
+                                <option value="{{ old('kecamatan') }}" selected>{{old('kecamatan')
+                                    }}</option>
                                 @foreach( $kecamatans as $kecamatan )
                                 <option value="{{ $kecamatan->nama_kecamatan }}">
                                     {{ $kecamatan->nama_kecamatan }}
@@ -145,6 +151,8 @@
                                 id="kelurahan" name="kelurahan"
                                 value="{{ old('kelurahan') }}">
                                 <option value="">--Pilih Kelurahan--</option>
+                                <option value="{{ old('kelurahan') }}" selected>{{old('kelurahan')
+                                    }}</option>
                             </select>
                             @error('kelurahan')
                             <div class="invalid-feedback">
@@ -184,21 +192,6 @@
                         </div>
                     </div>
                 </div>
-
-                @include('PSU_Pertamanan.petugas.petugas')
-
-                @include('PSU_Pertamanan.pemeliharaan.pemeliharaan')
-
-                @include('PSU_Pertamanan.hardscape.hardscape')
-
-                @include('PSU_Pertamanan.softscape.softscape')
-
-                @include('PSU_Pertamanan.koordinat.koordinat')
-
-                @include('PSU_Pertamanan.cctv.cctv')
-
-                @include('PSU_Pertamanan.foto.foto')
-
 
                 <div class="form-group">
                     <label for="keterangan">Keterangan</label>

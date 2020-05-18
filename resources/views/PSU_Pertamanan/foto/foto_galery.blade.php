@@ -3,7 +3,7 @@
         <div class="col-padding">
             <a class="thumbnail" href="#" data-image-id="" data-toggle="modal"
                data-title="{{$foto->nama_foto}}"
-               data-image="../assets/uploads/permukiman/{{$foto->file_foto}}"
+               data-image="../assets/uploads/pertamanan/{{$foto->file_foto}}"
                data-target="#image-gallery{{$loop->iteration}}">
                 <img class="img-thumbnail"
                      src="../assets/uploads/pertamanan/{{$foto->file_foto}}"
@@ -15,13 +15,13 @@
 </div>
 
 
-<div class="modal fade" id="image-gallery" tabindex="-1" role="dialog"
+<div class="modal fade" id="image-gallery{{$loop->iteration}}" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel" aria-hidden="true">
 
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-primary text-white">
-                <h4 class="modal-title" id="image-gallery-title">{{$foto->nama_foto}}</h4>
+                <h6 class="modal-title" id="image-gallery-title">{{$foto->nama_foto}}</h6>
                 <button type="button" class="close" data-dismiss="modal"><span
                         aria-hidden="true">×</span><span class="sr-only">Close</span>
                 </button>
@@ -34,20 +34,20 @@
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary float-left" id="show-previous-image">
-                    <i class="fa fa-arrow-left"></i>
-                </button>
-
-                <button type="button" id="show-next-image" class="btn btn-secondary float-right">
-                    <i class="fa fa-arrow-right"></i>
-                </button>
+<!--                <button type="button" class="btn btn-secondary float-left" id="show-previous-image">-->
+<!--                    <i class="fa fa-arrow-left"></i>-->
+<!--                </button>-->
+<!---->
+<!--                <button type="button" id="show-next-image" class="btn btn-secondary float-right">-->
+<!--                    <i class="fa fa-arrow-right"></i>-->
+<!--                </button>-->
             </div>
         </div>
     </div>
 </div>
 
 <script type="text/javascript">
-    let modalId = $('#image-gallery');
+    let modalId = $('#image-gallery{{$loop->iteration}}');
 
     $(document)
     .ready(function () {

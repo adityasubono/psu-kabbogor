@@ -77,11 +77,11 @@ class FotoPertamanansController extends Controller
      * @param \App\FotoPertamanan $fotoPertamanan
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit(FotoPertamanan $fotoPertamanan, $id)
+    public function edit($id)
     {
         //
         $data_foto = FotoPertamanan::findOrFail($id);
-        return view('PSU_Permukiman.fototpu.edit', compact('data_foto'));
+        return view('PSU_Pertamanan.foto.edit', compact('data_foto'));
     }
 
     /**
@@ -91,7 +91,7 @@ class FotoPertamanansController extends Controller
      * @param \App\FotoPertamanan $fotoPertamanan
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, FotoPertamanan $fotoPertamanan, $id)
+    public function update(Request $request, $id)
     {
         $data = FotoPertamanan::find($id);
         $data->nama_foto = $request->input('nama_foto');
@@ -101,7 +101,7 @@ class FotoPertamanansController extends Controller
         if (empty($request->file('file_foto'))) {
             $data->file_foto = $data->file_foto;
         } else {
-            $path = public_path('/assets/uploads/pertamanan/') . $data->file_foto;
+            $path = public_path('assets/uploads/pertamanan/') . $data->file_foto;
             if (file_exists($path)) {
                 unlink($path);
             }
@@ -109,7 +109,7 @@ class FotoPertamanansController extends Controller
             $file = $request->file('file_foto');
             $ext = $file->getClientOriginalExtension();
             $newName = rand(100000, 1001238912) . "." . $ext;
-            $file->move('assets/uploads/permukiman', $newName);
+            $file->move('assets/uploads/pertamanan', $newName);
             $data->file_foto = $newName;
         }
         $data->save();
@@ -131,23 +131,17 @@ class FotoPertamanansController extends Controller
         $filename = $request->get('filename');
         $pertamanan_id = $request->get('pertamanan_id');
 
-//        if (isset($foto_id) && ($filename)) {
-//            FotoPertamanan::where('id', $foto_id)->delete();
-//            $path = public_path('/assets/uploads/pertamanan/') . $filename;
-//            if (file_exists($path)) {
-//                unlink($path);
-//            }
-//
-//            return redirect()->action(
-//                'FotoPertamanansController@index', ['id' => $pertamanan_id]);
-//        }
+        if (isset($foto_id) && ($filename)) {
+            FotoPertamanan::where('id', $foto_id)->delete();
+            $path = public_path('/assets/uploads/pertamanan/') . $filename;
+            if (file_exists($path)) {
+                unlink($path);
+            }
 
-        FotoPertamanan::where('nama_foto',$filename)->delete();
-        $path=public_path('/assets/uploads/pertamanan/').$filename;
-        if (file_exists($path)) {
-            unlink($path);
+            return redirect()->action(
+                'FotoPertamanansController@index', ['id' => $pertamanan_id])
+                ->with('status','ID Foto '.$foto_id.' Berhasil Dihapus');
         }
-        return $filename;
     }
 }
 

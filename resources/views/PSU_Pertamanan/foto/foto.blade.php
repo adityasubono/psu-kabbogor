@@ -36,13 +36,13 @@
                        value="{{$data_pertamanan->id}}">
                 @csrf
             </form>
-            <button type="button" class="btn btn-primary btn-icon-split mt-3"
+            <button type="button" class="btn btn-primary btn-icon-split mt-3 float-right"
                     onClick="window.location.reload()">
                             <span class="icon text-white-50">
                                 <i class="fas fa-download"></i>
                             </span>
                 <span class="text">Simpan</span>
-            </button>
+            </button><br>
 
 
         </div>

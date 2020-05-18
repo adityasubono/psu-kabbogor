@@ -84,7 +84,7 @@
                 <h5 class="mb-0">
                     <button class="btn btn-link" data-toggle="collapse"
                             data-target="#data_pemelihara{{$loop->iteration }}">
-                        Data Pemeliharaan
+                        Data Peralatan Pemeliharaan
                     </button>
                     <span class="badge badge-primary text-center rata_kanan">
                         @php
@@ -98,7 +98,8 @@
             <div id="data_pemelihara{{$loop->iteration }}" class="collapse"
                  data-parent="#accordion">
                 <div class="card-body p-3">
-                    <a href="/pemeliharaans/{{ $pertamanan->id }}">Kelola Data Pemeliharaan</a><br>
+                    <a href="/pemeliharaans/{{ $pertamanan->id }}">Kelola Data
+                        Peralatan Pemeliharaan</a><br>
                 </div>
             </div>
         </div>
@@ -176,7 +177,7 @@
             <div id="data_koordinat_pertamanan{{$loop->iteration }}" class="collapse"
                  data-parent="#accordion">
                 <div class="card-body p-3">
-                    <a href="/koordinat_pertamanans/{{ $pertamanan->id }}">
+                    <a href="/koordinatpertamanans/{{ $pertamanan->id }}">
                         Kelola Data Koordinat Pertamanan</a><br>
                 </div>
             </div>
@@ -203,7 +204,7 @@
             <div id="data_cctv_pertamanan{{$loop->iteration }}" class="collapse"
                  data-parent="#accordion">
                 <div class="card-body p-3">
-                    <a href="/cctv_pertamanans/{{ $pertamanan->id }}">
+                    <a href="/cctvpertamanans/{{ $pertamanan->id }}">
                         Kelola Data CCTV Pertamaman</a><br>
                 </div>
             </div>
