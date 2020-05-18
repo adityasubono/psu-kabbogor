@@ -151,7 +151,7 @@
             <div id="data_hardscape{{$loop->iteration }}" class="collapse"
                  data-parent="#accordion">
                 <div class="card-body p-3">
-                    <a href="/hardscapes/{{ $pertamanan->id }}">Kelola Data Softscape</a><br>
+                    <a href="/hardscapes/{{ $pertamanan->id }}">Kelola Data Hardscape</a><br>
                 </div>
             </div>
         </div>

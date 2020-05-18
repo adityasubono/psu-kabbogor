@@ -52,6 +52,7 @@ class PemeliharaansController extends Controller
         $customMessages = [
             'required' => 'Masukan Data :attribute ini ?.',
             'data_inventaris.*.nama_alat.required' => "Masukan Data Nama Alat ?",
+            'data_inventaris.*.tipe.required' => "Masukan Nama Tipe ?",
             'data_pemeliharaan.*.tahun_perolehan.required' => "Masukan Tahun Diperoleh ?",
             'data_pemeliharaan.*.kondisi.required' => "Masukan Data Kondisi ?",
             'data_pemeliharaan.*.keterangan.required' => "Masukan Data Keterangan ?",
