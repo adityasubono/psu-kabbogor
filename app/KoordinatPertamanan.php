@@ -4,9 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @method static create($value)
+ * @method static where(string $string, $id)
+ */
 class KoordinatPertamanan extends Model
 {
     //
+    protected $table ='koordinatpertamanans';
     protected $fillable=['pertamanan_id','longitude','latitude'];
 
     public function r_pertamanan() {

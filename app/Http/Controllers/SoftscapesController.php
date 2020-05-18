@@ -84,11 +84,12 @@ class SoftscapesController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Softscape  $softscape
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit(Softscape $softscape)
     {
         //
+        return view('PSU_Pertamanan.softscape.edit', compact('softscape'));
     }
 
     /**

@@ -7,32 +7,32 @@
     <div class="card-header bg-gray-500 rounded">
         <div class="row">
             <div class="col-sm-6">
-                <h6 class="m-0 font-weight-bold text-primary">Update Data CCTV Permukiman</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Update Data CCTV Pertamanan</h6>
             </div>
             <div class="col-sm-6">
                 <h6 class="m-0 font-weight-bold text-primary text-right">ID :
-                    {{$cCTVPermukiman->id}}
+                    {{$cctvPertamanan->id}}
                 </h6>
             </div>
         </div>
     </div>
     <div class="card-body bg-gray-200 mb-5">
         <div class="form-group">
-            <form action="/cctvtpus/update/{{$cCTVPermukiman->id}}" method="post">
+            <form action="/cctvpertamanans/update/{{$cctvPertamanan->id}}" method="post">
                 @method('PATCH')
                 @csrf
                 <div class="row">
                     <div class="col-sm-6">
-                        <input type="hidden" class="form-control" id="permukiman_id"
-                               name="permukiman_id"
-                               value="{{$cCTVPermukiman->permukiman_id}}">
+                        <input type="hidden" class="form-control" id="pertamanan_id"
+                               name="pertamanan_id"
+                               value="{{$cctvPertamanan->pertamanan_id}}">
 
                         <label for="nama_cctv">Nama CCTV</label><br>
                         <input type="text" class="form-control @error('nama_cctv')
                         is-invalid @enderror" id="nama_cctv"
                                name="nama_cctv"
                                placeholder="Masukan Nama CCTV"
-                               value="{{$cCTVPermukiman->nama_cctv}}">
+                               value="{{$cctvPertamanan->nama_cctv}}">
                         @error('nama_cctv')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -46,7 +46,7 @@
                                            is-invalid @enderror" id="ip_cctv"
                                name="ip_cctv"
                                placeholder="Masukan IP CCTV"
-                               value="{{ $cCTVPermukiman->ip_cctv }}">
+                               value="{{ $cctvPertamanan->ip_cctv }}">
                         @error('ip_cctv')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -55,7 +55,8 @@
                     </div>
 
                     <div class="col-sm-4 mt-2">
-                        <a  href="/cctvtpus/{{$cCTVPermukiman->permukiman_id}}" class="btn btn-info
+                        <a  href="/cctvpertamanans/{{$cctvPertamanan->pertamanan_id}}" class="btn
+                        btn-info
                             btn-icon-split mr-2" id="btn_kembali">
                         <span class="icon text-white-50">
                             <i class="fas fa-arrow-alt-circle-left"></i>
@@ -77,9 +78,5 @@
         </div>
     </div>
 </div>
-
-
-<!--Scrpit Data CCTV Form -->
-<script type="text/javascript" src="../assets/js/permukiman/cctv_form.js"></script>
 
 @endsection

@@ -171,32 +171,32 @@ Route::delete('/pemeliharaans/delete/{pemeliharaan}', 'PemeliharaansController@d
 //PSU PERTAMANAN ( HARDSCAPE )=============================================================
 Route::get('/hardscapes/{id}', 'HardscapesController@index');
 Route::post('/hardscapes/store', 'HardscapesController@store');
-Route::get('/hardscapes/edit/{id}', 'HardscapesController@edit');
-Route::patch('/hardscapes/update/{id}', 'HardscapesController@update');
-Route::delete('/hardscapes/delete', 'HardscapesController@destroy');
+Route::get('/hardscapes/edit/{hardscape}', 'HardscapesController@edit');
+Route::patch('/hardscapes/update/{hardscape}', 'HardscapesController@update');
+Route::delete('/hardscapes/delete/{hardscape}', 'HardscapesController@destroy');
 
 
 //PSU PERTAMANAN ( SOFTSCAPE )=============================================================
 Route::get('/softscapes/{id}', 'SoftscapesController@index');
 Route::post('/softscapes/store', 'SoftscapesController@store');
-Route::get('/softscapes/edit/{id}', 'SoftscapesController@edit');
-Route::put('/softscapes/update/{id}', 'SoftscapesController@update');
-Route::post('/softscapes/delete', 'SoftscapesController@destroy');
+Route::get('/softscapes/edit/{softscape}', 'SoftscapesController@edit');
+Route::patch('/softscapes/update/{softscape}', 'SoftscapesController@update');
+Route::delete('/softscapes/delete/{softscape}', 'SoftscapesController@destroy');
 
 //PSU PERTAMANAN ( KOORDINAT PERTAMANAN )//=========================================================
-Route::get('/koordinatpertamanans/{id}', 'KoordinatPertamanasController@index');
-Route::post('/koordinatpertamanans/store', 'KoordinatPertamanasController@store');
-Route::get('/koordinatpertamanans/edit/{id}', 'KoordinatPertamanasController@edit');
-Route::put('/koordinatpertamanans/update/{id}', 'KoordinatPertamanasController@update');
-Route::post('/koordinatpertamanans/delete', 'KoordinatPertamanasController@destroy');
+Route::get('/koordinatpertamanans/{id}', 'KoordinatPertamanansController@index');
+Route::post('/koordinatpertamanans/store', 'KoordinatPertamanansController@store');
+Route::get('/koordinatpertamanans/edit/{koordinatPertamanan}', 'KoordinatPertamanansController@edit');
+Route::patch('/koordinatpertamanans/update/{koordinatPertamanan}', 'KoordinatPertamanansController@update');
+Route::delete('/koordinatpertamanans/delete/{koordinatPertamanan}', 'KoordinatPertamanansController@destroy');
 
 
 //PSU PERTAMANAN ( CCTV PERTAMANAN )=============================================================
-Route::get('/cctvpertamanans/{id}', 'CCTVPertamanasController@index');
-Route::post('/cctvpertamanans/store', 'CCTVPertamanasController@store');
-Route::get('/cctvpertamanans/edit/{id}', 'CCTVPertamanasController@edit');
-Route::put('/cctvpertamanans/update/{id}', 'CCTVPertamanasController@update');
-Route::post('/cctvpertamanans/delete', 'CCTVPertamanasController@destroy');
+Route::get('/cctvpertamanans/{id}', 'CctvPertamanansController@index');
+Route::post('/cctvpertamanans/store', 'CctvPertamanansController@store');
+Route::get('/cctvpertamanans/edit/{cctvPertamanan}', 'CctvPertamanansController@edit');
+Route::patch('/cctvpertamanans/update/{cctvPertamanan}', 'CctvPertamanansController@update');
+Route::delete('/cctvpertamanans/delete/{cctvPertamanan}', 'CctvPertamanansController@destroy');
 
 
 
@@ -218,7 +218,7 @@ Route::get('/permukimans/rekapitulasi', 'RekapitulasiPermukimanController@index'
 Route::get('/pengelolas/{id}', 'PengelolahsController@index');
 Route::post('/pengelolas/store', 'PengelolahsController@store');
 Route::get('/pengelolas/edit/{pengelolah}', 'PengelolahsController@edit');
-Route::patch('/pengelolas/update/{pengelola}','PengelolahsController@update_data');
+Route::patch('/pengelolas/update/{pengelola}','PengelolahsController@update');
 Route::delete('/pengelolas/delete/{pengelolah}','PengelolahsController@destroy');
 
 //PSU Permukiman ( TPU ) -> ( Foto TPU )=====================================================

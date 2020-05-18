@@ -1,6 +1,6 @@
 <div class="card shadow mb-4">
     <div class="card-header py-3 bg-gray-500">
-        <h6 class="m-0 font-weight-bold text-primary">Tabel Data Hardscape</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Tabel Data CCTV Permukiman</h6>
     </div>
 
     <div class="card-body bg-gray-200" id="data_sarana">
@@ -11,27 +11,19 @@
                 <thead class="thead-dark">
                 <tr>
                     <th>No.</th>
-                    <th>ID</th>
-                    <th>Nama Alat</th>
-                    <th>Merk / Tipe</th>
-                    <th>Tahun Perolehan</th>
-                    <th>Kondisi</th>
-                    <th>Keterangan</th>
+                    <th>Nama CCTV</th>
+                    <th>IP CCTV</th>
                     <th>Aksi</th>
                 </tr>
                 </thead>
                 <tbody class="bg-light">
-                @forelse( $data_hardscape as $hardscape )
+                @forelse( $data_cctv_pertamanan as $cctv )
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $hardscape->id }}</td>
-                    <td>{{ $hardscape->nama_alat }}</td>
-                    <td>{{ $hardscape->tipe }}</td>
-                    <td>{{ $hardscape->tahun_perolehan }}</td>
-                    <td>{{ $hardscape->kondisi }}</td>
-                    <td>{{ $hardscape->keterangan }}</td>
+                    <td>{{ $cctv->nama_cctv }}</td>
+                    <td>{{ $cctv->ip_cctv }}</td>
                     <td>
-                        <a href="/hardscapes/edit/{{$hardscape->id }}" class="btn btn-warning
+                        <a href="/cctvpertamanans/edit/{{ $cctv->id }}" class="btn btn-warning
                             btn-icon-split">
                             <span class="icon text-white-50">
                                 <i class="fas fa-pen"></i>
@@ -61,20 +53,20 @@
                                 <i class="fas fa-exclamation-triangle fa-2x"> Perhatian</i>
                             </div>
                             <div class="modal-body">
-                                <b>Apakah Anda Akan Menghapus Data Dengan ID
-                                    {{ $hardscape->id }} ?</b>
+                                <b>Apakah Anda Akan Menghapus Data Ini ID
+                                    {{$cctv->id}} ?</b>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-success" data-dismiss="modal">
                                     Cancel
                                 </button>
-                                <form action="/hardscapes/delete/{{ $hardscape->id }}"
+                                <form action="/cctvpertamanans/delete/{{ $cctv->id }}"
                                       method="post"
                                       class="d-inline">
                                     @method('delete')
-                                    <input type="hidden" name="pertamanan_id"
-                                           value="{{$hardscape->pertamanan_id}}">
                                     @csrf
+                                    <input type="hidden" name="pertamanan_id"
+                                           value="{{$cctv->pertamanan_id}}">
                                     <button type="submit" class="btn btn-danger btn-ok">Delete</button>
                                 </form>
                             </div>
@@ -83,13 +75,12 @@
                 </div>
                 @empty
                 <tr>
-                    <td colspan="8" class="text-center"><b style="color: red">
+                    <td colspan="4" class="text-center"><b style="color: red">
                             Data Tidak Tersedia<b></td>
                 </tr>
                 @endforelse
                 </tbody>
             </table>
-
             <a href="/pertamanans" class="btn btn-primary btn-icon-split">
                 <span class="icon text-white-50">
                 <i class="fas fa-arrow-alt-circle-left"></i>

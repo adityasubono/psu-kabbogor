@@ -7,7 +7,7 @@
     <div class="card-header bg-gray-500 rounded">
         <div class="row">
             <div class="col-sm-6">
-                <h6 class="m-0 font-weight-bold text-primary">Data CCTV :
+                <h6 class="m-0 font-weight-bold text-primary">Data CCTV Permukiman :
                     {{$data_permukiman->nama_tpu}}
                 </h6>
             </div>

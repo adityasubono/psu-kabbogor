@@ -12,7 +12,7 @@ class Softscape extends Model
 {
     //
     protected $fillable=[
-        'perumahan_id',
+        'pertamanan_id',
         'nama_alat',
         'tipe',
         'tahun_perolehan',

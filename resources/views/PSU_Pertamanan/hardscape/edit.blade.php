@@ -1,26 +1,26 @@
 @extends('layouts/main')
 
-@section('title', 'Edit Data Peralatan Pemeliharaan ( Pertamanan )')
+@section('title', 'Edit Data hardscape ( Pertamanan )')
 
 @section('container-fluid')
 <div class="card shadow mb-4">
     <div class="card-header py-3 bg-gray-500">
         <div class="row">
             <div class="col-sm-6">
-                <h6 class="m-0 font-weight-bold text-primary">Data Peralatan Pemeliharaan :
-                    <b class="text-dark">{{$pemeliharaan->nama_alat}}</b>
+                <h6 class="m-0 font-weight-bold text-primary">Data Hardscape :
+                    <b class="text-dark">{{$hardscape->nama_alat}}</b>
                 </h6>
             </div>
             <div class="col-sm-6">
                 <h6 class="m-0 font-weight-bold text-primary text-right">ID :
-                    {{$pemeliharaan->id}}
+                    {{$hardscape->id}}
                 </h6>
             </div>
         </div>
     </div>
 
     <div class="card-body bg-gray-200">
-        <form action="/pemeliharaans/update/{{$pemeliharaan->id}}" method="post">
+        <form action="/pemeliharaans/update/{{$hardscape->id}}" method="post">
             @method('PATCH')
             @csrf
             <div class="row">
@@ -28,14 +28,14 @@
 
                     <input type="hidden" class="form-control" id="pertamanan_id"
                            name="pertamanan_id"
-                           value="{{$pemeliharaan->pertamanan_id}}">
+                           value="{{$hardscape->pertamanan_id}}">
 
                     <label for="nama_alat">Nama Alat </label><br>
                     <input type="text" class="form-control @error('nama_alat') is-invalid
                             @enderror" id="nama_alat"
                            name="nama_alat"
                            placeholder="Masukan Nama Alat"
-                           value="{{$pemeliharaan->nama_alat}}">
+                           value="{{$hardscape->nama_alat}}">
                     @error('nama_alat')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -49,7 +49,7 @@
                            id="merk"
                            name="tipe"
                            placeholder="Masukan Merk / Tipe"
-                           value="{{$pemeliharaan->tipe}}">
+                           value="{{$hardscape->tipe}}">
                     @error('tipe')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -63,9 +63,9 @@
                         class="custom-select @error('tahun_perolehan')
                         is-invalid @enderror"
                         id="tahun_perolehan" name="tahun_perolehan">
-                        <option value="{{$pemeliharaan->tahun_perolehan}}"
+                        <option value="{{$hardscape->tahun_perolehan}}"
                                 selected>
-                            {{$pemeliharaan->tahun_perolehan}}
+                            {{$hardscape->tahun_perolehan}}
                         </option>
                         @php
                         $tahun=getdate();
@@ -87,8 +87,8 @@
                         class="custom-select @error('kondisi') is-invalid
                         @enderror"
                         id="kondisi" name="kondisi">
-                        <option value="{{$pemeliharaan->kondisi}}" selected>
-                            {{$pemeliharaan->kondisi}}
+                        <option value="{{$hardscape->kondisi}}" selected>
+                            {{$hardscape->kondisi}}
                         </option>
                         <option value="Baik">Baik</option>
                         <option value="Rusak Ringan">Rusak Ringan</option>
@@ -108,7 +108,7 @@
                               name="keterangan"
                               rows="3"
                               placeholder="Masukan Deskripsi Keterangan">{{
-                        $pemeliharaan->keterangan}}</textarea>
+                              $hardscape->keterangan}}</textarea>
                     @error('keterangan')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -117,7 +117,7 @@
                 </div>
 
                 <div class="col-sm-4 mt-2">
-                    <a href="/pemeliharaans/{{$pemeliharaan->permukiman_id}}"
+                    <a href="/pemeliharaans/{{$hardscape->permukiman_id}}"
                        class="btn btn-info btn-icon-split mr-2"
                        id="add_data_pemeliharaan">
                         <span class="icon text-white-50">

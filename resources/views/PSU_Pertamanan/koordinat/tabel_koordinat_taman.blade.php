@@ -1,6 +1,6 @@
 <div class="card shadow mb-4">
     <div class="card-header py-3 bg-gray-500">
-        <h6 class="m-0 font-weight-bold text-primary">Tabel Data Hardscape</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Tabel Data Koordinat</h6>
     </div>
 
     <div class="card-body bg-gray-200" id="data_sarana">
@@ -11,28 +11,20 @@
                 <thead class="thead-dark">
                 <tr>
                     <th>No.</th>
-                    <th>ID</th>
-                    <th>Nama Alat</th>
-                    <th>Merk / Tipe</th>
-                    <th>Tahun Perolehan</th>
-                    <th>Kondisi</th>
-                    <th>Keterangan</th>
+                    <th>Koordinat Longitude</th>
+                    <th>Koordinat Latitude</th>
                     <th>Aksi</th>
                 </tr>
                 </thead>
                 <tbody class="bg-light">
-                @forelse( $data_hardscape as $hardscape )
+                @forelse( $data_koordinat_pertamanan as $koordinat )
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $hardscape->id }}</td>
-                    <td>{{ $hardscape->nama_alat }}</td>
-                    <td>{{ $hardscape->tipe }}</td>
-                    <td>{{ $hardscape->tahun_perolehan }}</td>
-                    <td>{{ $hardscape->kondisi }}</td>
-                    <td>{{ $hardscape->keterangan }}</td>
+                    <td>{{ $koordinat->longitude }}</td>
+                    <td>{{ $koordinat->latitude }}</td>
                     <td>
-                        <a href="/hardscapes/edit/{{$hardscape->id }}" class="btn btn-warning
-                            btn-icon-split">
+                        <a href="/koordinatpertamanans/edit/{{ $koordinat->id }}"
+                           class="btn btn-warning btn-icon-split">
                             <span class="icon text-white-50">
                                 <i class="fas fa-pen"></i>
                             </span>
@@ -61,20 +53,18 @@
                                 <i class="fas fa-exclamation-triangle fa-2x"> Perhatian</i>
                             </div>
                             <div class="modal-body">
-                                <b>Apakah Anda Akan Menghapus Data Dengan ID
-                                    {{ $hardscape->id }} ?</b>
+                                <b>Apakah Anda Akan Menghapus Data Ini ID {{ $koordinat->id }}?</b>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-success" data-dismiss="modal">
                                     Cancel
                                 </button>
-                                <form action="/hardscapes/delete/{{ $hardscape->id }}"
-                                      method="post"
-                                      class="d-inline">
+                                <form action="/koordinatpertamanans/delete/{{ $koordinat->id }}"
+                                      method="post" class="d-inline">
                                     @method('delete')
-                                    <input type="hidden" name="pertamanan_id"
-                                           value="{{$hardscape->pertamanan_id}}">
                                     @csrf
+                                    <input type="hidden" name="pertamanan_id"
+                                           value="{{$koordinat->pertamanan_id}}">
                                     <button type="submit" class="btn btn-danger btn-ok">Delete</button>
                                 </form>
                             </div>
@@ -83,13 +73,12 @@
                 </div>
                 @empty
                 <tr>
-                    <td colspan="8" class="text-center"><b style="color: red">
+                    <td colspan="4" class="text-center"><b style="color: red">
                             Data Tidak Tersedia<b></td>
                 </tr>
                 @endforelse
                 </tbody>
             </table>
-
             <a href="/pertamanans" class="btn btn-primary btn-icon-split">
                 <span class="icon text-white-50">
                 <i class="fas fa-arrow-alt-circle-left"></i>

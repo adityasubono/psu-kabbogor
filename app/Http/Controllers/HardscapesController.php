@@ -84,11 +84,11 @@ class HardscapesController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Hardscape  $hardscape
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit(Hardscape $hardscape)
     {
-        //
+        return view('PSU_Pertamanan.hardscape.edit',compact('hardscape'));
     }
 
     /**

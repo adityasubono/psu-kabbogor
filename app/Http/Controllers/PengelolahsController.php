@@ -101,34 +101,34 @@ class PengelolahsController extends Controller
      * @param  \App\Pengelola  $pengelola
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-//    public function update(Request $request, Pengelola $pengelola)
-//    {
-//        $rules = [
-//            'nama' => 'required',
-//            'umur' => 'required',
-//            'jumlah' => 'required',
-//            'tugas' => 'required',
-//            'keterangan' => 'required',
-//        ];
+    public function update(Request $request, Pengelola $pengelola)
+    {
+        $rules = [
+            'nama' => 'required',
+            'umur' => 'required',
+            'pendidikan' => 'required',
+            'tugas' => 'required',
+            'keterangan' => 'required',
+        ];
+
+        $customMessages = [
+            'required' => 'Masukan Data :attribute ini ?.',
+        ];
+
+        $this->validate($request, $rules, $customMessages);
 //
-//        $customMessages = [
-//            'required' => 'Masukan Data :attribute ini ?.',
-//        ];
-//
-//        $this->validate($request, $rules, $customMessages);
-//
-//        $permukiman_id = $request->get('permukiman_id');
-//        Pengelola::where('id', $pengelola->id)->update([
-//            'nama' => $request->nama,
-//            'umur' => $request->umur,
-//            'pendidikan' => $request->pendidikan,
-//            'tugas' => $request->tugas,
-//            'keterangan' => $request->keterangan
-//        ]);
-//
-//        return redirect()->action('PengelolahsController@index', ['id' => $permukiman_id])
-//            ->with('status','Data Dengan ID '.$pengelola->id.' Berhasil Di Update');
-//    }
+        $permukiman_id = $request->get('permukiman_id');
+        Pengelola::where('id', $pengelola->id)->update([
+            'nama' => $request->nama,
+            'umur' => $request->umur,
+            'pendidikan' => $request->pendidikan,
+            'tugas' => $request->tugas,
+            'keterangan' => $request->keterangan
+        ]);
+
+        return redirect()->action('PengelolahsController@index', ['id' => $permukiman_id])
+            ->with('status','Data Dengan ID '.$pengelola->id.' Berhasil Di Update');
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -149,32 +149,4 @@ class PengelolahsController extends Controller
 
     }
 
-    public function update_data(Request $request, Pengelola $pengelola)
-    {
-        $rules = [
-            'nama' => 'required',
-            'umur' => 'required',
-            'jumlah' => 'required',
-            'tugas' => 'required',
-            'keterangan' => 'required',
-        ];
-
-        $customMessages = [
-            'required' => 'Masukan Data :attribute ini ?.',
-        ];
-
-        $this->validate($request, $rules, $customMessages);
-
-        $permukiman_id = $request->get('permukiman_id');
-        Pengelola::where('id', 26)->update([
-            'nama' => $request->nama,
-            'umur' => $request->umur,
-            'pendidikan' => $request->pendidikan,
-            'tugas' => $request->tugas,
-            'keterangan' => $request->keterangan
-        ]);
-
-        return redirect()->action('PengelolahsController@index', ['id' => $permukiman_id])
-            ->with('status','Data Dengan ID '.$pengelolah->id.' Berhasil Di Update');
-    }
 }

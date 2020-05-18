@@ -209,7 +209,7 @@
                             <span class="icon text-white-50">
                                 <i class="fas fa-download"></i>
                             </span>
-                    <span class="text">Submit</span>
+                    <span class="text">Simpan</span>
                 </button>
 
                 <button type="reset" class="btn btn-warning btn-icon-split">

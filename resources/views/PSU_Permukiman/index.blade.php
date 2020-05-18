@@ -14,7 +14,7 @@
                             <span class="icon text-white-50">
                                 <i class="fas fa-plus"></i>
                             </span>
-                <span class="text">Add Data</span>
+                <span class="text">Tambah Data</span>
             </a>
 
             <form method="get" action="/permukimans/filter" role="search">

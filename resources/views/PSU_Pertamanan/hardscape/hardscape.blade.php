@@ -125,7 +125,7 @@
 
                 <div class="col-sm-4 mt-2">
                     <button type="button" class="btn btn-success btn-icon-split mr-2"
-                            id="add_data_pemeliharaan">
+                            id="add_data_hardscape">
                         <span class="icon text-white-50">
                             <i class="fas fa-plus"></i>
                         </span>
@@ -145,7 +145,7 @@
 
 
             <div class="row pl-3 pr-3">
-                <div id="pemeliharaan-form"></div>
+                <div id="hardscapes-form"></div>
             </div>
 
             <button type="submit" class="btn btn-primary btn-icon-split mt-3"
@@ -164,7 +164,7 @@
 </div>
 
 <!--Scrpit Data Sarana -->
-<script type="text/javascript" src="../assets/js/pertamanan/pemeliharaan_form.js"></script>
+<script type="text/javascript" src="../assets/js/pertamanan/hardscapes_form.js"></script>
 
 <script type="text/javascript">
     window.setTimeout(function () {

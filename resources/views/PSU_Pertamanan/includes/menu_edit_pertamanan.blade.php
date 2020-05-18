@@ -167,7 +167,7 @@
                     </button>
                     <span class="badge badge-primary text-center rata_kanan">
                         @php
-                        $a=$pertamanan->r_softscape->count();
+                        $a=$pertamanan->r_koordinat_pertamanan->count();
                         echo "$a";
                         @endphp
                     </span>
@@ -210,8 +210,4 @@
             </div>
         </div>
     </div>
-
-
-
-
 </div>

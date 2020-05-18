@@ -1,9 +1,9 @@
 <div class="card shadow mb-4">
     <div class="card-header py-3 bg-gray-500">
-        <h6 class="m-0 font-weight-bold text-primary">Tabel Data Hardscape</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Tabel Data Softscape</h6>
     </div>
 
-    <div class="card-body bg-gray-200" id="data_sarana">
+    <div class="card-body bg-gray-200">
         <div class="table-responsive">
             <table class="table table-bordered display table-hover nowrap" id="dataTable"
                    cellspacing="0"
@@ -21,17 +21,17 @@
                 </tr>
                 </thead>
                 <tbody class="bg-light">
-                @forelse( $data_hardscape as $hardscape )
+                @forelse( $data_softscape as $softscape )
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $hardscape->id }}</td>
-                    <td>{{ $hardscape->nama_alat }}</td>
-                    <td>{{ $hardscape->tipe }}</td>
-                    <td>{{ $hardscape->tahun_perolehan }}</td>
-                    <td>{{ $hardscape->kondisi }}</td>
-                    <td>{{ $hardscape->keterangan }}</td>
+                    <td>{{ $softscape->id }}</td>
+                    <td>{{ $softscape->nama_alat }}</td>
+                    <td>{{ $softscape->tipe }}</td>
+                    <td>{{ $softscape->tahun_perolehan }}</td>
+                    <td>{{ $softscape->kondisi }}</td>
+                    <td>{{ $softscape->keterangan }}</td>
                     <td>
-                        <a href="/hardscapes/edit/{{$hardscape->id }}" class="btn btn-warning
+                        <a href="/softscapes/edit/{{$softscape->id }}" class="btn btn-warning
                             btn-icon-split">
                             <span class="icon text-white-50">
                                 <i class="fas fa-pen"></i>
@@ -62,18 +62,18 @@
                             </div>
                             <div class="modal-body">
                                 <b>Apakah Anda Akan Menghapus Data Dengan ID
-                                    {{ $hardscape->id }} ?</b>
+                                    {{ $softscape->id }} ?</b>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-success" data-dismiss="modal">
                                     Cancel
                                 </button>
-                                <form action="/hardscapes/delete/{{ $hardscape->id }}"
+                                <form action="/softscapes/delete/{{ $softscape->id }}"
                                       method="post"
                                       class="d-inline">
                                     @method('delete')
                                     <input type="hidden" name="pertamanan_id"
-                                           value="{{$hardscape->pertamanan_id}}">
+                                           value="{{$softscape->pertamanan_id}}">
                                     @csrf
                                     <button type="submit" class="btn btn-danger btn-ok">Delete</button>
                                 </form>
