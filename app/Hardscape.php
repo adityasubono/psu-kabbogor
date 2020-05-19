@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @method static where(string $string, $id)
  * @method static create($value)
+ * @method static select($raw)
  */
 class Hardscape extends Model
 {

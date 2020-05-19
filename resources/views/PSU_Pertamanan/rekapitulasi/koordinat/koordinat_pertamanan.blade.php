@@ -5,6 +5,7 @@
     <script>
         var marker;
         var locations = <?php print_r(json_encode($locations)) ?>;
+        console.log('lokasi pertamanan',locations);
         // function taruhMarker(peta, posisiTitik){
         //
         //     if( marker ){
@@ -39,7 +40,7 @@
             // membuat Marker
             for (i = 0; i < locations.length; i++) {
                 marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(locations[i].longitude, locations[i].latitude),
+                    position: new google.maps.LatLng(locations[i].latitude, locations[i].longitude),
                     map: peta,
                     animation: google.maps.Animation.BOUNCE,
                     icon: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"

@@ -24,9 +24,10 @@ class RekapitulasiPertamananController extends Controller
 
         $jml_softscape = Softscape::select(\DB::raw("COUNT(*) as count"))->pluck('count');
 
+        $locations =  DB::table('koordinatpertamanans')->get();
 
         return view('PSU_Pertamanan.rekapitulasi.index',
-            compact('jml_hardscape', 'jml_softscape'));
+            compact('jml_hardscape', 'jml_softscape', 'locations'));
 
     }
 

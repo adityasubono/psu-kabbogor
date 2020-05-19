@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Permukiman;
 use App\RekapitulasiPermukiman;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RekapitulasiPermukimanController extends Controller
 {
@@ -24,8 +25,12 @@ class RekapitulasiPermukimanController extends Controller
             ->where('status','Belum Beroperasional')
             ->pluck('count');
 
+        $locations =  DB::table('koordinattpus')->get();
+
         return view('PSU_Permukiman.rekapitulasi.index',
-            compact('jml_status_sudah', 'jml_status_belum'));
+            compact('jml_status_sudah', 'jml_status_belum','locations'));
+
+
 
     }
 

@@ -101,7 +101,7 @@
                 <h6 class="collapse-header">Menu:</h6>
                 <a class="collapse-item" href="/permukimans">Kelola Data</a>
                 <a class="collapse-item" href="/permukimans/monitoring">Monitoring</a>
-                <a class="collapse-item" href="/permukimans/rekapitulasi">Rekapitulasi</a>
+                <a class="collapse-item" href="/rekapitulasi/permukimans">Rekapitulasi</a>
             </div>
         </div>
     </li>

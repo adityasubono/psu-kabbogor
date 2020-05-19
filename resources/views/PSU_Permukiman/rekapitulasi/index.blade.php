@@ -14,7 +14,17 @@
         </div>
     </div>
 
-    @include('PSU_Permukiman.rekapitulasi.koordinat.koordinat_permukiman')
+    <div class="card shadow mb-4">
+        <div class="card-header py-3 bg-gray-500">
+            <h6 class="m-0 font-weight-bold text-primary">Grafik Rekapitulasi PSU
+                Kawasan Permukiman</h6>
+        </div>
+        <div class="card-body">
+            @include('PSU_Permukiman.rekapitulasi.koordinat.koordinat_permukiman')
+        </div>
+    </div>
+
+
 
 
 </div>

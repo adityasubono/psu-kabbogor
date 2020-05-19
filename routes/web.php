@@ -220,7 +220,7 @@ Route::patch('/permukimans/{permukiman}', 'PermukimansController@update');
 Route::delete('/permukimans/delete/{id}', 'PermukimansController@destroy');
 
 //PSU Permukiman ( TPU ) -> ( Rekapitulasi Permukiman Grafik )
-Route::get('/permukimans/rekapitulasi', 'RekapitulasiPermukimanController@index');
+Route::get('/rekapitulasi/permukimans', 'RekapitulasiPermukimanController@index');
 
 //PSU Permukiman ( TPU ) -> ( Pengelola )
 Route::get('/pengelolas/{id}', 'PengelolahsController@index');
