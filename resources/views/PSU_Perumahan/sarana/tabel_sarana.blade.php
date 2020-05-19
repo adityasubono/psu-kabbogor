@@ -25,7 +25,7 @@
                     <td>{{ $sarana->luas_sarana }}</td>
                     <td>{{ $sarana->kondisi_sarana }}</td>
                     <td>
-                        <a href="/saranas/{{$sarana->id }}/edit" class="btn btn-warning
+                        <a href="/saranas/edit/{{$sarana->id }}" class="btn btn-warning
                             btn-icon-split">
                             <span class="icon text-white-50">
                                 <i class="fas fa-pen"></i>
@@ -47,23 +47,26 @@
                 </tr>
                 <div class="modal fade" id="confirm-delete-sarana" tabindex="-1" role="dialog"
                      aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
+                    <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
-                            <div class="modal-header bg-warning">
-                                Perhatian !
+                            <div class="modal-header bg-danger text-white">
+                                <i class="fas fa-exclamation-triangle fa-2x"> Perhatian</i>
                             </div>
                             <div class="modal-body">
                                 <b>Apakah Anda Akan Menghapus Data Ini ID {{ $sarana->id }}?</b>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-success" data-dismiss="modal">
-                                    Cancel
+                                    Batal
                                 </button>
                                 <form action="/saranas/delete/{{ $sarana->id }}" method="post"
                                       class="d-inline">
                                     @method('delete')
+                                    <input type="hidden" name="perumahan_id"
+                                           value="{{$sarana->perumahan_id}}">
                                     @csrf
-                                    <button type="submit" class="btn btn-danger btn-ok">Delete</button>
+                                    <button type="submit" class="btn btn-danger
+                                    btn-ok">Hapus</button>
                                 </form>
                             </div>
                         </div>

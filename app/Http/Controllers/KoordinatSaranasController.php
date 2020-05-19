@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\KoordinatSarana;
+use App\Sarana;
 use Illuminate\Http\Request;
 
 class KoordinatSaranasController extends Controller
@@ -12,9 +13,15 @@ class KoordinatSaranasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
         //
+
+        $data_sarana = Sarana::where('perumahan_id',$id)->get();
+        $data_foto_sarana = FotoSarana::where('perumahan_id',$id)->get();
+        $data_koordinat_sarana = KoordinatSarana::where('perumahan_id',$id)->get();
+        return view('PSU_Perumahan.sarana.index', compact('data_perumahan','data_sarana',
+            'data_foto_sarana','data_koordinat_sarana'));
     }
 
     /**

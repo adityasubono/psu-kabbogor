@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @method static where(string $string, Perumahans $perumahan)
+ * @method static create($value)
+ * @method static find($id)
  */
 class Sarana extends Model
 {

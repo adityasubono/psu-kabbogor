@@ -69,11 +69,11 @@ class SaranasController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Sarana  $sarana
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit(Sarana $sarana)
     {
-        //
+        return view('PSU_Perumahan.sarana.edit', compact('sarana'));
     }
 
     /**
@@ -81,11 +81,31 @@ class SaranasController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Sarana  $sarana
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Sarana $sarana)
     {
-        //
+        $rules = [
+            'nama_sarana' => 'required',
+            'luas_sarana' => 'required',
+            'kondisi_sarana' => 'required',
+        ];
+
+        $customMessages = [
+            'required' => 'Masukan Data :attribute ini ?.',
+        ];
+
+        $this->validate($request, $rules, $customMessages);
+
+        $perumahan_id = $request->get('perumahan_id');
+        Sarana::where('id', $sarana->id)->update([
+            'nama_sarana' => $request->nama_sarana,
+            'luas_sarana' => $request->luas_sarana,
+            'kondisi_sarana' => $request->kondisi_sarana
+        ]);
+        return redirect()->action('SaranasController@index', ['id' => $perumahan_id])
+            ->with('status','Data Dengan ID '.$sarana->id.' Berhasil Di Update');
+
     }
 
     /**
@@ -94,10 +114,12 @@ class SaranasController extends Controller
      * @param  \App\Sarana  $sarana
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function destroy(Sarana $sarana)
+    public function destroy(Request $request, Sarana $sarana)
     {
-        //
+
+        $perumahan_id = $request->get('perumahan_id');
         Sarana::destroy($sarana->id);
-        return redirect('/perumahans')->with('status','Data Success Delete');
+        return redirect()->action('SaranasController@index', ['id' => $perumahan_id])
+            ->with('status','Data Dengan ID '.$sarana->id.' Berhasil Dihapus');
     }
 }

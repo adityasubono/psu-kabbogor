@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @method static where(string $string, $id)
+ * @method static find($id)
  */
 class FotoSarana extends Model
 {

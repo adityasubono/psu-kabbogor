@@ -17,15 +17,15 @@
                     <button class="btn btn-link"
                             data-toggle="collapse"
                             data-target="#dataperumahan{{$loop->iteration }}">
-                        Data Perumahan
+                        Kelola Data Sarana
                     </button>
                 </h5>
             </div>
             <div id="dataperumahan{{$loop->iteration }}" class="collapse"
                  data-parent="#accordion">
                 <div class="card-body p-3">
-                    <a href="/koordinatsaranans/edit/{{$sarana->id}}">Tambah Koordinat Sarana</a><br>
-                    <a href="/fotosaranans/edit/{{$sarana->id}}">Tambah Foto Sarana</a>
+                    <a href="/koordinatsaranans/{{$sarana->id}}">Tambah Koordinat Sarana</a><br>
+                    <a href="/fotosaranas/{{$sarana->id}}">Tambah Foto Sarana</a>
                 </div>
             </div>
         </div>

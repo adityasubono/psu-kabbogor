@@ -102,11 +102,16 @@ Route::get('/perumahans/{perumahan}', 'PerumahansController@detailPerumahan');
 //PSU Data Sarana
 Route::get('/saranas/{id}', 'SaranasController@index');
 Route::post('/saranas/store', 'SaranasController@store');
+Route::get('/saranas/edit/{sarana}', 'SaranasController@edit');
+Route::patch('/saranas/update/{sarana}', 'SaranasController@update');
 Route::delete('/saranas/delete/{sarana}', 'SaranasController@destroy');
 
-//PSU Data Foto Sarana
+//PSU Data Foto Sarana ( Perumahan )
+Route::get('/fotosaranas/{id}', 'FotoSaranasController@index');
 Route::post('/fotosaranas/store', 'FotoSaranasController@store');
-Route::delete('/fotosaranas/delete/{fotosarana}','FotoSaranasController@destroy');
+Route::get('/fotosaranas/edit/{fotoSarana}', 'FotoSaranasController@edit');
+Route::patch('/fotosaranas/update/{fotoSarana}', 'FotoSaranasController@update');
+Route::post('/fotosaranas/delete','FotoSaranasController@destroy');
 
 //PSU Data Koordinat Sarana
 Route::post('/koordinatsarana/store', 'KoordinatSaranasController@store');

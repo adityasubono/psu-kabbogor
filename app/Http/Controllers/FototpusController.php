@@ -41,22 +41,6 @@ class FototpusController extends Controller
      */
     public function store(Request $request)
     {
-//        $data = new Fototpu();
-//        $data->permukiman_id = $request->input('permukiman_id');
-//        $data->nama_foto = $request->input('nama_foto');
-//        $file_foto = $request->file('file_foto');
-//        $ext = $file_foto->getClientOriginalExtension();
-//        $newName = rand(100000,1001238912).".".$ext;
-//        $file_foto->move('assets/uploads/permukiman',$newName);
-//        $data->file_foto = $newName;
-//        $data->save();
-//
-//        $permukiman_id = $request->permukiman_id;
-//
-//        return redirect()->action(
-//            'FototpusController@index', ['id' => $permukiman_id]);
-
-
         $permukiman_id = $request->input('permukiman_id');
         $image = $request->file('file');
         $profileImage = $image->getClientOriginalName();
