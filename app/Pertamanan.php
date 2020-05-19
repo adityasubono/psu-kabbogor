@@ -15,14 +15,14 @@ class Pertamanan extends Model
     protected $fillable=[
         'nama_taman',
         'nama_pelaksana',
-//        'luas_taman',
+        'luas_taman',
         'tahun_dibangun',
         'lokasi',
         'kecamatan',
         'kelurahan',
         'RT',
         'RW',
-//        'keterangan'
+        'keterangan'
     ];
 
 

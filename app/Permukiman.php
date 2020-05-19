@@ -18,16 +18,16 @@ class Permukiman extends Model
         'nama_tpu',
         'luas_tpu',
         'daya_tampung',
-//        'tahun_digunakan',
+        'tahun_digunakan',
         'lokasi',
         'kecamatan',
         'kelurahan',
         'RW',
         'RT',
-        'status'
-//        'keterangan_status',
-//        'kondisi',
-//        'keterangan
+        'status',
+        'keterangan_status',
+        'kondisi',
+        'keterangan
        ];
 
     public function r_pengelola() {

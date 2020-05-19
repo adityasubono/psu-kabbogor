@@ -15,17 +15,17 @@ class Perumahans extends Model
         'nama_perumahan',
         'nama_pengembang',
         'luas_perumahan',
-//        'jumlah_perumahan',
+        'jumlah_perumahan',
         'lokasi',
         'kecamatan',
         'kelurahan',
         'RT',
         'RW',
         'status_perumahan',
-//        'tgl_serah_terima',
-//        'no_bast',
-//        'sph',
-//        'keterangan',
+        'tgl_serah_terima',
+        'no_bast',
+        'sph',
+        'keterangan',
         ];
 
     public function r_sarana() {
