@@ -140,6 +140,14 @@ Route::post('/koordinattamans/store', 'KoordinatJalanSaluranController@store');
 //PSU PSU Perumahan..../Rekapitulasi
 Route::get('/rekapitulasi/perumahans', 'RekapitulasiPerumahanController@index');
 
+//PSU PSU Perumahan..../Monitoring Perumahan
+Route::get('/monitoring/perumahans', 'MonitoringCCTVPerumahanController@index');
+
+
+
+
+
+
 
 //==========================================================================================
 //ROUTE PSU PERTAMANAN =====================================================================
@@ -206,6 +214,10 @@ Route::get('/cctvpertamanans/edit/{cctvPertamanan}', 'CctvPertamanansController@
 Route::patch('/cctvpertamanans/update/{cctvPertamanan}', 'CctvPertamanansController@update');
 Route::delete('/cctvpertamanans/delete/{cctvPertamanan}', 'CctvPertamanansController@destroy');
 
+//PSU PSU Perumahan..../Monitoring Pertamanan
+Route::get('/monitoring/pertamanans', 'MonitoringCCTVPertamananController@index');
+
+
 
 
 //==========================================================================================
@@ -256,6 +268,9 @@ Route::post('/cctvtpus/store', 'CCTVPermukimansController@store');
 Route::get('/cctvtpus/edit/{cCTVPermukiman}','CCTVPermukimansController@edit');
 Route::patch('/cctvtpus/update/{cCTVPermukiman}','CCTVPermukimansController@update');
 Route::delete('/cctvtpus/delete/{cCTVPermukiman}','CCTVPermukimansController@destroy');
+
+//PSU PSU Permukiman..../Monitoring Permukiman
+Route::get('/monitoring/permukimans', 'MonitoringCCTVPermukimanController@index');
 
 
 

@@ -65,17 +65,17 @@
 
 <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header bg-warning">
-                Perhatian !
+            <div class="modal-header bg-danger">
+                <i class="fas fa-exclamation-triangle">Perhatian !</i>
             </div>
             <div class="modal-body">
                 <b>Apakah Anda Akan Menghapus Data Ini ?</b>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
-                <form action="/users/" method="post" class="d-inline">
+                <form action="/perumahans/delete/{{$perumahan->id}}" method="post" class="d-inline">
                     @method('delete')
                     @csrf
                     <button type="submit" class="btn btn-danger btn-ok">Delete</button>

@@ -196,10 +196,13 @@ class PerumahansController extends Controller
      * Remove the specified resource from storage.
      *
      * @param \App\Perumahans $perumahans
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Perumahans $perumahans)
     {
-        //
+        Perumahans::destroy($perumahans->id);
+        return redirect()->action(
+            'PerumahansController@index', ['id' => $perumahans])
+            ->with('status','Data Berhasil Dihapus Dengan ID : '.$perumahans->id);
     }
 }

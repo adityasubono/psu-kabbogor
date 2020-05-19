@@ -66,7 +66,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Menu:</h6>
                 <a class="collapse-item" href="/perumahans">Kelola Data</a>
-                <a class="collapse-item" href="/perumahans/monitoring">Monitoring</a>
+                <a class="collapse-item" href="/monitoring/perumahans">Monitoring</a>
                 <a class="collapse-item" href="/rekapitulasi/perumahans">Rekapitulasi</a>
             </div>
         </div>
@@ -83,7 +83,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Menu:</h6>
                 <a class="collapse-item" href="/pertamanans">Kelola Data</a>
-                <a class="collapse-item" href="/pertamanans/monitoring">Monitoring</a>
+                <a class="collapse-item" href="/monitoring/pertamanans">Monitoring</a>
                 <a class="collapse-item" href="/pertamanans/rekapitulasi/">Rekapitulasi</a>
             </div>
         </div>
@@ -100,7 +100,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Menu:</h6>
                 <a class="collapse-item" href="/permukimans">Kelola Data</a>
-                <a class="collapse-item" href="/permukimans/monitoring">Monitoring</a>
+                <a class="collapse-item" href="/monitoring/permukimans">Monitoring</a>
                 <a class="collapse-item" href="/rekapitulasi/permukimans">Rekapitulasi</a>
             </div>
         </div>
