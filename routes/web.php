@@ -93,8 +93,11 @@ Route::resource('users','UserController');
 Route::get('/perumahans', 'PerumahansController@index');
 Route::get('/perumahans/create', 'PerumahansController@create');
 Route::post('/perumahans/', 'PerumahansController@store');
+Route::get('/perumahans/edit/{perumahans}', 'PerumahansController@edit');
+Route::patch('/perumahans/update/{perumahans}', 'PerumahansController@update');
+Route::delete('/perumahans/delete/{perumahans}', 'PerumahansController@destroy');
 Route::get('/perumahans/{perumahan}', 'PerumahansController@detailPerumahan');
-Route::get('/perumahans/filter', 'PerumahansController@index');
+
 
 //PSU Data Sarana
 Route::get('/saranas/{id}', 'SaranasController@index');

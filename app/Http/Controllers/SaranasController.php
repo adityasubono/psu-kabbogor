@@ -47,7 +47,10 @@ class SaranasController extends Controller
         foreach ($request->data_sarana as $key => $value){
             Sarana::create($value);
         }
-        return redirect('/perumahans')->with('status','Data Success Insert');
+
+        $perumahan_id = $request->data_sarana[0]['perumahan_id'];
+        return redirect()->action('SaranasController@index', ['id' => $perumahan_id])
+            ->with('status','Data Berhasil Disimpan');
 
     }
 

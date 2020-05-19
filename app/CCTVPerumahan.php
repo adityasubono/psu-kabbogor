@@ -4,6 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @method static where(string $string, $perumahan)
+ */
 class CCTVPerumahan extends Model
 {
     protected $table='cctvperumahans';
