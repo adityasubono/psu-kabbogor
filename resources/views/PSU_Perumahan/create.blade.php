@@ -96,13 +96,13 @@
                                    name="jumlah_perumahan"
                                    placeholder="Masukan Jumlah Rumah"
                                    value="{{ old('jumlah_perumahan') }}">
-                            <small class="form-text text-danger">* Wajib Diisi</small>
 
-                            @error('jumlah_rumah')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
+
+<!--                            @error('jumlah_rumah')-->
+<!--                            <div class="invalid-feedback">-->
+<!--                                {{ $message }}-->
+<!--                            </div>-->
+<!--                            @enderror-->
                         </div>
                     </div>
 
@@ -234,12 +234,12 @@
                                    @enderror" id="tgl_serah_terima" name="tgl_serah_terima"
                                        placeholder="Masukan Tanggal Serah Terima"
                                        value="{{ old('tgl_serah_terima') }}">
-                                <small class="form-text text-danger">* Wajib Diisi</small>
-                                @error('tgl_serah_terima')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                                @enderror
+<!--                              -->
+<!--                                @error('tgl_serah_terima')-->
+<!--                                <div class="invalid-feedback">-->
+<!--                                    {{ $message }}-->
+<!--                                </div>-->
+<!--                                @enderror-->
                             </div>
 
                             <div class="col-sm-5">
@@ -248,12 +248,12 @@
                                    @enderror" id="no_bast" name="no_bast"
                                        placeholder="Masukan No. Berita Acara Serah Terima"
                                        value="{{ old('no_bast') }}">
-                                <small class="form-text text-danger">* Wajib Diisi</small>
-                                @error('no_bast')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                                @enderror
+
+<!--                                @error('no_bast')-->
+<!--                                <div class="invalid-feedback">-->
+<!--                                    {{ $message }}-->
+<!--                                </div>-->
+<!--                                @enderror-->
                             </div>
 
                             <div class="col-sm-4">
@@ -262,12 +262,12 @@
                                        @enderror" id="sph" name="sph"
                                        placeholder="Masukan Surat Pengakuan hak"
                                        value="{{ old('sph') }}">
-                                <small class="form-text text-danger">* Wajib Diisi</small>
-                                @error('sph')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                                @enderror
+<!--                                <small class="form-text text-danger">* Wajib Diisi</small>-->
+<!--                                @error('sph')-->
+<!--                                <div class="invalid-feedback">-->
+<!--                                    {{ $message }}-->
+<!--                                </div>-->
+<!--                                @enderror-->
                             </div>
 
                         </div>
@@ -279,12 +279,12 @@
                     <textarea class="form-control @error('keterangan') is-invalid
                               @enderror" id="keterangan" name="keterangan" rows="3"
                               placeholder="Masukan Keterangan">{{ old('keterangan') }}</textarea>
-                    <small class="form-text text-danger">* Wajib Diisi</small>
-                    @error('keterangan')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
+<!--                    <small class="form-text text-danger">* Wajib Diisi</small>-->
+<!--                    @error('keterangan')-->
+<!--                    <div class="invalid-feedback">-->
+<!--                        {{ $message }}-->
+<!--                    </div>-->
+<!--                    @enderror-->
                 </div>
 
                 <a href="/perumahans" class="btn btn-info btn-icon-split">

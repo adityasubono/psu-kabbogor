@@ -13,9 +13,21 @@ class Permukiman extends Model
     //
 
     protected $table='permukimans';
-    protected $fillable=['nama_tpu','luas_tpu','daya_tampung','tahun_digunakan',
-        'lokasi','kecamatan','kelurahan','RW','RT','status','keterangan_status',
-        'kondisi','keterangan'];
+    protected $fillable=[
+        'nama_tpu',
+        'luas_tpu',
+        'daya_tampung',
+//        'tahun_digunakan',
+        'lokasi',
+        'kecamatan',
+        'kelurahan',
+        'RW',
+        'RT',
+        'status'
+//        'keterangan_status',
+//        'kondisi',
+//        'keterangan
+       ];
 
     public function r_pengelola() {
         return $this->hasMany('App\Pengelola', 'permukiman_id');

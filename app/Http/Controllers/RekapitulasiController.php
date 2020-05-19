@@ -22,11 +22,11 @@ class RekapitulasiController extends Controller
 //        return view('PSU_Rekapitulasi.index',compact('jml_status_perumahan'));
 
         $jml_status_sudah = Perumahans::select(\DB::raw("COUNT(*) as count"))
-            ->where('status_perumahan','Sudah')
+            ->where('status_perumahan','Sudah Serah Terima')
             ->pluck('count');
 
         $jml_status_belum = Perumahans::select(\DB::raw("COUNT(*) as count"))
-            ->where('status_perumahan','Belum')
+            ->where('status_perumahan','Belum Serah Terima')
             ->pluck('count');
 
 

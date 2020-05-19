@@ -138,11 +138,11 @@ Route::post('/fototamans/store', 'FotoJalanSaluranController@store');
 Route::post('/koordinattamans/store', 'KoordinatJalanSaluranController@store');
 
 //PSU PSU Perumahan..../Rekapitulasi
-Route::get('/perumahans/rekapitulasi', 'RekapitulasiPerumahanController@index');
+Route::get('/rekapitulasi/perumahans', 'RekapitulasiPerumahanController@index');
 
 
 //==========================================================================================
-//ROUTE PSU PERTANAMAN =====================================================================
+//ROUTE PSU PERTAMANAN =====================================================================
 //==========================================================================================
 //PSU PERTAMANAN
 Route::get('/pertamanans', 'PertamanansController@index');
@@ -285,7 +285,7 @@ Route::delete('/cctvtpus/delete/{cCTVPermukiman}','CCTVPermukimansController@des
 
 
 //PSU Kegitanan Fisik....
-Route::get('/psuKegiatanFisik', 'KegiatanFisikController@index');
+Route::get('/kegiatanfisik', 'MakerPermukimanController@index');
 
 
 

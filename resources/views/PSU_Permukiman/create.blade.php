@@ -41,7 +41,7 @@
                                    name="nama_tpu"
                                    placeholder="Masukan Nama TPU"
                                    value="{{ old('nama_tpu') }}">
-
+                            <small class="form-text text-danger">* Wajib Diisi</small>
                             @error('nama_tpu')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -57,7 +57,7 @@
                                    name="luas_tpu"
                                    placeholder="Masukan Luas TPU"
                                    value="{{ old('luas_tpu') }}">
-
+                            <small class="form-text text-danger">* Wajib Diisi</small>
                             @error('luas_tpu')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -95,6 +95,7 @@
                                 <option value="{{ $i }}">{{ $i }}</option>
                                 @endfor
                             </select>
+                            <small class="form-text text-danger">* Wajib Diisi</small>
                             @error('tahun_digunakan')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -107,6 +108,7 @@
                             <textarea class="form-control @error('lokasi') is-invalid
                                       @enderror" id="lokasi" name="lokasi" rows="3"
                                       placeholder="Masukan Alamat Lokasi">{{ old('lokasi') }}</textarea>
+                            <small class="form-text text-danger">* Wajib Diisi</small>
                             @error('lokasi')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -128,6 +130,7 @@
                                 </option>
                                 @endforeach
                             </select>
+                            <small class="form-text text-danger">* Wajib Diisi</small>
                             @error('kecamatan')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -143,6 +146,7 @@
                                 value="{{ old('kelurahan') }}">
                                 <option value="">--Pilih Kelurahan--</option>
                             </select>
+                            <small class="form-text text-danger">* Wajib Diisi</small>
                             @error('kelurahan')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -158,6 +162,7 @@
                                    name="RW"
                                    placeholder="RW"
                                    value="{{ old('RW') }}">
+                            <small class="form-text text-danger">* Wajib Diisi</small>
                             @error('RW')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -173,6 +178,7 @@
                                    name="RT"
                                    placeholder="RT"
                                    value="{{ old('RT') }}">
+                            <small class="form-text text-danger">* Wajib Diisi</small>
                             @error('RT')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -191,6 +197,7 @@
                                 <option value="Sudah Beroperasional">Sudah Beroperasonal</option>
                                 <option value="Belum Beroperasional">Belum Beroperasonal</option>
                             </select>
+                            <small class="form-text text-danger">* Wajib Diisi</small>
                             @error('status')
                             <div class="invalid-feedback">
                                 {{ $message }}

@@ -17,14 +17,14 @@ $(document).ready(function() {
 
             + '<label for="longitude">Koordinat Longitude </label><br>'
             + '<input type="text" class="form-control"'
-            + 'id="nama"name="data_koordinat['+ c +'][longitude]"'
+            + 'id="lng"name="data_koordinat['+ c +'][longitude]"'
             + 'placeholder="Masukan Koordinat Longitude" value="">'
             + '</div>'
 
             + '<div class="col-sm-6">'
             + '<label for="latitude">Koordinat Latitude</label><br>'
             + '<input type="text" name="data_koordinat[' + c + '][latitude]" '
-            + 'placeholder="Masukan Koordinat Longitude" '
+            + 'placeholder="Masukan Koordinat Longitude" id="lat"'
             + 'class="form-control" />'
             + '</div>'
 

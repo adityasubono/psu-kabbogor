@@ -29,7 +29,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <label for="nama_foto">Nama Foto:</label><br>
-                    <input type="hidden" class="form-control" name="perumahan_id"
+                    <input type="hidden" class="form-control" name="sarana_id"
                            value="{{$fotoSarana->id }}">
 
                     <input type="text" class="form-control" id="usr" name="nama_foto"

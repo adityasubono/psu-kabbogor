@@ -67,7 +67,7 @@
                 <h6 class="collapse-header">Menu:</h6>
                 <a class="collapse-item" href="/perumahans">Kelola Data</a>
                 <a class="collapse-item" href="/perumahans/monitoring">Monitoring</a>
-                <a class="collapse-item" href="/perumahans/rekapitulasi">Rekapitulasi</a>
+                <a class="collapse-item" href="/rekapitulasi/perumahans">Rekapitulasi</a>
             </div>
         </div>
     </li>
@@ -125,7 +125,7 @@
              data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Menu:</h6>
-                <a class="collapse-item" href="/addmore">Kelola Data</a>
+                <a class="collapse-item" href="/kegiatanfisik">Kelola Data</a>
                 <a class="collapse-item" href="/kegiatan_fisik/monitoring">Monitoring</a>
                 <a class="collapse-item" href="/kegiatan_fisik/rekapitulasi">Rekapitulasi</a>
             </div>
