@@ -5,7 +5,7 @@
 
         <img src="{!! asset('assets/images/logo-header-kab-bogor.jpg') !!}" class="lambang_header">
 
-        <h4>Sistem Informasi Prasana <br>Sarana dan Utilitas Kabupaten Bogor</h4>
+        <h4>Sistem Informasi Prasarana <br>Sarana dan Utilitas Kabupaten Bogor</h4>
 
         <ul class="navbar-nav ml-auto">
 
