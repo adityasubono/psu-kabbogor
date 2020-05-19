@@ -8,6 +8,7 @@ use App\Pertamanan;
 use App\Perumahans;
 use App\Softscape;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RekapitulasiController extends Controller
 {
@@ -50,10 +51,15 @@ class RekapitulasiController extends Controller
             ->where('status','Belum Beroperasional')
             ->pluck('count');
 
+        $locations_permukiman =  DB::table('koordinattpus')->get();
+
+        $locations_pertamanan =  DB::table('koordinatpertamanans')->get();
+
 
         return view('PSU_Rekapitulasi.index',compact('jml_status_sudah','jml_status_belum',
             'jml_status_terlantar','jml_assets_perumahan','jml_assets_pertamanan','jml_assets_permukiman',
-            'jml_softscape','jml_hardscape','jml_status_belum_tpu','jml_status_sudah_tpu'));
+            'jml_softscape','jml_hardscape','jml_status_belum_tpu','jml_status_sudah_tpu','locations_permukiman'
+        ,'locations_pertamanan'));
 
     }
 
