@@ -27,7 +27,7 @@ class Permukiman extends Model
         'status',
         'keterangan_status',
         'kondisi',
-        'keterangan
+        'keterangan'
        ];
 
     public function r_pengelola() {
