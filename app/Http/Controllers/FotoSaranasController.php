@@ -104,9 +104,9 @@ class FotoSaranasController extends Controller
      * @param \App\FotoSarana $fotoSarana
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, FotoSarana $fotoSarana)
+    public function update(Request $request, $id)
     {
-        $data = FotoSarana::find($fotoSarana);
+        $data = FotoSarana::find($id);
         $data->nama_foto = $request->input('nama_foto');
 //        $data->file_foto = $request->file('file_foto');
         $sarana_id = $request->get('sarana_id');
@@ -128,7 +128,7 @@ class FotoSaranasController extends Controller
         }
         $data->save();
 
-        return redirect()->action('FotosaranaController@index', ['id' => $sarana_id])
+        return redirect()->action('FotoSaranasController@index', ['id' => $sarana_id])
             ->with('status','Data Foto Berhasil Diupdate ');
 
     }

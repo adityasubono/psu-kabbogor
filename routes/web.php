@@ -98,6 +98,8 @@ Route::patch('/perumahans/update/{perumahans}', 'PerumahansController@update');
 Route::delete('/perumahans/delete/{perumahans}', 'PerumahansController@destroy');
 Route::get('/perumahans/{perumahan}', 'PerumahansController@detailPerumahan');
 
+//Filter PSU Perumahan
+Route::post('/filter/perumahans', 'FiltersPerumahansController@index');
 
 //PSU Data Sarana
 Route::get('/saranas/{id}', 'SaranasController@index');
@@ -110,7 +112,7 @@ Route::delete('/saranas/delete/{sarana}', 'SaranasController@destroy');
 Route::get('/fotosaranas/{id}', 'FotoSaranasController@index');
 Route::post('/fotosaranas/store', 'FotoSaranasController@store');
 Route::get('/fotosaranas/edit/{fotoSarana}', 'FotoSaranasController@edit');
-Route::patch('/fotosaranas/update/{fotoSarana}', 'FotoSaranasController@update');
+Route::patch('/fotosaranas/update/{id}', 'FotoSaranasController@update');
 Route::post('/fotosaranas/delete','FotoSaranasController@destroy');
 
 //PSU Data Koordinat Sarana
@@ -300,7 +302,7 @@ Route::get('/monitoring/permukimans', 'MonitoringCCTVPermukimanController@index'
 
 
 //PSU Kegitanan Fisik....
-Route::get('/kegiatanfisik', 'MakerPermukimanController@index');
+Route::get('', 'MakerPermukimanController@index');
 
 
 

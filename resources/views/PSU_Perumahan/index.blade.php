@@ -19,53 +19,7 @@
 
             <form method="get" action="/perumahans/filter" role="search">
                 @csrf
-                <div class="row mb-3">
-                    <div class="col-sm-3">
-                        <label for="operator">Filter Kecamatan</label>
-                        <select class="custom-select @error('kecamatan') is-invalid @enderror"
-                                id="kecamatan" name="kecamatan"
-                                value="{{ old('kecamatan') }}">
-                            <option value="">--Pilih Kecamatan--</option>
-                            @foreach( $kecamatans as $kecamatan)
-                            <option value="{{ $kecamatan->nama_kecamatan }}">
-                                {{ $kecamatan->nama_kecamatan }}
-                            </option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="col-sm-3">
-                        <label for="kelurahan">Filter Keluarahan/Desa</label>
-                        <select class="custom-select @error('kelurahan') is-invalid @enderror"
-                                id="kelurahan" name="kelurahan"
-                                value="{{ old('kelurahan') }}">
-                            <option value="">--Pilih Keluarahan--</option>
-                        </select>
-                    </div>
-
-                    <div class="col-sm-3">
-                        <label for="operator">Filter Status</label>
-                        <select
-                            class="custom-select @error('status_perumahan') is-invalid @enderror"
-                            id="status_perumahan" name="status_perumahan"
-                            value="{{ old('status_perumahan') }}">
-                            <option value="">--Pilih Status--</option>
-                            <option value="Sudah">Sudah Serah Terima</option>
-                            <option value="Belum">Belum Serah Terima</option>
-                            <option value="Terlantar">Terlantar</option>
-                        </select>
-                    </div>
-
-                    <div class="col-sm-3">
-                        <label for="operator">Aksi</label><br>
-                        <button type="submit" class="btn btn-info btn-icon-split" id="do-filte">
-                            <span class="icon text-white-50">
-                                <i class="fas fa-filter"></i>
-                            </span>
-                            <span class="text">Filter</span>
-                        </button>
-                    </div>
-                </div>
+               @include('PSU_Perumahan.filter.index')
             </form>
 
 
@@ -74,12 +28,12 @@
                 {{ session('status') }}
             </div>
             @endif
-<!----------------------   Tabel Data Perumahan---------------------------->
-              @include('PSU_Perumahan.includes.tabel_perumahan')
+            <!----------------------   Tabel Data Perumahan---------------------------->
+            @include('PSU_Perumahan.includes.tabel_perumahan')
 
-<!-----------------               Card Status Data     -------------------->
+            <!-----------------               Card Status Data     -------------------->
             @include('PSU_Perumahan.includes.card_label_data')
-<!------------------------------------------------------------------------->
+            <!------------------------------------------------------------------------->
         </div>
     </div>
 </div>
@@ -87,16 +41,13 @@
 <!-----------------                POPUP Confirm Delete     ---------------------->
 
 
-
 <!----------------     Pop Up Data Perumahan   ------------------->
-
 
 
 <!--Modal Foto -->
 
 
 <script type="text/javascript" src="../assets/js/getKelurahanPerumahan.js"></script>
-
 
 
 <script type="text/javascript">

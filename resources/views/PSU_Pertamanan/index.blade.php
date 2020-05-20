@@ -69,6 +69,46 @@
                             <span class="text">Filter</span>
                         </button>
                     </div>
+
+                    <div class="col-sm-6 mt-3">
+                        <label for="file_foto">Upload File Excel</label><br>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Upload</span>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" name="file_foto"
+                                       id="file_foto"
+                                       class="custom-file-input
+                                   @error('file_foto') is-invalid @enderror">
+                                <label class="custom-file-label">Pilih
+                                    File Excel....</label>
+                                @error('file_foto')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 mt-3">
+                        <label for="operator">Aksi</label><br>
+
+                        <button type="submit" class="btn btn-primary btn-icon-split" id="do-filte">
+                            <span class="icon text-white-50">
+                                <i class="fas fa-upload"></i>
+                            </span>
+                            <span class="text">Upload</span>
+                        </button>
+
+                        <button type="submit" class="btn btn-success btn-icon-split" id="do-filte">
+                            <span class="icon text-white-50">
+                                <i class="fas fa-download"></i>
+                            </span>
+                            <span class="text">Import File</span>
+                        </button>
+                    </div>
                 </div>
             </form>
 
