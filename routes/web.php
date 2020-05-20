@@ -116,7 +116,10 @@ Route::patch('/fotosaranas/update/{id}', 'FotoSaranasController@update');
 Route::post('/fotosaranas/delete','FotoSaranasController@destroy');
 
 //PSU Data Koordinat Sarana
+Route::get('/koordinatsarana/{id}', 'KoordinatSaranasController@index');
 Route::post('/koordinatsarana/store', 'KoordinatSaranasController@store');
+Route::get('/koordinatsarana/edit/', 'KoordinatSaranasController@edit');
+Route::patch('/koordinatsarana/update', 'KoordinatSaranasController@update');
 Route::delete('/koordinatsarana/delete/{koordinatsarana}','KoordinatSaranasController@destroy');
 
 //PSU Data Jalan dan Saluran
@@ -302,7 +305,7 @@ Route::get('/monitoring/permukimans', 'MonitoringCCTVPermukimanController@index'
 
 
 //PSU Kegitanan Fisik....
-Route::get('', 'MakerPermukimanController@index');
+Route::get('/kegiatanfisik', 'MakerPermukimanController@index');
 
 
 

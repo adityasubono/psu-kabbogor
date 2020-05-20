@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Kecamatan;
+use App\KoordinatPertamanan;
+use App\KoordinatSarana;
 use App\Koordinattpu;
 use App\MakerPermukiman;
 use Illuminate\Http\Request;
@@ -17,8 +19,11 @@ class MakerPermukimanController extends Controller
      */
     public function index()
     {
-        $kecamatans = Kecamatan::all()->sortBy("nama_kecamatan");
-        return view('PSU_Kegiatan_Fisik.index',compact('kecamatans'));
+        $locations_permukiman = Koordinattpu::all();
+        $locations_pertamanan = KoordinatPertamanan::all();
+        $locations_sarana = KoordinatSarana::all();
+        return view('PSU_Kegiatan_Fisik.index',compact('locations_pertamanan',
+            'locations_permukiman','locations_sarana'));
     }
 
 

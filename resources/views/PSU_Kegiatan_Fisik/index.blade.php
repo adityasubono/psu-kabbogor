@@ -4,99 +4,88 @@
 
 @section('container-fluid')
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-3">
-            <label for="operator">Filter Kecamatan</label>
-            <select class="custom-select @error('kecamatan') is-invalid @enderror"
-                    id="kecamatan" name="kecamatan"
-                    value="{{ old('kecamatan') }}">
-                <option value="">--Pilih Kecamatan--</option>
-                @foreach( $kecamatans as $kecamatan)
-                <option value="{{ $kecamatan->nama_kecamatan }}">
-                    {{ $kecamatan->nama_kecamatan }}
-                </option>
-                @endforeach
-            </select>
-        </div>
-        <div class="col-sm-3">
-            <label for="kelurahan">Filter Keluarahan/Desa</label>
-            <select class="custom-select @error('kelurahan') is-invalid @enderror"
-                    id="kelurahan" name="kelurahan"
-                    value="{{ old('kelurahan') }}">
-                <option value="">--Pilih Keluarahan--</option>
-            </select>
-        </div>
-        <div class="col-sm-3">
-            <label for="kelurahan">Filter</label>
-            <div class="form-group" align="center">
-                <button type="button" name="filter" id="filter" class="btn btn-info">Filter</button>
 
-                <button type="button" name="reset" id="reset" class="btn btn-primary">Reset</button>
-            </div>
-        </div>
-    </div>
-    <br/>
-    <div class="table-responsive">
-        <table id="customer_data" class="table table-bordered table-striped">
-            <thead>
-            <tr>
-                <th>Nama Perumahan</th>
-                <th>Nama Pengembang</th>
-            </tr>
-            </thead>
-        </table>
-    </div>
-</div>
-
-
-<script>
-    $(document).ready(function () {
-
-        fill_datatable();
-
-        function fill_datatable(filter_gender = '', filter_country = '') {
-            var dataTable = $('#customer_data').DataTable({
-                processing: true,
-                serverSide: true,
-                ajax: {
-                    url: "{{ url('/kegiatanfisik') }}",
-                    data: {kecamatan: kecamatan, kelurahan: kelurahan}
-                },
-                columns: [
-                    {
-                        data: 'nama_perumahan',
-                        name: 'nama_perumahan'
-                    },
-                    {
-                        data: 'nama_pengembang',
-                        name: 'nama_pengembang'
-                    },
-                ]
-            });
-        }
-
-        $('#filter').click(function () {
-            var filter_gender = $('#filter_gender').val();
-            var filter_country = $('#filter_country').val();
-
-            if (filter_gender != '' && filter_gender != '') {
-                $('#customer_data').DataTable().destroy();
-                fill_datatable(filter_gender, filter_country);
-            } else {
-                alert('Select Both filter option');
+    <script
+        src="http://maps.google.com/maps/api/js?key=AIzaSyBMbVQJuBRWDV1jFUVZ9Gzsu-nWOEr9LdM">
+    </script>
+    <script src="../../assets/js/gmap/gmaps.js"></script>
+        <style type="text/css">
+            #mymap {
+                border:1px solid red;
+                width: 800px;
+                height: 500px;
             }
+        </style>
+
+    <style> #map { display: block; width: 98%; height: 500px; margin: 0 auto; } </style>
+    <style type="text/css"> .labels { background-color: rgba(0, 0, 0, 0.5); border-radius: 4px; color: white; padding: 4px; } </style>`
+
+
+    <h1>Laravel 5 - Multiple markers in google map using gmaps.js</h1>
+
+
+    <div id="mymap"></div>
+
+
+    <script type="text/javascript">
+
+
+        var locations_pertamanan = <?php print_r(json_encode($locations_pertamanan)) ?>;
+
+        var locations_permukiman = <?php print_r(json_encode($locations_permukiman)) ?>;
+
+        var locations_sarana = <?php print_r(json_encode($locations_sarana)) ?>;
+
+
+        var mymap = new GMaps({
+            el: '#mymap',
+            lat: -6.485213,
+            lng: 106.753537,
+            zoom:9
         });
 
-        $('#reset').click(function () {
-            $('#filter_gender').val('');
-            $('#filter_country').val('');
-            $('#customer_data').DataTable().destroy();
-            fill_datatable();
+
+        $.each( locations_permukiman, function( index, value ){
+            mymap.addMarker({
+                lat: value.longitude,
+                lng: value.latitude,
+                title: value.id,
+                icon: "assets/images/icon_2.png",
+                infoWindow: {
+                    content: '<h4>'+ value.id +'</h4><div>Permukiman</div>',
+                    maxWidth: 100
+                },
+                Anchor: new google.maps.Point(3, 30),
+                labelClass: "labels", // the CSS class for the label
+            });
         });
 
-    });
-</script>
-<script type="text/javascript" src="../assets/js/getKelurahanPerumahan.js"></script>
+
+        $.each( locations_pertamanan, function( index, value ){
+            mymap.addMarker({
+                lat: value.latitude,
+                lng: value.longitude,
+                title: value.id,
+                infoWindow: {
+                    content: '<h4> Pertamanan'+ value.id +'</h4><div>Pertamanan</div>',
+                    maxWidth: 100
+                }
+            });
+        });
+
+        $.each( locations_sarana, function( index, value ){
+            mymap.addMarker({
+                lat: value.longitude,
+                lng: value.latitude,
+                title: value.id,
+                infoWindow: {
+                    content: '<h4> Sarana'+ value.id +'</h4><div>Sarana</div>',
+                    maxWidth: 100
+                }
+            });
+        });
+    </script>
+</div>
 
 
 @endsection
