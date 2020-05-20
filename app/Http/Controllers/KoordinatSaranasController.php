@@ -114,9 +114,12 @@ class KoordinatSaranasController extends Controller
      * @param  \App\KoordinatSarana  $koordinatSarana
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function destroy(KoordinatSarana $koordinatsarana)
+    public function destroy(Request $request, KoordinatSarana $koordinatsarana)
     {
+        $sarana_id = $request->get('sarana_id');
         KoordinatSarana::destroy($koordinatsarana->id);
-        return redirect('/perumahans')->with('status','Data Success Delete');
+        return redirect()->action(
+            'KoordinatSaranasController@index', ['id' => $sarana_id])
+            ->with('status','Data Berhasil Dihapus Dengan ID : '.$koordinatsarana->id);
     }
 }

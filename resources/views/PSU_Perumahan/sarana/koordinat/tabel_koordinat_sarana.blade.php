@@ -47,10 +47,10 @@
 
                 <div class="modal fade" id="confirm-delete-koordinat" tabindex="-1" role="dialog"
                      aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
+                    <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
-                            <div class="modal-header bg-warning">
-                                Perhatian !
+                            <div class="modal-header bg-danger">
+                                <i class="fas fa-exclamation-triangle fa-2x text-white"> Perhatian !</i>
                             </div>
                             <div class="modal-body">
                                 <b>Apakah Anda Akan Menghapus Data Ini ID {{ $koordinat_sarana->id }}?</b>
@@ -62,6 +62,8 @@
                                 <form action="/koordinatsarana/delete/{{ $koordinat_sarana->id }}" method="post"
                                       class="d-inline">
                                     @method('delete')
+                                    <input type="hidden" name="sarana_id"
+                                           value="{{$koordinat_sarana->sarana_id}}">
                                     @csrf
                                     <button type="submit" class="btn btn-danger btn-ok">Delete</button>
                                 </form>
@@ -86,7 +88,9 @@
             <span class="text">Kembali</span>
         </a>
 
-        <a href="/koordinatsarana/show/{{$koordinat_sarana->sarana_id}}" class="btn btn-primary
+        @forelse( $data_koordinat as $koordinat_sarana )
+
+        <a href="/koordinatsarana/show/{{$data_sarana->id}}" class="btn btn-primary
         btn-icon-split
         mt-3">
         <span class="icon text-white-50">
@@ -94,6 +98,17 @@
         </span>
             <span class="text">Lihat Peta</span>
         </a>
+        @empty
+
+        <a href="/koordinatsarana/show/{{$data_sarana->id}}" class="btn btn-dark
+        btn-icon-split mt-3 disabled">
+        <span class="icon text-white-50">
+            <i class="fas fa-map"></i>
+        </span>
+            <span class="text">Lihat Peta</span>
+        </a>
+
+        @endforelse
 
 
     </div>

@@ -48,7 +48,7 @@
             lng: 106.753537,
             zoom:12
         });
-        var contentString = '<h5>Hello Dunia!</h5>';
+
         $.each( locations_sarana, function( index, value ){
             mymap.addMarker({
                 lat: value.latitude,

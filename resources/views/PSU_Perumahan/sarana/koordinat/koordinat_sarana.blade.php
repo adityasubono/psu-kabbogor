@@ -4,8 +4,9 @@
 
 @section('container-fluid')
 <div class="container-fluid" xmlns="http://www.w3.org/1999/html">
-        <div id="googleMap" style="width:100%;height:380px;"></div>
-<!--        <div id="map" style="width: 100%; height: 300px;"></div>-->
+
+    <div id="googleMap" style="width:100%;height:380px;"></div>
+
     <form method="post" action="/koordinatsarana/store" enctype="multipart/form-data">
         @csrf
         <div class="card shadow mb-4">
@@ -74,15 +75,6 @@
                             </span>
                             <span class="text">Submit</span>
                         </button>
-
-<!--                        <a href="/koordinatsaranas/show/{{$data_sarana->sarana_id}}"-->
-<!--                           class="btn btn-info btn-icon-split"-->
-<!--                                id="reset_data">-->
-<!--                            <span class="icon text-white-50">-->
-<!--                                <i class="fas fa-map"></i>-->
-<!--                            </span>-->
-<!--                            <span class="text">Lihat Peta</span>-->
-<!--                        </a>-->
                     </div>
                 </div>
             </div>
@@ -109,7 +101,18 @@
 <script src="../../assets/js/gmap/gmaps.js"></script>
 
 <script>
+
+    var locations_sarana = <?php print_r(json_encode($data_koordinat)) ?>;
+    var mymap = new GMaps({
+        el: '#googleMap',
+        lat: -6.485213,
+        lng: 106.753537,
+        zoom:12
+    });
+
     var marker;
+
+
 
     function taruhMarker(peta, posisiTitik) {
 
@@ -136,6 +139,18 @@
         document.getElementById("lng").value = posisiTitik.lng();
 
     }
+
+    $.each( locations_sarana, function( index, value ){
+        mymap.addMarker({
+            lat: value.latitude,
+            lng: value.longitude,
+            title: value.id,
+            infoWindow: {
+                content: '<h6>'+ value.latitude +', '+ value.longitude+'</h6>',
+                maxWidth: 400
+            }
+        });
+    });
 
     function initialize() {
         var propertiPeta = {
