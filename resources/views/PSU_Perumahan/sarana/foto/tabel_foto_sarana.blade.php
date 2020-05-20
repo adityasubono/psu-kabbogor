@@ -70,6 +70,12 @@
             </div>
             @endforelse
         </div>
+        <a href="/saranas/{{$data_sarana->perumahan_id}}" class="btn btn-info btn-icon-split mt-3">
+        <span class="icon text-white-50">
+            <i class="fas fa-arrow-alt-circle-left"></i>
+        </span>
+            <span class="text">Kembali</span>
+        </a>
     </div>
 </div>
 

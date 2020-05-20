@@ -42,20 +42,47 @@ class KoordinatSaranasController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        KoordinatSarana::create($request->all());
-        return redirect('/perumahans')->with('status','Data Success Insert');
+        $rules = [
+            'longitude' => 'required',
+            'latitude' => 'required',
+        ];
+
+        $customMessages = [
+            'required' => 'Masukan Data :attribute ini ?.',
+        ];
+
+        $this->validate($request, $rules, $customMessages);
+
+        $sarana_id = $request->input('sarana_id');
+        $longitude = $request->input('longitude');
+        $latitude = $request->input('latitude');
+        $latlong = "[$latitude, $longitude, ],";
+
+        $koordinat_sarana = new KoordinatSarana();
+        $koordinat_sarana->perumahan_id = $request->input('perumahan_id');
+        $koordinat_sarana->sarana_id = $request->input('sarana_id');
+        $koordinat_sarana->longitude = $request->input('longitude');
+        $koordinat_sarana->latitude = $request->input('latitude');
+        $koordinat_sarana->latlong = $latlong;
+        $koordinat_sarana->save();
+
+
+        return redirect()->action('KoordinatSaranasController@index', ['id' => $sarana_id])
+            ->with('status','Data Koordinat Sarana Berhasil Disimpan');
+
     }
 
     /**
      * Display the specified resource.
      *
      * @param  \App\KoordinatSarana  $koordinatSarana
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show(KoordinatSarana $koordinatSarana)
+    public function show($id)
     {
-        //
+
+        $koordinat = KoordinatSarana::where('sarana_id',$id)->get();
+        return view ('PSU_Perumahan.sarana.koordinat.peta',compact('koordinat'));
     }
 
     /**

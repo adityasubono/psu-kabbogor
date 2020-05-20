@@ -41,13 +41,9 @@
                         Data Sarana
                     </button>
                     <span class="badge badge-primary text-center rata_kanan">
-                        @php
-                        $a=$perumahan->r_sarana->count();
-                        $b=$perumahan->r_foto_sarana->count();
-                        $c=$perumahan->r_koordinat_saranas->count();
-                        $total_data=$a+$b+$c;
-                        echo "$total_data";
-                        @endphp
+
+                        {{$perumahan->r_sarana->count()}}
+
                     </span>
                 </h5>
             </div>
@@ -56,6 +52,14 @@
                  data-parent="#accordion">
                 <div class="card-body p-3">
                     <a href="/saranas/{{ $perumahan->id }}">Kelola Data Sarana</a><br>
+                    Data Koordinat Sarana
+                    <span class="badge badge-primary text-right">
+                    {{ $perumahan->r_koordinat_saranas->count() }}
+                    </span><br>
+                    Data Foto Sarana
+                    <span class="badge badge-primary text-right">
+                    {{ $perumahan->r_foto_sarana->count() }}
+                    </span><br>
                 </div>
             </div>
         </div>

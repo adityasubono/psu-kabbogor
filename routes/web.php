@@ -121,6 +121,7 @@ Route::post('/koordinatsarana/store', 'KoordinatSaranasController@store');
 Route::get('/koordinatsarana/edit/', 'KoordinatSaranasController@edit');
 Route::patch('/koordinatsarana/update', 'KoordinatSaranasController@update');
 Route::delete('/koordinatsarana/delete/{koordinatsarana}','KoordinatSaranasController@destroy');
+Route::get('/koordinatsarana/show/{id}', 'KoordinatSaranasController@show');
 
 //PSU Data Jalan dan Saluran
 Route::get('/jalansalurans/{id}', 'JalanSaluransController@index');

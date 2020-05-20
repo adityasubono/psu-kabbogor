@@ -21,7 +21,6 @@
     <style type="text/css"> .labels { background-color: rgba(0, 0, 0, 0.5); border-radius: 4px; color: white; padding: 4px; } </style>`
 
 
-    <h1>Laravel 5 - Multiple markers in google map using gmaps.js</h1>
 
 
     <div id="mymap"></div>
@@ -44,6 +43,7 @@
             zoom:9
         });
 
+        var contentString = '<h5>Hello Dunia!</h5>';
 
         $.each( locations_permukiman, function( index, value ){
             mymap.addMarker({
@@ -52,7 +52,7 @@
                 title: value.id,
                 icon: "assets/images/icon_2.png",
                 infoWindow: {
-                    content: '<h4>'+ value.id +'</h4><div>Permukiman</div>',
+                    content: contentString,
                     maxWidth: 100
                 },
                 Anchor: new google.maps.Point(3, 30),

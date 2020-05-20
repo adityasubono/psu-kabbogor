@@ -11,21 +11,21 @@
                 <thead class="thead-light">
                 <tr>
                     <th>No.</th>
-                    <th>Nama Koordinat</th>
                     <th>Longitude</th>
                     <th>Latitude</th>
+                    <th>LatLong</th>
                     <th>Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
-                @forelse( $data_koordinat_sarana as $koordinat_sarana )
+                @forelse( $data_koordinat as $koordinat_sarana )
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $koordinat_sarana->nama_koordinat }}</td>
                     <td>{{ $koordinat_sarana->longitude }}</td>
                     <td>{{ $koordinat_sarana->latitude }}</td>
+                    <td>{{ $koordinat_sarana->latlong }}</td>
                     <td>
-                        <a href="/saranas/{{ $fotosarana->id }}/edit" class="btn btn-warning
+                        <a href="/saranas/{{ $koordinat_sarana->id }}/edit" class="btn btn-warning
                             btn-icon-split">
                             <span class="icon text-white-50">
                                 <i class="fas fa-pen"></i>
@@ -78,6 +78,27 @@
                 </tbody>
             </table>
         </div>
+        <a href="/saranas/{{$data_sarana->perumahan_id}}" class="btn btn-info btn-icon-split
+        mt-3">
+        <span class="icon text-white-50">
+            <i class="fas fa-arrow-alt-circle-left"></i>
+        </span>
+            <span class="text">Kembali</span>
+        </a>
+
+        <a href="/koordinatsarana/show/{{$koordinat_sarana->sarana_id}}" class="btn btn-primary
+        btn-icon-split
+        mt-3">
+        <span class="icon text-white-50">
+            <i class="fas fa-map"></i>
+        </span>
+            <span class="text">Lihat Peta</span>
+        </a>
+
+
     </div>
 </div>
+
+
+
 

@@ -120,10 +120,13 @@
     <!--    Tabel Data Sarana     -->
     @include('PSU_Perumahan.sarana.tabel_sarana')
     <!--    Tabel Data Foto     -->
-    @include('PSU_Perumahan.sarana.foto.tabel_foto_sarana')
-    <!--    Tabel Koordinat Sarana      -->
-    @include('PSU_Perumahan.sarana.koordinat.tabel_koordinat_sarana')
-
+    <a href="/perumahans" class="btn btn-info btn-icon-split
+        mb-3">
+        <span class="icon text-white-50">
+            <i class="fas fa-arrow-alt-circle-left"></i>
+        </span>
+        <span class="text">Kembali</span>
+    </a>
 </div>
 
 
