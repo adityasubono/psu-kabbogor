@@ -51,9 +51,15 @@ class Perumahans extends Model
     }
 
 
-
     public function r_taman() {
         return $this->hasMany('App\Taman', 'perumahan_id');
+    }
+
+    public function r_foto_taman() {
+        return $this->hasMany('App\FotoTaman', 'perumahan_id');
+    }
+    public function r_koordinat_taman() {
+        return $this->hasMany('App\KoordinatTaman', 'perumahan_id');
     }
 
 

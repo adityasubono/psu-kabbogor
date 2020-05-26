@@ -140,6 +140,9 @@ Route::post('/koordinatjalansalurans/store', 'KoordinatJalanSaluranController@st
 //PSU Data Taman
 Route::get('/tamans/{id}', 'TamansController@index');
 Route::post('/tamans/store', 'TamansController@store');
+Route::get('/tamans/edit/{taman}', 'TamansController@edit');
+Route::patch('/tamans/update/{taman}', 'TamansController@update');
+Route::delete('/tamans/delete/{taman}', 'TamansController@destroy');
 
 //PSU Data Foto Taman
 Route::post('/fototamans/store', 'FotoJalanSaluranController@store');

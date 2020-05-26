@@ -32,7 +32,7 @@ class SaranasController extends Controller
      */
     public function create()
     {
-        return view('PSU_Perumahan.create');
+        //
     }
 
     /**

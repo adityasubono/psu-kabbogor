@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\CCTVPerumahan;
+use App\FotoJalanSaluran;
+use App\FotoSarana;
 use App\JalanSaluran;
 use App\Kecamatan;
+use App\KoordinatJalanSaluran;
 use App\KoordinatPerumahan;
+use App\KoordinatSarana;
 use App\Perumahans;
 use App\Sarana;
 use App\Taman;
@@ -29,9 +33,26 @@ class PerumahansController extends Controller
         $status_belum = Perumahans::where('status_perumahan', 'Belum Serah Terima')->count();
         $status_terlantar = Perumahans::where('status_perumahan', 'Terlantar')->count();
 
+        $data_sarana =  Sarana::all()->count();
+        $data_foto_sarana =  FotoSarana::all()->count();
+        $data_koordinat_sarana =  KoordinatSarana::all()->count();
+
+
+        $data_jalan_saluran =  JalanSaluran::all()->count();
+        $data_foto_jalan_saluran =  FotoJalanSaluran::all()->count();
+        $data_koordinat_jalan_saluran =  KoordinatJalanSaluran::all()->count();
+
+        $data_taman =  Taman::all()->count();
+        $data_foto_taman =  Taman::all()->count();
+        $data_koordinat_taman =  Taman::all()->count();
+
+
 
         return view('PSU_Perumahan.index', compact('perumahans', 'kecamatans',
-            'status_sudah', 'status_belum', 'status_terlantar', 'total_perumahan'));
+            'status_sudah', 'status_belum', 'status_terlantar', 'total_perumahan',
+        'data_sarana','data_foto_sarana','data_koordinat_sarana',
+        'data_jalan_saluran','data_foto_jalan_saluran','data_koordinat_jalan_saluran',
+        'data_taman','data_foto_taman','data_koordinat_taman'));
 
     }
 
