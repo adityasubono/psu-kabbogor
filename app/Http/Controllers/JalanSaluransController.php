@@ -47,10 +47,28 @@ class JalanSaluransController extends Controller
      */
     public function store(Request $request)
     {
+        $rules = [
+            'data_jalan_saluran.*.nama_jalan_saluran' => 'required',
+            'data_jalan_saluran.*.luas_jalan_saluran' => 'required',
+            'data_jalan_saluran.*.kondisi_jalan_saluran' => 'required',
+
+        ];
+
+        $customMessages = [
+            'required' => 'Masukan Data :attribute ini ?.',
+            'data_jalan_saluran.*.nama_jalan_saluran.required' => "Masukan Data Nama Jalan Saluran ?",
+            'data_jalan_saluran.*.luas_jalan_saluran.required' => "Masukan Data Luas Jalan Saluran ?",
+            'data_jalan_saluran.*.kondisi_jalan_saluran.required' => "Masukan Data Kondisi Jalan Saluran ?",
+        ];
+        $this->validate($request, $rules, $customMessages);
+
         foreach ($request->data_jalan_saluran as $key => $value){
             JalanSaluran::create($value);
         }
-        return redirect('/perumahans')->with('status','Data Success Insert');
+        $perumahan_id = $request->data_jalan_saluran[0]['perumahan_id'];
+
+        return redirect()->action('JalanSaluransController@index', ['id' => $perumahan_id])
+            ->with('status','Data Jalan Saluran Berhasil Disimpan');
     }
 
     /**
@@ -68,11 +86,11 @@ class JalanSaluransController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\JalanSaluran  $jalanSaluran
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit(JalanSaluran $jalanSaluran)
     {
-        //
+        return view('PSU_Perumahan.jalansaluran.edit', compact('jalanSaluran'));
     }
 
     /**
@@ -80,21 +98,43 @@ class JalanSaluransController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\JalanSaluran  $jalanSaluran
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, JalanSaluran $jalanSaluran)
     {
-        //
+        $rules = [
+            'nama_jalan_saluran' => 'required',
+            'luas_jalan_saluran' => 'required',
+            'kondisi_jalan_saluran' => 'required',
+        ];
+
+        $customMessages = [
+            'required' => 'Masukan Data :attribute ini ?.',
+        ];
+
+        $this->validate($request, $rules, $customMessages);
+
+        $perumahan_id = $request->get('perumahan_id');
+        JalanSaluran::where('id', $jalanSaluran->id)->update([
+            'nama_jalan_saluran' => $request->nama_jalan_saluran,
+            'luas_jalan_saluran' => $request->luas_jalan_saluran,
+            'kondisi_jalan_saluran' => $request->kondisi_jalan_saluran
+        ]);
+        return redirect()->action('JalanSaluransController@index', ['id' => $perumahan_id])
+            ->with('status','Data Dengan ID '.$jalanSaluran->id.' Berhasil Di Update');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\JalanSaluran  $jalanSaluran
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(JalanSaluran $jalanSaluran)
+    public function destroy(Request $request, JalanSaluran $jalanSaluran)
     {
-        //
+        $perumahan_id = $request->get('perumahan_id');
+        JalanSaluran::destroy($jalanSaluran->id);
+        return redirect()->action('JalanSaluransController@index', ['id' => $perumahan_id])
+            ->with('status','Data Dengan ID '.$jalanSaluran->id.' Berhasil Dihapus');
     }
 }

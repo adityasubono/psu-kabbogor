@@ -23,13 +23,6 @@
             </div>
 
             <div class="card-body bg-gray-200" id="data_sarana">
-
-                @if (session('status'))
-                <div class="alert alert-success">
-                    {{ session('status') }}
-                </div>
-                @endif
-
                 <div class="row">
                     <div class="col-sm-3">
                         <input type="hidden" class="form-control" id="perumahan_id"

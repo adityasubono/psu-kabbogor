@@ -1,9 +1,16 @@
+<!--    Tabel Data Sarana     -->
 <div class="card shadow mb-4">
     <div class="card-header py-3 bg-gray-500">
-        <h6 class="m-0 font-weight-bold text-primary">Tabel Koordinat Sarana</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Tabel Data Jalan dan Saluran</h6>
     </div>
-
     <div class="card-body" id="data_sarana">
+
+        @if (session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
+        @endif
+
         <div class="table-responsive">
             <table class="table table-bordered display nowrap" id="dataTable"
                    cellspacing="0"
@@ -11,21 +18,22 @@
                 <thead class="thead-light">
                 <tr>
                     <th>No.</th>
-                    <th>Longitude</th>
-                    <th>Latitude</th>
-                    <th>LatLong</th>
+                    <th>Nama Jalan dan Saluran</th>
+                    <th>Luas Jalan dan Saluran</th>
+                    <th>Kondisi Jalan dan Saluran</th>
                     <th>Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
-                @forelse( $data_koordinat as $koordinat_sarana )
+                @forelse( $data_jalan_saluran as $jalansaluran )
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $koordinat_sarana->longitude }}</td>
-                    <td>{{ $koordinat_sarana->latitude }}</td>
-                    <td>{{ $koordinat_sarana->latlong }}</td>
+                    <td>@include('PSU_Perumahan.jalansaluran.menu_kelola_jalansaluran')</td>
+                    <td>{{ $jalansaluran->luas_jalan_saluran }}</td>
+                    <td>{{ $jalansaluran->kondisi_jalan_saluran }}</td>
                     <td>
-                        <a href="/saranas/{{ $koordinat_sarana->id }}/edit" class="btn btn-warning
+                        <a href="/jalansalurans/edit/{{$jalansaluran->id}}" class="btn
+                        btn-warning
                             btn-icon-split">
                             <span class="icon text-white-50">
                                 <i class="fas fa-pen"></i>
@@ -33,9 +41,10 @@
                             <span class="text">Edit</span>
                         </a>
 
+
                         <button class="btn btn-danger btn-icon-split"
                                 data-toggle="modal"
-                                data-target="#confirm-delete-koordinat" data-backdrop="static"
+                                data-target="#confirm-delete-sarana" data-backdrop="static"
                                 data-keyboard="false">
                             <span class="icon text-white-50">
                                 <i class="fas fa-trash"></i>
@@ -44,28 +53,31 @@
                         </button>
                     </td>
                 </tr>
-
-                <div class="modal fade" id="confirm-delete-koordinat" tabindex="-1" role="dialog"
+                <div class="modal fade" id="confirm-delete-sarana" tabindex="-1" role="dialog"
                      aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header bg-danger">
-                                <i class="fas fa-exclamation-triangle fa-2x text-white"> Perhatian !</i>
+                                <i class="fas fa-exclamation-triangle fa-2x text-white">
+                                    Perhatian !
+                                </i>
                             </div>
                             <div class="modal-body">
-                                <b>Apakah Anda Akan Menghapus Data Ini ID {{ $koordinat_sarana->id }}?</b>
+                                <b>Apakah Anda Akan Menghapus Data Ini ID {{ $jalansaluran->id }}?</b>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-success" data-dismiss="modal">
-                                    Cancel
+                                    Batal
                                 </button>
-                                <form action="/koordinatsarana/delete/{{ $koordinat_sarana->id }}" method="post"
+                                <form action="/jalansalurans/delete/{{ $jalansaluran->id }}"
+                                      method="post"
                                       class="d-inline">
                                     @method('delete')
-                                    <input type="hidden" name="sarana_id"
-                                           value="{{$koordinat_sarana->sarana_id}}">
+                                    <input type="hidden" name="perumahan_id"
+                                           value="{{$jalansaluran->perumahan_id}}">
                                     @csrf
-                                    <button type="submit" class="btn btn-danger btn-ok">Delete</button>
+                                    <button type="submit" class="btn btn-danger
+                                    btn-ok">Hapus</button>
                                 </form>
                             </div>
                         </div>
@@ -80,40 +92,5 @@
                 </tbody>
             </table>
         </div>
-        <a href="/saranas/{{$data_sarana->perumahan_id}}" class="btn btn-info btn-icon-split
-        mt-3">
-        <span class="icon text-white-50">
-            <i class="fas fa-arrow-alt-circle-left"></i>
-        </span>
-            <span class="text">Kembali</span>
-        </a>
-
-        @if(isset($data_koordinat))
-
-        <a href="/koordinatsarana/show/{{$data_sarana->id}}" class="btn btn-primary
-        btn-icon-split
-        mt-3">
-        <span class="icon text-white-50">
-            <i class="fas fa-map"></i>
-        </span>
-            <span class="text">Lihat Peta</span>
-        </a>
-        @else
-
-        <a href="/koordinatsarana/show/{{$data_sarana->id}}" class="btn btn-dark
-        btn-icon-split mt-3 disabled">
-        <span class="icon text-white-50">
-            <i class="fas fa-map"></i>
-        </span>
-            <span class="text">Lihat Peta</span>
-        </a>
-
-        @endif
-
-
     </div>
 </div>
-
-
-
-

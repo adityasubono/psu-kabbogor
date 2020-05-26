@@ -43,6 +43,21 @@ class SaranasController extends Controller
      */
     public function store(Request $request)
     {
+        $rules = [
+            'data_sarana.*.nama_sarana' => 'required',
+            'data_sarana.*.luas_sarana' => 'required',
+            'data_sarana.*.kondisi_sarana' => 'required',
+
+        ];
+
+        $customMessages = [
+            'required' => 'Masukan Data :attribute ini ?.',
+            'data_sarana.*.nama_sarana.required' => "Masukan Data Nama Sarana ?",
+            'data_sarana.*.luas_sarana.required' => "Masukan Data Luas Sarana ?",
+            'data_sarana.*.kondisi_sarana.required' => "Masukan Data Kondisi Sarana ?",
+        ];
+
+        $this->validate($request, $rules, $customMessages);
 
         foreach ($request->data_sarana as $key => $value){
             Sarana::create($value);

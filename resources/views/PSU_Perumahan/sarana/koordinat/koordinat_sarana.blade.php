@@ -103,17 +103,14 @@
 <script>
 
     var locations_sarana = <?php print_r(json_encode($data_koordinat)) ?>;
+
+    var marker;
     var mymap = new GMaps({
         el: '#googleMap',
         lat: -6.485213,
         lng: 106.753537,
         zoom:12
     });
-
-    var marker;
-
-
-
     function taruhMarker(peta, posisiTitik) {
 
         var marker = new google.maps.Marker({
@@ -139,7 +136,6 @@
         document.getElementById("lng").value = posisiTitik.lng();
 
     }
-
     $.each( locations_sarana, function( index, value ){
         mymap.addMarker({
             lat: value.latitude,
@@ -159,7 +155,10 @@
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
 
-        var peta = new google.maps.Map(document.getElementById("googleMap"), propertiPeta);
+
+
+        var peta = new google.maps.Map(document.getElementById("googleMap"),
+            propertiPeta);
 
         google.maps.event.addListener(peta, 'click', function (event) {
             taruhMarker(this, event.latLng);
@@ -172,6 +171,7 @@
             animation: google.maps.Animation.BOUNCE,
             icon: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"
         });
+
 
     }
 

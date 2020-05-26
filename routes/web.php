@@ -126,6 +126,10 @@ Route::get('/koordinatsarana/show/{id}', 'KoordinatSaranasController@show');
 //PSU Data Jalan dan Saluran
 Route::get('/jalansalurans/{id}', 'JalanSaluransController@index');
 Route::post('/jalansalurans/store', 'JalanSaluransController@store');
+Route::get('/jalansalurans/edit/{jalanSaluran}', 'JalanSaluransController@edit');
+Route::patch('/jalansalurans/update/{jalanSaluran}', 'JalanSaluransController@update');
+Route::delete('/jalansalurans/delete/{jalanSaluran}', 'JalanSaluransController@destroy');
+
 
 //PSU Data Foto Jalan Saluran
 Route::post('/fotojalansalurans/store', 'FotoJalanSaluranController@store');
@@ -142,6 +146,11 @@ Route::post('/fototamans/store', 'FotoJalanSaluranController@store');
 
 //PSU Data Koordinat Taman
 Route::post('/koordinattamans/store', 'KoordinatJalanSaluranController@store');
+
+
+
+
+
 
 //PSU PSU Perumahan..../Rekapitulasi
 Route::get('/rekapitulasi/perumahans', 'RekapitulasiPerumahanController@index');
