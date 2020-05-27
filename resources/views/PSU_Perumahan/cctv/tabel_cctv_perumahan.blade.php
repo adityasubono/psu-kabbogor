@@ -1,6 +1,6 @@
 <div class="card shadow mb-4">
     <div class="card-header py-3 bg-gray-500">
-        <h6 class="m-0 font-weight-bold text-primary">Tabel Data CCTV Permukiman</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Tabel Data CCTV Perumahan</h6>
     </div>
 
     <div class="card-body bg-gray-200" id="data_sarana">
@@ -24,13 +24,13 @@
                 </tr>
                 </thead>
                 <tbody class="bg-light">
-                @forelse( $data_cctv_tpu as $cctv )
+                @forelse( $data_cctv_perumahan as $cctv )
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $cctv->nama_cctv }}</td>
                     <td>{{ $cctv->ip_cctv }}</td>
                     <td>
-                        <a href="/cctvpertamanans/edit/{{ $cctv->id }}" class="btn btn-warning
+                        <a href="/cctvperumahans/edit/{{ $cctv->id }}" class="btn btn-warning
                             btn-icon-split">
                             <span class="icon text-white-50">
                                 <i class="fas fa-pen"></i>
@@ -66,13 +66,13 @@
                                 <button type="button" class="btn btn-success" data-dismiss="modal">
                                     Cancel
                                 </button>
-                                <form action="/cctvpertamanans/delete/{{ $cctv->id }}"
+                                <form action="/cctvperumahans/delete/{{ $cctv->id }}"
                                       method="post"
                                       class="d-inline">
                                     @method('delete')
                                     @csrf
-                                    <input type="hidden" name="permukiman_id"
-                                           value="{{$cctv->permukiman_id}}">
+                                    <input type="hidden" name="perumahan_id"
+                                           value="{{$cctv->perumahan_id}}">
                                     <button type="submit" class="btn btn-danger btn-ok">Delete</button>
                                 </form>
                             </div>
@@ -87,7 +87,7 @@
                 @endforelse
                 </tbody>
             </table>
-            <a href="/permukimans" class="btn btn-primary btn-icon-split">
+            <a href="/perumahans" class="btn btn-primary btn-icon-split">
                 <span class="icon text-white-50">
                 <i class="fas fa-arrow-alt-circle-left"></i>
                 </span>

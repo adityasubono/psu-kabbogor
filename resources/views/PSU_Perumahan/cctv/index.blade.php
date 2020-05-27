@@ -1,19 +1,19 @@
 @extends('layouts/main')
 
-@section('title', 'Input Data Koordinat ( Pertamanan )')
+@section('title', 'Input Data CCTV Perumahan')
 
 @section('container-fluid')
 <div class="container-fluid" xmlns="http://www.w3.org/1999/html">
     <div class="card-header bg-gray-500 rounded">
         <div class="row">
             <div class="col-sm-6">
-                <h6 class="m-0 font-weight-bold text-primary">Data CCTV Pertamanan :
-                    {{$data_pertamanan->nama_tpu}}
+                <h6 class="m-0 font-weight-bold text-primary">Data CCTV Perumahan :
+                    {{$data_perumahan->nama_tpu}}
                 </h6>
             </div>
             <div class="col-sm-6">
                 <h6 class="m-0 font-weight-bold text-primary text-right">ID :
-                    {{$data_pertamanan->id}}
+                    {{$data_perumahan->id}}
                 </h6>
             </div>
         </div>
@@ -21,13 +21,13 @@
     <div class="card-body bg-gray-200">
 
         <div class="form-group">
-            <form action="/cctvpertamanans/store" method="post">
+            <form action="/cctvperumahans/store" method="post">
                 @csrf
                 <div class="row">
                     <div class="col-sm-4">
-                        <input type="hidden" class="form-control" id="pertamanan_id"
-                               name="data_cctv[0][pertamanan_id]"
-                               value="{{$data_pertamanan->id}}">
+                        <input type="hidden" class="form-control" id="perumahan_id"
+                               name="data_cctv[0][perumahan_id]"
+                               value="{{$data_perumahan->id}}">
 
                         <label for="nama_cctv">Nama CCTV</label><br>
                         <input type="text" class="form-control @error('data_cctv.*.nama_cctv')
@@ -57,7 +57,7 @@
                     </div>
 
                     <div class="col-sm-4">
-                        <label for="aksi">Aksi</label><br>
+                        <label for="ip_cctv">Aksi</label><br>
                         <button type="button" class="btn btn-success btn-icon-split mr-2"
                                 id="add_data_cctv">
                         <span class="icon text-white-50">
@@ -91,12 +91,12 @@
             </form>
         </div>
     </div>
-    @include('PSU_Pertamanan.cctv.tabel_cctv_pertamanan')
+    @include('PSU_Perumahan.cctv.tabel_cctv_perumahan')
 </div>
 
 
 <!--Scrpit Data CCTV Form -->
-<script type="text/javascript" src="../assets/js/pertamanan/cctv_pertamanan_form.js"></script>
+<script type="text/javascript" src="../assets/js/perumahan/cctv/cctv_form.js"></script>
 
 <script type="text/javascript">
     window.setTimeout(function () {

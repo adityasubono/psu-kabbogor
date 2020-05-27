@@ -4,6 +4,13 @@
     </div>
 
     <div class="card-body bg-gray-200" id="data_sarana">
+
+        @if (session('status'))
+        <div class="alert alert-success fade show" role="alert">
+            {{ session('status') }}
+        </div>
+        @endif
+
         <div class="table-responsive">
             <table class="table table-bordered display table-hover nowrap" id="dataTable"
                    cellspacing="0"

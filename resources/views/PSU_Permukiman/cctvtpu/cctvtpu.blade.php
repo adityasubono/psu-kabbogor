@@ -20,18 +20,11 @@
     </div>
     <div class="card-body bg-gray-200">
 
-        @if (session('status'))
-        <div class="alert alert-success fade show" role="alert">
-            {{ session('status') }}
-        </div>
-        @endif
-
-
         <div class="form-group">
             <form action="/cctvtpus/store" method="post">
                 @csrf
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <input type="hidden" class="form-control" id="permukiman_id"
                                name="data_cctv[0][permukiman_id]"
                                value="{{$data_permukiman->id}}">
@@ -49,7 +42,7 @@
                         @enderror
                     </div>
 
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <label for="ip_cctv">IP CCTV</label><br>
                         <input type="text" class="form-control @error('data_cctv.*.ip_cctv')
                                            is-invalid @enderror" id="ip_cctv"
@@ -63,7 +56,8 @@
                         @enderror
                     </div>
 
-                    <div class="col-sm-4 mt-2">
+                    <div class="col-sm-4">
+                        <label for="aksi">Aksi</label><br>
                         <button type="button" class="btn btn-success btn-icon-split mr-2"
                                 id="add_data_cctv">
                         <span class="icon text-white-50">

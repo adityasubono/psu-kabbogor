@@ -167,7 +167,7 @@
             <div id="datacctv{{ $loop->iteration }}" class="collapse"
                  data-parent="#accordion{{ $loop->iteration }}">
                 <div class="card-body p-3">
-                    <a href="/saranas/{{ $perumahan->id }}">Kelola Data CCTV<br>
+                    <a href="/cctvperumahans/{{ $perumahan->id }}">Kelola Data CCTV<br>
                 </div>
             </div>
         </div>

@@ -150,9 +150,12 @@ Route::post('/fototamans/store', 'FotoJalanSaluranController@store');
 //PSU Data Koordinat Taman
 Route::post('/koordinattamans/store', 'KoordinatJalanSaluranController@store');
 
-
-
-
+//PSU Data CCTV Perumahan
+Route::get('/cctvperumahans/{id}', 'CCTVPerumahansController@index');
+Route::post('/cctvperumahans/store', 'CCTVPerumahansController@store');
+Route::get('/cctvperumahans/edit/{cCTVPerumahan}', 'CCTVPerumahansController@edit');
+Route::patch('/cctvperumahans/update/{cCTVPerumahan}', 'CCTVPerumahansController@update');
+Route::delete('/cctvperumahans/delete/{cCTVPerumahan}', 'CCTVPerumahansController@destroy');
 
 
 //PSU PSU Perumahan..../Rekapitulasi
