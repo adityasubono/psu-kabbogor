@@ -17,19 +17,27 @@
                 <span class="text">Add Data</span>
             </a>
 
-            <form method="get" action="/perumahans/filter" role="search">
-                @csrf
-               @include('PSU_Perumahan.filter.index')
-            </form>
+
+
+
+
+
+            @include('PSU_Perumahan.filter.index')
+
 
 
             @if (session('status'))
-            <div class="alert alert-success fade show" role="alert">
+            <div class="alert alert-success">
                 {{ session('status') }}
             </div>
             @endif
             <!----------------------   Tabel Data Perumahan---------------------------->
+
+            @if(isset($perumahan_filter))
+            @include('PSU_Perumahan.filter.tabel_filter_perumahan')
+            @else
             @include('PSU_Perumahan.includes.tabel_perumahan')
+            @endif
 
             <!-----------------               Card Status Data     -------------------->
             @include('PSU_Perumahan.includes.card_label_data')

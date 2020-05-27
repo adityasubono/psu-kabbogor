@@ -91,12 +91,16 @@ Route::resource('users','UserController');
 //==========================================================================================
 //PSU PSU Perumahan
 Route::get('/perumahans', 'PerumahansController@index');
+Route::get('/perumahans/export_excel', 'PerumahansController@export_excel');
+Route::post('/perumahans/import_excel', 'PerumahansController@import_excel');
+Route::post('/perumahans/filter', 'PerumahansController@filter');
 Route::get('/perumahans/create', 'PerumahansController@create');
 Route::post('/perumahans/', 'PerumahansController@store');
 Route::get('/perumahans/edit/{perumahans}', 'PerumahansController@edit');
 Route::patch('/perumahans/update/{perumahans}', 'PerumahansController@update');
 Route::delete('/perumahans/delete/{perumahans}', 'PerumahansController@destroy');
 Route::get('/perumahans/{perumahan}', 'PerumahansController@detailPerumahan');
+
 
 //Filter PSU Perumahan
 Route::post('/filter/perumahans', 'FiltersPerumahansController@index');

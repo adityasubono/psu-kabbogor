@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static where(string $string, string $string1)
  * @method static find($perumahan)
  * @method static select($raw)
+ * @method static create(array $all)
  */
 class Perumahans extends Model
 {

@@ -3,19 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\CCTVPerumahan;
+use App\Exports\PerumahanExcel;
 use App\FotoJalanSaluran;
 use App\FotoSarana;
+use App\Imports\PerumahanImport;
 use App\JalanSaluran;
 use App\Kecamatan;
+use App\Kelurahan;
 use App\KoordinatJalanSaluran;
 use App\KoordinatPerumahan;
 use App\KoordinatSarana;
 use App\Perumahans;
 use App\Sarana;
 use App\Taman;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+
 use Illuminate\View\View;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class PerumahansController extends Controller
 {
@@ -33,26 +39,25 @@ class PerumahansController extends Controller
         $status_belum = Perumahans::where('status_perumahan', 'Belum Serah Terima')->count();
         $status_terlantar = Perumahans::where('status_perumahan', 'Terlantar')->count();
 
-        $data_sarana =  Sarana::all()->count();
-        $data_foto_sarana =  FotoSarana::all()->count();
-        $data_koordinat_sarana =  KoordinatSarana::all()->count();
+        $data_sarana = Sarana::all()->count();
+        $data_foto_sarana = FotoSarana::all()->count();
+        $data_koordinat_sarana = KoordinatSarana::all()->count();
 
 
-        $data_jalan_saluran =  JalanSaluran::all()->count();
-        $data_foto_jalan_saluran =  FotoJalanSaluran::all()->count();
-        $data_koordinat_jalan_saluran =  KoordinatJalanSaluran::all()->count();
+        $data_jalan_saluran = JalanSaluran::all()->count();
+        $data_foto_jalan_saluran = FotoJalanSaluran::all()->count();
+        $data_koordinat_jalan_saluran = KoordinatJalanSaluran::all()->count();
 
-        $data_taman =  Taman::all()->count();
-        $data_foto_taman =  Taman::all()->count();
-        $data_koordinat_taman =  Taman::all()->count();
-
+        $data_taman = Taman::all()->count();
+        $data_foto_taman = Taman::all()->count();
+        $data_koordinat_taman = Taman::all()->count();
 
 
         return view('PSU_Perumahan.index', compact('perumahans', 'kecamatans',
             'status_sudah', 'status_belum', 'status_terlantar', 'total_perumahan',
-        'data_sarana','data_foto_sarana','data_koordinat_sarana',
-        'data_jalan_saluran','data_foto_jalan_saluran','data_koordinat_jalan_saluran',
-        'data_taman','data_foto_taman','data_koordinat_taman'));
+            'data_sarana', 'data_foto_sarana', 'data_koordinat_sarana',
+            'data_jalan_saluran', 'data_foto_jalan_saluran', 'data_koordinat_jalan_saluran',
+            'data_taman', 'data_foto_taman', 'data_koordinat_taman'));
 
     }
 
@@ -61,13 +66,58 @@ class PerumahansController extends Controller
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
+    public function filter(Request $request)
+    {
+
+        $nama_kecamatan = $request->input('kecamatan');
+        $nama_kelurahan = $request->input('kelurahan');
+        $status = $request->input('status_perumahan');
+
+        $total_perumahan = Perumahans::all()->count();
+        $status_sudah = Perumahans::where('status_perumahan', 'Sudah Serah Terima')->count();
+        $status_belum = Perumahans::where('status_perumahan', 'Belum Serah Terima')->count();
+        $status_terlantar = Perumahans::where('status_perumahan', 'Terlantar')->count();
+
+        if (isset($status) && empty($request->kecamatan) && empty($request->kelurahan)) {
+            $kecamatans = Kecamatan::all()->sortBy("nama_kecamatan");
+            $perumahan_filter = Perumahans::where('status_perumahan', 'like', "%" . $status . "%")
+                ->get();
+
+            return view('PSU_Perumahan.index', compact('perumahan_filter', 'kecamatans',
+                'status_belum', 'status_sudah', 'status_terlantar', 'total_perumahan'))
+                ->with('dapat', 'Data Ditemukan');
+        }
+
+        if (isset($nama_kecamatan) && isset($nama_kelurahan) && empty($status)) {
+            $kecamatans = Kecamatan::all()->sortBy("nama_kecamatan");
+            $perumahan_filter = Perumahans::where('kecamatan', 'like', "%" . $nama_kecamatan . "%")
+                ->where('kelurahan', 'like', "%" . $nama_kelurahan . "%")->get();
+
+            return view('PSU_Perumahan.index', compact('perumahan_filter', 'kecamatans',
+                'status_belum', 'status_sudah', 'status_terlantar', 'total_perumahan'));
+        }
+
+        if (isset($nama_kecamatan) && isset($nama_kelurahan) && isset($status)) {
+            $kecamatans = Kecamatan::all()->sortBy("nama_kecamatan");
+            $perumahan_filter = Perumahans::where('kecamatan', 'like', "%" . $nama_kecamatan . "%")
+                ->where('kelurahan', 'like', "%" . $nama_kelurahan . "%")
+                ->where('status_perumahan', 'like', "%" . $status . "%")->get();
+
+            return view('PSU_Perumahan.index', compact('perumahan_filter', 'kecamatans',
+                'status_belum', 'status_sudah', 'status_terlantar', 'total_perumahan'));
+        }
+
+        if (empty($nama_kecamatan) && empty($nama_kelurahan) && empty($status)) {
+            return redirect('/perumahans');
+        }
+    }
+
     public function create()
     {
         $perumahan_id = Perumahans::all()->sortByDesc('id')->take(1);
 
         $kecamatans = Kecamatan::all()->sortBy('nama_kecamatan');
         return view('PSU_Perumahan.create', compact('kecamatans', 'perumahan_id'));
-
 
     }
 
@@ -96,26 +146,6 @@ class PerumahansController extends Controller
             'keterangan' => 'required'
         ]);
         Perumahans::create($request->all());
-
-//        foreach ($request->data_sarana as $key => $value){
-//            Sarana::create($value);
-//        }
-//
-//        foreach ($request->data_jalan_saluran as $key => $value){
-//            JalanSaluran::create($value);
-//        }
-//
-//        foreach ($request->data_taman as $key => $value){
-//            Taman::create($value);
-//        }
-//
-//        foreach ($request->data_koordinat as $key => $value){
-//            KoordinatPerumahan::create($value);
-//        }
-//
-//        foreach ($request->data_cctv as $key => $value){
-//            CCTVPerumahan::create($value);
-//        }
 
         return redirect('/perumahans')->with('status', 'Data Success Insert');
     }
@@ -204,15 +234,6 @@ class PerumahansController extends Controller
 
     }
 
-    public function filterTablePerumahan(Request $request)
-    {
-        $kecamatan = $request->input('kecamatan');
-        $perumahans_cari = Perumahans::where('kecamatan', 'like', "%" . $kecamatan . "%")->get();
-
-        return view('PSU_Perumahan.index', compact('perumahans_cari'));
-//        return response()->json($perumahans->toArray());
-    }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -224,6 +245,41 @@ class PerumahansController extends Controller
         Perumahans::destroy($perumahans->id);
         return redirect()->action(
             'PerumahansController@index', ['id' => $perumahans])
-            ->with('status','Data Berhasil Dihapus Dengan ID : '.$perumahans->id);
+            ->with('status', 'Data Berhasil Dihapus Dengan ID : ' . $perumahans->id);
     }
+
+    public function export_excel()
+    {
+        return Excel::download(new PerumahanExcel, 'perumahan.xlsx');
+    }
+
+    public  function import_excel(Request $request)
+    {
+        // validasi
+        $this->validate($request, [
+            'file_import' => 'required|mimes:csv,xls,xlsx'
+        ]);
+
+        // menangkap file excel
+        $file = $request->file('file_import');
+
+        // membuat nama file unik
+        $nama_file = rand().$file->getClientOriginalName();
+
+        // upload ke folder file_siswa di dalam folder public
+        $path = $file->move('assets/import_data/perumahan/',$nama_file);
+
+        // import data
+        Excel::import(new PerumahanImport, public_path('assets/import_data/perumahan/'.$nama_file));
+
+        if (file_exists($path)) {
+            unlink($path);
+        }
+        // notifikasi dengan session
+
+
+        // alihkan halaman kembali
+        return redirect('/perumahans')->with('status','Data Perumahan Sukses Diimports');
+    }
+
 }
