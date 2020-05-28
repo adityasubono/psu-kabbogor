@@ -50,13 +50,15 @@
                  data-parent="#accordion{{ $loop->iteration }}">
                 <div class="card-body p-3">
                     <a href="/saranas/{{ $perumahan->id }}">Kelola Data Sarana</a><br>
-                    Data Koordinat Sarana
-                    <span class="badge badge-primary text-right">
-                    {{ $perumahan->r_koordinat_saranas->count() }}
-                    </span><br>
+
                     Data Foto Sarana
                     <span class="badge badge-primary text-right">
                     {{ $perumahan->r_foto_sarana->count() }}
+                    </span><br>
+
+                    Data Koordinat Sarana
+                    <span class="badge badge-primary text-right">
+                    {{ $perumahan->r_koordinat_sarana->count() }}
                     </span><br>
                 </div>
             </div>
@@ -82,11 +84,11 @@
                 <div class="card-body p-3">
                     <a href="/jalansalurans/{{ $perumahan->id}}">Kelola Data Jalan dan Saluran</a><br>
 
-                    Data Koordinat Jalan Saluran
+                    Data Foto Jalan Saluran
                     <span class="badge badge-primary text-right">
                     {{ $perumahan->r_foto_jalan_saluran->count() }}
                     </span><br>
-                    Data Foto Jalan Saluran
+                    Data Koordinat Jalan Saluran
                     <span class="badge badge-primary text-right">
                     {{ $perumahan->r_koordinat_jalan_saluran->count() }}
                     </span><br>

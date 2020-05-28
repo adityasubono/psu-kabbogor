@@ -1,6 +1,6 @@
 @extends('layouts/main')
 
-@section('title', 'Input Data Foto ( Pertamanan )')
+@section('title', 'Input Data Foto Sarana')
 
 @section('container-fluid')
 <link href="{!! asset('assets/css/perumahan.css') !!}" rel="stylesheet">

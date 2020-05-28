@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @method static where(string $string, $id)
+ * @method static find($id)
  */
 class FotoJalanSaluran extends Model
 {
@@ -13,7 +14,7 @@ class FotoJalanSaluran extends Model
     protected $fillable=['perumahan_id','jalansaluran_id','nama_foto','file_foto'];
 
     public function r_perumahan() {
-        return $this->belongsTo('App\Perumahan', 'id');
+        return $this->belongsTo('App\Perumahans', 'id');
     }
 
     public function r_jalan_saluran() {

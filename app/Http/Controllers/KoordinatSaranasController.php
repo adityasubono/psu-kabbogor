@@ -25,6 +25,7 @@ class KoordinatSaranasController extends Controller
             compact('data_sarana','data_koordinat'));
     }
 
+
     /**
      * Show the form for creating a new resource.
      *
@@ -83,6 +84,12 @@ class KoordinatSaranasController extends Controller
     {
 
         $koordinat = KoordinatSarana::where('sarana_id',$id)->get();
+        return view ('PSU_Perumahan.sarana.koordinat.peta',compact('koordinat'));
+    }
+
+    public function showallmaps()
+    {
+        $koordinat = KoordinatSarana::all();
         return view ('PSU_Perumahan.sarana.koordinat.peta',compact('koordinat'));
     }
 

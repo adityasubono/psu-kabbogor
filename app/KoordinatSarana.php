@@ -12,7 +12,7 @@ class KoordinatSarana extends Model
 {
 
     protected $table= 'koordinatsaranas';
-    protected $fillable=['sarana_id','perumahan_id','longitude','latitude'];
+    protected $fillable=['sarana_id','perumahan_id','longitude','latitude','latlong'];
 
     public function r_perumahan() {
         return $this->belongsTo('App\Perumahans', 'id');

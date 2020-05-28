@@ -122,13 +122,13 @@
         <span class="text">Kembali</span>
     </a>
 
-<!--    <a href="/koordinatsarana/show/" class="btn btn-info btn-icon-split-->
-<!--        mb-3">-->
-<!--        <span class="icon text-white-50">-->
-<!--            <i class="fas fa-map"></i>-->
-<!--        </span>-->
-<!--        <span class="text">Lihat Semua Peta Sarana</span>-->
-<!--    </a>-->
+    <a href="/tampilpetasemua" class="btn btn-primary btn-icon-split
+        mb-3">
+        <span class="icon text-white-50">
+            <i class="fas fa-map"></i>
+        </span>
+        <span class="text">Lihat Semua Peta Sarana</span>
+    </a>
 </div>
 
 

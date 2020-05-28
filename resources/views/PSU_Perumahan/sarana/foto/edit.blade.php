@@ -1,6 +1,6 @@
 @extends('layouts/main')
 
-@section('title', 'Edit Data Foto ( Permukiman )')
+@section('title', 'Edit Data Foto Sarana')
 
 @section('container-fluid')
 

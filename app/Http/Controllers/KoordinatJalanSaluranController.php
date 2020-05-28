@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\JalanSaluran;
 use App\KoordinatJalanSaluran;
 use Illuminate\Http\Request;
 
@@ -10,11 +11,15 @@ class KoordinatJalanSaluranController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function index($id)
     {
-        //
+
+        $data_jalan_saluran= JalanSaluran::find($id);
+        $data_koordinat_jalansaluran = KoordinatJalanSaluran::where('jalansaluran_id',$id)->get();
+        return view('PSU_Perumahan.jalansaluran.koordinat.koordinat_jalan_saluran',
+            compact('data_jalan_saluran','data_koordinat_jalansaluran'));
     }
 
     /**
@@ -24,7 +29,7 @@ class KoordinatJalanSaluranController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -35,31 +40,63 @@ class KoordinatJalanSaluranController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        KoordinatJalanSaluran::create($request->all());
-        return redirect('/perumahans')->with('status','Data Success Insert');
+        $rules = [
+            'longitude' => 'required',
+            'latitude' => 'required',
+        ];
+
+        $customMessages = [
+            'required' => 'Masukan Data :attribute ini ?.',
+        ];
+
+        $this->validate($request, $rules, $customMessages);
+
+        $jalansaluran_id = $request->input('jalansaluran_id');
+        $longitude = $request->input('longitude');
+        $latitude = $request->input('latitude');
+        $latlong = "[$latitude, $longitude, ],";
+
+        $koordinat_sarana = new KoordinatJalanSaluran();
+        $koordinat_sarana->perumahan_id = $request->input('perumahan_id');
+        $koordinat_sarana->jalansaluran_id= $request->input('jalansaluran_id');
+        $koordinat_sarana->longitude = $request->input('longitude');
+        $koordinat_sarana->latitude = $request->input('latitude');
+        $koordinat_sarana->latlong = $latlong;
+        $koordinat_sarana->save();
+
+
+        return redirect()->action('KoordinatJalanSaluranController@index', ['id' => $jalansaluran_id])
+            ->with('status','Data Koordinat jalan Saluran Berhasil Disimpan');
+
     }
 
     /**
      * Display the specified resource.
      *
      * @param  \App\KoordinatJalanSaluran  $koordinatJalanSaluran
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show(KoordinatJalanSaluran $koordinatJalanSaluran)
+    public function show($id)
     {
-        //
+        $koordinat = KoordinatJalanSaluran::where('id',$id)->get();
+        return view ('PSU_Perumahan.jalansaluran.koordinat.peta',compact('koordinat'));
+    }
+
+    public function showallmaps()
+    {
+        $koordinat = KoordinatJalanSaluran::all();
+        return view ('PSU_Perumahan.sarana.koordinat.peta',compact('koordinat'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\KoordinatJalanSaluran  $koordinatJalanSaluran
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit(KoordinatJalanSaluran $koordinatJalanSaluran)
     {
-        //
+        return view('PSU_Perumahan.jalansaluran.koordinat.edit', compact('koordinatJalanSaluran'));
     }
 
     /**
@@ -67,21 +104,43 @@ class KoordinatJalanSaluranController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\KoordinatJalanSaluran  $koordinatJalanSaluran
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, KoordinatJalanSaluran $koordinatJalanSaluran)
     {
-        //
+        $rules = [
+            'longitude' => 'required',
+            'latitude' => 'required',
+        ];
+
+        $customMessages = [
+            'required' => 'Masukan Data :attribute ini ?.',
+        ];
+
+        $this->validate($request, $rules, $customMessages);
+
+        $jalansaluran_id = $request->get('jalansaluran_id');
+        KoordinatJalanSaluran::where('id', $koordinatJalanSaluran->id)->update([
+            'longitude' => $request->longitude,
+            'latitude' => $request->latitude
+        ]);
+        return redirect()->action('KoordinatJalanSaluranController@index', ['id' => $jalansaluran_id])
+            ->with('status','Data Dengan ID '.$koordinatJalanSaluran->id.' Berhasil Di Update');
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\KoordinatJalanSaluran  $koordinatJalanSaluran
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(KoordinatJalanSaluran $koordinatJalanSaluran)
+    public function destroy(Request $request, KoordinatJalanSaluran $koordinatJalanSaluran)
     {
-        //
+        $jalansaluran_id = $request->get('jalansaluran_id');
+        KoordinatJalanSaluran::destroy($koordinatJalanSaluran->id);
+        return redirect()->action(
+            'KoordinatJalanSaluranController@index', ['id' => $jalansaluran_id])
+            ->with('status','Data Berhasil Dihapus Dengan ID : '.$koordinatJalanSaluran->id);
     }
 }

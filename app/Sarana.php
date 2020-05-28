@@ -23,10 +23,12 @@ class Sarana extends Model
     public function r_perumahan() {
         return $this->belongsTo('App\Perumahans', 'id');
     }
+
     public function r_foto_sarana() {
         return $this->hasMany('App\FotoSarana', 'sarana_id');
     }
-    public function r_koordinat_saranas() {
+
+    public function r_koordinat_sarana() {
         return $this->hasMany('App\KoordinatSarana', 'sarana_id');
     }
 }

@@ -36,7 +36,7 @@ class Perumahans extends Model
         return $this->hasMany('App\FotoSarana', 'perumahan_id');
     }
 
-    public function r_koordinat_saranas() {
+    public function r_koordinat_sarana() {
         return $this->hasMany('App\KoordinatSarana', 'perumahan_id');
     }
 

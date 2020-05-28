@@ -16,11 +16,10 @@
         <div class="card-body">
 
 
-<textarea class="form-control" rows="5">@foreach( $koordinat as $koor ){{$koor->latitude}}, {{$koor->longitude}},
+<textarea class="form-control" rows="5" disabled>
+    @foreach( $koordinat as $koor ){{$koor->latitude}},{{$koor->longitude}},
     @endforeach</textarea>
-
             <div id="mymap"></div>
-
         </div>
     </div>
 
