@@ -7,7 +7,7 @@
 
     <div id="googleMap" style="width:100%;height:380px;"></div>
 
-    <form method="post" action="/koordinattamans/update/{{$koordinatTaman->id}}"
+    <form method="post" action="/koordinatperumahans/update/{{$koordinatPerumahan->id}}"
           enctype="multipart/form-data">
         @csrf
         @method('patch')
@@ -16,14 +16,14 @@
                 <div class="row">
                     <div class="col-sm-8">
                         <h6 class="m-0 font-weight-bold text-primary">Data Koordinat Taman :
-                            {{$koordinatTaman->latlong}}
+
                         </h6>
                     </div>
                     <div class="col-sm-4">
                         <h6 class="m-0 font-weight-bold text-primary text-right">ID Taman:
-                            {{$koordinatTaman->id}} ||
+                            {{$koordinatPerumahan->id}} ||
                             ID Perumahan:
-                            {{$koordinatTaman->perumahan_id}}
+                            {{$koordinatPerumahan->perumahan_id}}
                         </h6>
                     </div>
                 </div>
@@ -34,15 +34,13 @@
                 <div class="row mt-3">
                     <div class="col-sm-6">
                         <label for="lng">Koordinat Latitude</label><br>
-                        <input type="hidden" name="taman_id"
-                               value="{{$koordinatTaman->taman_id}}">
                         <input type="hidden" name="perumahan_id"
-                               value="{{$koordinatTaman->perumahan_id}}">
+                               value="{{$koordinatPerumahan->perumahan_id}}">
 
                         <input type="text" class="form-control @error('latitude') is-invalid
                                  @enderror" id="lat" name="latitude"
                                placeholder="Masukan Nama Latitude"
-                               value="{{$koordinatTaman->latitude}}">
+                               value="{{$koordinatPerumahan->latitude}}">
                         @error('latitude')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -55,7 +53,7 @@
                         <input type="text" class="form-control @error('longitude') is-invalid
                                  @enderror" id="lng" name="longitude"
                                placeholder="Masukan Koordinat Longitude"
-                               value="{{$koordinatTaman->longitude}}">
+                               value="{{$koordinatPerumahan->longitude}}">
                         @error('longitude')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -64,9 +62,10 @@
                     </div>
 
                     <div class="col-sm-4 mt-3">
-                        <a href="/koordinattamans/{{$koordinatTaman->taman_id}}" class="btn
+                        <a href="/koordinatperumahans/{{$koordinatPerumahan->perumahan_id}}"
+                           class="btn
                         btn-info btn-icon-split"
-                                id="reset_data">
+                           id="reset_data">
                             <span class="icon text-white-50">
                                 <i class="fas fa-arrow-alt-circle-left"></i>
                             </span>

@@ -60,7 +60,10 @@
                                 <i class="fas fa-exclamation-triangle fa-2x text-white"> Perhatian !</i>
                             </div>
                             <div class="modal-body">
-                                <b>Apakah Anda Akan Menghapus Data Ini ?</b>
+                                <b> Apakah Anda Akan Menghapus Semua Data Yang <br>Berhubungan
+                                    <i class="text-primary">{{$perumahan->nama_perumahan}} Dengan ID
+                                        {{$perumahan->id}}</i>
+                                    ?</b>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-success" data-dismiss="modal">Batal</button>

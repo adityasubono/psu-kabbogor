@@ -244,7 +244,7 @@ class PerumahansController extends Controller
     public function destroy(Perumahans $perumahans)
     {
         Perumahans::destroy($perumahans->id);
-        DB::table("saranas")->where("id", $perumahans->id)->delete();
+        DB::table("saranas")->where("perumahan_id", $perumahans->id)->delete();
         DB::table("fotosaranas")->where("perumahan_id", $perumahans->id)->delete();
         DB::table("koordinatsaranas")->where("perumahan_id", $perumahans->id)->delete();
 
@@ -259,9 +259,7 @@ class PerumahansController extends Controller
         DB::table("cctvperumahans")->where("perumahan_id", $perumahans->id)->delete();
         DB::table("koordinatperumahans")->where("perumahan_id", $perumahans->id)->delete();
 
-        return redirect()->action(
-            'PerumahansController@index', ['id' => $perumahans->id])
-            ->with('status', 'Data Berhasil Dihapus Dengan ID : ' . $perumahans->id);
+        return redirect()->action('PerumahansController@index')->with('status', 'Data Berhasil Dihapus Dengan ID : ' . $perumahans->id);
     }
 
     public function export_excel()

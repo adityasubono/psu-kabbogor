@@ -11,19 +11,19 @@
                 <thead class="thead-dark">
                 <tr>
                     <th>No.</th>
-                    <th>Koordinat Longitude</th>
                     <th>Koordinat Latitude</th>
+                    <th>Koordinat Longitude</th>
                     <th>Aksi</th>
                 </tr>
                 </thead>
                 <tbody class="bg-light">
-                @forelse( $data_koordinat_pertamanan as $koordinat )
+                @forelse( $data_koordinat_perumahan as $koordinat )
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $koordinat->longitude }}</td>
                     <td>{{ $koordinat->latitude }}</td>
+                    <td>{{ $koordinat->longitude }}</td>
                     <td>
-                        <a href="/koordinatpertamanans/edit/{{ $koordinat->id }}"
+                        <a href="/koordinatperumahans/edit/{{$koordinat->id}}"
                            class="btn btn-warning btn-icon-split">
                             <span class="icon text-white-50">
                                 <i class="fas fa-pen"></i>
@@ -57,14 +57,14 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-success" data-dismiss="modal">
-                                    Cancel
+                                    Batal
                                 </button>
-                                <form action="/koordinatpertamanans/delete/{{ $koordinat->id }}"
+                                <form action="/koordinatperumahans/delete/{{ $koordinat->id }}"
                                       method="post" class="d-inline">
                                     @method('delete')
                                     @csrf
-                                    <input type="hidden" name="pertamanan_id"
-                                           value="{{$koordinat->pertamanan_id}}">
+                                    <input type="hidden" name="perumahan_id"
+                                           value="{{$koordinat->perumahan_id}}">
                                     <button type="submit" class="btn btn-danger
                                     btn-ok">Hapus</button>
                                 </form>
@@ -80,7 +80,7 @@
                 @endforelse
                 </tbody>
             </table>
-            <a href="/pertamanans" class="btn btn-primary btn-icon-split">
+            <a href="/perumahans" class="btn btn-primary btn-icon-split">
                 <span class="icon text-white-50">
                 <i class="fas fa-arrow-alt-circle-left"></i>
                 </span>
