@@ -24,7 +24,7 @@ class PerumahanExcel implements FromCollection, WithHeadings, ShouldAutoSize, Wi
 
     public function collection()
     {
-        return Perumahans::all('id','nama_perumahan','nama_pengembang',
+        return Perumahans::all('nama_perumahan','nama_pengembang',
         'luas_perumahan','jumlah_perumahan','lokasi','kecamatan','kelurahan','RW','RT',
         'status_perumahan','no_bast','sph','tgl_serah_terima','keterangan');
     }
@@ -34,7 +34,6 @@ class PerumahanExcel implements FromCollection, WithHeadings, ShouldAutoSize, Wi
     {
         // TODO: Implement headings() method.
         return [
-            'ID',
             'Nama Perumahan',
             'Nama Pengembang',
             'Luas Perumahan',

@@ -90,6 +90,9 @@
         </tbody>
     </table>
 </div>
+
+@include('PSU_Permukiman.includes.popup_permukiman')
+
 @include('PSU_Permukiman.includes.card_label_data')
 
 <!--     POPUP Confirm Delete-->

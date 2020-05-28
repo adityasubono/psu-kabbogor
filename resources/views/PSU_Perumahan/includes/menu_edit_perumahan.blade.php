@@ -8,6 +8,7 @@
 <a href="" data-toggle="modal"
    data-target="#informasi-perumahan{{ $loop->iteration }}">
     {{ $perumahan->nama_perumahan }}
+
 </a>
 <div class="collapse bg-light rounded p-2" id="dataInput{{$loop->iteration }}">
     <div id="accordion{{ $loop->iteration }}">
@@ -176,3 +177,4 @@
         </div>
     </div>
 </div>
+

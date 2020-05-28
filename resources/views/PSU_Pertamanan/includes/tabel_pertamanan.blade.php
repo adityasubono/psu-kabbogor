@@ -94,6 +94,8 @@
     </table>
 </div>
 
+@include('PSU_Pertamanan.includes.popup_pertamanan')
+
 @include('PSU_Pertamanan.includes.card_label_data')
 
 

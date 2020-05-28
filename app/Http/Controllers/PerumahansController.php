@@ -6,6 +6,7 @@ use App\CCTVPerumahan;
 use App\Exports\PerumahanExcel;
 use App\FotoJalanSaluran;
 use App\FotoSarana;
+use App\FotoTaman;
 use App\Imports\PerumahanImport;
 use App\JalanSaluran;
 use App\Kecamatan;
@@ -13,6 +14,7 @@ use App\Kelurahan;
 use App\KoordinatJalanSaluran;
 use App\KoordinatPerumahan;
 use App\KoordinatSarana;
+use App\KoordinatTaman;
 use App\Perumahans;
 use App\Sarana;
 use App\Taman;
@@ -168,12 +170,25 @@ class PerumahansController extends Controller
 
         $data_perumahan = Perumahans::find($perumahan);
         $data_sarana = Sarana::where('perumahan_id', $perumahan)->get();
+        $data_koordinat_sarana = KoordinatSarana::where('perumahan_id', $perumahan)->get();
+        $data_foto_sarana = FotoSarana::where('perumahan_id', $perumahan)->get();
+
         $data_jalan_saluran = JalanSaluran::where('perumahan_id', $perumahan)->get();
+        $data_jalan_saluran_koordinat = JalanSaluran::where('perumahan_id', $perumahan)->get();
+        $data_jalan_saluran_foto = JalanSaluran::where('perumahan_id', $perumahan)->get();
+
         $data_taman = Taman::where('perumahan_id', $perumahan)->get();
+        $data_taman_koordinat = KoordinatTaman::where('perumahan_id', $perumahan)->get();
+        $data_taman_foto = FotoTaman::where('perumahan_id', $perumahan)->get();
+
         $data_koordinat_perumahan = KoordinatPerumahan::where('perumahan_id', $perumahan)->get();
         $data_cctv = CCTVPerumahan::where('perumahan_id', $perumahan)->get();
-        return view('PSU_Perumahan.show', compact('data_sarana', 'data_perumahan',
-            'data_jalan_saluran', 'data_taman', 'data_koordinat_perumahan', 'data_cctv'));
+        return view('PSU_Perumahan.show', compact( 'data_perumahan',
+            'data_sarana','data_koordinat_sarana','data_foto_sarana',
+            'data_jalan_saluran','data_jalan_saluran_koordinat','data_jalan_saluran_foto',
+            'data_taman','data_taman_koordinat','data_taman_foto',
+            'data_koordinat_perumahan',
+            'data_cctv'));
     }
 
 

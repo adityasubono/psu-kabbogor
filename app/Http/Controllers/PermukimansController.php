@@ -148,8 +148,54 @@ class PermukimansController extends Controller
         DB::table("inventaris")->where("permukiman_id", $id)->delete();
         DB::table("koordinattpus")->where("permukiman_id", $id)->delete();
         DB::table("cctvpermukimans")->where("permukiman_id", $id)->delete();
-        
+
         return redirect()->action('PermukimansController@index')
             ->with('status','Data Permukiman Berhasil Dihapus');
+    }
+
+    public function filter(Request $request)
+    {
+
+        $nama_kecamatan = $request->input('kecamatan');
+        $nama_kelurahan = $request->input('kelurahan');
+        $status = $request->input('status_perumahan');
+
+        $total_perumahan = Perumahans::all()->count();
+        $status_sudah = Perumahans::where('status_perumahan', 'Sudah Serah Terima')->count();
+        $status_belum = Perumahans::where('status_perumahan', 'Belum Serah Terima')->count();
+        $status_terlantar = Perumahans::where('status_perumahan', 'Terlantar')->count();
+
+        if (isset($status) && empty($request->kecamatan) && empty($request->kelurahan)) {
+            $kecamatans = Kecamatan::all()->sortBy("nama_kecamatan");
+            $perumahan_filter = Perumahans::where('status_perumahan', 'like', "%" . $status . "%")
+                ->get();
+
+            return view('PSU_Perumahan.index', compact('perumahan_filter', 'kecamatans',
+                'status_belum', 'status_sudah', 'status_terlantar', 'total_perumahan'))
+                ->with('dapat', 'Data Ditemukan');
+        }
+
+        if (isset($nama_kecamatan) && isset($nama_kelurahan) && empty($status)) {
+            $kecamatans = Kecamatan::all()->sortBy("nama_kecamatan");
+            $perumahan_filter = Perumahans::where('kecamatan', 'like', "%" . $nama_kecamatan . "%")
+                ->where('kelurahan', 'like', "%" . $nama_kelurahan . "%")->get();
+
+            return view('PSU_Perumahan.index', compact('perumahan_filter', 'kecamatans',
+                'status_belum', 'status_sudah', 'status_terlantar', 'total_perumahan'));
+        }
+
+        if (isset($nama_kecamatan) && isset($nama_kelurahan) && isset($status)) {
+            $kecamatans = Kecamatan::all()->sortBy("nama_kecamatan");
+            $perumahan_filter = Perumahans::where('kecamatan', 'like', "%" . $nama_kecamatan . "%")
+                ->where('kelurahan', 'like', "%" . $nama_kelurahan . "%")
+                ->where('status_perumahan', 'like', "%" . $status . "%")->get();
+
+            return view('PSU_Perumahan.index', compact('perumahan_filter', 'kecamatans',
+                'status_belum', 'status_sudah', 'status_terlantar', 'total_perumahan'));
+        }
+
+        if (empty($nama_kecamatan) && empty($nama_kelurahan) && empty($status)) {
+            return redirect('/perumahans');
+        }
     }
 }

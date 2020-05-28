@@ -5,8 +5,7 @@
         <span class="fas fa-info-circle"></span>
     </button>
 </nav>
-<a href="" data-toggle="modal" data-target="#informasi-pertamanan{{ $loop->iteration
-}}">
+<a href="" data-toggle="modal" data-target="#informasi-pertamanan{{ $loop->iteration}}">
     {{ $pertamanan->nama_taman }}
 </a>
 <div class="collapse bg-light rounded p-2" id="dataInput{{$loop->iteration }}">

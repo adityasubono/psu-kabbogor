@@ -90,6 +90,7 @@
     </table>
 </div>
 
+@include('PSU_Perumahan.includes.popup_perumahan')
 
 <script type="text/javascript">
     $(document).ready(function () {

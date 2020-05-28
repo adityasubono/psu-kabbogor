@@ -9,7 +9,6 @@
             <h6 class="m-0 font-weight-bold text-primary">Detail Informasi Perumahan</h6>
         </div>
         <div class="card-body">
-
             <table>
                 <tr>
                     <td>Nama Perumahan</td>
@@ -41,13 +40,7 @@
                 <tr>
                     <td>Status</td>
                     <td>:</td>
-                    @if(($data_perumahan->status_perumahan) ==='Sudah')
-                    <td><b style="color: green">Sudah Serah Terima</b></td>
-                    @elseif(($data_perumahan->status_perumahan) ==='Belum')
-                    <td><b style="color: orange">Belum Serah Terima</b></td>
-                    @elseif(($data_perumahan->status_perumahan) ==='Terlantar')
-                    <td><b style="color: red">Terlantar</b></td>
-                    @endif
+                    <td>{{$data_perumahan->status_perumahan}}</td>
                 </tr>
                 <tr>
                     <td>Tanggal Serah Terima</td>
@@ -79,143 +72,18 @@
             </table>
 
 
-            <h5 class="mt-3">Data Sarana</h5>
+            @include('PSU_Perumahan.detail_data_perumahan.sarana')
 
-            <table class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                    <th scope="col">No.</th>
-                    <th scope="col">Nama Sarana</th>
-                    <th scope="col">Luas Sarana</th>
-                    <th scope="col">Kondisi Sarana</th>
-                </tr>
-                </thead>
-                <tbody>
-                @forelse( $data_sarana as $sarana )
-                <tr>
-                    <th scope="row">{{$loop->iteration}}</th>
-                    <td>{{$sarana->nama_sarana}}</td>
-                    <td>{{$sarana->luas_sarana}}</td>
-                    <td>{{$sarana->kondisi_sarana}}</td>
-                </tr>
-                @empty
-                <tr>
-                    <th scope="row" colspan="4" class="text-center" style="color: red">Data Tidak
-                        Tersedia</th>
-                </tr>
-                @endforelse
-                </tbody>
-            </table>
+            @include('PSU_Perumahan.detail_data_perumahan.jalansaluran')
 
-            <h5 class="mt-3">Data Jalan dan Saluran</h5>
+            @include('PSU_Perumahan.detail_data_perumahan.taman')
 
-            <table class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                    <th scope="col">No.</th>
-                    <th scope="col">Nama Jalan dan Saluran</th>
-                    <th scope="col">Luas Jalan dan Saluran</th>
-                    <th scope="col">Kondisi Jalan dan Saluran</th>
-                </tr>
-                </thead>
-                <tbody>
-                @forelse( $data_jalan_saluran as $jalan_saluran )
-                <tr>
-                    <th scope="row">{{$loop->iteration}}</th>
-                    <td>{{$jalan_saluran->nama_jalan_saluran}}</td>
-                    <td>{{$jalan_saluran->luas_jalan_saluran}}</td>
-                    <td>{{$jalan_saluran->kondisi_jalan_saluran}}</td>
-                </tr>
-                @empty
-                <tr>
-                    <th scope="row" colspan="4" class="text-center" style="color: red">Data Tidak
-                        Tersedia</th>
-                </tr>
-                @endforelse
-                </tbody>
-            </table>
+            @include('PSU_Perumahan.detail_data_perumahan.koordinat_perumahan')
+
+            @include('PSU_Perumahan.detail_data_perumahan.cctv_perumahan')
 
 
-            <h5 class="mt-3">Data Taman</h5>
 
-            <table class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                    <th scope="col">No.</th>
-                    <th scope="col">Nama Taman</th>
-                    <th scope="col">Luas Taman</th>
-                    <th scope="col">Kondisi Taman</th>
-                </tr>
-                </thead>
-                <tbody>
-                @forelse( $data_taman as $taman )
-                <tr>
-                    <th scope="row">{{$loop->iteration}}</th>
-                    <td>{{$taman->nama_taman}}</td>
-                    <td>{{$taman->luas_taman}}</td>
-                    <td>{{$taman->kondisi_taman}}</td>
-                </tr>
-                @empty
-                <tr>
-                    <th scope="row" colspan="4" class="text-center" style="color: red">Data Tidak
-                        Tersedia</th>
-                </tr>
-                @endforelse
-                </tbody>
-            </table>
-
-            <h5 class="mt-3">Data Koordinat Perumahan</h5>
-
-            <table class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                    <th scope="col">No.</th>
-                    <th scope="col">Koordinat Longitude</th>
-                    <th scope="col">Koordinat Latitude</th>
-                </tr>
-                </thead>
-                <tbody>
-                @forelse( $data_koordinat_perumahan as $koordinat_perumahan )
-                <tr>
-                    <th scope="row">{{$loop->iteration}}</th>
-                    <td>{{$koordinat_perumahan->longitude}}</td>
-                    <td>{{$koordinat_perumahan->latitude}}</td>
-                </tr>
-                @empty
-                <tr>
-                    <th scope="row" colspan="4" class="text-center" style="color: red">Data Tidak
-                        Tersedia</th>
-                </tr>
-                @endforelse
-                </tbody>
-            </table>
-
-
-            <h5 class="mt-3">Data CCTV</h5>
-
-            <table class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                    <th scope="col">No.</th>
-                    <th scope="col">Nama CCTV</th>
-                    <th scope="col">IP Camera</th>
-                </tr>
-                </thead>
-                <tbody>
-                @forelse( $data_cctv as $cctv )
-                <tr>
-                    <th scope="row">{{$loop->iteration}}</th>
-                    <td>{{$cctv->nama_cctv}}</td>
-                    <td>{{$cctv->ip_camera}}</td>
-                </tr>
-                @empty
-                <tr>
-                    <th scope="row" colspan="4" class="text-center" style="color: red">Data Tidak
-                        Tersedia</th>
-                </tr>
-                @endforelse
-                </tbody>
-            </table>
 
             <a href="/perumahans/" class="btn btn-info btn-icon-split">
                             <span class="icon text-white-50">
