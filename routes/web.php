@@ -215,7 +215,7 @@ Route::post('/pertamanans', 'PertamanansController@store');
 Route::get('/pertamanans/edit/{pertamanan}', 'PertamanansController@edit');
 Route::patch('/pertamanans/update/{pertamanan}', 'PertamanansController@update');
 Route::delete('/pertamanans/delete/{pertamanan}', 'PertamanansController@destroy');
-Route::post('/permukimans/filter', 'PertamanansController@filter');
+Route::post('/pertamanans/filter', 'PertamanansController@filter');
 
 //PSU PERTAMANAN (REKAPITULASI)
 Route::get('/pertamanans/rekapitulasi', 'RekapitulasiPertamananController@index');
