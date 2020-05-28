@@ -26,12 +26,12 @@
                 <div class="card-body p-3">
                     <a href="/koordinatsarana/{{$sarana->id}}">Tambah Koordinat Sarana</a>
                     <span class="badge badge-primary text-center rata_kanan">
-                        {{ $sarana->r_foto_sarana->count() }}
+                        {{ $sarana->r_koordinat_sarana->count() }}
                     </span>
                     <br>
                     <a href="/fotosaranas/{{$sarana->id}}">Tambah Foto Sarana</a>
                     <span class="badge badge-primary text-center rata_kanan">
-                        {{ $sarana->r_koordinat_saranas->count() }}
+                         {{ $sarana->r_foto_sarana->count() }}
                     </span>
                 </div>
             </div>

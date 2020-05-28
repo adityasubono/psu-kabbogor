@@ -12,14 +12,13 @@
             <form method="post" action="/kelurahans">
                 @csrf
 
-
                 <div class="form-group">
                     <div class="row mb-3">
                         <div class="col-sm-4">
                             <label for="nik">Pilih Nama Kecamatan</label>
                             <select
                                 class="custom-select"
-                                id="kecamatan_id" name="nama_kecamatan"
+                                id="kecamatan_id" name="data_kelurahan[0][kecamatan_id]"
                                 value="{{ old('nama_kecamatan') }}"
                                 onchange="myFunction()">
                                 <option value="">--Pilih Nama Kecamatan--</option>

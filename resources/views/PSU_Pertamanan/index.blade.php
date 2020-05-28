@@ -142,7 +142,7 @@
                 <form action="/users/" method="post" class="d-inline">
                     @method('delete')
                     @csrf
-                    <button type="submit" class="btn btn-danger btn-ok">Delete</button>
+                    <button type="submit" class="btn btn-danger btn-ok">Hapus</button>
                 </form>
 
             </div>

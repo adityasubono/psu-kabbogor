@@ -73,7 +73,8 @@
                                     @csrf
                                     <input type="hidden" name="permukiman_id"
                                            value="{{$cctv->permukiman_id}}">
-                                    <button type="submit" class="btn btn-danger btn-ok">Delete</button>
+                                    <button type="submit" class="btn btn-danger
+                                    btn-ok">Hapus</button>
                                 </form>
                             </div>
                         </div>

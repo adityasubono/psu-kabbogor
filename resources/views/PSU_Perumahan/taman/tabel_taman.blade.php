@@ -42,7 +42,6 @@
                             <span class="text">Edit</span>
                         </a>
 
-
                         <button class="btn btn-danger btn-icon-split"
                                 data-toggle="modal"
                                 data-target="#confirm-delete-sarana" data-backdrop="static"
@@ -50,7 +49,7 @@
                             <span class="icon text-white-50">
                                 <i class="fas fa-trash"></i>
                             </span>
-                            <span class="text">Delete</span>
+                            <span class="text">Hapus</span>
                         </button>
                     </td>
                 </tr>
@@ -68,7 +67,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-success" data-dismiss="modal">
-                                    Cancel
+                                    Batal
                                 </button>
                                 <form action="/tamans/delete/{{ $taman->id }}" method="post"
                                       class="d-inline">
@@ -76,7 +75,7 @@
                                     <input type="hidden" name="perumahan_id"
                                            value="{{$taman->perumahan_id}}">
                                     @csrf
-                                    <button type="submit" class="btn btn-danger btn-ok">Delete</button>
+                                    <button type="submit" class="btn btn-danger btn-ok">Hapus</button>
                                 </form>
                             </div>
                         </div>
@@ -91,5 +90,11 @@
                 </tbody>
             </table>
         </div>
+        <a href="/perumahans" class="btn btn-info btn-icon-split mt-3">
+            <span class="icon text-white-50">
+                <i class="fas fa-pen"></i>
+            </span>
+            <span class="text">Kembali</span>
+        </a>
     </div>
 </div>

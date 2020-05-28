@@ -109,12 +109,7 @@
     </div>
 
 @include('PSU_Perumahan.taman.tabel_taman')
-
-
 </div>
-
-
-
 
 <script type="text/javascript">
     $('#confirm-delete').on('show.bs.modal', function (e) {
@@ -122,7 +117,6 @@
     });
     $('#confirm-delete').modal({backdrop: 'static', keyboard: false})
 </script>
-
 
 <script type="text/javascript">
     $(document).ready(function () {

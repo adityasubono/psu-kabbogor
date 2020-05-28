@@ -62,13 +62,15 @@
 
     </script>
 
+    @foreach( $koordinat as $koor )
     <a href="/koordinatsarana/{{$koor->sarana_id}}"
        class="btn btn-info btn-icon-split mb-3">
         <span class="icon text-white-50">
             <i class="fas fa-arrow-alt-circle-left"></i>
         </span>
-        <span class="text">Kembali</span>
+        <span class="text">Kembali{{$koor->sarana_id}}</span>
     </a>
+    @endforeach
 </div>
 
 

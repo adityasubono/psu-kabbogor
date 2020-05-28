@@ -19,7 +19,7 @@
                     <form action="/students/{{ $student->id }}" method="post" class="d-inline">
                         @method('delete')
                         @csrf
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="submit" class="btn btn-danger">Hapus</button>
                     </form>
 
                     <a href="/students" class="card-link">Kembali</a>

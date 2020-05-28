@@ -24,7 +24,6 @@ class TamansController extends Controller
         $data_koordinat_taman = KoordinatTaman::where('perumahan_id',$id)->get();
         return view('PSU_Perumahan.taman.index', compact('data_perumahan','data_taman',
             'data_foto_taman','data_koordinat_taman'));
-
     }
 
     /**
@@ -132,7 +131,6 @@ class TamansController extends Controller
      */
     public function destroy(Request $request, Taman $taman)
     {
-
         $perumahan_id = $request->get('perumahan_id');
         Taman::destroy($taman->id);
         return redirect()->action('TamansController@index', ['id' => $perumahan_id])

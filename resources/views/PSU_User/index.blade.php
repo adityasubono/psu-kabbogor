@@ -61,7 +61,7 @@
                             <span class="icon text-white-50">
                                 <i class="fas fa-trash"></i>
                             </span>
-                                <span class="text">Delete</span>
+                                <span class="text">Hapus</span>
                             </button>
                         </td>
                     </tr>
@@ -92,7 +92,7 @@
                 <form action="/users/{{ $user->id }}" method="post" class="d-inline">
                       @method('delete')
                       @csrf
-                <button type="submit" class="btn btn-danger btn-ok">Delete</button>
+                <button type="submit" class="btn btn-danger btn-ok">Hapus</button>
                 </form>
 
 

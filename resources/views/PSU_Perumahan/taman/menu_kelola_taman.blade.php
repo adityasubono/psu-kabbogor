@@ -5,10 +5,9 @@
         <span class="fas fa-info-circle"></span>
     </button>
 </nav>
-<a href="" data-toggle="modal"
-   data-target="#informasi-perumahan{{ $loop->iteration }}">
-    {{ $taman->nama_taman }}
-</a>
+
+ {{ $taman->nama_taman }}
+
 <div class="collapse bg-light rounded p-2" id="dataInput{{$loop->iteration }}" style="width: 250px">
     <div id="accordion{{$loop->iteration }}">
         <div class="card" style="width: 235px">
@@ -24,8 +23,16 @@
             <div id="dataperumahan{{$loop->iteration }}" class="collapse"
                  data-parent="#accordion{{$loop->iteration }}">
                 <div class="card-body p-3">
-                    <a href="/koordinattamans/{{$taman->id}}">Tambah Koordinat Taman</a><br>
+                    <a href="/koordinattamans/{{$taman->id}}">Tambah Koordinat Taman</a>
+                    <span class="badge badge-primary text-center rata_kanan">
+                        {{ $taman->r_koordinat_taman->count() }}
+                    </span>
+                    <br>
+
                     <a href="/fototamans/{{$taman->id}}">Tambah Foto Taman</a>
+                    <span class="badge badge-primary text-center rata_kanan">
+                        {{ $taman->r_foto_taman->count() }}
+                    </span>
                 </div>
             </div>
         </div>

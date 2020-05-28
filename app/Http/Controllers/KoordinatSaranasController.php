@@ -87,12 +87,6 @@ class KoordinatSaranasController extends Controller
         return view ('PSU_Perumahan.sarana.koordinat.peta',compact('koordinat'));
     }
 
-    public function showallmaps()
-    {
-        $koordinat = KoordinatSarana::all();
-        return view ('PSU_Perumahan.sarana.koordinat.peta',compact('koordinat'));
-    }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -125,9 +119,13 @@ class KoordinatSaranasController extends Controller
         $this->validate($request, $rules, $customMessages);
 
         $perumahan_id = $request->get('perumahan_id');
-        KoordinatPerumahan::where('id', $koordinatSarana->id)->update([
+        $longitude = $request->input('longitude');
+        $latitude = $request->input('latitude');
+        $latlong = "[$latitude, $longitude, ],";
+        KoordinatSarana::where('id', $koordinatSarana->id)->update([
             'longitude' => $request->longitude,
-            'latitude' => $request->latitude
+            'latitude' => $request->latitude,
+            'latlong' => $latlong
         ]);
         return redirect()->action('KoordinatSaranasController@index', ['id' => $perumahan_id])
             ->with('status','Data Dengan ID '.$koordinatSarana->id.' Berhasil Di Update');
@@ -148,4 +146,12 @@ class KoordinatSaranasController extends Controller
             'KoordinatSaranasController@index', ['id' => $sarana_id])
             ->with('status','Data Berhasil Dihapus Dengan ID : '.$koordinatsarana->id);
     }
+
+
+    public function tampilsemuapeta(Request $request)
+    {
+        $koordinat_lengkap = KoordinatSarana::all();
+        return view ('PSU_Perumahan.sarana.koordinat.peta_lengkap',compact('koordinat_lengkap'));
+    }
+
 }

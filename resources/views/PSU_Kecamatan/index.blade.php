@@ -68,7 +68,7 @@
                             <span class="icon text-white-50">
                                 <i class="fas fa-trash"></i>
                             </span>
-                                <span class="text">Delete</span>
+                                <span class="text">Hapus</span>
                             </button>
                         </td>
                     </tr>

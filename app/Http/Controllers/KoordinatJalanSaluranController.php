@@ -120,9 +120,13 @@ class KoordinatJalanSaluranController extends Controller
         $this->validate($request, $rules, $customMessages);
 
         $jalansaluran_id = $request->get('jalansaluran_id');
+        $longitude = $request->input('longitude');
+        $latitude = $request->input('latitude');
+        $latlong = "[$latitude, $longitude, ],";
         KoordinatJalanSaluran::where('id', $koordinatJalanSaluran->id)->update([
             'longitude' => $request->longitude,
-            'latitude' => $request->latitude
+            'latitude' => $request->latitude,
+            'latlong' => $latlong
         ]);
         return redirect()->action('KoordinatJalanSaluranController@index', ['id' => $jalansaluran_id])
             ->with('status','Data Dengan ID '.$koordinatJalanSaluran->id.' Berhasil Di Update');

@@ -28,7 +28,7 @@
                     <td>{{ $std->jurusan }}</td>
                     <td>
                         <a href="" class="badge badge-success">Edit</a>
-                        <a href="" class="badge badge-danger">Delete</a>
+                        <a href="" class="badge badge-danger">Hapus</a>
                     </td>
                 </tr>
                 @endforeach
