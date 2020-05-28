@@ -49,12 +49,35 @@
                             <span class="icon text-white-50">
                                 <i class="fas fa-trash"></i>
                             </span>
-                    <span class="text">Delete</span>
+                    <span class="text">Hapus</span>
                 </button>
+
+                <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog"
+                     aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header bg-danger">
+                                <i class="fas fa-exclamation-triangle fa-2x text-white"> Perhatian !</i>
+                            </div>
+                            <div class="modal-body">
+                                <b>Apakah Anda Akan Menghapus Data Ini ?</b>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success" data-dismiss="modal">Batal</button>
+                                <form action="/perumahans/delete/{{$perumahan->id}}" method="post" class="d-inline">
+                                    @method('delete')
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger btn-ok">Hapus</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </td>
         </tr>
         @empty
-        <tr class="border">
+        <tr class="border bg-gray-200">
             <td colspan="10" class="text-center">
                 <b style="color: red">Data Tidak Tersedia</b>
             </td>
@@ -64,27 +87,6 @@
     </table>
 </div>
 
-<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog"
-     aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header bg-danger">
-                <i class="fas fa-exclamation-triangle">Perhatian !</i>
-            </div>
-            <div class="modal-body">
-                <b>Apakah Anda Akan Menghapus Data Ini ?</b>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
-                <form action="/perumahans/delete/{{$perumahan->id}}" method="post" class="d-inline">
-                    @method('delete')
-                    @csrf
-                    <button type="submit" class="btn btn-danger btn-ok">Delete</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
 
 <script type="text/javascript">
     $(document).ready(function () {

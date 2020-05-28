@@ -144,7 +144,8 @@
             <div id="datakoordinatperumahan{{ $loop->iteration }}" class="collapse"
                  data-parent="#accordion{{ $loop->iteration }}">
                 <div class="card-body p-3">
-                    <a href="/saranas/{{ $perumahan->id }}">Kelola Koordinat Perumahan</a><br>
+                    <a href="/koordinatperumahans/{{ $perumahan->id }}">Kelola Koordinat
+                        Perumahan</a><br>
                 </div>
             </div>
         </div>

@@ -43,7 +43,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-success" data-dismiss="modal">
-                                Cancel
+                                Batal
                             </button>
                             <form action="/fotosaranas/delete" method="post"
                                   class="d-inline">
@@ -54,7 +54,7 @@
                                 <input type="hidden" name="id"
                                        value="{{$fotosarana->id}}">
                                 @csrf
-                                <button type="submit" class="btn btn-danger btn-ok">Delete</button>
+                                <button type="submit" class="btn btn-danger btn-ok">Hapus</button>
                             </form>
                         </div>
                     </div>

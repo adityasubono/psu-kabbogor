@@ -112,7 +112,8 @@
 
     <!--    Tabel Data Sarana     -->
     @include('PSU_Perumahan.sarana.tabel_sarana')
-    <!--    Tabel Data Foto     -->
+
+
     <a href="/perumahans" class="btn btn-info btn-icon-split
         mb-3">
         <span class="icon text-white-50">
@@ -120,6 +121,14 @@
         </span>
         <span class="text">Kembali</span>
     </a>
+
+<!--    <a href="/koordinatsarana/show/" class="btn btn-info btn-icon-split-->
+<!--        mb-3">-->
+<!--        <span class="icon text-white-50">-->
+<!--            <i class="fas fa-map"></i>-->
+<!--        </span>-->
+<!--        <span class="text">Lihat Semua Peta Sarana</span>-->
+<!--    </a>-->
 </div>
 
 

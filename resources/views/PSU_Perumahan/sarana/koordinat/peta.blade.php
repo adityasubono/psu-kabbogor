@@ -32,7 +32,7 @@
     <style type="text/css">
         #mymap {
             border:1px solid red;
-            width: 800px;
+            width: 950px;
             height: 500px;
         }
     </style>

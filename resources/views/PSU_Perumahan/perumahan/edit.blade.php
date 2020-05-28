@@ -1,6 +1,6 @@
 @extends('layouts/main')
 
-@section('title', 'Web Programming Home')
+@section('title', 'Edit Data Perumahan')
 
 @section('container-fluid')
 
@@ -71,7 +71,6 @@
                                    name="luas_perumahan"
                                    placeholder="Masukan Luas Perumahan"
                                    value="{{$perumahans->luas_perumahan}}">
-                            <small class="form-text text-danger">* Wajib Diisi</small>
 
                             @error('luas_perumahan')
                             <div class="invalid-feedback">
@@ -88,7 +87,6 @@
                                    name="jumlah_perumahan"
                                    placeholder="Masukan Jumlah Rumah"
                                    value="{{$perumahans->jumlah_perumahan}}">
-                            <small class="form-text text-danger">* Wajib Diisi</small>
 
                             @error('jumlah_rumah')
                             <div class="invalid-feedback">
@@ -229,7 +227,6 @@
                                    @enderror" id="tgl_serah_terima" name="tgl_serah_terima"
                                        placeholder="Masukan Tanggal Serah Terima"
                                        value="{{$perumahans->tgl_serah_terima}}">
-                                <small class="form-text text-danger">* Wajib Diisi</small>
                                 @error('tgl_serah_terima')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -240,10 +237,9 @@
                             <div class="col-sm-5">
                                 <label for="no_bast">No. Berita Acara Serah Terima</label><br>
                                 <input type="text" class="form-control @error('no_bast') is-invalid
-                                   @enderror" id="no_bast" name="no_bast"
+                                        @enderror" id="no_bast" name="no_bast"
                                        placeholder="Masukan No. Berita Acara Serah Terima"
-                                       value=" {{$perumahans->no_bast}}">
-                                <small class="form-text text-danger">* Wajib Diisi</small>
+                                       value="{{$perumahans->no_bast}}">
                                 @error('no_bast')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -256,8 +252,7 @@
                                 <input type="text" class="form-control @error('sph') is-invalid
                                        @enderror" id="sph" name="sph"
                                        placeholder="Masukan Surat Pengakuan hak"
-                                       value=" {{$perumahans->sph}}">
-                                <small class="form-text text-danger">* Wajib Diisi</small>
+                                       value="{{$perumahans->sph}}">
                                 @error('sph')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -274,7 +269,6 @@
                               @enderror" id="keterangan" name="keterangan" rows="3"
                               placeholder="Masukan Keterangan">{{
                         $perumahans->keterangan}}</textarea>
-                    <small class="form-text text-danger">* Wajib Diisi</small>
                     @error('keterangan')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -316,7 +310,7 @@
         } else if (elem.value === "Terlantar") {
             document.getElementById('tgl_serah_terima').style.display = "none";
 
-        } else if (status_perumahan === "Sudah Serah Terima") {
+        } else if (status_perumahan === "{{$perumahans->status_perumahan}}") {
             document.getElementById('tgl_serah_terima').style.display = "block";
 
         }

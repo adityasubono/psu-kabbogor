@@ -1,6 +1,6 @@
 @extends('layouts/main')
 
-@section('title', 'Web Programming Home')
+@section('title', 'Tambah Data Perumahan')
 
 @section('container-fluid')
 
@@ -9,7 +9,7 @@
         <div class="card-header py-3 bg-gray-500">
             <div class="row">
                 <div class="col-sm-6">
-                    <h6 class="m-0 font-weight-bold text-primary">Input Data Perumahan</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Tambah Data Perumahan</h6>
                 </div>
                 <div class="col-sm-6">
                     <h6 class="m-0 font-weight-bold text-primary text-right">
@@ -79,7 +79,6 @@
                                    name="luas_perumahan"
                                    placeholder="Masukan Luas Perumahan"
                                    value="{{ old('luas_perumahan') }}">
-                            <small class="form-text text-danger">* Wajib Diisi</small>
 
                             @error('luas_perumahan')
                             <div class="invalid-feedback">
@@ -96,13 +95,11 @@
                                    name="jumlah_perumahan"
                                    placeholder="Masukan Jumlah Rumah"
                                    value="{{ old('jumlah_perumahan') }}">
-
-
-<!--                            @error('jumlah_rumah')-->
-<!--                            <div class="invalid-feedback">-->
-<!--                                {{ $message }}-->
-<!--                            </div>-->
-<!--                            @enderror-->
+                            @error('jumlah_rumah')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                     </div>
 
@@ -208,7 +205,9 @@
                                     id="status_perumahan" name="status_perumahan"
                                     onchange="displayForm
                                     (this)">
-                                <option value="">--Pilih Status--</option>
+                                <option value="{{ old('status_perumahan') }}"selected>
+                                    {{ old('status_perumahan') }}
+                                </option>
                                 <option value="Sudah Serah Terima">Sudah Serah Terima</option>
                                 <option value="Belum Serah Terima">Belum Serah Terima</option>
                                 <option value="Terlantar">Terlantar</option>
@@ -234,12 +233,11 @@
                                    @enderror" id="tgl_serah_terima" name="tgl_serah_terima"
                                        placeholder="Masukan Tanggal Serah Terima"
                                        value="{{ old('tgl_serah_terima') }}">
-<!--                              -->
-<!--                                @error('tgl_serah_terima')-->
-<!--                                <div class="invalid-feedback">-->
-<!--                                    {{ $message }}-->
-<!--                                </div>-->
-<!--                                @enderror-->
+                                @error('tgl_serah_terima')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
                             </div>
 
                             <div class="col-sm-5">
@@ -248,12 +246,11 @@
                                    @enderror" id="no_bast" name="no_bast"
                                        placeholder="Masukan No. Berita Acara Serah Terima"
                                        value="{{ old('no_bast') }}">
-
-<!--                                @error('no_bast')-->
-<!--                                <div class="invalid-feedback">-->
-<!--                                    {{ $message }}-->
-<!--                                </div>-->
-<!--                                @enderror-->
+                                @error('no_bast')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
                             </div>
 
                             <div class="col-sm-4">
@@ -262,12 +259,11 @@
                                        @enderror" id="sph" name="sph"
                                        placeholder="Masukan Surat Pengakuan hak"
                                        value="{{ old('sph') }}">
-<!--                                <small class="form-text text-danger">* Wajib Diisi</small>-->
-<!--                                @error('sph')-->
-<!--                                <div class="invalid-feedback">-->
-<!--                                    {{ $message }}-->
-<!--                                </div>-->
-<!--                                @enderror-->
+                                @error('sph')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
                             </div>
 
                         </div>
@@ -279,12 +275,11 @@
                     <textarea class="form-control @error('keterangan') is-invalid
                               @enderror" id="keterangan" name="keterangan" rows="3"
                               placeholder="Masukan Keterangan">{{ old('keterangan') }}</textarea>
-<!--                    <small class="form-text text-danger">* Wajib Diisi</small>-->
-<!--                    @error('keterangan')-->
-<!--                    <div class="invalid-feedback">-->
-<!--                        {{ $message }}-->
-<!--                    </div>-->
-<!--                    @enderror-->
+                    @error('keterangan')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </div>
 
                 <a href="/perumahans" class="btn btn-info btn-icon-split">

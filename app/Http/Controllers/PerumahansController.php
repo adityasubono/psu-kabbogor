@@ -19,6 +19,7 @@ use App\Taman;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -132,18 +133,18 @@ class PerumahansController extends Controller
         $request->validate([
             'nama_perumahan' => 'required',
             'nama_pengembang' => 'required',
-            'luas_perumahan' => 'required',
-            'jumlah_perumahan' => 'required',
+//            'luas_perumahan' => 'required',
+//            'jumlah_perumahan' => 'required',
             'lokasi' => 'required',
             'kecamatan' => 'required|not_in:0',
             'kelurahan' => 'required|not_in:0',
             'RT' => 'required',
             'RW' => 'required',
-            'status_perumahan' => 'required|not_in:0',
+//            'status_perumahan' => 'required|not_in:0',
 //            'no_bast' => 'required',
 //            'sph' => 'required',
 //            'tgl_serah_terima' => 'required',
-            'keterangan' => 'required'
+//            'keterangan' => 'required'
         ]);
         Perumahans::create($request->all());
 
@@ -200,18 +201,18 @@ class PerumahansController extends Controller
         $request->validate([
             'nama_perumahan' => 'required',
             'nama_pengembang' => 'required',
-            'luas_perumahan' => 'required',
-            'jumlah_perumahan' => 'required',
+//            'luas_perumahan' => 'required',
+//            'jumlah_perumahan' => 'required',
             'lokasi' => 'required',
             'kecamatan' => 'required|not_in:0',
             'kelurahan' => 'required|not_in:0',
             'RT' => 'required',
             'RW' => 'required',
-            'status_perumahan' => 'required|not_in:0',
+//            'status_perumahan' => 'required|not_in:0',
 //            'no_bast' => 'required',
 //            'sph' => 'required',
 //            'tgl_serah_terima' => 'required',
-            'keterangan' => 'required'
+//            'keterangan' => 'required'
         ]);
 
         Perumahans::where('id', $perumahans->id)->update([
@@ -243,8 +244,23 @@ class PerumahansController extends Controller
     public function destroy(Perumahans $perumahans)
     {
         Perumahans::destroy($perumahans->id);
+        DB::table("saranas")->where("id", $perumahans->id)->delete();
+        DB::table("fotosaranas")->where("perumahan_id", $perumahans->id)->delete();
+        DB::table("koordinatsaranas")->where("perumahan_id", $perumahans->id)->delete();
+
+        DB::table("jalansalurans")->where("id", $perumahans->id)->delete();
+        DB::table("koordinatjalansalurans")->where("perumahan_id", $perumahans->id)->delete();
+        DB::table("fotojalansalurans")->where("perumahan_id", $perumahans->id)->delete();
+
+        DB::table("tamans")->where("id", $perumahans->id)->delete();
+        DB::table("koordinattamans")->where("perumahan_id", $perumahans->id)->delete();
+        DB::table("fototamans")->where("perumahan_id", $perumahans->id)->delete();
+
+        DB::table("cctvperumahans")->where("perumahan_id", $perumahans->id)->delete();
+        DB::table("koordinatperumahans")->where("perumahan_id", $perumahans->id)->delete();
+
         return redirect()->action(
-            'PerumahansController@index', ['id' => $perumahans])
+            'PerumahansController@index', ['id' => $perumahans->id])
             ->with('status', 'Data Berhasil Dihapus Dengan ID : ' . $perumahans->id);
     }
 

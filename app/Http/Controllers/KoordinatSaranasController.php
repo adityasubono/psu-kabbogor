@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\FotoSarana;
+use App\KoordinatPerumahan;
 use App\KoordinatSarana;
 use App\Sarana;
 use Illuminate\Http\Request;
@@ -89,11 +90,11 @@ class KoordinatSaranasController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\KoordinatSarana  $koordinatSarana
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit(KoordinatSarana $koordinatSarana)
     {
-        //
+        return view('PSU_Perumahan.sarana.koordinat.edit', compact('koordinatSarana'));
     }
 
     /**
@@ -101,11 +102,29 @@ class KoordinatSaranasController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\KoordinatSarana  $koordinatSarana
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, KoordinatSarana $koordinatSarana)
     {
-        //
+        $rules = [
+            'longitude' => 'required',
+            'latitude' => 'required',
+        ];
+
+        $customMessages = [
+            'required' => 'Masukan Data :attribute ini ?.',
+        ];
+
+        $this->validate($request, $rules, $customMessages);
+
+        $perumahan_id = $request->get('perumahan_id');
+        KoordinatPerumahan::where('id', $koordinatSarana->id)->update([
+            'longitude' => $request->longitude,
+            'latitude' => $request->latitude
+        ]);
+        return redirect()->action('KoordinatSaranasController@index', ['id' => $perumahan_id])
+            ->with('status','Data Dengan ID '.$koordinatSarana->id.' Berhasil Di Update');
+
     }
 
     /**

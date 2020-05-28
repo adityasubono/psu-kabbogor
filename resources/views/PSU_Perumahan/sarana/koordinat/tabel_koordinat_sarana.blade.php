@@ -25,7 +25,8 @@
                     <td>{{ $koordinat_sarana->latitude }}</td>
                     <td>{{ $koordinat_sarana->latlong }}</td>
                     <td>
-                        <a href="/saranas/{{ $koordinat_sarana->id }}/edit" class="btn btn-warning
+                        <a href="/koordinatsarana/edit/{{ $koordinat_sarana->id }}" class="btn
+                        btn-warning
                             btn-icon-split">
                             <span class="icon text-white-50">
                                 <i class="fas fa-pen"></i>

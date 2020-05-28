@@ -122,8 +122,8 @@ Route::post('/fotosaranas/delete','FotoSaranasController@destroy');
 //PSU Data Koordinat Sarana
 Route::get('/koordinatsarana/{id}', 'KoordinatSaranasController@index');
 Route::post('/koordinatsarana/store', 'KoordinatSaranasController@store');
-Route::get('/koordinatsarana/edit/', 'KoordinatSaranasController@edit');
-Route::patch('/koordinatsarana/update', 'KoordinatSaranasController@update');
+Route::get('/koordinatsarana/edit/{koordinatSarana}', 'KoordinatSaranasController@edit');
+Route::patch('/koordinatsarana/update/{koordinatSarana}', 'KoordinatSaranasController@update');
 Route::delete('/koordinatsarana/delete/{koordinatsarana}','KoordinatSaranasController@destroy');
 Route::get('/koordinatsarana/show/{id}', 'KoordinatSaranasController@show');
 
@@ -136,10 +136,18 @@ Route::delete('/jalansalurans/delete/{jalanSaluran}', 'JalanSaluransController@d
 
 
 //PSU Data Foto Jalan Saluran
+Route::get('/fotojalansalurans/{id}', 'FotoJalanSaluranController@index');
 Route::post('/fotojalansalurans/store', 'FotoJalanSaluranController@store');
+Route::get('/fotojalansalurans/edit/{}', 'FotoJalanSaluranController@edit');
+Route::patch('/fotojalansalurans/update/{}', 'FotoJalanSaluranController@update');
+Route::delete('/fotojalansalurans/delete/{}', 'FotoJalanSaluranController@destroy');
 
 //PSU Data Koordinat Jalan dan Saluran
+Route::get('/koordinatjalansalurans/{id}', 'KoordinatJalanSaluranController@index');
 Route::post('/koordinatjalansalurans/store', 'KoordinatJalanSaluranController@store');
+Route::get('/koordinatjalansalurans/edit/{}', 'KoordinatJalanSaluranController@edit');
+Route::patch('/koordinatjalansalurans/update/{}', 'KoordinatJalanSaluranController@update');
+Route::delete('/koordinatjalansalurans/delete/{}', 'KoordinatJalanSaluranController@destroy');
 
 //PSU Data Taman
 Route::get('/tamans/{id}', 'TamansController@index');
@@ -149,10 +157,26 @@ Route::patch('/tamans/update/{taman}', 'TamansController@update');
 Route::delete('/tamans/delete/{taman}', 'TamansController@destroy');
 
 //PSU Data Foto Taman
+Route::get('/fototamans/{id}', 'FotoJalanSaluranController@index');
 Route::post('/fototamans/store', 'FotoJalanSaluranController@store');
+Route::get('/fototamans/edit', 'FotoJalanSaluranController@edit');
+Route::patch('/fototamans/update', 'FotoJalanSaluranController@update');
+Route::delete('/fototamans/delete', 'FotoJalanSaluranController@destroy');
 
 //PSU Data Koordinat Taman
+Route::get('/koordinattamans/{id}', 'KoordinatJalanSaluranController@index');
 Route::post('/koordinattamans/store', 'KoordinatJalanSaluranController@store');
+Route::get('/koordinattamans/edit/', 'KoordinatJalanSaluranController@edit');
+Route::patch('/koordinattamans/update/', 'KoordinatJalanSaluranController@upadte');
+Route::delete('/koordinattamans/delete/', 'KoordinatJalanSaluranController@destroy');
+
+
+//PSU Data Koordinat Perumahan
+Route::get('/koordinatperumahans/{id}', 'KoordinatPerumahansController@index');
+Route::post('/koordinatperumahans/store', 'KoordinatPerumahansController@store');
+Route::get('/koordinatperumahans/edit/{koordinatPerumahan}', 'KoordinatPerumahansController@edit');
+Route::patch('/koordinatperumahans/update/{koordinatPerumahan}', 'KoordinatPerumahansController@update');
+Route::delete('/koordinatperumahans/delete/{koordinatPerumahan}', 'KoordinatPerumahansController@destroy');
 
 //PSU Data CCTV Perumahan
 Route::get('/cctvperumahans/{id}', 'CCTVPerumahansController@index');

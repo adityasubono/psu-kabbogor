@@ -68,12 +68,12 @@
                     </div>
 
                     <div class="col-sm-4 mt-3">
-                        <button type="submit" class="btn btn-info btn-icon-split"
+                        <button type="submit" class="btn btn-primary btn-icon-split"
                                 id="reset_data">
                             <span class="icon text-white-50">
                                 <i class="fas fa-download"></i>
                             </span>
-                            <span class="text">Submit</span>
+                            <span class="text">Simpan</span>
                         </button>
                     </div>
                 </div>
@@ -165,12 +165,12 @@
         });
 
         // membuat Marker
-        var marker = new google.maps.Marker({
-            position: new google.maps.LatLng(-6.485219, 106.752375),
-            map: peta,
-            animation: google.maps.Animation.BOUNCE,
-            icon: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"
-        });
+        // var marker = new google.maps.Marker({
+        //     position: new google.maps.LatLng(-6.485219, 106.752375),
+        //     map: peta,
+        //     animation: google.maps.Animation.BOUNCE,
+        //    icon: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"
+        // });
 
 
     }

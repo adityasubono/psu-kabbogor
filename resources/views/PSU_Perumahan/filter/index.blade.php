@@ -79,7 +79,7 @@
                     <span class="icon text-white-50">
                         <i class="fas fa-upload"></i>
                     </span>
-                    <span class="text">Upload</span>
+                    <span class="text">Import File</span>
                 </button>
             </div>
         </form>
