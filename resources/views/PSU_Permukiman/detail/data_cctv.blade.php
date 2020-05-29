@@ -17,7 +17,7 @@
     </div>
     @empty
     <div class="col-sm-4">
-        <b style="color: red">Data Tidak Tersedia<b>
+        <b style="color: red">Data Tidak Tersedia</b>
     </div>
     @endforelse
 </div>

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\CCTVPermukiman;
+use App\Exports\PermukimanExport;
 use App\Fototpu;
+use App\Imports\PermukimanImport;
 use App\Inventaris;
 use App\Kecamatan;
 use App\Koordinattpu;
@@ -12,6 +14,7 @@ use App\Permukiman;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rules\In;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PermukimansController extends Controller
 {
@@ -188,44 +191,74 @@ class PermukimansController extends Controller
 
         $nama_kecamatan = $request->input('kecamatan');
         $nama_kelurahan = $request->input('kelurahan');
-        $status = $request->input('status_perumahan');
+        $status = $request->input('status');
+        $status_sudah = Permukiman::where('status','Sudah Beroperasional')->count();
+        $status_belum = Permukiman::where('status','Belum Beroperasional')->count();
 
-        $total_perumahan = Perumahans::all()->count();
-        $status_sudah = Perumahans::where('status_perumahan', 'Sudah Serah Terima')->count();
-        $status_belum = Perumahans::where('status_perumahan', 'Belum Serah Terima')->count();
-        $status_terlantar = Perumahans::where('status_perumahan', 'Terlantar')->count();
 
         if (isset($status) && empty($request->kecamatan) && empty($request->kelurahan)) {
             $kecamatans = Kecamatan::all()->sortBy("nama_kecamatan");
-            $perumahan_filter = Perumahans::where('status_perumahan', 'like', "%" . $status . "%")
-                ->get();
+            $permukiman_filter = Permukiman::where('status', 'like', "%" . $status . "%")->get();
 
-            return view('PSU_Perumahan.index', compact('perumahan_filter', 'kecamatans',
-                'status_belum', 'status_sudah', 'status_terlantar', 'total_perumahan'))
-                ->with('dapat', 'Data Ditemukan');
+            return view('PSU_Permukiman.index', compact('permukiman_filter', 'kecamatans',
+            'status_sudah','status_belum'))
+                ->with('status', 'Data Berhasil Ditemukan');
         }
 
         if (isset($nama_kecamatan) && isset($nama_kelurahan) && empty($status)) {
             $kecamatans = Kecamatan::all()->sortBy("nama_kecamatan");
-            $perumahan_filter = Perumahans::where('kecamatan', 'like', "%" . $nama_kecamatan . "%")
+            $permukiman_filter = Permukiman::where('kecamatan', 'like', "%" . $nama_kecamatan . "%")
                 ->where('kelurahan', 'like', "%" . $nama_kelurahan . "%")->get();
 
-            return view('PSU_Perumahan.index', compact('perumahan_filter', 'kecamatans',
-                'status_belum', 'status_sudah', 'status_terlantar', 'total_perumahan'));
+            return view('PSU_Permukiman.index', compact('permukiman_filter', 'kecamatans',
+            'status_belum','status_sudah'));
         }
 
         if (isset($nama_kecamatan) && isset($nama_kelurahan) && isset($status)) {
             $kecamatans = Kecamatan::all()->sortBy("nama_kecamatan");
-            $perumahan_filter = Perumahans::where('kecamatan', 'like', "%" . $nama_kecamatan . "%")
+            $permukiman_filter = Permukiman::where('kecamatan', 'like', "%" . $nama_kecamatan . "%")
                 ->where('kelurahan', 'like', "%" . $nama_kelurahan . "%")
-                ->where('status_perumahan', 'like', "%" . $status . "%")->get();
+                ->where('status', 'like', "%" . $status . "%")->get();
 
-            return view('PSU_Perumahan.index', compact('perumahan_filter', 'kecamatans',
-                'status_belum', 'status_sudah', 'status_terlantar', 'total_perumahan'));
+            return view('PSU_Permukiman.index', compact('permukiman_filter', 'kecamatans',
+                'status_sudah','status_belum'));
         }
 
         if (empty($nama_kecamatan) && empty($nama_kelurahan) && empty($status)) {
-            return redirect('/perumahans');
+            return redirect('/permukimans');
         }
+    }
+
+    public function export() {
+        return Excel::download(new PermukimanExport, 'permukiman.xlsx');
+    }
+
+    public  function import(Request $request)
+    {
+        // validasi
+        $this->validate($request, [
+            'file_import' => 'required|mimes:csv,xls,xlsx'
+        ]);
+
+        // menangkap file excel
+        $file = $request->file('file_import');
+
+        // membuat nama file unik
+        $nama_file = rand().$file->getClientOriginalName();
+
+        // upload ke folder file_siswa di dalam folder public
+        $path = $file->move('assets/import_data/permukiman/',$nama_file);
+
+        // import data
+        Excel::import(new PermukimanImport, public_path('assets/import_data/permukiman/'.$nama_file));
+
+        if (file_exists($path)) {
+            unlink($path);
+        }
+        // notifikasi dengan session
+
+
+        // alihkan halaman kembali
+        return redirect('/permukimans')->with('status','Data Permukiman Sukses Diimports');
     }
 }

@@ -72,13 +72,6 @@
                     </div>
 
                     <div class="col-sm-4 mt-2">
-                        <button type="submit" class="btn btn-primary btn-icon-split mr-2"
-                                id="add_data_inventaris">
-                        <span class="icon text-white-50">
-                            <i class="fas fa-plus"></i>
-                        </span>
-                            <span class="text">Simpan</span>
-                        </button>
 
                         <a href="/inventaris/{{$inventaris->id}}"
                            class="btn btn-info btn-icon-split" id="btn-reset-form">
@@ -87,6 +80,16 @@
                         </span>
                             <span class="text">Kembali</span>
                         </a>
+
+                        <button type="submit" class="btn btn-primary btn-icon-split mr-2"
+                                id="add_data_inventaris">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-plus"></i>
+                        </span>
+                            <span class="text">Simpan</span>
+                        </button>
+
+
                     </div>
                 </div>
             </form>

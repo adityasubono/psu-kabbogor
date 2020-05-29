@@ -9,7 +9,7 @@
                target="_blank">
                 <img src="../../assets/uploads/permukiman/{{$foto->file_foto}}">
             </a>
-            <div class="desc bg-gray-200 text-dark">{{$foto->nama_foto}}</div>
+            <div class="desc bg-gray-200">{{$foto->nama_foto}}</div>
         </div>
     </div>
 

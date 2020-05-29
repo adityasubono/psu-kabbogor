@@ -1,6 +1,10 @@
 <hr>
 <h5 class="mt-3">Data Koordinat Permukiman</h5>
+@if(isset($data_koordinat_tpu))
 <div id="mymap"></div>
+@else
+<b style="color: red">Data Tidak Tersedia</b>
+@endif
 <script
     src="http://maps.google.com/maps/api/js?key=AIzaSyBMbVQJuBRWDV1jFUVZ9Gzsu-nWOEr9LdM">
 </script>

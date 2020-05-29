@@ -23,7 +23,7 @@
                     <td>{{ $foto->nama_foto }}</td>
                     <td>@include('PSU_Permukiman.fototpu.foto_galery')</td>
                     <td>
-                        <a href="/fototpus/{{ $foto->id }}/edit" class="btn btn-warning
+                        <a href="/fototpus/edit/{{ $foto->id }}" class="btn btn-warning
                             btn-icon-split">
                             <span class="icon text-white-50">
                                 <i class="fas fa-pen"></i>

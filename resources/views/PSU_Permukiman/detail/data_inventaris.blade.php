@@ -55,7 +55,7 @@
         @empty
         <tr>
             <td colspan="6" class="text-center"><b style="color: red">
-                    Data Tidak Tersedia<b></td>
+                    Data Tidak Tersedia</b></td>
         </tr>
         @endforelse
         </tbody>

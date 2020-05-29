@@ -72,7 +72,8 @@
 
                 <div class="col-sm-4 mt-3">
 
-                    <a href="" class="btn btn-danger btn-icon-split">
+                    <a href="/fototpus/{{$data_foto->permukiman_id}}" class="btn btn-danger
+                    btn-icon-split">
                             <span class="icon text-white-50">
                                 <i class="fas fa-arrow-alt-circle-left"></i>
                             </span>

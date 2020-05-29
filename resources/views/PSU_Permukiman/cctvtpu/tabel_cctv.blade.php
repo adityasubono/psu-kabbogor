@@ -30,7 +30,7 @@
                     <td>{{ $cctv->nama_cctv }}</td>
                     <td>{{ $cctv->ip_cctv }}</td>
                     <td>
-                        <a href="/cctvpertamanans/edit/{{ $cctv->id }}" class="btn btn-warning
+                        <a href="/cctvtpus/edit/{{ $cctv->id }}" class="btn btn-warning
                             btn-icon-split">
                             <span class="icon text-white-50">
                                 <i class="fas fa-pen"></i>
@@ -66,7 +66,7 @@
                                 <button type="button" class="btn btn-success" data-dismiss="modal">
                                     Cancel
                                 </button>
-                                <form action="/cctvpertamanans/delete/{{ $cctv->id }}"
+                                <form action="/cctvtpus/delete/{{ $cctv->id }}"
                                       method="post"
                                       class="d-inline">
                                     @method('delete')

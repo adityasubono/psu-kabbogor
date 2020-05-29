@@ -291,6 +291,8 @@ Route::patch('/permukimans/{permukiman}', 'PermukimansController@update');
 Route::delete('/permukimans/delete/{id}', 'PermukimansController@destroy');
 Route::post('/permukimans/filter', 'PermukimansController@filter');
 Route::get('/permukimans/show/{id}', 'PermukimansController@show');
+Route::get('/permukimans/export', 'PermukimansController@export');
+Route::post('/permukimans/import', 'PermukimansController@import');
 
 //PSU Permukiman ( TPU ) -> ( Rekapitulasi Permukiman Grafik )
 Route::get('/rekapitulasi/permukimans', 'RekapitulasiPermukimanController@index');
@@ -305,7 +307,7 @@ Route::delete('/pengelolas/delete/{pengelolah}','PengelolahsController@destroy')
 //PSU Permukiman ( TPU ) -> ( Foto TPU )=====================================================
 Route::get('/fototpus/{id}', 'FototpusController@index');
 Route::post('/fototpus/store', 'FototpusController@store');
-Route::get('/fototpus/{id}/edit', 'FototpusController@edit');
+Route::get('/fototpus/edit/{id}', 'FototpusController@edit');
 Route::post('/fototpus/delete','FototpusController@destroy');
 Route::put('/fototpus/update/{id}', 'FototpusController@update');
 

@@ -90,12 +90,12 @@
                 @endforelse
                 </tbody>
             </table>
-            <a href="/permukimans" class="btn btn-primary btn-icon-split">
+        </div>
+        <a href="/permukimans" class="btn btn-primary btn-icon-split mt-3">
                 <span class="icon text-white-50">
                 <i class="fas fa-arrow-alt-circle-left"></i>
                 </span>
-                <span class="text">Kembali</span>
-            </a>
-        </div>
+            <span class="text">Kembali</span>
+        </a>
     </div>
 </div>

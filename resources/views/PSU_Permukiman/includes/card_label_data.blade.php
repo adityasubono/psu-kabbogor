@@ -72,7 +72,11 @@
                             Data Masuk
                         </div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                            Total Data : {{ $permukimans->count()}}
+                            @if(isset($permukiman_filter))
+                            Total Data : {{ $permukiman_filter->count()}}
+                            @else
+                            Total Data : {{ $permukiman->count()}}
+                            @endif
                         </div>
                     </div>
                     <div class="col-auto">
