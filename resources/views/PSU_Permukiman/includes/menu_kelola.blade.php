@@ -62,8 +62,8 @@
                         Data Foto TPU
                     </button>
                     <span class="badge badge-primary text-center rata_kanan">
-                                        {{ $permukiman->r_foto_tpu->count()}}
-                                    </span>
+                        {{ $permukiman->r_foto_tpu->count()}}
+                    </span>
                 </h5>
             </div>
             <div id="datafototpu{{$loop->iteration }}" class="collapse"

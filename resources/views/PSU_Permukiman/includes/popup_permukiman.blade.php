@@ -36,7 +36,7 @@
                         <td>:</td>
                         <td><a href="" data-toggle="modal"
                                data-target="#informasi-foto-perumahan{{$permukiman->id}}">
-                                9
+                                {{ $permukiman->r_foto_tpu->count()}}
                             </a>
                         </td>
                     </tr>

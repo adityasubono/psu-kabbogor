@@ -12,7 +12,7 @@
             <div class="modal-body">
                 <table class="popup-table-perumahan">
                     <tr>
-                        <td width="300">Nama Pengembang</td>
+                        <td width="300">Nama Pelaksana</td>
                         <td class="titik-dua">:</td>
                         <td width="500">{{$pertamanan->nama_pelaksana}}</td>
                         <td rowspan="9" width="300">
@@ -27,7 +27,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Luas Perumahan (m2)</td>
+                        <td>Luas Taman (m2)</td>
                         <td>:</td>
                         <td>{{$pertamanan->luas_taman}}</td>
                     </tr>
@@ -36,7 +36,7 @@
                         <td>:</td>
                         <td><a href="" data-toggle="modal"
                                data-target="#informasi-foto-perumahan{{$pertamanan->id}}">
-                                9
+                               {{$pertamanan->r_foto_pertamanan->count()}}
                             </a>
                         </td>
                     </tr>
@@ -66,7 +66,12 @@
                     <tr>
                         <td>Jumlah Petugas</td>
                         <td>:</td>
-                        <td>5</td>
+                        <td>
+                            <a href="" data-toggle="modal"
+                               data-target="#informasi-foto-perumahan{{$pertamanan->id}}">
+                                {{$pertamanan->r_petugas->count()}}
+                            </a>
+                        </td>
                     </tr>
 
                     <tr>
