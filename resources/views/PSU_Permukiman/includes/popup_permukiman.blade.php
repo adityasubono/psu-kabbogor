@@ -77,7 +77,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3"><a href="/pertamanans/{{ $permukiman->id }}">
+                        <td colspan="3"><a href="/permukimans/show/{{ $permukiman->id }}">
                                 Selengkapnya...</a></td>
                     </tr>
                 </table>

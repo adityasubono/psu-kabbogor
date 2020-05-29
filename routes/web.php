@@ -216,6 +216,7 @@ Route::get('/pertamanans/edit/{pertamanan}', 'PertamanansController@edit');
 Route::patch('/pertamanans/update/{pertamanan}', 'PertamanansController@update');
 Route::delete('/pertamanans/delete/{pertamanan}', 'PertamanansController@destroy');
 Route::post('/pertamanans/filter', 'PertamanansController@filter');
+Route::post('/pertamanans/show/{pertamanan}', 'PertamanansController@show');
 
 //PSU PERTAMANAN (REKAPITULASI)
 Route::get('/pertamanans/rekapitulasi', 'RekapitulasiPertamananController@index');
@@ -289,6 +290,7 @@ Route::get('/permukimans/{permukiman}/edit', 'PermukimansController@edit');
 Route::patch('/permukimans/{permukiman}', 'PermukimansController@update');
 Route::delete('/permukimans/delete/{id}', 'PermukimansController@destroy');
 Route::post('/permukimans/filter', 'PermukimansController@filter');
+Route::get('/permukimans/show/{id}', 'PermukimansController@show');
 
 //PSU Permukiman ( TPU ) -> ( Rekapitulasi Permukiman Grafik )
 Route::get('/rekapitulasi/permukimans', 'RekapitulasiPermukimanController@index');

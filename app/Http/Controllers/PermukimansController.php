@@ -85,11 +85,20 @@ class PermukimansController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Permukiman  $permukiman
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show(Permukiman $permukiman)
+    public function show($id)
     {
-        //
+        $data_permukiman = Permukiman::find($id);
+        $data_pengelola = Pengelola::where('permukiman_id', $id)->get();
+        $data_foto_tpu = Fototpu::where('permukiman_id', $id)->get();
+        $data_inventaris = Inventaris::where('permukiman_id', $id)->get();
+        $data_koordinat_tpu = Koordinattpu::where('permukiman_id', $id)->get();
+        $data_cctv_tpu = CCTVPermukiman::where('permukiman_id', $id)->get();
+
+
+        return view('PSU_Permukiman.show',compact('data_permukiman','data_pengelola',
+        'data_foto_tpu','data_inventaris','data_koordinat_tpu','data_cctv_tpu'));
     }
 
     /**
