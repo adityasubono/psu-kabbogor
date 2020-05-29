@@ -118,6 +118,7 @@
                 {{ session('status') }}
             </div>
             @endif
+            <hr>
             <!--     Tabel Pertamanan  -->
             @include('PSU_Pertamanan.includes.tabel_pertamanan')
         </div>

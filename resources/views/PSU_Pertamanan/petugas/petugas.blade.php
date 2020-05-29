@@ -151,7 +151,7 @@
 
     @include('PSU_Pertamanan.petugas.tabel_petugas')
 
-    <a href="/permukimans" class="btn btn-info btn-icon-split mt-3 mb-3"
+    <a href="/pertamanans" class="btn btn-info btn-icon-split mt-3 mb-3"
        id="add_data_petugas">
         <span class="icon text-white-50">
             <i class="fas fa-arrow-alt-circle-left"></i>

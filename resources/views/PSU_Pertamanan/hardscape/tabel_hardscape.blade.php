@@ -66,7 +66,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-success" data-dismiss="modal">
-                                    Cancel
+                                    Batal
                                 </button>
                                 <form action="/hardscapes/delete/{{ $hardscape->id }}"
                                       method="post"

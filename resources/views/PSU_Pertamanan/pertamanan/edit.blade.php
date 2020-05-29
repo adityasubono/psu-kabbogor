@@ -33,7 +33,7 @@
                                    name="nama_taman"
                                    placeholder="Masukan Nama Taman"
                                    value="{{$pertamanan->nama_taman}}">
-
+                            <small class="form-text text-danger">* Wajib Diisi</small>
                             @error('nama_taman')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -49,7 +49,7 @@
                                    name="nama_pelaksana"
                                    placeholder="Masukan Nama Pelaksana"
                                    value="{{$pertamanan->nama_pelaksana}}">
-
+                            <small class="form-text text-danger">* Wajib Diisi</small>
                             @error('nama_pelaksana')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -90,6 +90,7 @@
                                 <option value="{{ $i }}">{{ $i }}</option>
                                 @endfor
                             </select>
+                            <small class="form-text text-danger">* Wajib Diisi</small>
                             @error('tahun_dibangun')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -105,6 +106,7 @@
                             <textarea class="form-control @error('lokasi') is-invalid
                                       @enderror" id="lokasi" name="lokasi" rows="3"
                                       placeholder="Masukan Alamat Lokasi">{{$pertamanan->lokasi}}</textarea>
+                            <small class="form-text text-danger">* Wajib Diisi</small>
                             @error('lokasi')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -128,6 +130,7 @@
                                 </option>
                                 @endforeach
                             </select>
+                            <small class="form-text text-danger">* Wajib Diisi</small>
                             @error('kecamatan')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -144,6 +147,7 @@
                                 <option value="{{$pertamanan->kelurahan}}" selected>
                                     {{$pertamanan->kelurahan}}</option>
                             </select>
+                            <small class="form-text text-danger">* Wajib Diisi</small>
                             @error('kelurahan')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -159,6 +163,7 @@
                                    name="RW"
                                    placeholder="RW"
                                    value="{{$pertamanan->RT}}">
+                            <small class="form-text text-danger">* Wajib Diisi</small>
                             @error('RW')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -174,6 +179,7 @@
                                    name="RT"
                                    placeholder="RT"
                                    value="{{$pertamanan->RT}}">
+                            <small class="form-text text-danger">* Wajib Diisi</small>
                             @error('RT')
                             <div class="invalid-feedback">
                                 {{ $message }}

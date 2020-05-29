@@ -20,7 +20,7 @@
     </div>
 
     <div class="card-body bg-gray-200">
-        <form action="/pemeliharaans/update/{{$hardscape->id}}" method="post">
+        <form action="/hardscapes/update/{{$hardscape->id}}" method="post">
             @method('PATCH')
             @csrf
             <div class="row">
@@ -117,7 +117,7 @@
                 </div>
 
                 <div class="col-sm-4 mt-2">
-                    <a href="/pemeliharaans/{{$hardscape->permukiman_id}}"
+                    <a href="/hardscapes/{{$hardscape->pertamanan_id}}"
                        class="btn btn-info btn-icon-split mr-2"
                        id="add_data_pemeliharaan">
                         <span class="icon text-white-50">

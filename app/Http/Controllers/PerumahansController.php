@@ -263,11 +263,11 @@ class PerumahansController extends Controller
         DB::table("fotosaranas")->where("perumahan_id", $perumahans->id)->delete();
         DB::table("koordinatsaranas")->where("perumahan_id", $perumahans->id)->delete();
 
-        DB::table("jalansalurans")->where("id", $perumahans->id)->delete();
+        DB::table("jalansalurans")->where("perumahan_id", $perumahans->id)->delete();
         DB::table("koordinatjalansalurans")->where("perumahan_id", $perumahans->id)->delete();
         DB::table("fotojalansalurans")->where("perumahan_id", $perumahans->id)->delete();
 
-        DB::table("tamans")->where("id", $perumahans->id)->delete();
+        DB::table("tamans")->where("perumahan_id", $perumahans->id)->delete();
         DB::table("koordinattamans")->where("perumahan_id", $perumahans->id)->delete();
         DB::table("fototamans")->where("perumahan_id", $perumahans->id)->delete();
 

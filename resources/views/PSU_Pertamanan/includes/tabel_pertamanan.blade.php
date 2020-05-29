@@ -84,7 +84,7 @@
             </td>
         </tr>
         @empty
-        <tr class="border">
+        <tr class="bg-gray-200">
             <td colspan="11" class="text-center">
                 <b style="color: red">Data Tidak Tersedia</b>
             </td>

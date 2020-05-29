@@ -264,6 +264,7 @@ Route::post('/koordinatpertamanans/store', 'KoordinatPertamanansController@store
 Route::get('/koordinatpertamanans/edit/{koordinatPertamanan}', 'KoordinatPertamanansController@edit');
 Route::patch('/koordinatpertamanans/update/{koordinatPertamanan}', 'KoordinatPertamanansController@update');
 Route::delete('/koordinatpertamanans/delete/{koordinatPertamanan}', 'KoordinatPertamanansController@destroy');
+Route::get('/koordinatpertamanans/peta/{id}', 'KoordinatPertamanansController@show');
 
 
 //PSU PERTAMANAN ( CCTV PERTAMANAN )=============================================================

@@ -39,12 +39,12 @@
             });
 
             // membuat Marker
-            var marker=new google.maps.Marker({
-                position: new google.maps.LatLng(-6.485219,106.752375),
-                map: peta,
-                animation: google.maps.Animation.BOUNCE,
-                icon: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"
-            });
+            // var marker=new google.maps.Marker({
+            //     position: new google.maps.LatLng(-6.485219,106.752375),
+            //     map: peta,
+            //     animation: google.maps.Animation.BOUNCE,
+            //     icon: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"
+            // });
 
         }
 
@@ -80,26 +80,10 @@
                 @csrf
                 <div class="row">
 
-
                     <div class="col-sm-6">
                         <input type="hidden" class="form-control" id="permukiman_id"
                                name="data_koordinat[0][pertamanan_id]"
                                value="{{$data_pertamanan->id}}">
-                        <label for="latitude">Koordinat Longitude</label><br>
-                        <input type="text" class="form-control @error('data_koordinat.*.longitude')
-                                           is-invalid @enderror" id="lng"
-                               name="data_koordinat[0][longitude]"
-                               placeholder="Masukan Koordinat longitude"
-                               value="{{ old('data_koordinat.*.longitude') }}">
-                        @error('data_koordinat.*.latitude')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                        @enderror
-                    </div>
-
-
-                    <div class="col-sm-6">
                         <label for="longitude">Koordinat Latitude</label><br>
                         <input type="text" class="form-control @error('data_koordinat.*.latitude')
                         is-invalid @enderror" id="lat"
@@ -113,26 +97,41 @@
                         @enderror
                     </div>
 
+                    <div class="col-sm-6">
+                        <label for="latitude">Koordinat Longitude</label><br>
+                        <input type="text" class="form-control @error('data_koordinat.*.longitude')
+                                           is-invalid @enderror" id="lng"
+                               name="data_koordinat[0][longitude]"
+                               placeholder="Masukan Koordinat longitude"
+                               value="{{ old('data_koordinat.*.longitude') }}">
+                        @error('data_koordinat.*.latitude')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
 
-
-                    <div class="col-sm-4 mt-2">
-                        <button type="button" class="btn btn-success btn-icon-split mr-2"
-                                id="add_data_koordinat">
-                        <span class="icon text-white-50">
-                            <i class="fas fa-plus"></i>
-                        </span>
-                            <span class="text">Tambah</span>
-                        </button>
-
-                        <button type="button" class="btn btn-info btn-icon-split"
-                                id="btn-reset-form">
-                        <span class="icon text-white-50">
-                            <i class="fas fa-sync"></i>
-                        </span>
-                            <span class="text">Reset</span>
-                        </button>
-                        <input type="hidden" id="jumlah-form" value="0">
                     </div>
+
+
+
+<!--                    <div class="col-sm-4 mt-2">-->
+<!--                        <button type="button" class="btn btn-success btn-icon-split mr-2"-->
+<!--                                id="add_data_koordinat">-->
+<!--                        <span class="icon text-white-50">-->
+<!--                            <i class="fas fa-plus"></i>-->
+<!--                        </span>-->
+<!--                            <span class="text">Tambah</span>-->
+<!--                        </button>-->
+<!---->
+<!--                        <button type="button" class="btn btn-info btn-icon-split"-->
+<!--                                id="btn-reset-form">-->
+<!--                        <span class="icon text-white-50">-->
+<!--                            <i class="fas fa-sync"></i>-->
+<!--                        </span>-->
+<!--                            <span class="text">Reset</span>-->
+<!--                        </button>-->
+<!--                        <input type="hidden" id="jumlah-form" value="0">-->
+<!--                    </div>-->
                 </div>
 
 

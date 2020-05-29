@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\CCTVPertamanan;
+use App\FotoPertamanan;
+use App\FotoTaman;
 use App\Hardscape;
 use App\Kecamatan;
+use App\KoordinatPertamanan;
+use App\KoordinatTaman;
+use App\Pemeliharaan;
 use App\Pertamanan;
 use App\Perumahans;
 use App\Petugas;
@@ -20,6 +26,7 @@ class PertamanansController extends Controller
     public function index()
     {
         $pertamanans= Pertamanan::all();
+        $total_data= Pertamanan::all()->count();
         $jumlah_hardscape= Hardscape::all()->count();
         $jumlah_softscape= Softscape::all()->count();
         $kecamatans = Kecamatan::all()->sortBy("nama_kecamatan");
@@ -28,7 +35,7 @@ class PertamanansController extends Controller
 
 
         return view('PSU_Pertamanan.index', compact('pertamanans','kecamatans'
-        ,'jumlah_hardscape','jumlah_softscape','total_hs'));
+        ,'jumlah_hardscape','jumlah_softscape','total_hs','total_data'));
     }
 
     /**
@@ -57,41 +64,25 @@ class PertamanansController extends Controller
         $rules = [
             'nama_taman' => 'required',
             'nama_pelaksana' => 'required',
-            'luas_taman' => 'required',
+//            'luas_taman' => 'required',
             'lokasi' => 'required',
             'kecamatan' => 'required|not_in:0',
             'kelurahan' => 'required|not_in:0',
             'RT' => 'required',
             'RW' => 'required',
             'tahun_dibangun' => 'required|not_in:0',
-            'keterangan' => 'required',
-            'data_petugas.*.nama' => 'required',
-            'data_petugas.*.umur' => 'required',
-            'data_petugas.*.pendidikan' => 'required',
-            'data_petugas.*.tugas' => 'required',
-            'data_petugas.*.keterangan_petugas' => 'required',
+//            'keterangan' => 'required',
         ];
 
         $customMessages = [
             'required' => 'Masukan Data :attribute ini ?.',
-            'data_petugas.*.nama.required' => "Masukan Data Nama Petugas ?",
-            'data_petugas.*.umur.required' => "Masukan Data Umur ?",
-            'data_petugas.*.pendidikan.required' => "Masukan Data Pendidikan Terakhir ?",
-            'data_petugas.*.tugas.required' => "Masukan Data Deskripsi Tugas Yang Dilakukan ?",
-            'data_petugas.*.keterangan_petugas.required' => "Masukan Data Keterangan ?",
         ];
 
         $this->validate($request, $rules, $customMessages);
 
         Pertamanan::create($request->all());
 
-        return redirect('/pertamanans')->with('status','Data Success Insert');
-
-
-
-
-
-
+        return redirect('/pertamanans')->with('status','Data Berhasil Disimpan');
     }
 
     /**
@@ -148,14 +139,14 @@ class PertamanansController extends Controller
         Pertamanan::where('id', $pertamanan->id)->update([
             'nama_taman' => $request->nama_taman,
             'nama_pelaksana' => $request->nama_pelaksana,
-            'luas_taman' => $request->luas_taman,
+//            'luas_taman' => $request->luas_taman,
             'tahun_dibangun' => $request->tahun_dibangun,
             'lokasi' => $request->lokasi,
             'kecamatan' => $request->kecamatan,
             'kelurahan' => $request->kelurahan,
             'RT' => $request->RT,
             'RW' => $request->RW,
-            'keterangan' => $request->keterangan
+//            'keterangan' => $request->keterangan
 
         ]);
 
@@ -173,9 +164,15 @@ class PertamanansController extends Controller
     public function destroy(Pertamanan $pertamanan)
     {
         Pertamanan::destroy($pertamanan->id);
-        return redirect()->action(
-            'PertamanansController@index')
-            ->with('status','Data Dengan ID '.$pertamanan->id.' Berhasil Dihapus');
+        Petugas::where('pertamanan_id',$pertamanan->id)->delete();
+        FotoPertamanan::where('pertamanan_id',$pertamanan->id)->delete();
+        Pemeliharaan::where('pertamanan_id',$pertamanan->id)->delete();
+        Hardscape::where('pertamanan_id',$pertamanan->id)->delete();
+        Softscape::where('pertamanan_id',$pertamanan->id)->delete();
+        KoordinatPertamanan::where('pertamanan_id',$pertamanan->id)->delete();
+        CCTVPertamanan::where('pertamanan_id',$pertamanan->id)->delete();
+
+        return redirect('/pertamanans')->with('status','Data Pertamanan Berhasil Dihapus');
     }
 
     public function filter(Request $request)

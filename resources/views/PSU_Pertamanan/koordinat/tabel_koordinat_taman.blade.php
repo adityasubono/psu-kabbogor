@@ -11,8 +11,8 @@
                 <thead class="thead-dark">
                 <tr>
                     <th>No.</th>
-                    <th>Koordinat Longitude</th>
                     <th>Koordinat Latitude</th>
+                    <th>Koordinat Longitude</th>
                     <th>Aksi</th>
                 </tr>
                 </thead>
@@ -20,8 +20,8 @@
                 @forelse( $data_koordinat_pertamanan as $koordinat )
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $koordinat->longitude }}</td>
                     <td>{{ $koordinat->latitude }}</td>
+                    <td>{{ $koordinat->longitude }}</td>
                     <td>
                         <a href="/koordinatpertamanans/edit/{{ $koordinat->id }}"
                            class="btn btn-warning btn-icon-split">
@@ -80,12 +80,23 @@
                 @endforelse
                 </tbody>
             </table>
-            <a href="/pertamanans" class="btn btn-primary btn-icon-split">
+
+            <a href="/pertamanans" class="btn btn-info btn-icon-split mt-3">
                 <span class="icon text-white-50">
                 <i class="fas fa-arrow-alt-circle-left"></i>
                 </span>
                 <span class="text">Kembali</span>
             </a>
+
+            @if(isset($koordinat))
+            <a href="/koordinatpertamanans/peta/{{ $koordinat->id}}" class="btn btn-primary
+            btn-icon-split mt-3">
+                <span class="icon text-white-50">
+                <i class="fas fa-map"></i>
+                </span>
+                <span class="text">Lihat Peta</span>
+            </a>
+            @endif
         </div>
     </div>
 </div>

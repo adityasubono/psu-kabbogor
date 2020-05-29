@@ -117,7 +117,7 @@
                 </div>
 
                 <div class="col-sm-4 mt-2">
-                    <a href="/pemeliharaans/{{$pemeliharaan->permukiman_id}}"
+                    <a href="/pemeliharaans/{{$pemeliharaan->pertamanan_id}}"
                        class="btn btn-info btn-icon-split mr-2"
                             id="add_data_pemeliharaan">
                         <span class="icon text-white-50">

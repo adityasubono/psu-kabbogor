@@ -67,11 +67,13 @@ class KoordinatPertamanansController extends Controller
      * Display the specified resource.
      *
      * @param  \App\KoordinatPertamanan  $koordinatPertamanan
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show(KoordinatPertamanan $koordinatPertamanan)
+    public function show($id)
     {
         //
+        $koordinat_pertamanan = KoordinatPertamanan::where('id',$id)->get();
+        return view('PSU_Pertamanan.koordinat.peta',compact('koordinat_pertamanan'));
     }
 
     /**

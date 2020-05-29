@@ -46,7 +46,7 @@
                             <span class="icon text-white-50">
                                 <i class="fas fa-trash"></i>
                             </span>
-                            <span class="text">Delete</span>
+                            <span class="text">Hapus</span>
                         </button>
                     </td>
                 </tr>
@@ -65,7 +65,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-success" data-dismiss="modal">
-                                    Cancel
+                                    Batal
                                 </button>
                                 <form action="/cctvpertamanans/delete/{{ $cctv->id }}"
                                       method="post"
@@ -74,7 +74,8 @@
                                     @csrf
                                     <input type="hidden" name="pertamanan_id"
                                            value="{{$cctv->pertamanan_id}}">
-                                    <button type="submit" class="btn btn-danger btn-ok">Delete</button>
+                                    <button type="submit" class="btn btn-danger
+                                    btn-ok">Hapus</button>
                                 </form>
                             </div>
                         </div>

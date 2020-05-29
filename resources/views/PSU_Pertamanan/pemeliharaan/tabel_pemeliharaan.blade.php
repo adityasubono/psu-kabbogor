@@ -47,7 +47,7 @@
                             <span class="icon text-white-50">
                                 <i class="fas fa-trash"></i>
                             </span>
-                            <span class="text">Delete</span>
+                            <span class="text">Hapus</span>
                         </button>
                     </td>
                 </tr>
@@ -66,7 +66,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-success" data-dismiss="modal">
-                                    Cancel
+                                    Batal
                                 </button>
                                 <form action="/pemeliharaans/delete/{{ $pemeliharaan->id }}"
                                       method="post"
@@ -75,7 +75,8 @@
                                     <input type="hidden" name="pertamanan_id"
                                            value="{{$pemeliharaan->pertamanan_id}}">
                                     @csrf
-                                    <button type="submit" class="btn btn-danger btn-ok">Delete</button>
+                                    <button type="submit" class="btn btn-danger
+                                    btn-ok">Hapus</button>
                                 </form>
                             </div>
                         </div>
@@ -89,13 +90,12 @@
                 @endforelse
                 </tbody>
             </table>
-
-            <a href="/pertamanans" class="btn btn-primary btn-icon-split">
+        </div>
+        <a href="/pertamanans" class="btn btn-primary btn-icon-split mt-3">
                 <span class="icon text-white-50">
                 <i class="fas fa-arrow-alt-circle-left"></i>
                 </span>
-                <span class="text">Kembali</span>
-            </a>
-        </div>
+            <span class="text">Kembali</span>
+        </a>
     </div>
 </div>
