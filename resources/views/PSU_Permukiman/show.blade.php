@@ -1,6 +1,6 @@
 @extends('layouts/main')
 
-@section('title', 'Halaman Kelola Data Permukiman')
+@section('title', 'Halaman Detail Data Permukiman')
 
 @section('container-fluid')
 <div class="container-fluid">

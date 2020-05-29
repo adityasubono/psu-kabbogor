@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\CCTVPertamanan;
+use App\Exports\PertamananExport;
 use App\FotoPertamanan;
 use App\FotoTaman;
 use App\Hardscape;
+use App\Imports\PertamananImport;
 use App\Kecamatan;
 use App\KoordinatPertamanan;
 use App\KoordinatTaman;
@@ -15,6 +17,7 @@ use App\Perumahans;
 use App\Petugas;
 use App\Softscape;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PertamanansController extends Controller
 {
@@ -89,11 +92,22 @@ class PertamanansController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Pertamanan  $pertamanan
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(Pertamanan $pertamanan)
     {
-        //
+        $data_pertamanan = Pertamanan::find($pertamanan->id);
+        $data_petugas = Petugas::where('pertamanan_id',$pertamanan->id)->get();
+        $data_foto_taman = FotoPertamanan::where('pertamanan_id',$pertamanan->id)->get();
+        $data_pemeliharaan = Pemeliharaan::where('pertamanan_id',$pertamanan->id)->get();
+        $data_hardscape = Hardscape::where('pertamanan_id',$pertamanan->id)->get();
+        $data_softscape = Softscape::where('pertamanan_id',$pertamanan->id)->get();
+        $data_koordinat_taman = KoordinatPertamanan::where('pertamanan_id',$pertamanan->id)->get();
+        $data_cctv_taman = CCTVPertamanan::where('pertamanan_id',$pertamanan->id)->get();
+
+        return view('PSU_Pertamanan.show', compact('data_pertamanan',
+        'data_petugas','data_foto_taman','data_pemeliharaan','data_hardscape',
+        'data_softscape','data_koordinat_taman','data_cctv_taman'));
     }
 
     /**
@@ -180,44 +194,76 @@ class PertamanansController extends Controller
 
         $nama_kecamatan = $request->input('kecamatan');
         $nama_kelurahan = $request->input('kelurahan');
-        $status = $request->input('status_perumahan');
+        $tahun_dibangun = $request->input('tahun');
 
-        $total_perumahan = Perumahans::all()->count();
-        $status_sudah = Perumahans::where('status_perumahan', 'Sudah Serah Terima')->count();
-        $status_belum = Perumahans::where('status_perumahan', 'Belum Serah Terima')->count();
-        $status_terlantar = Perumahans::where('status_perumahan', 'Terlantar')->count();
-
-        if (isset($status) && empty($request->kecamatan) && empty($request->kelurahan)) {
+        $total_data= Pertamanan::all()->count();
+        $jumlah_hardscape= Hardscape::all()->count();
+        $jumlah_softscape= Softscape::all()->count();
+        $total_hs= $jumlah_softscape + $jumlah_hardscape;
+        if (isset($tahun_dibangun) && empty($request->kecamatan) && empty($request->kelurahan)) {
             $kecamatans = Kecamatan::all()->sortBy("nama_kecamatan");
-            $perumahan_filter = Perumahans::where('status_perumahan', 'like', "%" . $status . "%")
+            $pertamanan_filter = Pertamanan::where('tahun_dibangun', 'like', "%" . $tahun_dibangun . "%")
                 ->get();
 
-            return view('PSU_Perumahan.index', compact('perumahan_filter', 'kecamatans',
-                'status_belum', 'status_sudah', 'status_terlantar', 'total_perumahan'))
+            return view('PSU_Pertamanan.index', compact('pertamanan_filter', 'kecamatans',
+            'total_data','jumlah_hardscape','jumlah_softscape','total_hs'))
                 ->with('dapat', 'Data Ditemukan');
         }
 
-        if (isset($nama_kecamatan) && isset($nama_kelurahan) && empty($status)) {
+        if (isset($nama_kecamatan) && isset($nama_kelurahan) && empty($tahun_dibangun)) {
             $kecamatans = Kecamatan::all()->sortBy("nama_kecamatan");
-            $perumahan_filter = Perumahans::where('kecamatan', 'like', "%" . $nama_kecamatan . "%")
+            $pertamanan_filter = Pertamanan::where('kecamatan', 'like', "%" . $nama_kecamatan . "%")
                 ->where('kelurahan', 'like', "%" . $nama_kelurahan . "%")->get();
 
-            return view('PSU_Perumahan.index', compact('perumahan_filter', 'kecamatans',
-                'status_belum', 'status_sudah', 'status_terlantar', 'total_perumahan'));
+            return view('PSU_Pertamanan.index', compact('pertamanan_filter', 'kecamatans',
+                'total_data','jumlah_hardscape','jumlah_softscape','total_hs'));
         }
 
-        if (isset($nama_kecamatan) && isset($nama_kelurahan) && isset($status)) {
+        if (isset($nama_kecamatan) && isset($nama_kelurahan) && isset($tahun_dibangun)) {
             $kecamatans = Kecamatan::all()->sortBy("nama_kecamatan");
-            $perumahan_filter = Perumahans::where('kecamatan', 'like', "%" . $nama_kecamatan . "%")
+            $pertamanan_filter = Pertamanan::where('kecamatan', 'like', "%" . $nama_kecamatan . "%")
                 ->where('kelurahan', 'like', "%" . $nama_kelurahan . "%")
-                ->where('status_perumahan', 'like', "%" . $status . "%")->get();
+                ->where('tahun_dibangun', 'like', "%" . $tahun_dibangun . "%")->get();
 
-            return view('PSU_Perumahan.index', compact('perumahan_filter', 'kecamatans',
-                'status_belum', 'status_sudah', 'status_terlantar', 'total_perumahan'));
+            return view('PSU_Pertamanan.index', compact('pertamanan_filter', 'kecamatans',
+                'total_data','jumlah_hardscape','jumlah_softscape','total_hs'));
         }
 
-        if (empty($nama_kecamatan) && empty($nama_kelurahan) && empty($status)) {
-            return redirect('/perumahans');
+        if (empty($nama_kecamatan) && empty($nama_kelurahan) && empty($tahun_dibangun)) {
+            return redirect('/pertamanans');
         }
+    }
+
+    public function export() {
+        return Excel::download(new PertamananExport, 'pertamanan.xlsx');
+    }
+
+    public  function import(Request $request)
+    {
+        // validasi
+        $this->validate($request, [
+            'file_import' => 'required|mimes:csv,xls,xlsx'
+        ]);
+
+        // menangkap file excel
+        $file = $request->file('file_import');
+
+        // membuat nama file unik
+        $nama_file = rand().$file->getClientOriginalName();
+
+        // upload ke folder file_siswa di dalam folder public
+        $path = $file->move('assets/import_data/pertamanan/',$nama_file);
+
+        // import data
+        Excel::import(new PertamananImport, public_path('assets/import_data/pertamanan/'.$nama_file));
+
+        if (file_exists($path)) {
+            unlink($path);
+        }
+        // notifikasi dengan session
+
+
+        // alihkan halaman kembali
+        return redirect('/pertamanans')->with('status','Data Permukiman Sukses Diimports');
     }
 }

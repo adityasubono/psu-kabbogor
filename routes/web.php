@@ -216,7 +216,10 @@ Route::get('/pertamanans/edit/{pertamanan}', 'PertamanansController@edit');
 Route::patch('/pertamanans/update/{pertamanan}', 'PertamanansController@update');
 Route::delete('/pertamanans/delete/{pertamanan}', 'PertamanansController@destroy');
 Route::post('/pertamanans/filter', 'PertamanansController@filter');
-Route::post('/pertamanans/show/{pertamanan}', 'PertamanansController@show');
+Route::get('/pertamanans/show/{pertamanan}', 'PertamanansController@show');
+Route::post('/pertamanans/filter', 'PertamanansController@filter');
+Route::get('/pertamanans/export', 'PertamanansController@export');
+Route::post('/pertamanans/import', 'PertamanansController@import');
 
 //PSU PERTAMANAN (REKAPITULASI)
 Route::get('/pertamanans/rekapitulasi', 'RekapitulasiPertamananController@index');

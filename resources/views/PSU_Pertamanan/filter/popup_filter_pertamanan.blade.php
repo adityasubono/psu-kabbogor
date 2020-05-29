@@ -1,5 +1,5 @@
 <link href="{!! asset('assets/css/pertamanan.css') !!}" rel="stylesheet">
-@foreach( $pertamanans as $pertamanan )
+@foreach( $pertamanan_filter as $pertamanan )
 <div class="modal fade" id="informasi-pertamanan{{ $loop->iteration }}" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -37,7 +37,7 @@
                         <td>:</td>
                         <td><a href="" data-toggle="modal"
                                data-target="#informasi-foto-perumahan{{$pertamanan->id}}">
-                               {{$pertamanan->r_foto_pertamanan->count()}}
+                                {{$pertamanan->r_foto_pertamanan->count()}}
                             </a>
                         </td>
                     </tr>
@@ -96,7 +96,7 @@
 </div>
 @endforeach
 
-@foreach( $pertamanans as $pertamanan )
+@foreach( $pertamanan_filter as $pertamanan )
 <div class="modal" tabindex="-1" role="dialog" id="informasi-foto-perumahan{{$pertamanan->id}}">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -122,7 +122,7 @@
                                 <img class="img-thumbnail"
                                      src="assets/uploads/pertamanan/{{$foto->file_foto}}"
                                      alt="{{$foto->nama_foto}}"
-                                style="width: 100px; height: 100px;">
+                                     style="width: 100px; height: 100px;">
                             </a>
                         </div>
                     </div>
@@ -140,7 +140,7 @@
 
 <!-- Foto View Image ------->
 
-@foreach( $pertamanans as $pertamanan )
+@foreach( $pertamanan_filter as $pertamanan )
 @foreach( $pertamanan->r_foto_pertamanan as $foto )
 <div class="modal fade" id="image-gallery{{$foto->id}}" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel" aria-hidden="true">
@@ -157,7 +157,7 @@
             <div class="modal-body">
                 <img id="image-gallery-image" class="img-responsive col-md-12"
                      src="assets/uploads/pertamanan/{{$foto->file_foto}}"
-                style="width: 300px;
+                     style="width: 300px;
                 height: 300px;
                 display: block;
                 margin-left: auto;
@@ -165,13 +165,13 @@
             </div>
 
             <div class="modal-footer">
-<!--                <button type="button" class="btn btn-secondary float-left" id="show-previous-image">-->
-<!--                    <i class="fa fa-arrow-left"></i>-->
-<!--                </button>-->
-<!---->
-<!--                <button type="button" id="show-next-image" class="btn btn-secondary float-right"><i-->
-<!--                        class="fa fa-arrow-right"></i>-->
-<!--                </button>-->
+                <!--                <button type="button" class="btn btn-secondary float-left" id="show-previous-image">-->
+                <!--                    <i class="fa fa-arrow-left"></i>-->
+                <!--                </button>-->
+                <!---->
+                <!--                <button type="button" id="show-next-image" class="btn btn-secondary float-right"><i-->
+                <!--                        class="fa fa-arrow-right"></i>-->
+                <!--                </button>-->
             </div>
         </div>
     </div>
