@@ -1,6 +1,6 @@
 @extends('layouts/main')
 
-@section('title', 'Peta Koordinat Sarana ')
+@section('title', 'Peta Permukiman TPU')
 
 @section('container-fluid')
 <div class="container-fluid">
@@ -16,7 +16,7 @@
         <div class="card-body">
 
 
-    <textarea class="form-control" rows="5" disabled>
+<textarea class="form-control" rows="5" disabled>
     @foreach( $koordinattpu as $koor ){{$koor->latitude}},{{$koor->longitude}},
     @endforeach</textarea>
             <div id="mymap"></div>
@@ -40,7 +40,7 @@
     <style type="text/css"> .labels { background-color: rgba(0, 0, 0, 0.5); border-radius: 4px; color: white; padding: 4px; } </style>`
 
     <script type="text/javascript">
-        var locations = <?php print_r(json_encode($koordinattpu)) ?>;
+        var locations_sarana = <?php print_r(json_encode($koordinattpu)) ?>;
         var mymap = new GMaps({
             el: '#mymap',
             lat: -6.485213,
@@ -48,7 +48,7 @@
             zoom:12
         });
 
-        $.each( locations, function( index, value ){
+        $.each( locations_sarana, function( index, value ){
             mymap.addMarker({
                 lat: value.latitude,
                 lng: value.longitude,
@@ -62,15 +62,15 @@
 
     </script>
 
-    @foreach( $koordinat as $koor )
-    <a href="/koordinatsarana/{{$koor->sarana_id}}"
+
+    <a href="/koordinattpus/{{$koor->permukiman_id}}"
        class="btn btn-info btn-icon-split mb-3">
         <span class="icon text-white-50">
             <i class="fas fa-arrow-alt-circle-left"></i>
         </span>
-        <span class="text">Kembali{{$koor->sarana_id}}</span>
+        <span class="text">Kembali</span>
     </a>
-    @endforeach
+
 </div>
 
 

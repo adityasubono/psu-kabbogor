@@ -320,6 +320,7 @@ Route::post('/koordinattpus/store', 'KoordinattpusController@store');
 Route::get('/koordinattpus/edit/{koordinattpu}','KoordinattpusController@edit');
 Route::patch('/koordinattpus/update/{koordinattpu}','KoordinattpusController@update');
 Route::delete('/koordinattpus/delete/{koordinattpu}','KoordinattpusController@destroy');
+Route::get('/koordinattpus/show/{id}','KoordinattpusController@show');
 
 //PSU Permukiman ( TPU ) -> ( CCTV Permukiman )==============================================
 Route::get('/cctvtpus/{id}', 'CCTVPermukimansController@index');

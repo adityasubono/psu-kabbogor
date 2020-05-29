@@ -33,6 +33,7 @@
                                    name="nama_tpu"
                                    placeholder="Masukan Nama TPU"
                                    value="{{$permukiman->nama_tpu}}">
+                            <small class="form-text text-danger">* Wajib Diisi</small>
 
                             @error('nama_tpu')
                             <div class="invalid-feedback">
@@ -49,7 +50,7 @@
                                    name="luas_tpu"
                                    placeholder="Masukan Luas TPU"
                                    value="{{$permukiman->luas_tpu}}">
-
+                            <small class="form-text text-danger">* Wajib Diisi</small>
                             @error('luas_tpu')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -88,6 +89,7 @@
                                 <option value="{{ $i }}">{{ $i }}</option>
                                 @endfor
                             </select>
+                            <small class="form-text text-danger">* Wajib Diisi</small>
                             @error('tahun_digunakan')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -101,6 +103,7 @@
                                       @enderror" id="lokasi" name="lokasi" rows="3"
                                       placeholder="Masukan Alamat Lokasi">{{
                                 $permukiman->lokasi}}</textarea>
+                            <small class="form-text text-danger">* Wajib Diisi</small>
                             @error('lokasi')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -124,6 +127,7 @@
                                 </option>
                                 @endforeach
                             </select>
+                            <small class="form-text text-danger">* Wajib Diisi</small>
                             @error('kecamatan')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -140,6 +144,7 @@
                                     {{ $permukiman->kelurahan }}
                                 </option>
                             </select>
+                            <small class="form-text text-danger">* Wajib Diisi</small>
                             @error('kelurahan')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -155,6 +160,7 @@
                                    name="RW"
                                    placeholder="RW"
                                    value="{{$permukiman->RW}}">
+                            <small class="form-text text-danger">* Wajib Diisi</small>
                             @error('RW')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -170,6 +176,7 @@
                                    name="RT"
                                    placeholder="RT"
                                    value="{{$permukiman->RT}}">
+                            <small class="form-text text-danger">* Wajib Diisi</small>
                             @error('RT')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -188,6 +195,7 @@
                                 <option value="Sudah Beroperasional">Sudah Beroperasonal</option>
                                 <option value="Belum Beroperasional">Belum Beroperasonal</option>
                             </select>
+                            <small class="form-text text-danger">* Wajib Diisi</small>
                             @error('status')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -260,7 +268,7 @@
                             <span class="icon text-white-50">
                                 <i class="fas fa-download"></i>
                             </span>
-                        <span class="text">Submit</span>
+                        <span class="text">Simpan</span>
                     </button>
 
                     <a href="/permukimans" class="btn btn-danger btn-icon-split">

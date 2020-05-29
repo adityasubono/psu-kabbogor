@@ -11,8 +11,8 @@
                 <thead class="thead-dark">
                 <tr>
                     <th>No.</th>
-                    <th>Koordinat Longitude</th>
                     <th>Koordinat Latitude</th>
+                    <th>Koordinat Longitude</th>
                     <th>Aksi</th>
                 </tr>
                 </thead>
@@ -20,8 +20,8 @@
                 @forelse( $data_koordinattpu as $koordinat )
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $koordinat->longitude }}</td>
                     <td>{{ $koordinat->latitude }}</td>
+                    <td>{{ $koordinat->longitude }}</td>
                     <td>
                         <a href="/koordinattpus/edit/{{ $koordinat->id }}"
                            class="btn btn-warning btn-icon-split">
@@ -61,11 +61,12 @@
                                 </button>
                                 <form action="/koordinattpus/delete/{{ $koordinat->id }}"
                                       method="post" class="d-inline">
-                                      @method('delete')
-                                      @csrf
+                                    @method('delete')
+                                    @csrf
                                     <input type="hidden" name="permukiman_id"
                                            value="{{$koordinat->permukiman_id}}">
-                                    <button type="submit" class="btn btn-danger btn-ok">Delete</button>
+                                    <button type="submit" class="btn btn-danger btn-ok">Delete
+                                    </button>
                                 </form>
                             </div>
                         </div>
@@ -79,12 +80,22 @@
                 @endforelse
                 </tbody>
             </table>
-            <a href="/permukimans" class="btn btn-primary btn-icon-split">
+            <a href="/permukimans" class="btn btn-info btn-icon-split">
                 <span class="icon text-white-50">
                 <i class="fas fa-arrow-alt-circle-left"></i>
                 </span>
                 <span class="text">Kembali</span>
             </a>
+
+            @if(isset($koordinat))
+            <a href="/koordinattpus/show/{{$koordinat->id}}" class="btn btn-primary btn-icon-split">
+                <span class="icon text-white-50">
+                    <i class="fas fa-map"></i>
+                </span>
+                <span class="text">Lihat Peta</span>
+            </a>
+            @endif
+
         </div>
     </div>
 </div>

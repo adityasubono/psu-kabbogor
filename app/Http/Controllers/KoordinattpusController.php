@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Koordinattpu;
 use App\Permukiman;
 use Illuminate\Http\Request;
+use phpDocumentor\Reflection\DocBlock\Tags\Return_;
 
 class KoordinattpusController extends Controller
 {
@@ -67,11 +68,12 @@ class KoordinattpusController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Koordinattpu  $koordinattpu
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show(Koordinattpu $koordinattpu)
+    public function show($id)
     {
-        //
+        $koordinattpu = Koordinattpu::where('id',$id)->get();
+        return view('PSU_Permukiman.koordinattpu.peta', compact('koordinattpu'));
     }
 
     /**

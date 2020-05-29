@@ -1,6 +1,6 @@
 @extends('layouts/main')
 
-@section('title', 'Input Data Foto ( Pertamanan )')
+@section('title', 'Input Data Koordinat Sarana')
 
 @section('container-fluid')
 <div class="container-fluid" xmlns="http://www.w3.org/1999/html">

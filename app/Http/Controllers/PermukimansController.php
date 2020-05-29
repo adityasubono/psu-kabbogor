@@ -55,6 +55,27 @@ class PermukimansController extends Controller
     public function store(Request $request)
     {
         //
+        $rules = [
+            'nama_tpu' => 'required',
+            'luas_tpu' => 'required',
+//            'daya_tampung' => 'required',
+            'lokasi' => 'required',
+            'kecamatan' => 'required|not_in:0',
+            'kelurahan' => 'required|not_in:0',
+            'RT' => 'required',
+            'RW' => 'required',
+            'tahun_digunakan' => 'required',
+            'status' => 'required|not_in:0',
+//            'kondisi' => 'required|not_in:0',
+//            'keterangan_status' => 'required',
+//            'keterangan' => 'required',
+        ];
+
+        $customMessages = [
+            'required' => 'Masukan Data :attribute ini ?.',
+        ];
+
+        $this->validate($request, $rules, $customMessages);
 
         Permukiman::create($request->all());
         return redirect('/permukimans')->with('status','Data Success Insert');
@@ -97,7 +118,7 @@ class PermukimansController extends Controller
         $rules = [
             'nama_tpu' => 'required',
             'luas_tpu' => 'required',
-            'daya_tampung' => 'required',
+//            'daya_tampung' => 'required',
             'lokasi' => 'required',
             'kecamatan' => 'required|not_in:0',
             'kelurahan' => 'required|not_in:0',
@@ -105,9 +126,9 @@ class PermukimansController extends Controller
             'RW' => 'required',
             'tahun_digunakan' => 'required',
             'status' => 'required|not_in:0',
-            'kondisi' => 'required|not_in:0',
-            'keterangan_status' => 'required',
-            'keterangan' => 'required',
+//            'kondisi' => 'required|not_in:0',
+//            'keterangan_status' => 'required',
+//            'keterangan' => 'required',
         ];
 
         $customMessages = [

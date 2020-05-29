@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static where(string $string, $id)
  * @method static find($id)
  * @method static select($raw)
+ * @method static create(array $all)
  */
 class Permukiman extends Model
 {

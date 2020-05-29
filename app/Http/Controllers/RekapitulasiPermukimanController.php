@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Koordinattpu;
 use App\Permukiman;
 use App\RekapitulasiPermukiman;
 use Illuminate\Http\Request;
@@ -25,12 +26,11 @@ class RekapitulasiPermukimanController extends Controller
             ->where('status','Belum Beroperasional')
             ->pluck('count');
 
-        $locations =  DB::table('koordinattpus')->get();
+        $koordinattpus = Koordinattpu::all();
+
 
         return view('PSU_Permukiman.rekapitulasi.index',
-            compact('jml_status_sudah', 'jml_status_belum','locations'));
-
-
+            compact('jml_status_sudah', 'jml_status_belum','koordinattpus'));
 
     }
 
