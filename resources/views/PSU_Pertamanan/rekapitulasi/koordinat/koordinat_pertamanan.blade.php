@@ -1,58 +1,64 @@
+<div class="card shadow mb-4">
+    <div class="card-header py-3 bg-gray-500">
+        <div class="row">
+            <div class="col-sm-6">
+                <h6 class="m-0 font-weight-bold text-primary">Data Peta </h6>
+            </div>
+        </div>
+    </div>
 
-<div class="container-fluid">
-    <script src="http://maps.google.com/maps/api/js?key=AIzaSyBMbVQJuBRWDV1jFUVZ9Gzsu-nWOEr9LdM"></script>
-
-    <script>
-        var marker;
-        var locations = <?php print_r(json_encode($locations)) ?>;
-        console.log('lokasi pertamanan',locations);
-        // function taruhMarker(peta, posisiTitik){
-        //
-        //     if( marker ){
-        //         // pindahkan marker
-        //         marker.setPosition(posisiTitik);
-        //     } else {
-        //         // buat marker baru
-        //         marker = new google.maps.Marker({
-        //             position: posisiTitik,
-        //             map: peta
-        //         });
-        //     }
-        //     // isi nilai koordinat ke form
-        //     document.getElementById("lat").value = posisiTitik.lat();
-        //     document.getElementById("lng").value = posisiTitik.lng();
-
-        // }
-
-        function initialize() {
-            var propertiPeta = {
-                center:new google.maps.LatLng(-6.485219,106.752375),
-                zoom:14,
-                mapTypeId:google.maps.MapTypeId.ROADMAP
-            };
-
-            var peta = new google.maps.Map(document.getElementById("googleMap"), propertiPeta);
-
-            google.maps.event.addListener(peta, 'click', function(event) {
-                taruhMarker(this, event.latLng);
-            });
-
-            // membuat Marker
-            for (i = 0; i < locations.length; i++) {
-                marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(locations[i].latitude, locations[i].longitude),
-                    map: peta,
-                    animation: google.maps.Animation.BOUNCE,
-                    icon: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"
-                });
-            }
-        }
-
-        // event jendela di-load
-        google.maps.event.addDomListener(window, 'load', initialize);
-    </script>
-
-    <div id="googleMap" style="width:100%;height:380px;"></div>
-
+    <div class="card-body">
+        <div id="mymap"></div>
+    </div>
 </div>
+
+
+<script
+    src="http://maps.google.com/maps/api/js?key=AIzaSyBMbVQJuBRWDV1jFUVZ9Gzsu-nWOEr9LdM">
+</script>
+<script src="../../assets/js/gmap/gmaps.js"></script>
+<style type="text/css">
+    #mymap {
+        border: 1px solid red;
+        width: 950px;
+        height: 500px;
+    }
+</style>
+
+<style> #map {
+        display: block;
+        width: 98%;
+        height: 500px;
+        margin: 0 auto;
+    } </style>
+<style type="text/css"> .labels {
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 4px;
+        color: white;
+        padding: 4px;
+    } </style>`
+
+<script type="text/javascript">
+    var locations = <?php print_r(json_encode($locations)) ?>;
+    var mymap = new GMaps({
+        el: '#mymap',
+        lat: -6.485213,
+        lng: 106.753537,
+        zoom: 12
+    });
+
+    $.each(locations, function (index, value) {
+        mymap.addMarker({
+            lat: value.latitude,
+            lng: value.longitude,
+            title: value.id,
+            infoWindow: {
+                content: '<h6>' + value.latitude + ', ' + value.longitude + '</h6>',
+                maxWidth: 400
+            }
+        });
+    });
+
+</script>
+
 
