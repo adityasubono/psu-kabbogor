@@ -2,9 +2,7 @@
 <h5 class="mt-3">Data Pengelola</h5>
 
 <div class="table-responsive">
-    <table class="table table-bordered display table-hover nowrap" id="dataTable"
-           cellspacing="0"
-           style="width:100%">
+    <table class="table table-bordered display table-hover nowrap" style="width:100%">
         <thead class="thead-dark">
         <tr>
             <th>No.</th>
