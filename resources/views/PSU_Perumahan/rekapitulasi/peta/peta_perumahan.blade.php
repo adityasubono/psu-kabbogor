@@ -26,8 +26,9 @@
 
 <script type="text/javascript">
     var locations = <?php print_r(json_encode($koordinat_perumahan)) ?>;
-    var polygon;
-    var cords = [];
+    var polygons={};
+    var cords = {};
+    var coord={};
     const perumahan_id = [];
     var mymap = new GMaps({
         el: '#mymap',
@@ -38,51 +39,32 @@
     function onlyUnique(value, index, self) {
         return self.indexOf(value) === index;
     }
-    var path = [
-        [-6.483172240800637,106.72708355538268],
-        [-6.474511539654921,106.764778807396],
-        [-6.499003180591519,106.76250773680306],
-        [-6.494429313506979,106.73000179879088]
-    ];
     for(let perumahan=0; perumahan< locations.length;perumahan++){
         const perumahanId = locations[perumahan].perumahan_id;
         perumahan_id.push(perumahanId);
     }
     var unique = perumahan_id.filter( onlyUnique );
-    console.log('unique',unique);
     var result = locations.reduce(function (r, a) {
         r[a.perumahan_id] = r[a.perumahan_id] || [];
         r[a.perumahan_id].push(a);
         return r;
     }, Object.create(null));
-
     console.log('result',result);
     for(let u=0;u< unique.length; u++){
-        // cords.push([u]);
+        cords[u]=[];
         for (var j=0; j < result[unique[u]].length; j++) {
             const lt = parseFloat(result[unique[u]][j].latitude);
             const ltd = parseFloat(result[unique[u]][j].longitude);
-
-
-            const coord = [lt,ltd];
-            // var lng = str[k].split(",");
-            cords.push(coord);
-
-            // polygon = new google.maps.Polygon({
-            //     paths: pathss,
-            //     strokeColor: 'red',
-            //     strokeOpacity: 0,
-            //     strokeWeight: 1,
-            //     fillColor: 'red',
-            //     fillOpacity: 0.5
-            // });
-
-
-
-
-
-
-
+            coord[j] = [lt,ltd];
+            cords[u].push(coord[j]);
+            polygons[u] = mymap.drawPolygon({
+                paths: cords[u],
+                strokeColor: '#000000',
+                strokeOpacity: 0.3,
+                strokeWeight: 2,
+                fillColor: '#00e676',
+                fillOpacity: 0.4
+            }, console.log('paths ini', polygons));
             // $.each(locations, function (index, value) {
             //     mymap.addMarker({
             //         lat: value.latitude,
@@ -117,22 +99,5 @@
             //     });
             // });
         }
-
-        polygons = mymap.drawPolygon({
-            paths: cords,
-            strokeColor: '#000000',
-            strokeOpacity: 0.3,
-            strokeWeight: 2,
-            fillColor: '#00e676',
-            fillOpacity: 0.4
-        });
     }
-
-    console.log('u',cords);
-    console.log('perumahan_id', perumahan_id);
-    console.log('cords', cords);
-    console.log('unique',unique);
-
-
-
 </script>
