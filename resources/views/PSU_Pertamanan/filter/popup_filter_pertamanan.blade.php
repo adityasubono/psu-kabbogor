@@ -116,11 +116,11 @@
                                data-image-id=""
                                data-toggle="modal"
                                data-title="{{$foto->nama_foto}}"
-                               data-image="assets/uploads/pertamanan/{{$foto->file_foto}}"
+                               data-image="../assets/uploads/pertamanan/{{$foto->file_foto}}"
                                data-target="#image-gallery{{$foto->id}}">
 
                                 <img class="img-thumbnail"
-                                     src="assets/uploads/pertamanan/{{$foto->file_foto}}"
+                                     src="../assets/uploads/pertamanan/{{$foto->file_foto}}"
                                      alt="{{$foto->nama_foto}}"
                                      style="width: 100px; height: 100px;">
                             </a>
@@ -147,8 +147,8 @@
 
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="image-gallery-title">{{$foto->nama_foto}}</h4>
+            <div class="modal-header bg-gray-200 text-primary text-bold">
+                <h5 class="modal-title" id="image-gallery-title">{{$foto->nama_foto}}</h5>
                 <button type="button" class="close" data-dismiss="modal"><span
                         aria-hidden="true">×</span><span class="sr-only">Close</span>
                 </button>
@@ -156,7 +156,7 @@
 
             <div class="modal-body">
                 <img id="image-gallery-image" class="img-responsive col-md-12"
-                     src="assets/uploads/pertamanan/{{$foto->file_foto}}"
+                     src="../assets/uploads/pertamanan/{{$foto->file_foto}}"
                      style="width: 300px;
                 height: 300px;
                 display: block;

@@ -4,7 +4,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-primary bg-gray-200">
-                <h4 class="modal-title" id="image-gallery-title">{{$permukiman->nama_tpu}}</h4>
+                <h5 class="modal-title">{{$permukiman->nama_tpu}}</h5>
                 <button type="button" class="close" data-dismiss="modal"><span
                         aria-hidden="true">×</span><span class="sr-only">Close</span>
                 </button>
@@ -88,6 +88,79 @@
         </div>
     </div>
 </div>
+@endforeach
+
+@foreach( $permukimans as $permukiman )
+<div class="modal" tabindex="-1" role="dialog" id="informasi-foto-perumahan{{$permukiman->id}}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-gray-200 text-primary">
+                <h5 class="modal-title">Galery Foto </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="row grid-divider">
+                    @foreach( $permukiman->r_foto_tpu as $foto )
+                    <div class="col-sm-3">
+                        <div class="col-padding">
+                            <a class="thumbnail" href="#"
+                               data-image-id=""
+                               data-toggle="modal"
+                               data-title="{{$foto->nama_foto}}"
+                               data-image="../assets/uploads/permukiman/{{$foto->file_foto}}"
+                               data-target="#image-gallery{{$foto->id}}">
+
+                                <img class="img-thumbnail"
+                                     src="../assets/uploads/permukiman/{{$foto->file_foto}}"
+                                     alt="{{$foto->nama_foto}}"
+                                     style="width: 100px; height: 100px;">
+                            </a>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
+
+
+<!-- Foto View Image ------->
+
+@foreach( $permukimans as $permukiman )
+@foreach( $permukiman->r_foto_tpu as $foto )
+<div class="modal fade" id="image-gallery{{$foto->id}}" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-gray-200 text-primary text-bold">
+                <h5 class="modal-title" id="image-gallery-title">{{$foto->nama_foto}}</h5>
+                <button type="button" class="close" data-dismiss="modal"><span
+                        aria-hidden="true">×</span><span class="sr-only">Close</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <img id="image-gallery-image" class="img-responsive col-md-12"
+                     src="../assets/uploads/permukiman/{{$foto->file_foto}}"
+                     style="width: 300px;
+                height: 300px;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;">
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
 @endforeach
 
 

@@ -259,8 +259,6 @@ h
 8resources/views/PSU_Pertamanan/pertamanan/edit.blade.php,b\4\b4caece24bbfc72ad1011493190e2e226f3a8540
 r
 Bresources/views/PSU_Pertamanan/includes/popup_pertamanan.blade.php,7\5\7567070d9720205b78e5cb0b86665f48a6223815
-l
-<resources/views/PSU_Pertamanan/detail/pemelihataan.blade.php,3\f\3fe6f55748e901dc72a20caca7cecca2396cc220
 g
 7resources/views/PSU_Pertamanan/detail/petugas.blade.php,1\6\165abf524a51a9990f86669ad1e6bd45a0851082
 o

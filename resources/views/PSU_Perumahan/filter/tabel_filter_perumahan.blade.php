@@ -95,7 +95,7 @@
 </div>
 
 
-
+@include('PSU_Perumahan.filter.popup_filter_perumahan')
 
 <script type="text/javascript">
     $(document).ready(function () {

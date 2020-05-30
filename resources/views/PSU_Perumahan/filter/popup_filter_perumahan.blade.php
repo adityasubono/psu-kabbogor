@@ -1,11 +1,10 @@
-<link href="{!! asset('assets/css/pertamanan.css') !!}" rel="stylesheet">
-@foreach( $pertamanans as $pertamanan )
-<div class="modal fade" id="informasi-pertamanan{{ $loop->iteration }}" tabindex="-1" role="dialog"
+@foreach( $perumahan_filter as $perumahan )
+<div class="modal fade" id="informasi-perumahan{{ $loop->iteration }}" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-primary bg-gray-200">
-                <h5 class="modal-title">{{$pertamanan->nama_taman}}</h5>
+                <h5 class="modal-title">{{$perumahan->nama_perumahan}}</h5>
                 <button type="button" class="close" data-dismiss="modal"><span
                         aria-hidden="true">×</span><span class="sr-only">Close</span>
                 </button>
@@ -13,9 +12,9 @@
             <div class="modal-body">
                 <table class="popup-table-perumahan">
                     <tr>
-                        <td width="300">Nama Pelaksana</td>
+                        <td width="300">Nama Pengembang</td>
                         <td class="titik-dua">:</td>
-                        <td width="500">{{$pertamanan->nama_pelaksana}}</td>
+                        <td width="500">{{$perumahan->nama_pengembang}}</td>
                         <td rowspan="9" width="300">
                             <video width="300" height="300" autoplay controls>
                                 <source src="%StreamURL%" type="video/mp4">
@@ -28,16 +27,22 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Luas Taman (m2)</td>
+                        <td>Luas Perumahan (m2)</td>
                         <td>:</td>
-                        <td>{{$pertamanan->luas_taman}}</td>
+                        <td>{{$perumahan->luas_perumahan}}</td>
                     </tr>
                     <tr>
                         <td>Foto</td>
                         <td>:</td>
                         <td><a href="" data-toggle="modal"
-                               data-target="#informasi-foto-perumahan{{$pertamanan->id}}">
-                               {{$pertamanan->r_foto_pertamanan->count()}}
+                               data-target="#informasi-foto-perumahan{{$perumahan->id}}">
+                                @php
+                                $a = $perumahan->r_foto_sarana->count();
+                                $b = $perumahan->r_foto_jalan_saluran->count();
+                                $c = $perumahan->r_foto_taman->count();
+                                $total_foto = $a+$b+$c;
+                                echo "$total_foto";
+                                @endphp
                             </a>
                         </td>
                     </tr>
@@ -47,31 +52,35 @@
                     <tr>
                         <td>Kecamatan</td>
                         <td>:</td>
-                        <td>{{$pertamanan->kecamatan}}</td>
+                        <td>{{$perumahan->kecamatan}}</td>
                     </tr>
                     <tr>
                         <td>Kelurahan/Desa</td>
                         <td>:</td>
-                        <td>{{$pertamanan->kelurahan}}</td>
+                        <td>{{$perumahan->kelurahan}}</td>
                     </tr>
                     <tr>
                         <td>RT</td>
                         <td>:</td>
-                        <td>{{$pertamanan->RT}}</td>
+                        <td>{{$perumahan->RT}}</td>
                     </tr>
                     <tr>
                         <td>RW</td>
                         <td>:</td>
-                        <td>{{$pertamanan->RW}}</td>
+                        <td>{{$perumahan->RW}}</td>
                     </tr>
                     <tr>
-                        <td>Jumlah Petugas</td>
-                        <td>:</td>
-                        <td>
-                            <a href="" data-toggle="modal"
-                               data-target="#informasi-foto-perumahan{{$pertamanan->id}}">
-                                {{$pertamanan->r_petugas->count()}}
-                            </a>
+                        <td>Status<br><br><br><br></td>
+                        <td>:<br><br><br><br></td>
+                        <td><b>{{$perumahan->status_perumahan}}</b>
+                            <br>
+                            Tanggal Serah Terima : {{$perumahan->tgl_serah_terima}}
+                            <br>
+                            No. BAST : {{$perumahan->no_bast}}
+                            <br>
+                            Jumlah PSU yang Diserahkan :
+
+
                         </td>
                     </tr>
 
@@ -79,11 +88,11 @@
                         <td>Keterangan</td>
                         <td>:</td>
                         <td>
-                            {{$pertamanan->keterangan}}
+                            {{$perumahan->keterangan}}
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3"><a href="/pertamanans/show/{{ $pertamanan->id }}">
+                        <td colspan="3"><a href="/perumahans/{{ $perumahan->id }}">
                                 Selengkapnya...</a></td>
                     </tr>
                 </table>
@@ -96,38 +105,76 @@
 </div>
 @endforeach
 
-@foreach( $pertamanans as $pertamanan )
-<div class="modal" tabindex="-1" role="dialog" id="informasi-foto-perumahan{{$pertamanan->id}}">
+
+@foreach( $perumahan_filter as $perumahan )
+<div class="modal" tabindex="-1" role="dialog" id="informasi-foto-perumahan{{$perumahan->id}}">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header bg-gray-200 text-primary">
-                <h5 class="modal-title">Galery Foto </h5>
+            <div class="modal-header bg-success text-bold text-dark">
+                <h5 class="modal-title">{{$perumahan->nama_perumahan}}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-
+                <label class="m-0">Foto Sarana : </label>
+                <br>
                 <div class="row grid-divider">
-                    @foreach( $pertamanan->r_foto_pertamanan as $foto )
-                    <div class="col-sm-3">
+                    @foreach( $perumahan->r_foto_sarana as $foto )
+                    <div class="col-sm-4">
                         <div class="col-padding">
-                            <a class="thumbnail" href="#"
-                               data-image-id=""
-                               data-toggle="modal"
+                            <a class="thumbnail" href="#" data-image-id="" data-toggle="modal"
                                data-title="{{$foto->nama_foto}}"
-                               data-image="assets/uploads/pertamanan/{{$foto->file_foto}}"
-                               data-target="#image-gallery{{$foto->id}}">
-
+                               data-image="../assets/uploads/perumahan/sarana/{{$foto->file_foto}}"
+                               data-target="#image-gallery-sarana{{$loop->iteration}}">
                                 <img class="img-thumbnail"
-                                     src="assets/uploads/pertamanan/{{$foto->file_foto}}"
-                                     alt="{{$foto->nama_foto}}"
-                                style="width: 100px; height: 100px;">
+                                     src="../assets/uploads/perumahan/sarana/{{$foto->file_foto}}"
+                                     alt="{{$foto->nama_foto}}">
                             </a>
                         </div>
                     </div>
                     @endforeach
                 </div>
+
+                <hr>
+                <label class="m-0">Foto Jalan Saluran :</label>
+                <br>
+                <div class="row grid-divider">
+                    @foreach( $perumahan->r_foto_jalan_saluran as $foto )
+                    <div class="col-sm-4">
+                        <div class="col-padding">
+                            <a class="thumbnail" href="#" data-image-id="" data-toggle="modal"
+                               data-title="{{$foto->nama_foto}}"
+                               data-image="../assets/uploads/perumahan/jalansaluran/{{$foto->file_foto}}"
+                               data-target="#image-gallery-jalansaluran{{$loop->iteration}}">
+                                <img class="img-thumbnail"
+                                     src="../assets/uploads/perumahan/jalansaluran/{{$foto->file_foto}}"
+                                     alt="{{$foto->nama_foto}}">
+                            </a>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+
+                <hr>
+                <label class="m-0 p-0">Foto Taman :</label>
+                <div class="row grid-divider">
+                    @foreach( $perumahan->r_foto_taman as $foto )
+                    <div class="col-sm-4">
+                        <div class="col-padding">
+                            <a class="thumbnail" href="#" data-image-id="" data-toggle="modal"
+                               data-title="{{$foto->nama_foto}}"
+                               data-image="../assets/uploads/perumahan/taman/{{$foto->file_foto}}"
+                               data-target="#image-gallery-taman{{$loop->iteration}}">
+                                <img class="img-thumbnail"
+                                     src="../assets/uploads/perumahan/taman/{{$foto->file_foto}}"
+                                     alt="{{$foto->nama_foto}}">
+                            </a>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -140,15 +187,15 @@
 
 <!-- Foto View Image ------->
 
-@foreach( $pertamanans as $pertamanan )
-@foreach( $pertamanan->r_foto_pertamanan as $foto )
-<div class="modal fade" id="image-gallery{{$foto->id}}" tabindex="-1" role="dialog"
+@foreach( $perumahan_filter as $perumahan )
+@foreach( $perumahan->r_foto_sarana as $foto )
+<div class="modal fade" id="image-gallery-sarana{{$loop->iteration}}" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel" aria-hidden="true">
 
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-header bg-gray-200 text-primary text-bold">
-                <h5 class="modal-title" id="image-gallery-title">{{$foto->nama_foto}}</h5>
+            <div class="modal-header">
+                <h4 class="modal-title" id="image-gallery-title">{{$foto->nama_foto}}</h4>
                 <button type="button" class="close" data-dismiss="modal"><span
                         aria-hidden="true">×</span><span class="sr-only">Close</span>
                 </button>
@@ -156,22 +203,67 @@
 
             <div class="modal-body">
                 <img id="image-gallery-image" class="img-responsive col-md-12"
-                     src="assets/uploads/pertamanan/{{$foto->file_foto}}"
-                style="width: 300px;
-                height: 300px;
-                display: block;
-                margin-left: auto;
-                margin-right: auto;">
+                     src="../assets/uploads/perumahan/sarana/{{$foto->file_foto}}">
             </div>
         </div>
     </div>
 </div>
 @endforeach
+
+@foreach( $perumahan->r_foto_jalan_saluran as $foto )
+<div class="modal fade" id="image-gallery-jalansaluran{{$loop->iteration}}" tabindex="-1"
+     role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="image-gallery-title">{{$foto->nama_foto}}</h4>
+                <button type="button" class="close" data-dismiss="modal"><span
+                        aria-hidden="true">×</span><span class="sr-only">Close</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <img id="image-gallery-image" class="img-responsive col-md-12" src="
+                ../assets/uploads/perumahan/jalansaluran/{{$foto->file_foto}}">
+            </div>
+        </div>
+    </div>
+</div>
 @endforeach
 
 
+
+
+@foreach( $perumahan->r_foto_taman as $foto )
+<div class="modal fade" id="image-gallery-taman{{$loop->iteration}}" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="image-gallery-title">{{$foto->nama_foto}}</h4>
+                <button type="button" class="close" data-dismiss="modal"><span
+                        aria-hidden="true">×</span><span class="sr-only">Close</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <img id="image-gallery-image" class="img-responsive col-md-12" src="
+                ../assets/uploads/perumahan/taman/{{$foto->file_foto}}">
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
+
+
+
+@endforeach
+
 <script type="text/javascript">
-    let modalId = $("#image-gallery");
+    let modalId = $('#image-gallery');
 
     $(document)
     .ready(function () {

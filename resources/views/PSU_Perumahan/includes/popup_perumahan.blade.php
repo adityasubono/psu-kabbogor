@@ -4,7 +4,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-primary bg-gray-200">
-                <h4 class="modal-title" id="image-gallery-title">{{$perumahan->nama_perumahan}}</h4>
+                <h5 class="modal-title">{{$perumahan->nama_perumahan}}</h5>
                 <button type="button" class="close" data-dismiss="modal"><span
                         aria-hidden="true">×</span><span class="sr-only">Close</span>
                 </button>
@@ -36,7 +36,14 @@
                         <td>:</td>
                         <td><a href="" data-toggle="modal"
                                data-target="#informasi-foto-perumahan{{$perumahan->id}}">
-                                {{$perumahan->r_foto_sarana->count()}}</a>
+                                @php
+                                $a = $perumahan->r_foto_sarana->count();
+                                $b = $perumahan->r_foto_jalan_saluran->count();
+                                $c = $perumahan->r_foto_taman->count();
+                                $total_foto = $a+$b+$c;
+                                echo "$total_foto";
+                                @endphp
+                            </a>
                         </td>
                     </tr>
                     <tr>
@@ -100,27 +107,67 @@
 
 
 @foreach( $perumahans as $perumahan )
-<div class="modal" tabindex="-1" role="dialog" id="informasi-foto-perumahan{{ $loop->iteration }}">
+<div class="modal" tabindex="-1" role="dialog" id="informasi-foto-perumahan{{$perumahan->id}}">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header bg-success text-bold text-dark">
-                <h5 class="modal-title">{{$perumahan->nama_perumahan}}</h5>
+            <div class="modal-header bg-gray-200 text-primary text-bold">
+                <h5 class="modal-title">Galery Foto </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-
+                <label class="m-0">Foto Sarana : </label>
+                <br>
                 <div class="row grid-divider">
                     @foreach( $perumahan->r_foto_sarana as $foto )
                     <div class="col-sm-4">
                         <div class="col-padding">
                             <a class="thumbnail" href="#" data-image-id="" data-toggle="modal"
                                data-title="{{$foto->nama_foto}}"
-                               data-image="assets/uploads/file_sarana/{{$foto->file_foto}}"
-                               data-target="#image-gallery{{$loop->iteration}}">
+                               data-image="../assets/uploads/perumahan/sarana/{{$foto->file_foto}}"
+                               data-target="#image-gallery-sarana{{$loop->iteration}}">
                                 <img class="img-thumbnail"
-                                     src="assets/uploads/file_sarana/{{$foto->file_foto}}"
+                                     src="../assets/uploads/perumahan/sarana/{{$foto->file_foto}}"
+                                     alt="{{$foto->nama_foto}}">
+                            </a>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+
+                <hr>
+                <label class="m-0">Foto Jalan Saluran :</label>
+                <br>
+                <div class="row grid-divider">
+                    @foreach( $perumahan->r_foto_jalan_saluran as $foto )
+                    <div class="col-sm-4">
+                        <div class="col-padding">
+                            <a class="thumbnail" href="#" data-image-id="" data-toggle="modal"
+                               data-title="{{$foto->nama_foto}}"
+                               data-image="../assets/uploads/perumahan/jalansaluran/{{$foto->file_foto}}"
+                               data-target="#image-gallery-jalansaluran{{$loop->iteration}}">
+                                <img class="img-thumbnail"
+                                     src="../assets/uploads/perumahan/jalansaluran/{{$foto->file_foto}}"
+                                     alt="{{$foto->nama_foto}}">
+                            </a>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+
+                <hr>
+                <label class="m-0 p-0">Foto Taman :</label>
+                <div class="row grid-divider">
+                    @foreach( $perumahan->r_foto_taman as $foto )
+                    <div class="col-sm-4">
+                        <div class="col-padding">
+                            <a class="thumbnail" href="#" data-image-id="" data-toggle="modal"
+                               data-title="{{$foto->nama_foto}}"
+                               data-image="../assets/uploads/perumahan/taman/{{$foto->file_foto}}"
+                               data-target="#image-gallery-taman{{$loop->iteration}}">
+                                <img class="img-thumbnail"
+                                     src="../assets/uploads/perumahan/taman/{{$foto->file_foto}}"
                                      alt="{{$foto->nama_foto}}">
                             </a>
                         </div>
@@ -141,7 +188,7 @@
 
 @foreach( $perumahans as $perumahan )
 @foreach( $perumahan->r_foto_sarana as $foto )
-<div class="modal fade" id="image-gallery{{$loop->iteration}}" tabindex="-1" role="dialog"
+<div class="modal fade" id="image-gallery-sarana{{$loop->iteration}}" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel" aria-hidden="true">
 
     <div class="modal-dialog modal-lg">
@@ -154,17 +201,56 @@
             </div>
 
             <div class="modal-body">
-                <img id="image-gallery-image" class="img-responsive col-md-12" src="assets/uploads/file_sarana/{{$foto->file_foto}}">
+                <img id="image-gallery-image" class="img-responsive col-md-12"
+                     src="../assets/uploads/perumahan/sarana/{{$foto->file_foto}}">
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
+
+@foreach( $perumahan->r_foto_jalan_saluran as $foto )
+<div class="modal fade" id="image-gallery-jalansaluran{{$loop->iteration}}" tabindex="-1"
+     role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="image-gallery-title">{{$foto->nama_foto}}</h4>
+                <button type="button" class="close" data-dismiss="modal"><span
+                        aria-hidden="true">×</span><span class="sr-only">Close</span>
+                </button>
             </div>
 
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary float-left" id="show-previous-image">
-                    <i class="fa fa-arrow-left"></i>
-                </button>
+            <div class="modal-body">
+                <img id="image-gallery-image" class="img-responsive col-md-12" src="
+                ../assets/uploads/perumahan/jalansaluran/{{$foto->file_foto}}">
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
 
-                <button type="button" id="show-next-image" class="btn btn-secondary float-right"><i
-                        class="fa fa-arrow-right"></i>
+
+
+
+@foreach( $perumahan->r_foto_taman as $foto )
+<div class="modal fade" id="image-gallery-taman{{$loop->iteration}}" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="image-gallery-title">{{$foto->nama_foto}}</h4>
+                <button type="button" class="close" data-dismiss="modal"><span
+                        aria-hidden="true">×</span><span class="sr-only">Close</span>
                 </button>
+            </div>
+
+            <div class="modal-body">
+                <img id="image-gallery-image" class="img-responsive col-md-12" src="
+                ../assets/uploads/perumahan/taman/{{$foto->file_foto}}">
             </div>
         </div>
     </div>
