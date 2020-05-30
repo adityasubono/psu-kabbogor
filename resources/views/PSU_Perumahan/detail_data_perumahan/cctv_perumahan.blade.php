@@ -13,7 +13,7 @@
     <tr>
         <th scope="row">{{$loop->iteration}}</th>
         <td>{{$cctv->nama_cctv}}</td>
-        <td>{{$cctv->ip_camera}}</td>
+        <td>{{$cctv->ip_cctv}}</td>
     </tr>
     @empty
     <tr>
