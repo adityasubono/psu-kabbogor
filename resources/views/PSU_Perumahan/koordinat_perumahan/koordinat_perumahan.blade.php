@@ -39,12 +39,12 @@
             });
 
             // membuat Marker
-            var marker=new google.maps.Marker({
-                position: new google.maps.LatLng(-6.485219,106.752375),
-                map: peta,
-                animation: google.maps.Animation.BOUNCE,
-                icon: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"
-            });
+            // var marker=new google.maps.Marker({
+            //     position: new google.maps.LatLng(-6.485219,106.752375),
+            //     map: peta,
+            //     animation: google.maps.Animation.BOUNCE,
+            //     icon: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"
+            // });
 
         }
 
@@ -85,12 +85,12 @@
                         <input type="hidden" class="form-control" id="perumahan_id"
                                name="data_koordinat[0][perumahan_id]"
                                value="{{$data_perumahan->id}}">
-                        <label for="latitude">Koordinat Longitude</label><br>
-                        <input type="text" class="form-control @error('data_koordinat.*.longitude')
-                                           is-invalid @enderror" id="lng"
-                               name="data_koordinat[0][longitude]"
-                               placeholder="Masukan Koordinat longitude"
-                               value="{{ old('data_koordinat.*.longitude') }}">
+                        <label for="longitude">Koordinat Latitude</label><br>
+                        <input type="text" class="form-control @error('data_koordinat.*.latitude')
+                        is-invalid @enderror" id="lat"
+                               name="data_koordinat[0][latitude]"
+                               placeholder="Masukan Koordinat latitude"
+                               value="{{ old('data_koordinat.*.latitude') }}">
                         @error('data_koordinat.*.latitude')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -100,12 +100,12 @@
 
 
                     <div class="col-sm-6">
-                        <label for="longitude">Koordinat Latitude</label><br>
-                        <input type="text" class="form-control @error('data_koordinat.*.latitude')
-                        is-invalid @enderror" id="lat"
-                               name="data_koordinat[0][latitude]"
-                               placeholder="Masukan Koordinat latitude"
-                               value="{{ old('data_koordinat.*.latitude') }}">
+                        <label for="latitude">Koordinat Longitude</label><br>
+                        <input type="text" class="form-control @error('data_koordinat.*.longitude')
+                                           is-invalid @enderror" id="lng"
+                               name="data_koordinat[0][longitude]"
+                               placeholder="Masukan Koordinat longitude"
+                               value="{{ old('data_koordinat.*.longitude') }}">
                         @error('data_koordinat.*.latitude')
                         <div class="invalid-feedback">
                             {{ $message }}

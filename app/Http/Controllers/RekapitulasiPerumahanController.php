@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\KoordinatPerumahan;
 use App\Perumahans;
 use App\RekapitulasiPerumahan;
 use Illuminate\Http\Request;
@@ -28,7 +29,11 @@ class RekapitulasiPerumahanController extends Controller
             ->where('status_perumahan','Terlantar')
             ->pluck('count');
 
-        return view('PSU_Perumahan.rekapitulasi.index',compact('jml_status_sudah','jml_status_belum','jml_status_terlantar'));
+
+        $koordinat_perumahan = KoordinatPerumahan::all();
+
+        return view('PSU_Perumahan.rekapitulasi.index',compact('jml_status_sudah',
+            'jml_status_belum','jml_status_terlantar','koordinat_perumahan'));
 
 
     }
