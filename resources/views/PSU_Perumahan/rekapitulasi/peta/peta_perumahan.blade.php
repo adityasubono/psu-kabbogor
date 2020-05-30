@@ -101,7 +101,7 @@
             infowindow[u].opened = false;
 
             function mousefn(evt) {
-                infowindow[u].setContent("polygon<br>coords:" + bounds[u].getCenter().toUrlValue
+                infowindow[u].setContent("Koordinat Polygon:" + bounds[u].getCenter().toUrlValue
                 (6));
                 infowindow[u].setPosition(bounds[u].getCenter());
                 infowindow[u].open(map);
