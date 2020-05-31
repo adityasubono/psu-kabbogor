@@ -31,6 +31,7 @@
         <div class="login-form">
             <form method="post" action="/loginpost">
                 {{ csrf_field() }}
+
                 <div class="form-group">
                     <label for="nik">NIK</label>
                     <input type="number" class="form-control" id="nik" name="nik"
