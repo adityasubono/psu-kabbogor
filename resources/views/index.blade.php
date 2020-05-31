@@ -42,22 +42,7 @@
                     <input type="password"  id="password" class="form-control" name="password"
                            placeholder="Masukan Password">
                 </div>
-                <div class="form-group">
-                    <label for="operator">Sebagai Pengguna :</label>
-                    <select class="custom-select @error('operator') is-invalid @enderror"
-                            id="operator" name="operator">
-                        <option value="">--Pilih Operator--</option>
-                        <option value="PSU-Admin">Admin</option>
-                        <option value="PSU-Perumahan">Operator PSU Perumahan</option>
-                        <option value="PSU-Pertamanan">Operator PSU Pertamanan</option>
-                        <option value="PSU-Permukiman">Operator PSU Kawasan Permukiman</option>
-                    </select>
-                    @error('operator')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </div>
+
                 <button type="submit" class="btn btn-black">Login</button>
             </form>
         </div>
