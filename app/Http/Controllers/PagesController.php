@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 
 class PagesController extends Controller
 {
-    public function home()
+    public function index()
     {
-        return view('index', ['nama' => 'Aditya Home :)']);
+        return view('index');
     }
 
     public function about()

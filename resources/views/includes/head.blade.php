@@ -18,8 +18,6 @@
 <!--    <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">-->
     <link rel="stylesheet" type="text/css" href="{!! asset('assets/css/sb-admin-2.min.css') !!}">
     <link href="{!! asset('assets/datatables/dataTables.bootstrap4.min.css') !!}" rel="stylesheet">
-    <link rel="stylesheet" type="text/css"
-          href="{!! asset('assets/datatables/dataTables.bootstrap4.min.css') !!}">
     <script src="{!! asset('assets/jquery/jquery.min.js') !!}"></script>
     <link rel="stylesheet" href="{!!asset('assets/dropzone/min/dropzone.min.css')!!}">
     <script src="{!!asset('assets/dropzone/dropzone.js')!!}" type="text/javascript"></script>

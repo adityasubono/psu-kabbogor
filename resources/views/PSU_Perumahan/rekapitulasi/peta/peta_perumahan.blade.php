@@ -24,6 +24,7 @@
 
 <script type="text/javascript">
     var locations = <?php print_r(json_encode($koordinat_perumahan)) ?>;
+    var perumahans = <?php print_r(json_encode($perumahans)) ?>;
     var polygons={};
     var infowindow={};
     var bounds = {};
@@ -36,6 +37,7 @@
     //     lng: 106.753537,
     //     zoom: 12
     // });
+    console.log('perumahans',perumahans)
     function onlyUnique(value, index, self) {
         return self.indexOf(value) === index;
     }
@@ -83,6 +85,7 @@
         });
         // Construction of polygon.
         for (let u = 0; u < unique.length; u++) {
+            for (var j=0; j < result[unique[u]].length; j++) {
             polygons[u] = new google.maps.Polygon({
                 paths: cords[u],
                 strokeColor: '#FF0000',
@@ -101,8 +104,10 @@
             infowindow[u].opened = false;
 
             function mousefn(evt) {
-                infowindow[u].setContent("Koordinat Polygon:" + bounds[u].getCenter().toUrlValue
-                (6));
+                infowindow[u].setContent("<h4>" + result[unique[u]][1].perumahan_id +
+                    "</h4><div>Paris," +
+                    " " +
+                    "France</div>");
                 infowindow[u].setPosition(bounds[u].getCenter());
                 infowindow[u].open(map);
             }
@@ -115,41 +120,42 @@
             });
         }
     }
+    }
 
     // Definition of the LatLng coordinates for the polygon's path.
-    var polygonCoords = [{
-        lat: -16.4836,
-        lng: 145.4653
-    },
-        {
-            lat: -16.4500,
-            lng: 145.4133
-        },
-        {
-            lat: -16.2319,
-            lng: 145.4763
-        },
-        {
-            lat: -16.0878,
-            lng: 145.4548
-        },
-        {
-            lat: -16.0454,
-            lng: 145.9000
-        },
-        {
-            lat: -16.4861,
-            lng: 146.1269
-        },
-        {
-            lat: -16.7229,
-            lng: 145.6500
-        },
-        {
-            lat: -16.5913,
-            lng: 145.5192
-        },
-    ];
+    // var polygonCoords = [{
+    //     lat: -16.4836,
+    //     lng: 145.4653
+    // },
+    //     {
+    //         lat: -16.4500,
+    //         lng: 145.4133
+    //     },
+    //     {
+    //         lat: -16.2319,
+    //         lng: 145.4763
+    //     },
+    //     {
+    //         lat: -16.0878,
+    //         lng: 145.4548
+    //     },
+    //     {
+    //         lat: -16.0454,
+    //         lng: 145.9000
+    //     },
+    //     {
+    //         lat: -16.4861,
+    //         lng: 146.1269
+    //     },
+    //     {
+    //         lat: -16.7229,
+    //         lng: 145.6500
+    //     },
+    //     {
+    //         lat: -16.5913,
+    //         lng: 145.5192
+    //     },
+    // ];
 </script>
 <script
     src="

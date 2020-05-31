@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Permukiman;
 use App\Pertamanan;
 use App\Perumahans;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Illuminate\Http\Request;
 
 class BerandaController extends Controller
@@ -16,11 +17,11 @@ class BerandaController extends Controller
      */
     public function index()
     {
-        $jml_assets_perumahan  = Perumahans::all()->count();
-        $jml_assets_pertamanan = Pertamanan::all()->count();
-        $jml_assets_permukiman = Permukiman::all()->count();
-        return view('PSU_Beranda.index', compact('jml_assets_perumahan',
-        'jml_assets_pertamanan','jml_assets_permukiman'));
+            $jml_assets_perumahan = Perumahans::all()->count();
+            $jml_assets_pertamanan = Pertamanan::all()->count();
+            $jml_assets_permukiman = Permukiman::all()->count();
+            return view('PSU_Beranda.index', compact('jml_assets_perumahan',
+                'jml_assets_pertamanan', 'jml_assets_permukiman'));
     }
 
     /**

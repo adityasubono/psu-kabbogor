@@ -1,6 +1,7 @@
 <?php
 
 use App\Perumahans;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\Console\Input\Input;
 
@@ -26,33 +27,22 @@ use Symfony\Component\Console\Input\Input;
 //    return view('about', ['nama' => $nama]);
 //});
 
-Route::get('/', 'BerandaController@index');
-Route::get('/about', 'PagesController@about');
+Auth::routes();
+Route::get('/administrator', 'PlayerController@index')->name('administrator')
+    ->middleware('administrator');
+Route::get('/operatorperumahan', 'AdminController@index')->name('operatorperumahan')
+    ->middleware('operatorperumahan');
+Route::get('/operatorpertamanan', 'SuperAdminController@index')->name('operatorpertamanan')
+    ->middleware('operatorpertamanan');
+Route::get('/operatorpermukiman', 'ScoutController@index')->name('operatorpermukiman')
+    ->middleware('operatorpermukiman');
 
-Route::get('/mahasiswa', 'MahasiswaController@index');
 
-////student.......
-////Display All Data List Students
-//Route::get('/students', 'StudentsController@index');
-////Creating Input Data Student
-//Route::get('/students/create', 'StudentsController@create');
-////Show Data Student By id (one data)
-//Route::get('/students/{student}', 'StudentsController@show');
-////Insert Data Student in Store (database)
-//Route::post('/students/', 'StudentsController@store');
-////Delete Data Student
-//Route::delete('/students/{student}','StudentsController@destroy');
-////Get Data Edit Data Student To HTML
-//Route::get('/students/{student}/edit', 'StudentsController@edit');
-////Input Data Edit To Database
-//Route::patch('/students/{student}','StudentsController@update');
-//
 
-Route::resource('students','StudentsController');
+Route::get('/', 'PagesController@index');
 
-//Product....
-Route::get('/addmore','ProductAddMoreController@addMore');
-Route::post('/addmore','ProductAddMoreController@addMorePost');
+Route::post('/loginpost', 'HomeController@login');
+Route::get('/logout', 'HomeController@logout');
 
 //PSU Beranda....
 Route::get('/beranda', 'BerandaController@index');
@@ -63,12 +53,12 @@ Route::get('/rekapitulasi', 'RekapitulasiController@index');
 
 
 //PSU Data User....
-//Route::get('/users', 'UserController@index');
-//Route::get('/users/create', 'UserController@create');
-//Route::post('/users/', 'UserController@store');
-//Route::delete('/users/{user}','UserController@destroy');
-//Route::get('/users/{user}/edit', 'UserController@edit');
-//Route::patch('/users/{user}','UserController@update');
+Route::get('/users', 'UserController@index');
+Route::get('/users/create', 'UserController@create');
+Route::post('/users/', 'UserController@store');
+Route::delete('/users/{user}','UserController@destroy');
+Route::get('/users/{user}/edit', 'UserController@edit');
+Route::patch('/users/{user}','UserController@update');
 
 //Data Kecamatan
 Route::get('/kecamatans','KecamatansController@index');
@@ -341,51 +331,15 @@ Route::delete('/cctvtpus/delete/{cCTVPermukiman}','CCTVPermukimansController@des
 Route::get('/monitoring/permukimans', 'MonitoringCCTVPermukimanController@index');
 
 
-
-
-
-
-//PSU PSU Perumahan..../Monitoring
-
-
-//Data Sarana
-//Route::post('/perumahans/', 'SaranasController@store');
-//
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //PSU Kegitanan Fisik....
 Route::get('/kegiatanfisik', 'MakerPermukimanController@index');
 
 
-
-
-
-
-
-
-
-
-
-
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+//
+//Auth::routes();
+//
+//Route::get('/home', 'HomeController@index')->name('home');
+//
+//Auth::routes();
+//
+//Route::get('/home', 'HomeController@index')->name('home');

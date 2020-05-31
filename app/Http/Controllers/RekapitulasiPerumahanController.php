@@ -31,9 +31,10 @@ class RekapitulasiPerumahanController extends Controller
 
 
         $koordinat_perumahan = KoordinatPerumahan::all();
+        $perumahans = Perumahans::select(\DB::raw("SELECT * FROM perumahans a, koordinatperumahans b WHERE a.id = b.perumahan_id"));
 
         return view('PSU_Perumahan.rekapitulasi.index',compact('jml_status_sudah',
-            'jml_status_belum','jml_status_terlantar','koordinat_perumahan'));
+            'jml_status_belum','jml_status_terlantar','koordinat_perumahan','perumahans'));
 
 
     }

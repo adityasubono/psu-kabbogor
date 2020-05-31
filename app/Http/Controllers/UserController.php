@@ -109,4 +109,9 @@ class UserController extends Controller
         User::destroy($user->id);
         return redirect('/users')->with('status','Data Success Delete');
     }
+
+    public function login()
+    {
+
+    }
 }
