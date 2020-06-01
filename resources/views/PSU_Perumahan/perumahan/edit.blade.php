@@ -165,12 +165,17 @@
                                    name="RT"
                                    placeholder="RT"
                                    value="{{$perumahans->RT}}">
+<!--                            <small class="form-text text-danger">* Wajib Diisi</small>-->
+<!--                            @error('RW')-->
+<!--                            <div class="invalid-feedback">-->
+<!--                                {{ $message }}-->
+<!--                            </div>-->
+<!--                            @enderror-->
                         </div>
 
                         <div class="col-sm-3">
                             <label for="RW">RW</label><br>
-                            <input type="number" class="form-control
-                            "
+                            <input type="number" class="form-control"
                                    id="RW"
                                    name="RW"
                                    placeholder="RW"
@@ -179,7 +184,7 @@
 <!--                            @error('RT')-->
 <!--                            <div class="invalid-feedback">-->
 <!--                                {{ $message }}-->
-                            </div>
+<!--                            </div>-->
 <!--                            @enderror-->
                         </div>
                     </div>
