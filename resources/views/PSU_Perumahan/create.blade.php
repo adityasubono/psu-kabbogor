@@ -171,7 +171,7 @@
                                    name="RT"
                                    placeholder="RT"
                                    value="{{ old('RT') }}">
-                            <small class="form-text text-danger">* Wajib Diisi</small>
+<!--                            <small class="form-text text-danger">* Wajib Diisi</small>-->
                             @error('RT')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -187,7 +187,7 @@
                                    name="RW"
                                    placeholder="RW"
                                    value="{{ old('RW') }}">
-                            <small class="form-text text-danger">* Wajib Diisi</small>
+<!--                            <small class="form-text text-danger">* Wajib Diisi</small>-->
                             @error('RW')
                             <div class="invalid-feedback">
                                 {{ $message }}
