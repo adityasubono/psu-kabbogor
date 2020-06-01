@@ -18,7 +18,7 @@ class BerandaController extends Controller
     public function index(Request $request)
     {
         if($request->session()->has('nama') && $request->session()->has('nik') && $request->session
-            ()->has('role_id')){
+            ()->has('nama_rule')){
 //            return redirect('/')->with('alert','nama kamu adalah'.$request->session()->get
 //                ('nama').$request->session()->get('operator').$request->session()->get('nik'));
 
