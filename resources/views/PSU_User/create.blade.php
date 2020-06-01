@@ -78,7 +78,12 @@
                     @enderror
                 </div>
 
-                <button type="submit" class="btn btn-primary">Input Data</button>
+                <button class="btn btn-primary btn-icon-split">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-download"></i>
+                    </span>
+                    <span class="text">Simpan</span>
+                </button>
             </form>
         </div>
     </div>

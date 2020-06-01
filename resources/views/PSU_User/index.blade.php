@@ -4,6 +4,7 @@
 
 @section('container-fluid')
 <div class="container-fluid">
+    <link href="{!! asset('assets/datatables/dataTables.bootstrap4.min.css') !!}" rel="stylesheet">
     <link href="{!! asset('assets/css/user.css') !!}" rel="stylesheet">
     <div class="card shadow mb-4">
         <div class="card-header py-3 bg-gray-500">
@@ -11,10 +12,10 @@
         </div>
         <div class="card-body">
             <a href="/users/create" class="btn btn-primary btn-icon-split mb-3">
-                            <span class="icon text-white-50">
-                                <i class="fas fa-plus"></i>
-                            </span>
-                <span class="text">Add Data</span>
+                <span class="icon text-white-50">
+                    <i class="fas fa-plus"></i>
+                </span>
+                <span class="text">Tambah Data</span>
             </a>
 
             @if (session('status'))
@@ -54,8 +55,6 @@
                             </span>
                                 <span class="text">Edit</span>
                             </a>
-
-
                             <button class="btn btn-danger btn-icon-split" data-toggle="modal"
                                     data-target="#confirm-delete" data-backdrop="static" data-keyboard="false">
                             <span class="icon text-white-50">
@@ -117,5 +116,11 @@
         } );
     } );
 </script>
-
+<script type="text/javascript">
+    window.setTimeout(function () {
+        $(".alert").fadeTo(500, 0).slideUp(500, function () {
+            $(this).remove();
+        });
+    }, 4000);
+</script>
 @endsection
