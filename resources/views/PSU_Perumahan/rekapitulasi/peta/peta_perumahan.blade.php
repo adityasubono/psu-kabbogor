@@ -26,12 +26,6 @@
     var cords = {};
     var coord={};
     const perumahan_id = [];
-    // var mymap = new GMaps({
-    //     el: '#mymap',
-    //     lat: -6.485213,
-    //     lng: 106.753537,
-    //     zoom: 12
-    // });
     console.log('perumahans',perumahans)
     function onlyUnique(value, index, self) {
         return self.indexOf(value) === index;
@@ -54,18 +48,6 @@
             const ltd = parseFloat(result[unique[u]][j].longitude);
             coord[j] = {lat: lt, lng:ltd};
             cords[u].push(coord[j]);
-            // polygons[u] = mymap.drawPolygon({
-            //     paths: cords[u],
-            //     strokeColor: '#000000',
-            //     strokeOpacity: 0.3,
-            //     strokeWeight: 2,
-            //     fillColor: '#00e676',
-            //     fillOpacity: 0.4,
-            //     infoWindow: {
-            //         content: '<h4>Eiffel Tower</h4><div>Paris, France</div>',
-            //         maxWidth: 100
-            //     }
-            // });
         }
     }
 
@@ -115,41 +97,6 @@
         }
     }
     }
-
-    // Definition of the LatLng coordinates for the polygon's path.
-    // var polygonCoords = [{
-    //     lat: -16.4836,
-    //     lng: 145.4653
-    // },
-    //     {
-    //         lat: -16.4500,
-    //         lng: 145.4133
-    //     },
-    //     {
-    //         lat: -16.2319,
-    //         lng: 145.4763
-    //     },
-    //     {
-    //         lat: -16.0878,
-    //         lng: 145.4548
-    //     },
-    //     {
-    //         lat: -16.0454,
-    //         lng: 145.9000
-    //     },
-    //     {
-    //         lat: -16.4861,
-    //         lng: 146.1269
-    //     },
-    //     {
-    //         lat: -16.7229,
-    //         lng: 145.6500
-    //     },
-    //     {
-    //         lat: -16.5913,
-    //         lng: 145.5192
-    //     },
-    // ];
 </script>
 <script
     src="
