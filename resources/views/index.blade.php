@@ -10,11 +10,12 @@
 <body id="LoginForm">
 <div class="sidenav">
     <div class="login-main-text text-dark text-bold ">
-        <h1 class="border_h1">Login Sistem</h1>
+
     </div>
 </div>
 <div class="main">
     <h2>Sistem Informasi Prasana Sarana dan Utilitas <br>Kabupaten Bogor</h2>
+
     <div class="col-md-6 col-sm-12">
         @if(\Session::has('alert'))
         <div class="alert alert-danger">
@@ -32,6 +33,8 @@
                 {{ csrf_field() }}
 
                 <div class="form-group">
+                    <h3 class="border_h1">Login Sistem</h3>
+                    <hr>
                     <label for="nik">NIK</label>
                     <input type="number" class="form-control" id="nik" name="nik"
                            placeholder="Masukan Nik">
