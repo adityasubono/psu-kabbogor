@@ -31,7 +31,7 @@
                         <th>No.</th>
                         <th>NIK</th>
                         <th>Nama</th>
-                        <th>Username</th>
+                        <th>Email</th>
                         <th>Password</th>
                         <th>Operator</th>
                         <th>Aksi</th>
@@ -43,7 +43,7 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $user->nik }}</td>
                         <td>{{ $user->nama }}</td>
-                        <td>{{ $user->username }}</td>
+                        <td>{{ $user->email }}</td>
                         <td style="-webkit-text-security: disc;">{{ $user->password }}</td>
                         <td>{{ $user->operator }}</td>
                         <td>

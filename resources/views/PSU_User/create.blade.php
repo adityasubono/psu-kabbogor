@@ -36,11 +36,11 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" class="form-control @error('username') is-invalid
-                        @enderror" id="username" name="username"
-                           placeholder="Masukan Username"  value="{{ old('username') }}">
-                    @error('username')
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control @error('email') is-invalid
+                        @enderror" id="email" name="email"
+                           placeholder="Masukan Email"  value="{{ old('email') }}">
+                    @error('email')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>

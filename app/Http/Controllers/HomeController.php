@@ -37,7 +37,6 @@ class HomeController extends Controller
         $operator = $request->input('operator');
 
         $data = User::where('nik', $nik)
-                ->where('operator', $operator)
                 ->where('password', $password)->first();
 
         if($data){
@@ -48,7 +47,7 @@ class HomeController extends Controller
 //            $validationCode = Request::session()->get('login');
                 return redirect('/beranda');
         }else {
-            return redirect('/')->with('alert', 'Nik, Password dan Pilih Operator Salah');
+            return redirect('/')->with('alert', 'Nik dan Password Salah');
 
 //        if ($data) {
 //            if (Hash::check($password, $data->password)) {

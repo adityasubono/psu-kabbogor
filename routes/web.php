@@ -58,7 +58,7 @@ Route::get('/users/create', 'UserController@create');
 Route::post('/users/', 'UserController@store');
 Route::delete('/users/{user}','UserController@destroy');
 Route::get('/users/{user}/edit', 'UserController@edit');
-Route::patch('/users/{user}','UserController@update');
+Route::patch('/users/update/{user}','UserController@update');
 
 //Data Kecamatan
 Route::get('/kecamatans','KecamatansController@index');

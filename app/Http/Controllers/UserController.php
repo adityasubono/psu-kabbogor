@@ -39,7 +39,7 @@ class UserController extends Controller
         $request->validate([
             'nik' => 'required|size:9',
             'nama' => 'required',
-            'username' => 'required',
+            'email' => 'required',
             'password' => 'required',
             'operator' => 'required|not_in:0'
         ]);
@@ -83,7 +83,7 @@ class UserController extends Controller
         $request->validate([
             'nik' => 'required|size:9',
             'nama' => 'required',
-            'username' => 'required',
+            'email' => 'required',
             'password' => 'required',
             'operator' => 'required|not_in:0'
         ]);
@@ -91,7 +91,7 @@ class UserController extends Controller
             ->update([
                 'nik' => $request->nik,
                 'nama' => $request->nama,
-                'username' => $request->username,
+                'email' => $request->email,
                 'password' => $request->password,
                 'operator' => $request->operator
             ]);

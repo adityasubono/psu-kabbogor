@@ -4,18 +4,13 @@
 <style type="text/css">
     #mymap {
         border: 1px solid red;
-        width: 950px;
+        width: 1080px;
         height: 500px;
     }
 </style>
 
-<style> #map {
-        display: block;
-        width: 98%;
-        height: 500px;
-        margin: 0 auto;
-    } </style>
-<style type="text/css"> .labels {
+<style type="text/css">
+    .labels {
         background-color: rgba(0, 0, 0, 0.5);
         border-radius: 4px;
         color: white;
@@ -104,10 +99,9 @@
             infowindow[u].opened = false;
 
             function mousefn(evt) {
-                infowindow[u].setContent("<h4>" + result[unique[u]][1].perumahan_id +
-                    "</h4><div>Paris," +
-                    " " +
-                    "France</div>");
+                infowindow[u].setContent("<h5> Perumahan ID : "+ result[unique[u]][1].perumahan_id +
+                    "</h5><div>" +
+                    "</div>");
                 infowindow[u].setPosition(bounds[u].getCenter());
                 infowindow[u].open(map);
             }

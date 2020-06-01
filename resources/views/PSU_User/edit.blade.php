@@ -9,7 +9,7 @@
             <h6 class="m-0 font-weight-bold text-primary">Kelola Data User</h6>
         </div>
         <div class="card-body">
-            <form method="post" action="/users/{{ $user->id }}">
+            <form method="post" action="/users/update/{{ $user->id }}">
                 @method('patch')
                 @csrf
                 <div class="form-group">
@@ -37,11 +37,11 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" class="form-control @error('username') is-invalid
-                        @enderror" id="username" name="username"
-                           placeholder="Masukan Username"  value="{{ $user->username }}">
-                    @error('username')
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control @error('email') is-invalid
+                        @enderror" id="email" name="email"
+                           placeholder="Masukan Email"  value="{{ $user->email }}">
+                    @error('email')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
@@ -78,7 +78,7 @@
                     </div>
                     @enderror
                 </div>
-                <button type="submit" class="btn btn-primary">Input Data</button>
+                <button type="submit" class="btn btn-primary">Simpan</button>
             </form>
         </div>
     </div>
