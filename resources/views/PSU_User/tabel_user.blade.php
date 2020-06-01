@@ -55,7 +55,8 @@
                                 <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
 
 
-                                <form action="/users/{{ $user->id }}" method="post" class="d-inline">
+                                <form action="/users/delete/{{ $user->id }}" method="post"
+                                      class="d-inline">
                                     @method('delete')
                                     @csrf
                                     <button type="submit" class="btn btn-danger btn-ok">Hapus</button>

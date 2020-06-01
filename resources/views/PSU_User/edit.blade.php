@@ -63,15 +63,15 @@
                     </div>
 
                     <div class="col-sm-3 mt-3">
-                        <label for="operator">Operator</label>
-                        <select class="custom-select @error('operator') is-invalid @enderror"
-                                id="operator" name="operator">
-                            <option value="" selected></option>
+                        <label for="role_id">Operator</label>
+                        <select class="custom-select @error('role_id') is-invalid @enderror"
+                                id="role_id" name="role_id">
+                            <option value="{{$user->role_id}}" selected>{{$user->role_id}}</option>
                             @foreach($rules as $rule)
                             <option value="{{$rule->id}}">{{$rule->nama_rule}}</option>
                             @endforeach
                         </select>
-                        @error('operator')
+                        @error('role_id')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>

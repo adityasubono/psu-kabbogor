@@ -37,14 +37,14 @@ class HomeController extends Controller
         $nik = $request->input('nik');
         $password = $request->input('password');
 
-        $data = User::where('nik', $nik)
-                ->where('password', $password)->first();
-//        $role_user = Roles::where('role_id', $data->id_role)->first();
+        $data = User::where('nik', $nik)->first();
 
-        if($data){
+        $rule =Rules::where('id',$data->role_id)->first();
+        echo "rule" .$rule;
+        if(Hash::check($password, $data->password)){
             $request->session()->put('nama',$data->nama);
             $request->session()->put('nik',$data->nik);
-            $request->session()->put('role_id',$data->role_id);
+            $request->session()->put('nama_rule',$rule->nama_rule);
             $request->session()->put('foto',$data->foto);
             $request->session()->put('login',TRUE);
 //                Session::put('nik', $data->nik);

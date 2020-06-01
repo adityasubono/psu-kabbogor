@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Rules;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -63,7 +64,7 @@ class UserController extends Controller
         $data_user_login->nik=$request->input('nik');
         $data_user_login->nama=$request->input('nama');
         $data_user_login->email=$request->input('email');
-        $data_user_login->password = bcrypt($request->input('password'));
+        $data_user_login->password = Hash::make($request->input('password'));
         $data_user_login->foto="$newName";
         $data_user_login->save();
         return redirect('/users')->with('status','Data Berhasil Disimpan');
@@ -90,8 +91,6 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $rules = Rules::all()->sortBy('id');
-        $data_user = User::find($user->id);
-//        $rules_id = Rules::where('id',$data_user->rule_id)->get();
         return view('PSU_User.edit', compact('user','rules'));
     }
 
@@ -102,7 +101,7 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
 //        $request->validate([
 //            'nik' => 'required|size:15',
@@ -113,32 +112,41 @@ class UserController extends Controller
 //            'operator' => 'required|not_in:0'
 //        ]);
 
-
-        $data = User::find($user);
+        $data = User::find($id);
         $data->nik = $request->input('nik');
-        $data->email = $request->input('nama');
+        $data->nama = $request->input('nama');
         $data->email = $request->input('email');
-        $data->password = bcrypt($request->input('password'));
-        $data->rule_id = $request->input('rule_id');
-
-
+        $data->password = Hash::make($request->input('password'));
+        $data->role_id = $request->input('role_id');
         if (empty($request->file('file_foto'))){
             $data->foto = $data->foto;
         }
         else{
-            $path = public_path('/assets/uploads/user/') . $data->file;
+            $path = public_path('assets/uploads/user/') .$data->foto;
             if (file_exists($path)) {
                 unlink($path);
             }
 //            unlink('/assets/uploads/permukiman'.$data->file_foto); //menghapus file lama
             $file = $request->file('file_foto');
             $ext = $file->getClientOriginalExtension();
-            $newName = rand(100000,1001238912).".".$ext;
-            $file->move('/assets/uploads/user/',$newName);
+            $nama_file = $file->getClientOriginalName();
+            $nama_file_saja= pathinfo($nama_file, PATHINFO_FILENAME);
+            $newName = $nama_file_saja.rand(100000,1001238912).".".$ext;
+            $file->move('assets/uploads/user/',$newName);
             $data->foto = $newName;
         }
         $data->save();
-        return redirect('/rules')->with('status','Data Berhasil Diupdate');
+
+//        User::where('id', $id)
+//            ->update([
+//                'nik' => $request->nik,
+//                'nama' => $request->nama,
+//                'email' => $request->email,
+//                'password' => $request->password,
+//                'role_id' => $request->operator,
+//
+//            ]);
+        return redirect('/users')->with('status','Data Berhasil Diupdate');
     }
 
     /**
@@ -147,9 +155,9 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        User::destroy($user->id);
+        User::destroy($id);
         return redirect('/users')->with('status','Data Success Delete');
     }
 }
