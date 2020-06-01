@@ -24,7 +24,7 @@
                      style="width: 65px; height:80px;">
             </td>
             <td>
-                <a href="/users/{{ $user->id }}/edit" class="btn btn-warning btn-icon-split">
+                <a href="/users/edit/{{ $user->id }}" class="btn btn-warning btn-icon-split">
                     <span class="icon text-white-50">
                         <i class="fas fa-pen"></i>
                     </span>

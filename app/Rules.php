@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @method static create(array $all)
  * @method static where(string $string, $id)
+ * @method static find(User $user)
  */
 class Rules extends Model
 {

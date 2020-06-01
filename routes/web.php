@@ -56,10 +56,9 @@ Route::get('/rekapitulasi', 'RekapitulasiController@index');
 Route::get('/users', 'UserController@index');
 Route::get('/users/create', 'UserController@create');
 Route::post('/users/store', 'UserController@store');
-Route::delete('/users/{user}','UserController@destroy');
-Route::get('/users/{user}/edit', 'UserController@edit');
+Route::get('/users/edit/{user}', 'UserController@edit');
 Route::patch('/users/update/{user}','UserController@update');
-
+Route::delete('/users/{user}','UserController@destroy');
 
 //PSU Data Role
 Route::get('/rules/','RulesController@index');

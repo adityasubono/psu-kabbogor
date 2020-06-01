@@ -89,7 +89,10 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('PSU_User.edit', compact('user'));
+        $rules = Rules::all()->sortBy('id');
+        $data_user = User::find($user->id);
+//        $rules_id = Rules::where('id',$data_user->rule_id)->get();
+        return view('PSU_User.edit', compact('user','rules'));
     }
 
     /**
@@ -101,24 +104,41 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $request->validate([
-            'nik' => 'required|size:15',
-            'nama' => 'required',
-            'email' => 'required',
-            'file_foto' => 'required',
-            'password' => 'required',
-            'operator' => 'required|not_in:0'
-        ]);
-        User::where('id', $user->id)
-            ->update([
-                'nik' => $request->nik,
-                'nama' => $request->nama,
-                'email' => $request->email,
-                'password' => $request->password,
-                'file_foto' => $request->password,
-                'operator' => $request->operator
-            ]);
-        return redirect('/users')->with('status','Data Success Update');
+//        $request->validate([
+//            'nik' => 'required|size:15',
+//            'nama' => 'required',
+//            'email' => 'required',
+//            'file_foto' => 'required',
+//            'password' => 'required',
+//            'operator' => 'required|not_in:0'
+//        ]);
+
+
+        $data = User::find($user);
+        $data->nik = $request->input('nik');
+        $data->email = $request->input('nama');
+        $data->email = $request->input('email');
+        $data->password = bcrypt($request->input('password'));
+        $data->rule_id = $request->input('rule_id');
+
+
+        if (empty($request->file('file_foto'))){
+            $data->foto = $data->foto;
+        }
+        else{
+            $path = public_path('/assets/uploads/user/') . $data->file;
+            if (file_exists($path)) {
+                unlink($path);
+            }
+//            unlink('/assets/uploads/permukiman'.$data->file_foto); //menghapus file lama
+            $file = $request->file('file_foto');
+            $ext = $file->getClientOriginalExtension();
+            $newName = rand(100000,1001238912).".".$ext;
+            $file->move('/assets/uploads/user/',$newName);
+            $data->foto = $newName;
+        }
+        $data->save();
+        return redirect('/rules')->with('status','Data Berhasil Diupdate');
     }
 
     /**
