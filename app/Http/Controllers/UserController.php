@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Rules;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('PSU_User.create');
+        $rules = Rules::all()->sortBy('id');
+        return view('PSU_User.create', compact('rules'));
     }
 
     /**
@@ -36,16 +38,35 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'nik' => 'required|size:9',
-            'nama' => 'required',
-            'email' => 'required',
-            'password' => 'required',
-            'operator' => 'required|not_in:0'
-        ]);
+//        $request->validate([
+//            'nik' => 'required|size:15',
+//            'nama' => 'required',
+//            'email' => 'required|min:4|email|unique:users',
+//            'file_foto' => 'required',
+//            'password' => 'required',
+//            'confirmation' => 'required|same:password',
+//            'operator' => 'required|not_in:0'
+//        ]);
 
-        User::create($request->all());
-        return redirect('/users')->with('status','Data Success Insert');
+        $image = $request->file('file_foto');
+        $ext = $image->getClientOriginalExtension();
+        $nama_file = $image->getClientOriginalName();
+        $nama_file_saja= pathinfo($nama_file, PATHINFO_FILENAME);
+        $newName = $nama_file_saja.rand(100000,1001238912).".".$ext;
+        // Define upload path
+        $destinationPath = public_path('/assets/uploads/user/'); // upload path
+        $image->move($destinationPath,$newName);
+
+        // Save In Database
+        $data_user_login= new User();
+        $data_user_login->role_id=$request->input('operator');
+        $data_user_login->nik=$request->input('nik');
+        $data_user_login->nama=$request->input('nama');
+        $data_user_login->email=$request->input('email');
+        $data_user_login->password = bcrypt($request->input('password'));
+        $data_user_login->foto="$newName";
+        $data_user_login->save();
+        return redirect('/users')->with('status','Data Berhasil Disimpan');
 
     }
 
@@ -81,9 +102,10 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $request->validate([
-            'nik' => 'required|size:9',
+            'nik' => 'required|size:15',
             'nama' => 'required',
             'email' => 'required',
+            'file_foto' => 'required',
             'password' => 'required',
             'operator' => 'required|not_in:0'
         ]);
@@ -93,6 +115,7 @@ class UserController extends Controller
                 'nama' => $request->nama,
                 'email' => $request->email,
                 'password' => $request->password,
+                'file_foto' => $request->password,
                 'operator' => $request->operator
             ]);
         return redirect('/users')->with('status','Data Success Update');
@@ -108,10 +131,5 @@ class UserController extends Controller
     {
         User::destroy($user->id);
         return redirect('/users')->with('status','Data Success Delete');
-    }
-
-    public function login()
-    {
-
     }
 }

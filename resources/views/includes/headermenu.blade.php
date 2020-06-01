@@ -18,32 +18,33 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Hai,
-                        {{Session::get('nama')}}</span>
-                    <img class="img-profile rounded-circle" src="{!! asset('assets/images/aditya.jpg') !!}">
+                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Hai, {{Session::get('nama')}}</span>
+                    <img class="img-profile rounded-circle"
+                         src="../../assets/uploads/user/{{Session::get('foto')}}">
                 </a>
                 <!-- Dropdown - User Information -->
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
 
                     <a class="dropdown-item">
                         <i class="fas fa-id-badge fa-sm fa-fw mr-2 text-gray-400"></i>
-                        {{Session::get('nik')}}
+                        {{Session::get('nik')}}{{Session::get('foto')}}
                     </a>
                     <a class="dropdown-item">
-                        <i class="fas fa-user-tag fa-sm fa-fw mr-2 text-gray-400"></i>
-                        {{Session::get('operator')}}
+                        <i class="fas fa-user-tie fa-sm fa-fw mr-2 text-gray-400"></i>
+                        {{Session::get('role_id')}}
                     </a>
                     <a class="dropdown-item">
                         <i class="fas fa-calendar-day fa-sm fa-fw mr-2 text-gray-400"></i>
                         @php
                         $date = date('Y-m-d H:i:s');
                         echo "$date";
-
                         @endphp
                     </a>
 
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/users">
+                    <a class="dropdown-item" href="/users/{{Session::get('id')}}">
                         <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                         Settings
                     </a>

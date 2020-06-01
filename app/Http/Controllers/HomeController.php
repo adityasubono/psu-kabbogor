@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Rules;
 use App\User;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
@@ -38,10 +39,13 @@ class HomeController extends Controller
 
         $data = User::where('nik', $nik)
                 ->where('password', $password)->first();
+//        $role_user = Roles::where('role_id', $data->id_role)->first();
+
         if($data){
             $request->session()->put('nama',$data->nama);
             $request->session()->put('nik',$data->nik);
-            $request->session()->put('operator',$data->operator);
+            $request->session()->put('role_id',$data->role_id);
+            $request->session()->put('foto',$data->foto);
             $request->session()->put('login',TRUE);
 //                Session::put('nik', $data->nik);
 //                Session::put('operator', $data->operator);

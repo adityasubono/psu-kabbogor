@@ -55,10 +55,17 @@ Route::get('/rekapitulasi', 'RekapitulasiController@index');
 //PSU Data User....
 Route::get('/users', 'UserController@index');
 Route::get('/users/create', 'UserController@create');
-Route::post('/users/', 'UserController@store');
+Route::post('/users/store', 'UserController@store');
 Route::delete('/users/{user}','UserController@destroy');
 Route::get('/users/{user}/edit', 'UserController@edit');
 Route::patch('/users/update/{user}','UserController@update');
+
+
+//PSU Data Role
+Route::get('/rules/','RulesController@index');
+Route::post('/rules/store','RulesController@store');
+Route::patch('/rules/update/{id}','RulesController@update');
+Route::delete('/rules/delete/{id}','RulesController@destroy');
 
 //Data Kecamatan
 Route::get('/kecamatans','KecamatansController@index');

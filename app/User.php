@@ -9,6 +9,8 @@ use Illuminate\Notifications\Notifiable;
 /**
  * @method static where(string $string, $email)
  * @method static attempt(array $array)
+ * @method static create(array $all)
+ * @method static find($id)
  */
 class User extends Authenticatable
 {
@@ -20,7 +22,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'nama', 'email', 'password','nik','operator'
+        'role_id','nama', 'email', 'password','nik','foto','login_date','logout_date'
     ];
 
     /**
@@ -40,4 +42,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function r_roles() {
+        return $this->hasMany('App\Rules', 'role_id');
+    }
+
+
 }

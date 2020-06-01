@@ -2,35 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Permukiman;
-use App\Pertamanan;
-use App\Perumahans;
-use Symfony\Component\HttpFoundation\Session\Session;
+use App\Rules;
+use App\User;
 use Illuminate\Http\Request;
 
-class BerandaController extends Controller
+class RulesController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index(Request $request)
+    public function index()
     {
-        if($request->session()->has('nama') && $request->session()->has('nik') && $request->session
-            ()->has('role_id')){
-//            return redirect('/')->with('alert','nama kamu adalah'.$request->session()->get
-//                ('nama').$request->session()->get('operator').$request->session()->get('nik'));
-
-            $jml_assets_perumahan = Perumahans::all()->count();
-            $jml_assets_pertamanan = Pertamanan::all()->count();
-            $jml_assets_permukiman = Permukiman::all()->count();
-            return view('PSU_Beranda.index', compact('jml_assets_perumahan',
-                'jml_assets_pertamanan', 'jml_assets_permukiman'));
-        }
-        else {
-            return redirect('/')->with('alert','Maaf Kamu Salah Masuk');
-        }
+        $rules = Rules::all();
+        return view('PSU_User.rule_user.tambah_rule',compact('rules'));
     }
 
     /**
@@ -47,11 +33,18 @@ class BerandaController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama_rule' => 'required',
+        ]);
+
+        Rules::create($request->all());
+
+        return redirect('/rules')->with('status','Data Berhasil Disimpan');
+
     }
 
     /**
@@ -81,21 +74,26 @@ class BerandaController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        Rules::where('id', $request->id)
+            ->update([
+                'nama_rule' => $request->nama_rule
+            ]);
+        return redirect('/rules')->with('status','Data Berhasil Diupdate');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function destroy($id)
     {
-        //
+        Rules::destroy($id);
+        return redirect('/rules')->with('status','Data Berhasil Dihapus');
     }
 }
