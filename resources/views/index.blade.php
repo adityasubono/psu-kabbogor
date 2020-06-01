@@ -9,25 +9,24 @@
 </head>
 <body id="LoginForm">
 <div class="sidenav">
-    <div class="login-main-text text-dark text-bold">
-        <h2>Sistem Informasi Prasana Sarana dan Utilitas <br>Kabupaten Bogor</h2>
+    <div class="login-main-text text-dark text-bold ">
+        <h1 class="border_h1">Login Sistem</h1>
     </div>
 </div>
 <div class="main">
-
-    @if(\Session::has('alert'))
-    <div class="alert alert-danger">
-        <div>{{Session::get('alert')}}</div>
-    </div>
-    @endif
-
-    @if(\Session::has('alert-success'))
-    <div class="alert alert-success">
-        <div>{{Session::get('alert-success')}}</div>
-    </div>
-    @endif
-
+    <h2>Sistem Informasi Prasana Sarana dan Utilitas <br>Kabupaten Bogor</h2>
     <div class="col-md-6 col-sm-12">
+        @if(\Session::has('alert'))
+        <div class="alert alert-danger">
+            <div>{{Session::get('alert')}}</div>
+        </div>
+        @endif
+
+        @if(\Session::has('alert-success'))
+        <div class="alert alert-success">
+            <div>{{Session::get('alert-success')}}</div>
+        </div>
+        @endif
         <div class="login-form">
             <form method="post" action="/loginpost">
                 {{ csrf_field() }}
@@ -51,3 +50,11 @@
 
 </body>
 </html>
+
+<script type="text/javascript">
+    window.setTimeout(function () {
+        $(".alert").fadeTo(500, 0).slideUp(500, function () {
+            $(this).remove();
+        });
+    }, 4000);
+</script>
