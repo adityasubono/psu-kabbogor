@@ -29,11 +29,11 @@
 
                     <a class="dropdown-item">
                         <i class="fas fa-id-badge fa-sm fa-fw mr-2 text-gray-400"></i>
-                        {{Session::get('nik')}}{{Session::get('foto')}}
+                        {{Session::get('nik')}}
                     </a>
                     <a class="dropdown-item">
                         <i class="fas fa-user-tie fa-sm fa-fw mr-2 text-gray-400"></i>
-                        {{Session::get('role_id')}}
+                        {{Session::get('nama_rule')}}
                     </a>
                     <a class="dropdown-item">
                         <i class="fas fa-calendar-day fa-sm fa-fw mr-2 text-gray-400"></i>
