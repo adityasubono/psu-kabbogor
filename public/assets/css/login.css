@@ -63,12 +63,13 @@ body {
 
     .login-form{
         margin-top: 20%;
-        margin-right: -40%;
+        margin-right: -25%;
         border: 5px solid grey;
         border-radius: 15px;
         padding: 20px;
         opacity: 0.8;
         color: black;
+        position: center;
     }
 
     .register-form{

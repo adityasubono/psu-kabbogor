@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
@@ -34,41 +35,29 @@ class HomeController extends Controller
     {
         $nik = $request->input('nik');
         $password = $request->input('password');
-        $operator = $request->input('operator');
 
         $data = User::where('nik', $nik)
                 ->where('password', $password)->first();
-
         if($data){
-//                Session::('nama', $data->name);
+            $request->session()->put('nama',$data->nama);
+            $request->session()->put('nik',$data->nik);
+            $request->session()->put('operator',$data->operator);
+            $request->session()->put('login',TRUE);
 //                Session::put('nik', $data->nik);
 //                Session::put('operator', $data->operator);
 //                Session::put('login', TRUE);
-//            $validationCode = Request::session()->get('login');
                 return redirect('/beranda');
         }else {
             return redirect('/')->with('alert', 'Nik dan Password Salah');
-
-//        if ($data) {
-//            if (Hash::check($password, $data->password)) {
-//                Session::put('name', $data->nama);
-//                Session::put('nik', $data->nik);
-//                Session::put('operator', $data->operator);
-//                Session::put('login', TRUE);
-//                return redirect('/beranda');
-//            } else {
-//                return redirect('/')->with('alert', 'Nik'. $nik .'Password'.$password.' dan
-//                Pilih Operator'.$operator.'Salah!');
-//            }
-//        } else {
-//            return redirect('/')->with('alert', 'Nik'. $nik .'Password'.$password.' dan
-//                Pilih Operator'.$operator.'Salah!');
         }
     }
 
-    public function logout()
+    public function logout(Request $request, $nama)
     {
-//        Session::flush();
-        return redirect('/')->with('alert', 'Kamu sudah logout');
+    	$request->session()->forget('nama');
+        $request->session()->forget('nik');
+        $request->session()->forget('operator');
+
+        return redirect('/')->with('alert-success', 'Sampai Jumpa Kembali '.$nama );
     }
 }

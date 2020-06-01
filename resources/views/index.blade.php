@@ -14,7 +14,8 @@
     </div>
 </div>
 <div class="main">
-    <h2>Sistem Informasi Prasana Sarana dan Utilitas <br>Kabupaten Bogor</h2>
+    <h2 class="text-center mt-5">Sistem Informasi Prasana Sarana dan Utilitas
+        <br>Kabupaten Bogor</h2>
 
     <div class="col-md-6 col-sm-12">
         @if(\Session::has('alert'))

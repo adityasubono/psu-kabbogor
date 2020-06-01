@@ -10,9 +10,6 @@
         </div>
         <div class="card-body">
 
-
-            <a href="/logout" class="btn btn-primary btn-lg">Logout</a>
-
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead class="thead-light">

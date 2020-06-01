@@ -15,13 +15,22 @@ class BerandaController extends Controller
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
+        if($request->session()->has('nama') && $request->session()->has('nik') && $request->session
+            ()->has('operator')){
+//            return redirect('/')->with('alert','nama kamu adalah'.$request->session()->get
+//                ('nama').$request->session()->get('operator').$request->session()->get('nik'));
+
             $jml_assets_perumahan = Perumahans::all()->count();
             $jml_assets_pertamanan = Pertamanan::all()->count();
             $jml_assets_permukiman = Permukiman::all()->count();
             return view('PSU_Beranda.index', compact('jml_assets_perumahan',
                 'jml_assets_pertamanan', 'jml_assets_permukiman'));
+        }
+        else {
+            return redirect('/')->with('alert','Maaf Kamu Salah Masuk');
+        }
     }
 
     /**

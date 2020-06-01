@@ -8,6 +8,7 @@ use Illuminate\Notifications\Notifiable;
 
 /**
  * @method static where(string $string, $email)
+ * @method static attempt(array $array)
  */
 class User extends Authenticatable
 {
