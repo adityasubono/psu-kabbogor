@@ -165,34 +165,23 @@
 
                         <div class="col-sm-3">
                             <label for="RT">RT</label><br>
-                            <input type="text" class="form-control
-                            @error('RW') is-invalid @enderror"
-                                   id="RW"
-                                   name="RW"
-                                   placeholder="RW"
-                                   value="{{ old('RW') }}">
-                            <small class="form-text text-danger">* Wajib Diisi</small>
-                            @error('RW')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
+                            <input type="text" class="form-control"
+                                   id="RT"
+                                   name="RT"
+                                   placeholder="RT"
+                                   value="{{ old('RT') }}">
+<!--                            <small class="form-text text-danger">* Wajib Diisi</small>-->
                         </div>
 
                         <div class="col-sm-3">
                             <label for="RW">RW</label><br>
                             <input type="text" class="form-control
-                            @error('RT') is-invalid @enderror"
-                                   id="RT"
-                                   name="RT"
-                                   placeholder="RT"
-                                   value="{{ old('RT') }}">
-                            <small class="form-text text-danger">* Wajib Diisi</small>
-                            @error('RT')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
+                           "
+                                   id="RW"
+                                   name="RW"
+                                   placeholder="RW"
+                                   value="{{ old('RW') }}">
+<!--                            <small class="form-text text-danger">* Wajib Diisi</small>-->
                         </div>
                     </div>
 

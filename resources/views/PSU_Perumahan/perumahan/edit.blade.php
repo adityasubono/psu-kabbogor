@@ -160,34 +160,32 @@
 
                         <div class="col-sm-3">
                             <label for="RT">RT</label><br>
-                            <input type="number" class="form-control
-                            @error('RW') is-invalid @enderror"
-                                   id="RW"
-                                   name="RW"
-                                   placeholder="RW"
-                                   value="{{$perumahans->RW}}">
-                            <small class="form-text text-danger">* Wajib Diisi</small>
-                            @error('RW')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-
-                        <div class="col-sm-3">
-                            <label for="RW">RW</label><br>
-                            <input type="number" class="form-control
-                            @error('RT') is-invalid @enderror"
+                            <input type="number" class="form-control"
                                    id="RT"
                                    name="RT"
                                    placeholder="RT"
                                    value="{{$perumahans->RT}}">
-                            <small class="form-text text-danger">* Wajib Diisi</small>
-                            @error('RT')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
+<!--                            <small class="form-text text-danger">* Wajib Diisi</small>-->
+<!--                            @error('RW')-->
+<!--                            <div class="invalid-feedback">-->
+<!--                                {{ $message }}-->
+<!--                            </div>-->
+<!--                            @enderror-->
+                        </div>
+
+                        <div class="col-sm-3">
+                            <label for="RW">RW</label><br>
+                            <input type="number" class="form-control"
+                                   id="RW"
+                                   name="RW"
+                                   placeholder="RW"
+                                   value="{{$perumahans->RW}}">
+<!--                            <small class="form-text text-danger">* Wajib Diisi</small>-->
+<!--                            @error('RT')-->
+<!--                            <div class="invalid-feedback">-->
+<!--                                {{ $message }}-->
+<!--                            </div>-->
+<!--                            @enderror-->
                         </div>
                     </div>
 
