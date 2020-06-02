@@ -73,7 +73,7 @@
 
                     <div class="col-sm-4 mt-2">
 
-                        <a href="/inventaris/{{$inventaris->id}}"
+                        <a href="/inventaris/{{$inventaris->permukiman_id}}"
                            class="btn btn-info btn-icon-split" id="btn-reset-form">
                         <span class="icon text-white-50">
                             <i class="fas fa-arrow-alt-circle-left"></i>

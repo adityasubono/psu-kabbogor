@@ -263,18 +263,18 @@
                         </div>
                     </div>
 
+                    <a href="/permukimans" class="btn btn-info btn-icon-split">
+                            <span class="icon text-white-50">
+                                <i class="fas fa-arrow-alt-circle-left"></i>
+                            </span>
+                        <span class="text">Kembali</span>
+                    </a>
+
                     <button type="submit" class="btn btn-primary btn-icon-split">
                             <span class="icon text-white-50">
                                 <i class="fas fa-download"></i>
                             </span>
                         <span class="text">Simpan</span>
-                    </button>
-
-                    <button type="reset" class="btn btn-warning btn-icon-split">
-                            <span class="icon text-white-50">
-                                <i class="fas fa-sync"></i>
-                            </span>
-                        <span class="text">Reset</span>
                     </button>
                 </div>
             </form>
