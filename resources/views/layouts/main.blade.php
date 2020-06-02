@@ -13,7 +13,7 @@
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
+    <div id="content-wrapper">
 
 
         <!-- Main Content -->
@@ -21,7 +21,10 @@
         @include('includes.headermenu')
         <!-- End of Main Content -->
 
+
         @yield('container-fluid')
+
+        <div style="height: 170px"></div>
 
 
         <!-- Footer -->

@@ -18,7 +18,7 @@ class BerandaController extends Controller
     public function index(Request $request)
     {
         if($request->session()->has('nama') && $request->session()->has('nik') && $request->session
-            ()->has('nama_rule')){
+            ()->has('nama_rule') == 'Administrator'){
 //            return redirect('/')->with('alert','nama kamu adalah'.$request->session()->get
 //                ('nama').$request->session()->get('operator').$request->session()->get('nik'));
 
@@ -28,9 +28,20 @@ class BerandaController extends Controller
             return view('PSU_Beranda.index', compact('jml_assets_perumahan',
                 'jml_assets_pertamanan', 'jml_assets_permukiman'));
         }
-        else {
-            return redirect('/')->with('alert','Maaf Kamu Salah Masuk');
+
+        elseif ($request->session()->has('nama') && $request->session()->has('nik') &&
+            $request->session ()->has('nama_rule') == 'Operator PSU Perumahan'){
+            return redirect('/perumahans');
         }
+        elseif ($request->session()->has('nama') && $request->session()->has('nik') &&
+            $request->session ()->has('nama_rule') == 'Operator PSU Kawasan Permukiman'){
+            return redirect('/permukimans');
+        }
+        elseif ($request->session()->has('nama') && $request->session()->has('nik') &&
+            $request->session ()->has('nama_rule') == 'Operator PSU Pertamanan'){
+            return redirect('/pertamanans');
+        }
+
     }
 
     /**
