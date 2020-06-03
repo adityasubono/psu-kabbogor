@@ -38,30 +38,37 @@ class HomeController extends Controller
         $password = $request->input('password');
 
         $data = User::where('nik', $nik)->first();
+        if($data) {
+            $rule = Rules::where('id', $data->role_id)->first();
+            echo "rule" . $rule;
+            if (Hash::check($password, $data->password)) {
+                $request->session()->put('nama', $data->nama);
+                $request->session()->put('nik', $data->nik);
+                $request->session()->put('nama_rule', $rule->nama_rule);
+                $request->session()->put('foto', $data->foto);
+                $request->session()->put('login', TRUE);
 
-        $rule =Rules::where('id',$data->role_id)->first();
-        echo "rule" .$rule;
-        if(Hash::check($password, $data->password)){
-            $request->session()->put('nama',$data->nama);
-            $request->session()->put('nik',$data->nik);
-            $request->session()->put('nama_rule',$rule->nama_rule);
-            $request->session()->put('foto',$data->foto);
-            $request->session()->put('login',TRUE);
-//                Session::put('nik', $data->nik);
-//                Session::put('operator', $data->operator);
-//                Session::put('login', TRUE);
                 return redirect('/beranda');
-        }else {
+            } else {
+                return redirect('/')->with('alert', 'Nik dan Password Salah');
+            }
+        } else {
             return redirect('/')->with('alert', 'Nik dan Password Salah');
         }
     }
 
-    public function logout(Request $request, $nama)
+    public function logout(Request $request)
     {
-    	$request->session()->forget('nama');
-        $request->session()->forget('nik');
-        $request->session()->forget('operator');
-
-        return redirect('/')->with('alert-success', 'Sampai Jumpa Kembali '.$nama );
+        $login = $request->input('login');
+        if(isset($login) == '1') {
+            $request->session()->forget('nama');
+            $request->session()->forget('nik');
+            $request->session()->forget('operator');
+            $request->session()->forget('login');
+            $request->session()->forget('foto');
+            return redirect('/')->with('alert-success', 'Sampai Jumpa Kembali ');
+        }else {
+            return abort(403);
+        }
     }
 }

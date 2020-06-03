@@ -33,7 +33,11 @@
                     </a>
                     <a class="dropdown-item">
                         <i class="fas fa-user-tie fa-sm fa-fw mr-2 text-gray-400"></i>
-                        {{Session::get('nama_rule')}}
+                        @if(Session::get('login')== '1')
+                        {{Session::get('nama_rule')}} || <b style="color: blue;"> Aktif</b>
+                        @else
+                        {{Session::get('nama_rule')}} || <b style="color: red;"> Non Aktif</b>
+                        @endif
                     </a>
                     <a class="dropdown-item">
                         <i class="fas fa-calendar-day fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -69,9 +73,23 @@
                             <div class="modal-body">Hai, <b style="color: #0E0EFF">{{Session::get('nama')}} </b>Apakah
                                 Anda Ingin Keluar ?</div>
                             <div class="modal-footer">
+                                <form action="/logout" method="post">
+                                @csrf
+                                <input type="hidden" name="nama"
+                                       value="{{Session::get('nama')}}">
+                                <input type="hidden" name="nik"
+                                       value="{{Session::get('nik')}}">
+                                <input type="hidden" name="operator"
+                                       value="{{Session::get('operator')}}">
+                                <input type="hidden" name="login"
+                                       value="{{Session::get('login')}}">
+                                    <input type="hidden" name="foto"
+                                           value="{{Session::get('foto')}}">
                                 <button class="btn btn-secondary" type="button"
-                                        data-dismiss="modal">Batal</button>
-                                <a class="btn btn-primary" href="/logout/{{Session::get('nama')}}">Keluar</a>
+                                        data-dismiss="modal">Batal
+                                </button>
+                                <button type="submit" class="btn btn-primary">Keluar</button>
+                                </form>
                             </div>
                         </div>
                     </div>

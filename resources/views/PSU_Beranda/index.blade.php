@@ -48,7 +48,7 @@
 
                     @if(Session::get('nama_rule') == 'Operator PSU Pertamanan')
                     <tr>
-                        <td>2.</td>
+                        <td>1.</td>
                         <td><a href="/pertamanans">PSU Pertamanan</a></td>
                         <td>{{$jml_assets_pertamanan}}</td>
                     </tr>
@@ -56,7 +56,7 @@
 
                     @if(Session::get('nama_rule') == 'Operator PSU Kawasan Permukiman')
                     <tr>
-                        <td>3.</td>
+                        <td>1.</td>
                         <td><a href="/permukimans">PSU Kawasan Permukiman</a></td>
                         <td>{{$jml_assets_permukiman}}</td>
                     </tr>

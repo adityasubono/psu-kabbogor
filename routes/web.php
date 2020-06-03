@@ -42,7 +42,7 @@ Route::get('/operatorpermukiman', 'ScoutController@index')->name('operatorpermuk
 Route::get('/', 'PagesController@index');
 
 Route::post('/loginpost', 'HomeController@login');
-Route::get('/logout/{nama}', 'HomeController@logout');
+Route::post('/logout', 'HomeController@logout');
 
 //PSU Beranda....
 Route::get('/beranda', 'BerandaController@index');

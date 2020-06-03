@@ -13,12 +13,12 @@ class BerandaController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|void
      */
     public function index(Request $request)
     {
         if($request->session()->has('nama') && $request->session()->has('nik') && $request->session
-            ()->has('nama_rule') == 'Administrator'){
+            ()->has('nama_rule') == 'Administrator' && $request->session()->has('login') == 'TRUE'){
 //            return redirect('/')->with('alert','nama kamu adalah'.$request->session()->get
 //                ('nama').$request->session()->get('operator').$request->session()->get('nik'));
 
@@ -30,16 +30,21 @@ class BerandaController extends Controller
         }
 
         elseif ($request->session()->has('nama') && $request->session()->has('nik') &&
-            $request->session ()->has('nama_rule') == 'Operator PSU Perumahan'){
+            $request->session ()->has('nama_rule') == 'Operator PSU Perumahan' &&
+            $request->session()->has('login') == 'TRUE'){
             return redirect('/perumahans');
         }
         elseif ($request->session()->has('nama') && $request->session()->has('nik') &&
-            $request->session ()->has('nama_rule') == 'Operator PSU Kawasan Permukiman'){
+            $request->session ()->has('nama_rule') == 'Operator PSU Kawasan Permukiman' &&
+            $request->session()->has('login') == 'TRUE'){
             return redirect('/permukimans');
         }
         elseif ($request->session()->has('nama') && $request->session()->has('nik') &&
-            $request->session ()->has('nama_rule') == 'Operator PSU Pertamanan'){
+            $request->session ()->has('nama_rule') == 'Operator PSU Pertamanan' &&
+            $request->session()->has('login') == 'TRUE'){
             return redirect('/pertamanans');
+        }else{
+            return abort(403);
         }
 
     }
