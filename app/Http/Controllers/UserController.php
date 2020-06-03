@@ -116,7 +116,7 @@ class UserController extends Controller
         $data->nik = $request->input('nik');
         $data->nama = $request->input('nama');
         $data->email = $request->input('email');
-        $data->password = Hash::make($request->input('password'));
+//        $data->password = Hash::make($request->input('password'));
         $data->role_id = $request->input('role_id');
         if (empty($request->file('file_foto'))){
             $data->foto = $data->foto;

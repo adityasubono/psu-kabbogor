@@ -78,7 +78,7 @@ class KoordinatJalanSaluranController extends Controller
      */
     public function show($id)
     {
-        $koordinat = KoordinatJalanSaluran::where('id',$id)->get();
+        $koordinat = KoordinatJalanSaluran::where('jalansaluran_id',$id)->get();
         return view ('PSU_Perumahan.jalansaluran.koordinat.peta',compact('koordinat'));
     }
 

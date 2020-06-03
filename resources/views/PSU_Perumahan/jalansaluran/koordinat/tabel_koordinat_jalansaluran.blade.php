@@ -94,7 +94,9 @@
 
 
         @if(isset($koordinat_jalansaluran))
-        <a href="/koordinatjalansalurans/show/{{$koordinat_jalansaluran->id}}" class="btn btn-primary btn-icon-split mt-3">
+        <a href="/koordinatjalansalurans/show/{{$koordinat_jalansaluran->jalansaluran_id}}"
+           class="btn
+        btn-primary btn-icon-split mt-3">
         <span class="icon text-white-50">
             <i class="fas fa-map"></i>
         </span>

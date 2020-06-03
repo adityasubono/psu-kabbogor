@@ -18,12 +18,12 @@
                 <span class="text">Tambah Data</span>
             </a>
 
-            <a href="/rules" class="btn btn-primary btn-icon-split mb-3">
-                <span class="icon text-white-50">
-                    <i class="fas fa-user-tie"></i>
-                </span>
-                <span class="text">Tambah Role User</span>
-            </a>
+<!--            <a href="/rules" class="btn btn-primary btn-icon-split mb-3">-->
+<!--                <span class="icon text-white-50">-->
+<!--                    <i class="fas fa-user-tie"></i>-->
+<!--                </span>-->
+<!--                <span class="text">Tambah Role User</span>-->
+<!--            </a>-->
 
             @if (session('status'))
             <div class="alert alert-success">

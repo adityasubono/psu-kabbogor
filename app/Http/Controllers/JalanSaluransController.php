@@ -25,6 +25,7 @@ class JalanSaluransController extends Controller
         $data_jalan_saluran = JalanSaluran::where('perumahan_id',$id)->get();
         $data_foto_jalan_saluran = FotoJalanSaluran::where('perumahan_id',$id)->get();
         $data_koordinat_jalan_saluran = KoordinatJalanSaluran::where('perumahan_id',$id)->get();
+
         return view('PSU_Perumahan.jalansaluran.index', compact('data_perumahan','data_jalan_saluran',
             'data_foto_jalan_saluran','data_koordinat_jalan_saluran'));
     }

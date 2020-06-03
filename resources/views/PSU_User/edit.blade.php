@@ -49,20 +49,20 @@
                         @enderror
                     </div>
 
-                    <div class="col-sm-3">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control @error('password') is-invalid
-                               @enderror" id="password" name="password"
-                               aria-describedby="emailHelp" placeholder="Masukan Password"
-                               value="{{ $user->password}}">
-                        @error('password')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                        @enderror
-                    </div>
+<!--                    <div class="col-sm-3">-->
+<!--                        <label for="password">Password</label>-->
+<!--                        <input type="password" class="form-control @error('password') is-invalid-->
+<!--                               @enderror" id="password" name="password"-->
+<!--                               aria-describedby="emailHelp" placeholder="Masukan Password"-->
+<!--                               value="{{ $user->password}}">-->
+<!--                        @error('password')-->
+<!--                        <div class="invalid-feedback">-->
+<!--                            {{ $message }}-->
+<!--                        </div>-->
+<!--                        @enderror-->
+<!--                    </div>-->
 
-                    <div class="col-sm-3 mt-3">
+                    <div class="col-sm-3">
                         <label for="role_id">Operator</label>
                         <select class="custom-select @error('role_id') is-invalid @enderror"
                                 id="role_id" name="role_id">
