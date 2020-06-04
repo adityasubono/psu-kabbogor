@@ -7,6 +7,8 @@
 
     <div id="googleMap" style="width:100%;height:380px;"></div>
 
+
+
     <form method="post" action="/koordinattamans/store" enctype="multipart/form-data">
         @csrf
         <div class="card shadow mb-4">
@@ -28,56 +30,6 @@
             </div>
 
             <div class="card-body">
-
-                <div class="pac-card" id="pac-card">
-                    <div>
-                        <div id="title">
-                            Autocomplete search
-                        </div>
-                        <div id="type-selector" class="pac-controls">
-                            <input type="radio" name="type" id="changetype-all" checked="checked">
-                            <label for="changetype-all">All</label>
-
-                            <input type="radio" name="type" id="changetype-establishment">
-                            <label for="changetype-establishment">Establishments</label>
-
-                            <input type="radio" name="type" id="changetype-address">
-                            <label for="changetype-address">Addresses</label>
-
-                            <input type="radio" name="type" id="changetype-geocode">
-                            <label for="changetype-geocode">Geocodes</label>
-                        </div>
-                        <div id="strict-bounds-selector" class="pac-controls">
-                            <input type="checkbox" id="use-strict-bounds" value="">
-                            <label for="use-strict-bounds">Strict Bounds</label>
-                        </div>
-                    </div>
-                    <div id="pac-container">
-                        <input id="pac-input" type="text"
-                               placeholder="Enter a location">
-                    </div>
-                </div>
-                <div id="map"></div>
-                <div id="infowindow-content">
-                    <img src="" width="16" height="16" id="place-icon">
-                    <span id="place-name"  class="title"></span><br>
-                    <span id="place-address"></span>
-                </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 <input type="hidden" name="taman_id"
                        value="{{$data_taman->id}}">
                 <input type="hidden" name="perumahan_id"
@@ -208,14 +160,17 @@
         });
 
         $("#jumlah-form").val(c);// Ubah value textbox jumlah-form dengan
+
     }
 
     $("#jumlah-form").val(d);
 
+
 </script>
 
 <script
-    src="http://maps.google.com/maps/api/js?key=AIzaSyBMbVQJuBRWDV1jFUVZ9Gzsu-nWOEr9LdM&callback=initMap">
+    src="http://maps.google.com/maps/api/js?key=AIzaSyBMbVQJuBRWDV1jFUVZ9Gzsu-nWOEr9LdM&libraries=places&callback=initMap"
+    async defer>
 </script>
 
 
