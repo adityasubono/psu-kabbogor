@@ -13,7 +13,6 @@
                     <th>No.</th>
                     <th>Latitude</th>
                     <th>Longitude</th>
-                    <th>LatLong</th>
                     <th>Aksi</th>
                 </tr>
                 </thead>
@@ -23,7 +22,6 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $koordinat_jalansaluran->latitude }}</td>
                     <td>{{ $koordinat_jalansaluran->longitude }}</td>
-                    <td>{{ $koordinat_jalansaluran->latlong }}</td>
                     <td>
                         <a href="/koordinatjalansalurans/edit/{{$koordinat_jalansaluran->id}}"
                            class="btn btn-warning btn-icon-split">
@@ -59,8 +57,7 @@
                                 <button type="button" class="btn btn-success" data-dismiss="modal">
                                     Batal
                                 </button>
-                                <form action="/koordinatjalansalurans/delete/{{
-                                              $koordinat_jalansaluran->id }}" method="post"
+                                <form action="/koordinatjalansalurans/delete/{{$koordinat_jalansaluran->id }}" method="post"
                                       class="d-inline">
                                     @method('delete')
                                     <input type="hidden" name="jalansaluran_id"

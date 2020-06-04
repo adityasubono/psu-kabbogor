@@ -135,6 +135,10 @@ class JalanSaluransController extends Controller
     {
         $perumahan_id = $request->get('perumahan_id');
         JalanSaluran::destroy($jalanSaluran->id);
+        KoordinatJalanSaluran::where('jalansaluran_id',$jalanSaluran->id)->delete();
+        FotoJalanSaluran::where('jalansaluran_id', $jalanSaluran->id)->delete();
+
+
         return redirect()->action('JalanSaluransController@index', ['id' => $perumahan_id])
             ->with('status','Data Dengan ID '.$jalanSaluran->id.' Berhasil Dihapus');
     }

@@ -74,23 +74,16 @@
             var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 12,
                 center: {lat: -6.485213, lng: 106.753537},
-                mapTypeId: 'terrain'
             });
-
-            var polylinekoordinat = [
-                {lat: -6.486541354087505, lng: 106.73779679193464},
-                {lat: -6.485571674031478, lng: 106.75410462274519},
-                {lat: -6.472855109038622, lng: 106.77736473932234},
-            ];
 
             for (let u = 0; u < unique.length; u++) {
                 for (var j = 0; j < result[unique[u]].length; j++) {
                     polylines[u] = new google.maps.Polyline({
                         path: cordspolyline[u],
                         geodesic: true,
-                        strokeColor: '#FF0000',
+                        strokeColor: 'blue',
                         strokeOpacity: 1.0,
-                        strokeWeight: 2
+                        strokeWeight: 5
                     });
 
                     polylines[u].setMap(map);
@@ -120,18 +113,6 @@
                 }
             }
         }
-
-        // $.each( locations, function( index, value ){
-        //     mymap.addMarker({
-        //         lat: value.latitude,
-        //         lng: value.longitude,
-        //         title: value.id,
-        //         infoWindow: {
-        //             content: '<h6>'+ value.latitude +', '+ value.longitude+'</h6>',
-        //             maxWidth: 400
-        //         }
-        //     });
-        // });
 
     </script>
 

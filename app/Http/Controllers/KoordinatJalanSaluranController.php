@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\FotoJalanSaluran;
 use App\JalanSaluran;
 use App\KoordinatJalanSaluran;
 use Illuminate\Http\Request;
@@ -40,29 +41,22 @@ class KoordinatJalanSaluranController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = [
-            'longitude' => 'required',
-            'latitude' => 'required',
-        ];
-
-        $customMessages = [
-            'required' => 'Masukan Data :attribute ini ?.',
-        ];
-
-        $this->validate($request, $rules, $customMessages);
+//        $rules = [
+//            'longitude' => 'required',
+//            'latitude' => 'required',
+//        ];
+//
+//        $customMessages = [
+//            'required' => 'Masukan Data :attribute ini ?.',
+//        ];
+//
+//        $this->validate($request, $rules, $customMessages);
 
         $jalansaluran_id = $request->input('jalansaluran_id');
-        $longitude = $request->input('longitude');
-        $latitude = $request->input('latitude');
-        $latlong = "[$latitude, $longitude, ],";
 
-        $koordinat_sarana = new KoordinatJalanSaluran();
-        $koordinat_sarana->perumahan_id = $request->input('perumahan_id');
-        $koordinat_sarana->jalansaluran_id= $request->input('jalansaluran_id');
-        $koordinat_sarana->longitude = $request->input('longitude');
-        $koordinat_sarana->latitude = $request->input('latitude');
-        $koordinat_sarana->latlong = $latlong;
-        $koordinat_sarana->save();
+        foreach ($request->data_koordinat as $key => $value){
+            KoordinatJalanSaluran::create($value);
+        }
 
 
         return redirect()->action('KoordinatJalanSaluranController@index', ['id' => $jalansaluran_id])
@@ -120,13 +114,9 @@ class KoordinatJalanSaluranController extends Controller
         $this->validate($request, $rules, $customMessages);
 
         $jalansaluran_id = $request->get('jalansaluran_id');
-        $longitude = $request->input('longitude');
-        $latitude = $request->input('latitude');
-        $latlong = "[$latitude, $longitude, ],";
         KoordinatJalanSaluran::where('id', $koordinatJalanSaluran->id)->update([
             'longitude' => $request->longitude,
             'latitude' => $request->latitude,
-            'latlong' => $latlong
         ]);
         return redirect()->action('KoordinatJalanSaluranController@index', ['id' => $jalansaluran_id])
             ->with('status','Data Dengan ID '.$koordinatJalanSaluran->id.' Berhasil Di Update');
@@ -143,6 +133,7 @@ class KoordinatJalanSaluranController extends Controller
     {
         $jalansaluran_id = $request->get('jalansaluran_id');
         KoordinatJalanSaluran::destroy($koordinatJalanSaluran->id);
+
         return redirect()->action(
             'KoordinatJalanSaluranController@index', ['id' => $jalansaluran_id])
             ->with('status','Data Berhasil Dihapus Dengan ID : '.$koordinatJalanSaluran->id);
