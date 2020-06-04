@@ -79,7 +79,10 @@
     <h1 style="color: red; text-align: center"> Maaf Anda Tidak Mempunyai Hak Akses Disini
         <br> <a href="/">Kembali Ke Halaman Login</a>
         <br>
-        <img src="assets/images/403.jpg" style="width: 1000px; height: 500px; margin-top: 30px;">
+        <img src="../../assets/images/403.jpg" style="width: 1000px; height:
+        500px;
+        margin-top:
+        30px;">
     </h1>
 
 
