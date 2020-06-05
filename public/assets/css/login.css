@@ -88,7 +88,7 @@ body {
 }
 
 .toast {
-    width: 325px;
+    width: auto;
     position: absolute;
     top: 67px;
     left: 300px;

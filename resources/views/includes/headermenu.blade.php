@@ -41,21 +41,25 @@
                     </a>
                     <a class="dropdown-item">
                         <i class="fas fa-calendar-day fa-sm fa-fw mr-2 text-gray-400"></i>
-                        @php
-                        $date = date('Y-m-d H:i:s');
-                        echo "$date";
-                        @endphp
+                        <small class="text-muted">Login Masuk:
+                            {{Session::get('login_date')}}</small>
+
+                    </a>
+                    <a class="dropdown-item">
+                        <i class="fas fa-calendar-day fa-sm fa-fw mr-2 text-gray-400"></i>
+                        <small class="text-muted">Login Terakhir : {{Session::get('logout_date')
+                            }}</small><br>
                     </a>
 
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/users/{{Session::get('id')}}">
+                    <a class="dropdown-item" href="/users/edit/{{Session::get('id')}}">
                         <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                         Settings
                     </a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Keluar
+                        Keluar ( logout )
                     </a>
                 </div>
                 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

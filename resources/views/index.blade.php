@@ -33,7 +33,7 @@
         <small class="text-muted text-white">SI-PSU KAB.BOGOR</small>
     </div>
     <div class="toast-body">
-        <h5> Sampai Jumpa Kembali {{Session::get('alert-success')}}</h5>
+        <h5>{{Session::get('alert-success')}}</h5>
     </div>
 </div>
 @endif
@@ -48,6 +48,7 @@
                 <h3 class="border_h1">Login Sistem</h3>
                 <hr style="background-color: #00b0e8">
                 <label for="nik">NIK</label>
+                <input type="hidden" name="remember_token" value="{{csrf_token()}}">
                 <input type="number" class="form-control" id="nik" name="nik"
                        placeholder="Masukan Nik">
             </div>
@@ -58,19 +59,33 @@
             </div>
 
 
-            <div id="myProgress">
-                <div id="myBar" class="text-white text-center"></div>
-            </div>
+
             <button onclick="move()"
-                    class="btn btn-primary mt-3">Login</button>
+                    class="btn btn-primary mt-3"
+                    data-toggle="modal"
+                    data-target="#loading"
+                    data-backdrop="static"
+                    data-keyboard="false">Login</button>
 
         </form>
 
     </div>
 </div>
+<div class="modal fade" id="loading" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+              Loading Data...
+            </div>
+            <div class="modal-body">
+                <div id="myProgress">
+                    <div id="myBar" class="text-white text-center"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-</div>
-
 </body>
 </html>
 
