@@ -25,25 +25,14 @@
             </div>
             @endif
 
-            <div id="jam-digital">
-                <div id="hours">
-                    <p id="jam"></p>
-                </div>
-                <div id="minute">
-                    <p id="menit"></p>
-                </div>
-                <div id="second">
-                    <p id="detik"></p>
-                </div>
-            </div>
-            <div class="login-form">
-            <form method="post" action="/loginpost">
-                {{ csrf_field() }}
 
+            <div class="login-form">
+            <form method="post" action="">
+                {{ csrf_field() }}
 
                 <div class="form-group">
                     <h3 class="border_h1">Login Sistem</h3>
-                    <hr>
+                    <hr style="background-color: #00b0e8">
                     <label for="nik">NIK</label>
                     <input type="number" class="form-control" id="nik" name="nik"
                            placeholder="Masukan Nik">
@@ -54,10 +43,16 @@
                            placeholder="Masukan Password">
                 </div>
 
-                <button type="submit" class="btn btn-black">Login</button>
-            </form>
-            </div>
 
+                <div id="myProgress">
+                    <div id="myBar"></div>
+                </div>
+
+                <button onclick="move()" class="btn btn-black mt-3">Login</button>
+
+            </form>
+
+            </div>
         </div>
     </div>
 </div>
@@ -72,14 +67,28 @@
         });
     }, 4000);
 </script>
-
 <script type="text/javascript">
-    window.setTimeout("waktu()",1000);
-    function waktu() {
-        var tanggal = new Date();
-        setTimeout("waktu()",1000);
-        document.getElementById("jam").innerHTML = tanggal.getHours();
-        document.getElementById("menit").innerHTML = tanggal.getMinutes();
-        document.getElementById("detik").innerHTML = tanggal.getSeconds();
+    var nik =document.getElementById('nik')
+    var password =document.getElementById('password')
+    var i = 0;
+    function move() {
+        if (i == 0) {
+            i = 1;
+            var elem = document.getElementById("myBar");
+            var width = 1;
+            var id = setInterval(frame, 10);
+            function frame() {
+                if (width >= 100) {
+                    clearInterval(id);
+                    i = 0;
+                    window.location.href = "/loginpost";
+                    nik = nik.value;
+                    password = password.value;
+                } else {
+                    width++;
+                    elem.style.width = width + "%";
+                }
+            }
+        }
     }
 </script>

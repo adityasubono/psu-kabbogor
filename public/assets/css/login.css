@@ -33,9 +33,8 @@ body {
 
 
 .border_h1 {
-    padding: 6px;
-    color: #1b61fe;
-    text-align: center;
+    color: black;
+    text-align: left;
 }
 
 @media screen and (min-width: 500px){
@@ -46,16 +45,14 @@ body {
     }
 
     .login-form{
-        margin-top: 50%;
-        margin-left: -100%;
-        width: 300px;
+        margin-top: 80%;
+        margin-left: -132%;
         border: 5px solid grey;
         border-radius: 15px;
-        padding: 20px;
+        padding: 15px;
         opacity: 0.7;
         background: url("../../assets/images/login_cover.png");
         background-size: cover;
-        position: center;]
         font-family: "Lato", sans-serif;
         font-size: 20px;
     }
@@ -79,9 +76,13 @@ body {
     background-color: #000 !important;
     color: #fff;
 }
+#myProgress {
+    width: 100%;
+    background-color: grey;
+}
 
-#jam-digital{overflow:hidden; width:350px}
-#hours{float:left; width:100px; height:50px; background-color:#6B9AB8; margin-right:25px}
-#minute{float:left; width:100px; height:50px; background-color:#A5B1CB}
-#second{float:right; width:100px; height:50px; background-color:#FF618A; margin-left:25px}
-#jam-digital p{color:#FFF; font-size:36px; text-align:center; margin-top:4px}
+#myBar {
+    width: 1%;
+    height: 30px;
+    background-color: blue;
+}
