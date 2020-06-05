@@ -35,37 +35,28 @@ class HomeController extends Controller
 
     public function login(Request $request)
     {
-        try {
-            $users = DB::connection('wpu_laravel');
-            if ($users) {
-                echo "Yes! Successfully connected to the DB: " . DB::connection()->getDatabaseName();
 
-                $nik = $request->input('nik');
-                $password = $request->input('password');
 
-                $data = User::where('nik', $nik)->first();
-                if ($data) {
-                    $rule = Rules::where('id', $data->role_id)->first();
-                    echo "rule" . $rule;
-                    if (Hash::check($password, $data->password)) {
-                        $request->session()->put('nama', $data->nama);
-                        $request->session()->put('nik', $data->nik);
-                        $request->session()->put('nama_rule', $rule->nama_rule);
-                        $request->session()->put('foto', $data->foto);
-                        $request->session()->put('login', TRUE);
+        $nik = $request->input('nik');
+        $password = $request->input('password');
 
-                        return redirect('/beranda');
-                    } else {
-                        return redirect('/')->with('alert', 'Nik dan Password Salah');
-                    }
-                } else {
-                    return redirect('/')->with('alert', 'Nik dan Password Salah');
-                }
+        $data = User::where('nik', $nik)->first();
+        if ($data) {
+            $rule = Rules::where('id', $data->role_id)->first();
+            echo "rule" . $rule;
+            if (Hash::check($password, $data->password)) {
+                $request->session()->put('nama', $data->nama);
+                $request->session()->put('nik', $data->nik);
+                $request->session()->put('nama_rule', $rule->nama_rule);
+                $request->session()->put('foto', $data->foto);
+                $request->session()->put('login', TRUE);
+
+                return redirect('/beranda');
             } else {
-                die("Could not find the database. Please check your configuration.");
+                return redirect('/')->with('alert', 'Nik dan Password Salah');
             }
-        } catch (\Exception $e) {
-            return abort(500,'Maaf Terjadi Kesalahan Koneksi Database');
+        } else {
+            return redirect('/')->with('alert', 'Nik dan Password Salah');
         }
     }
 

@@ -7,54 +7,68 @@
     <link href="{!! asset('assets/css/login.css') !!}" rel="stylesheet" type="text/css">
     <!------ Include the above in your HEAD tag ---------->
 </head>
+
 <body id="LoginForm">
+<div id="jam">
+    <div id="clock"></div>
+</div>
+
+
+@if(\Session::has('alert'))
+<div class="toast" data-delay="5000">
+    <div class="toast-header bg-warning text-white">
+        <strong class="mr-auto">Peringatan !</strong>
+        <small class="text-muted text-white">SI-PSU KAB.BOGOR</small>
+    </div>
+    <div class="toast-body">
+        <h5>{{Session::get('alert')}}</h5>
+    </div>
+</div>
+@endif
+
+@if(\Session::has('alert-success'))
+<div class="toast" data-delay="5000">
+    <div class="toast-header bg-info text-white">
+        <strong class="mr-auto">Informasi</strong>
+        <small class="text-muted text-white">SI-PSU KAB.BOGOR</small>
+    </div>
+    <div class="toast-body">
+        <h5> Sampai Jumpa Kembali {{Session::get('alert-success')}}</h5>
+    </div>
+</div>
+@endif
 
 <div class="main">
+    <div class="login-form">
+        <form method="post" action="/loginpost" id="form_login">
+            <meta name="csrf-token" content="{{csrf_token()}}"/>
+            {{ csrf_field() }}
 
-    <div class="row">
-        <div class="col-sm-12">
-            @if(\Session::has('alert'))
-            <div class="alert alert-danger">
-                <div>{{Session::get('alert')}}</div>
+            <div class="form-group">
+                <h3 class="border_h1">Login Sistem</h3>
+                <hr style="background-color: #00b0e8">
+                <label for="nik">NIK</label>
+                <input type="number" class="form-control" id="nik" name="nik"
+                       placeholder="Masukan Nik">
             </div>
-            @endif
-
-            @if(\Session::has('alert-success'))
-            <div class="alert alert-success">
-                <div>{{Session::get('alert-success')}}</div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" class="form-control" name="password"
+                       placeholder="Masukan Password">
             </div>
-            @endif
 
 
-            <div class="login-form">
-            <form method="post" action="">
-                {{ csrf_field() }}
-
-                <div class="form-group">
-                    <h3 class="border_h1">Login Sistem</h3>
-                    <hr style="background-color: #00b0e8">
-                    <label for="nik">NIK</label>
-                    <input type="number" class="form-control" id="nik" name="nik"
-                           placeholder="Masukan Nik">
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" class="form-control" name="password"
-                           placeholder="Masukan Password">
-                </div>
-
-
-                <div id="myProgress">
-                    <div id="myBar"></div>
-                </div>
-
-                <button onclick="move()" class="btn btn-black mt-3">Login</button>
-
-            </form>
-
+            <div id="myProgress">
+                <div id="myBar" class="text-white text-center"></div>
             </div>
-        </div>
+            <button onclick="move()"
+                    class="btn btn-primary mt-3">Login</button>
+
+        </form>
+
     </div>
+</div>
+</div>
 </div>
 
 </body>
@@ -68,27 +82,98 @@
     }, 4000);
 </script>
 <script type="text/javascript">
-    var nik =document.getElementById('nik')
-    var password =document.getElementById('password')
+    var nik = document.getElementById('nik')
+    var password = document.getElementById('password')
     var i = 0;
+
     function move() {
         if (i == 0) {
             i = 1;
             var elem = document.getElementById("myBar");
             var width = 1;
             var id = setInterval(frame, 10);
+
             function frame() {
                 if (width >= 100) {
                     clearInterval(id);
                     i = 0;
-                    window.location.href = "/loginpost";
-                    nik = nik.value;
-                    password = password.value;
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+
+                    $.ajax({
+                        url: '/loginpost',
+                        method: 'post',
+                    });
+
                 } else {
                     width++;
                     elem.style.width = width + "%";
+                    elem.innerHTML = width + "%";
                 }
             }
         }
     }
 </script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.toast').toast('show');
+    });
+
+</script>
+<script type="text/javascript">
+    function showTime() {
+        var a_p = "";
+        var today = new Date();
+        var curr_hour = today.getHours();
+        var curr_minute = today.getMinutes();
+        var curr_second = today.getSeconds();
+        if (curr_hour < 12) {
+            a_p = "AM";
+        } else {
+            a_p = "PM";
+        }
+        if (curr_hour == 0) {
+            curr_hour = 12;
+        }
+        if (curr_hour > 12) {
+            curr_hour = curr_hour - 12;
+        }
+        curr_hour = checkTime(curr_hour);
+        curr_minute = checkTime(curr_minute);
+        curr_second = checkTime(curr_second);
+     document.getElementById('clock').innerHTML=curr_hour + ":" + curr_minute + ":" + curr_second + " " + a_p;
+        }
+
+    function checkTime(i) {
+        if (i < 10) {
+            i = "0" + i;
+        }
+        return i;
+    }
+    setInterval(showTime, 500);
+    //-->
+</script>
+
+<!-- Menampilkan Hari, Bulan dan Tahun -->
+
+<div id="kalender">
+<script type='text/javascript'>
+    var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+    var myDays = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum&#39;at', 'Sabtu'];
+    var date = new Date();
+    var day = date.getDate();
+    var month = date.getMonth();
+    var thisDay = date.getDay(),
+        thisDay = myDays[thisDay];
+    var yy = date.getYear();
+    var year = (yy < 1000) ? yy + 1900 : yy;
+    document.write(thisDay + ', ' + day + ' ' + months[month] + ' ' + year);
+
+</script>
+</div>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
