@@ -1,10 +1,9 @@
 body {
     font-family: "Lato", sans-serif;
-    background: url("../../assets/images/m1tucY.gif");
+    background: url("../../assets/images/cover2.png");
     background-repeat: no-repeat;
     background-size: cover;
 }
-
 
 
 .main-head{
@@ -15,7 +14,7 @@ body {
 
 .sidenav {
     height: 100%;
-    background-image: url("../../assets/images/css-svg-map.jpg");
+    background-image: url("../../assets/images/side.png");
     overflow-x: hidden;
     padding-top: 20px;
     background-repeat: no-repeat;
@@ -32,17 +31,10 @@ body {
     .sidenav {padding-top: 15px;}
 }
 
-@media screen and (max-width: 450px) {
-    .login-form{
-        margin-top: 10%;
-    }
 
-    .register-form{
-        margin-top: 10%;
-    }
-}
 .border_h1 {
-    padding: 10px;
+    padding: 6px;
+    color: #1b61fe;
     text-align: center;
 }
 
@@ -53,23 +45,19 @@ body {
         z-index: 2;
     }
 
-    .sidenav{
-        width: 33%;
-        position: fixed;
-        z-index: 1;
-        top: 0;
-        left: 0;
-    }
-
     .login-form{
-        margin-top: 20%;
-        margin-right: -25%;
+        margin-top: 50%;
+        margin-left: -100%;
+        width: 300px;
         border: 5px solid grey;
         border-radius: 15px;
         padding: 20px;
-        opacity: 0.8;
-        color: black;
-        position: center;
+        opacity: 0.7;
+        background: url("../../assets/images/login_cover.png");
+        background-size: cover;
+        position: center;]
+        font-family: "Lato", sans-serif;
+        font-size: 20px;
     }
 
     .register-form{
@@ -91,3 +79,9 @@ body {
     background-color: #000 !important;
     color: #fff;
 }
+
+#jam-digital{overflow:hidden; width:350px}
+#hours{float:left; width:100px; height:50px; background-color:#6B9AB8; margin-right:25px}
+#minute{float:left; width:100px; height:50px; background-color:#A5B1CB}
+#second{float:right; width:100px; height:50px; background-color:#FF618A; margin-left:25px}
+#jam-digital p{color:#FFF; font-size:36px; text-align:center; margin-top:4px}
