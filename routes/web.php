@@ -56,7 +56,8 @@ Route::get('/rekapitulasi', 'RekapitulasiController@index');
 Route::get('/users', 'UserController@index');
 Route::get('/users/create', 'UserController@create');
 Route::post('/users/store', 'UserController@store');
-Route::get('/users/edit/{user}', 'UserController@edit');
+Route::get('/users/edit/{id}', 'UserController@edit');
+Route::post('/users/editpassword', 'UserController@editpassword');
 Route::patch('/users/update/{user}','UserController@update');
 Route::delete('/users/delete/{id}','UserController@destroy');
 

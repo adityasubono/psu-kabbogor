@@ -52,17 +52,14 @@
                                 <b>Apakah Anda Akan Menghapus Data Ini ?</b>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
-
-
+                                <button type="button" class="btn btn-success"
+                                        data-dismiss="modal">Batal</button>
                                 <form action="/users/delete/{{ $user->id }}" method="post"
                                       class="d-inline">
                                     @method('delete')
                                     @csrf
                                     <button type="submit" class="btn btn-danger btn-ok">Hapus</button>
                                 </form>
-
-
                             </div>
                         </div>
                     </div>

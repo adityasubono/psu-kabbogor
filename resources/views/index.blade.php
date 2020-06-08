@@ -75,7 +75,7 @@
      aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header bg-primary text-white">
+            <div class="modal-header bg-primary text-white text-bold">
               Loading Data...
             </div>
             <div class="modal-body">

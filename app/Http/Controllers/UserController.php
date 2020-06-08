@@ -88,10 +88,27 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit(User $user)
+    public function edit($id)
     {
+        $user = User::find($id);
+        $data_rules = Rules::where('id',$user->role_id)->first();
         $rules = Rules::all()->sortBy('id');
-        return view('PSU_User.edit', compact('user','rules'));
+        return view('PSU_User.edit', compact('user','rules', 'data_rules'));
+    }
+
+    public function editpassword(Request $request)
+    {
+        $password = $request->input('password');
+        $nik = $request->input('nik');
+        $data_user_password = User::where('nik',$nik)->first();
+        $data_rules = Rules::where('id',$data_user_password->role_id)->first();
+
+        if (Hash::check($password, $data_user_password->password)){
+            return view('PSU_User.edit', compact('data_user_password','data_rules'));
+        }else{
+            return view('PSU_User.edit', compact('user','rules', 'data_rules'));
+        }
+
     }
 
     /**
@@ -103,21 +120,14 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-//        $request->validate([
-//            'nik' => 'required|size:15',
-//            'nama' => 'required',
-//            'email' => 'required',
-//            'file_foto' => 'required',
-//            'password' => 'required',
-//            'operator' => 'required|not_in:0'
-//        ]);
+        $request->validate([
+            'nama' => 'required',
+            'email' => 'required'
+        ]);
 
         $data = User::find($id);
-        $data->nik = $request->input('nik');
         $data->nama = $request->input('nama');
         $data->email = $request->input('email');
-//        $data->password = Hash::make($request->input('password'));
-        $data->role_id = $request->input('role_id');
         if (empty($request->file('file_foto'))){
             $data->foto = $data->foto;
         }
@@ -135,18 +145,9 @@ class UserController extends Controller
             $file->move('assets/uploads/user/',$newName);
             $data->foto = $newName;
         }
-        $data->save();
 
-//        User::where('id', $id)
-//            ->update([
-//                'nik' => $request->nik,
-//                'nama' => $request->nama,
-//                'email' => $request->email,
-//                'password' => $request->password,
-//                'role_id' => $request->operator,
-//
-//            ]);
-        return redirect('/users')->with('status','Data Berhasil Diupdate');
+
+        return redirect('/users/edit/'.$id)->with('status','Data Berhasil Diupdate');
     }
 
     /**
