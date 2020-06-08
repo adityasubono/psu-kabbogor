@@ -23,14 +23,20 @@
             <td>{{ $user->role_id }}</td>
             <td>{{ $user->nama }}</td>
             <td>{{ $user->email }}</td>
-            <td>{{ $user->status }}</td>
+            <td>
+                @if($user->status == 'Aktif')
+                <b style="color: blue">{{ $user->status }}</b>
+                @else
+                <b style="color: red">{{ $user->status }}</b>
+                @endif
+            </td>
             <td>{{ $user->login_date }}</td>
             <td>{{ $user->logout_date }}</td>
             <td><img src="../../assets/uploads/user/{{ $user->foto }}"
                      style="width: 65px; height:80px;">
             </td>
             <td>
-                <a href="/users/edit/{{ $user->id }}" class="btn btn-warning btn-icon-split">
+                <a href="/users/editadmin/{{$user->id}}" class="btn btn-warning btn-icon-split">
                     <span class="icon text-white-50">
                         <i class="fas fa-pen"></i>
                     </span>

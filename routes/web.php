@@ -60,6 +60,9 @@ Route::get('/users/edit/{id}', 'UserController@edit');
 Route::post('/users/editpassword', 'UserController@editpassword');
 Route::patch('/users/update/{user}','UserController@update');
 Route::delete('/users/delete/{id}','UserController@destroy');
+Route::get('/users/editadmin/{id}','UserController@editadmin');
+Route::patch('/users/adminupdate/{id}','UserController@updateadmin');
+Route::patch('/users/passwordadmin','UserController@adminpassword');
 
 //PSU Data Role
 Route::get('/rules/','RulesController@index');

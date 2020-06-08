@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Rules;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -137,6 +138,14 @@ class UserController extends Controller
 
     }
 
+    public function editadmin($id){
+
+        $user = User::find($id);
+        $data_rules = Rules::find($user->role_id);
+        $rules = Rules::all()->sortBy('id');
+        return view('PSU_User.edit_admin', compact('user', 'data_rules','rules'));
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -173,6 +182,59 @@ class UserController extends Controller
 
 
         return redirect('/users/edit/' . $id)->with('status', 'Data Berhasil Diupdate');
+    }
+
+    public function updateadmin(Request $request, $id) {
+
+//        $request->validate([
+//            'nama' => 'required',
+//            'email' => 'required'
+//        ]);
+
+        $data = User::find($id);
+        $data->nama = $request->input('nama');
+        $data->email = $request->input('email');
+        if (empty($request->file('file_foto'))) {
+            $data->foto = $data->foto;
+        } else {
+            $path = public_path('assets/uploads/user/') . $data->foto;
+            if (file_exists($path)) {
+                unlink($path);
+            }
+//            unlink('/assets/uploads/permukiman'.$data->file_foto); //menghapus file lama
+            $file = $request->file('file_foto');
+            $ext = $file->getClientOriginalExtension();
+            $nama_file = $file->getClientOriginalName();
+            $nama_file_saja = pathinfo($nama_file, PATHINFO_FILENAME);
+            $newName = $nama_file_saja . rand(100000, 1001238912) . "." . $ext;
+            $file->move('assets/uploads/user/', $newName);
+            $data->foto = $newName;
+        }
+
+        return redirect('/users')->with('status', 'Data Berhasil Diupdate');
+    }
+
+    public function adminpassword(Request $request){
+        $password_lama = $request->input('password_lama');
+        $password_baru = $request->input('password_baru');
+        $password_confirm = $request->input('password_confirm');
+        $nik = $request->input('nik');
+        $data_user_password = User::where('nik', $nik)->first();
+
+        if ($password_baru === $password_confirm) {
+
+            if (Hash::check($password_lama, $data_user_password->password)) {
+                User::where('nik', $data_user_password->nik)->update([
+                    'password' => bcrypt($password_baru)
+                ]);
+                return redirect('/users/editadmin/' . $data_user_password->id)->with('status', 'Password Berhasil Diganti');
+            } else {
+                return redirect('/users/editadmin/' . $data_user_password->id)->with('error', 'Password Yang Anda Masukan Salah');
+            }
+        } else {
+            return redirect('/users/editadmin/' . $data_user_password->id)->with('error', 'Password Baru Yang Anda Masukan Tidak Sama ');
+        }
+
     }
 
     /**
