@@ -34,7 +34,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
@@ -52,29 +52,29 @@ class UserController extends Controller
         $image = $request->file('file_foto');
         $ext = $image->getClientOriginalExtension();
         $nama_file = $image->getClientOriginalName();
-        $nama_file_saja= pathinfo($nama_file, PATHINFO_FILENAME);
-        $newName = $nama_file_saja.rand(100000,1001238912).".".$ext;
+        $nama_file_saja = pathinfo($nama_file, PATHINFO_FILENAME);
+        $newName = $nama_file_saja . rand(100000, 1001238912) . "." . $ext;
         // Define upload path
         $destinationPath = public_path('/assets/uploads/user/'); // upload path
-        $image->move($destinationPath,$newName);
+        $image->move($destinationPath, $newName);
 
         // Save In Database
-        $data_user_login= new User();
-        $data_user_login->role_id=$request->input('operator');
-        $data_user_login->nik=$request->input('nik');
-        $data_user_login->nama=$request->input('nama');
-        $data_user_login->email=$request->input('email');
+        $data_user_login = new User();
+        $data_user_login->role_id = $request->input('operator');
+        $data_user_login->nik = $request->input('nik');
+        $data_user_login->nama = $request->input('nama');
+        $data_user_login->email = $request->input('email');
         $data_user_login->password = Hash::make($request->input('password'));
-        $data_user_login->foto="$newName";
+        $data_user_login->foto = "$newName";
         $data_user_login->save();
-        return redirect('/users')->with('status','Data Berhasil Disimpan');
+        return redirect('/users')->with('status', 'Data Berhasil Disimpan');
 
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\User  $user
+     * @param \App\User $user
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(User $user)
@@ -85,28 +85,54 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\User  $user
+     * @param \App\User $user
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit($id)
     {
         $user = User::find($id);
-        $data_rules = Rules::where('id',$user->role_id)->first();
+        $data_rules = Rules::where('id', $user->role_id)->first();
         $rules = Rules::all()->sortBy('id');
-        return view('PSU_User.edit', compact('user','rules', 'data_rules'));
+        return view('PSU_User.edit', compact('user', 'rules', 'data_rules'));
     }
 
     public function editpassword(Request $request)
     {
-        $password = $request->input('password');
-        $nik = $request->input('nik');
-        $data_user_password = User::where('nik',$nik)->first();
-        $data_rules = Rules::where('id',$data_user_password->role_id)->first();
+//        $messages = [
+//            'password' => 'Invalid current password.',
+//        ];
+//
+//        $validator = Validator::make(request()->all(), [
+//            ''      => 'required|password',
+//            'password'              => 'required|min:6|confirmed',
+//            'password_confirmation' => 'required',
+//
+//        ], $messages);
+//
+//        if ($validator->fails()) {
+//            return redirect()
+//                ->back()
+//                ->withErrors($validator->errors());
+//        }
 
-        if (Hash::check($password, $data_user_password->password)){
-            return view('PSU_User.edit', compact('data_user_password','data_rules'));
-        }else{
-            return view('PSU_User.edit', compact('user','rules', 'data_rules'));
+        $password_lama = $request->input('password_lama');
+        $password_baru = $request->input('password_baru');
+        $password_confirm = $request->input('password_confirm');
+        $nik = $request->input('nik');
+        $data_user_password = User::where('nik', $nik)->first();
+
+        if ($password_baru === $password_confirm) {
+
+            if (Hash::check($password_lama, $data_user_password->password)) {
+                User::where('nik', $data_user_password->nik)->update([
+                    'password' => bcrypt($password_baru)
+                ]);
+                return redirect('/users/edit/' . $data_user_password->id)->with('status', 'Password Berhasil Diganti');
+            } else {
+                return redirect('/users/edit/' . $data_user_password->id)->with('error', 'Password Yang Anda Masukan Salah');
+            }
+        } else {
+            return redirect('/users/edit/' . $data_user_password->id)->with('error', 'Password Baru Yang Anda Masukan Tidak Sama');
         }
 
     }
@@ -114,8 +140,8 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\User  $user
+     * @param \Illuminate\Http\Request $request
+     * @param \App\User $user
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update(Request $request, $id)
@@ -128,11 +154,10 @@ class UserController extends Controller
         $data = User::find($id);
         $data->nama = $request->input('nama');
         $data->email = $request->input('email');
-        if (empty($request->file('file_foto'))){
+        if (empty($request->file('file_foto'))) {
             $data->foto = $data->foto;
-        }
-        else{
-            $path = public_path('assets/uploads/user/') .$data->foto;
+        } else {
+            $path = public_path('assets/uploads/user/') . $data->foto;
             if (file_exists($path)) {
                 unlink($path);
             }
@@ -140,25 +165,25 @@ class UserController extends Controller
             $file = $request->file('file_foto');
             $ext = $file->getClientOriginalExtension();
             $nama_file = $file->getClientOriginalName();
-            $nama_file_saja= pathinfo($nama_file, PATHINFO_FILENAME);
-            $newName = $nama_file_saja.rand(100000,1001238912).".".$ext;
-            $file->move('assets/uploads/user/',$newName);
+            $nama_file_saja = pathinfo($nama_file, PATHINFO_FILENAME);
+            $newName = $nama_file_saja . rand(100000, 1001238912) . "." . $ext;
+            $file->move('assets/uploads/user/', $newName);
             $data->foto = $newName;
         }
 
 
-        return redirect('/users/edit/'.$id)->with('status','Data Berhasil Diupdate');
+        return redirect('/users/edit/' . $id)->with('status', 'Data Berhasil Diupdate');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\User  $user
+     * @param \App\User $user
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function destroy($id)
     {
         User::destroy($id);
-        return redirect('/users')->with('status','Data Success Delete');
+        return redirect('/users')->with('status', 'Data Success Delete');
     }
 }

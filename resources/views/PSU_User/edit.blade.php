@@ -9,20 +9,12 @@
             <div class="row">
                 <div class="col-sm-6">
                     <h6 class="m-0 font-weight-bold text-primary">Kelola Data User :
-                        @if(isset($data_user_password))
-                        {{$data_user_password->nama}}
-                        @else
                         {{$user->nama}}
-                        @endif
                     </h6>
                 </div>
                 <div class="col-sm-6">
                     <h6 class="m-0 font-weight-bold text-primary text-right">
-                        @if(isset($data_user_password))
-                        {{$data_user_password->nik}} || {{$data_rules->nama_rule}}
-                        @else
                         {{$user->nik}} || {{$data_rules->nama_rule}}
-                        @endif
                     </h6>
                 </div>
             </div>
@@ -34,48 +26,12 @@
             </div>
             @endif
 
-            @if(isset($data_user_password))
-
             @if (session('error'))
             <div class="alert alert-danger">
                 {{ session('error') }}
             </div>
             @endif
 
-            <form method="post" action="/users/update/">
-                @method('patch')
-                @csrf
-                <div class="row">
-                    <div class="col-sm-6">
-                        <label for="pass_1">Masukan Password Baru</label>
-                        <input type="password" class="form-control @error('pass_1') is-invalid
-                        @enderror" id="pass_1" name="pass_1">
-                        @error('pass_1')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                        @enderror
-
-                        <label for="pass_2" class="mt-3">Masukan Password Lagi</label>
-                        <input type="password" class="form-control @error('pass_2') is-invalid
-                        @enderror" id="pass_2" name="pass_2" value="">
-                        @error('pass_2')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                        @enderror
-                    </div>
-                </div>
-            </form>
-            <button class="btn btn-primary btn-icon-split mt-3">
-                    <span class="icon text-white-50">
-                        <i class="fas fa-download"></i>
-                    </span>
-                <span class="text">Simpan</span>
-            </button>
-
-
-            @else
 
             <form method="post" action="/users/update/{{ $user->id }}"
                   enctype="multipart/form-data">
@@ -162,14 +118,12 @@
                     <span class="text">Ganti Password</span>
                 </button>
             </form>
-            @endif
+
         </div>
     </div>
 </div>
 
-@if(isset($data_user_password))
 
-@else
 <div class="modal fade" id="ganti_password" role="dialog"
      aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -181,15 +135,23 @@
                 <div class="modal-body">
                     @method('post')
                     @csrf
-                    <label for="password">Masukan Password Kamu</label>
-
-                    <input type="text" class="form-control"
+                    <input type="hidden" class="form-control"
                            id="nik"
                            name="nik" value="{{$user->nik}}">
-
+                    <label for="password_lama">Masukan Password Lama</label>
                     <input type="password" class="form-control"
-                           id="password"
-                           name="password">
+                           id="password_lama"
+                           name="password_lama">
+
+                    <label for="password_baru">Masukan Password Baru</label>
+                    <input type="password" class="form-control"
+                           id="password_baru"
+                           name="password_baru">
+
+                    <label for="password_confirm">Masukan Password Sekali Lagi</label>
+                    <input type="password" class="form-control"
+                           id="password_confirm"
+                           name="password_confirm">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-success" data-dismiss="modal">Batal
@@ -200,7 +162,6 @@
         </div>
     </div>
 </div>
-@endif
 
 <script type="text/javascript">
 
