@@ -35,16 +35,6 @@
     </div>
 </div>
 
-
-
-
-<script type="text/javascript">
-    $('#confirm-delete').on('show.bs.modal', function(e) {
-        $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
-    });
-    $('#confirm-delete').modal({backdrop: 'static', keyboard: false})
-</script>
-
 <script type="text/javascript">
     $(document).ready(function() {
         $('#example').DataTable( {

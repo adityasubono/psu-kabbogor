@@ -48,10 +48,11 @@ class HomeController extends Controller
 
             date_default_timezone_set('Asia/Jakarta');
             $login_date = date('d/m/Y h:i:s a', time());
-
+            $status = 'Aktif';
             User::where('nik', $data->nik)->update([
                 'remember_token' => $remember_token,
                 'login_date' => $login_date,
+                'status' => $status
             ]);
 
             if (Hash::check($password, $data->password)) {
@@ -82,6 +83,7 @@ class HomeController extends Controller
         $nik = $request->input('nik');
         $nama = $request->input('nama');
         date_default_timezone_set('Asia/Jakarta');
+        $status = "Non Aktif";
         $logout_date = date('d/m/Y h:i:s a', time());
         if (isset($login) == '1') {
             $request->session()->forget('id');
@@ -95,6 +97,7 @@ class HomeController extends Controller
 
             User::where('nik', $nik)->update([
                 'logout_date' => $logout_date,
+                'status' => $status,
             ]);
 
             return redirect('/')->with('alert-success', 'Anda Telah Keluar Pada Tanggal '

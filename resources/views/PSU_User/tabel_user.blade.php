@@ -8,6 +8,9 @@
             <th>ID Role</th>
             <th>Nama</th>
             <th>Email</th>
+            <th>Status</th>
+            <th>Login Masuk</th>
+            <th>Login Terakhir</th>
             <th>Foto</th>
             <th>Aksi</th>
         </tr>
@@ -20,6 +23,9 @@
             <td>{{ $user->role_id }}</td>
             <td>{{ $user->nama }}</td>
             <td>{{ $user->email }}</td>
+            <td>{{ $user->status }}</td>
+            <td>{{ $user->login_date }}</td>
+            <td>{{ $user->logout_date }}</td>
             <td><img src="../../assets/uploads/user/{{ $user->foto }}"
                      style="width: 65px; height:80px;">
             </td>
@@ -40,10 +46,8 @@
                 </button>
 
                 <!--Confirm Delete-->
-                <div class="modal fade" id="confirm-delete{{ $user->id }}" tabindex="-1"
-                     role="dialog"
-                     aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
+                <div class="modal fade" id="confirm-delete{{ $user->id }}" role="dialog">
+                    <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header bg-warning">
                                 Perhatian !
@@ -74,3 +78,9 @@
         </tbody>
     </table>
 </div>
+<script type="text/javascript">
+    $('#confirm-delete').on('show.bs.modal', function(e) {
+        $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+    });
+    $('#confirm-delete').modal({backdrop: 'static', keyboard: false})
+</script>
