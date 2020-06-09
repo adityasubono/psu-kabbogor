@@ -293,3 +293,7 @@ h
 8public/assets/js/pertamanan/koordinat_pertamanan_form.js,8\3\835bd0976ebe85e29ec3178f5482d51558e7f3b7
 K
 app/KoordinatPertamanan.php,9\d\9d91eb92bd398dbb74ac3f9fac5dc40f55a6f78c
+]
+-resources/views/PSU_User/tabel_user.blade.php,3\c\3c379bb85e997158909d8614a1ff671d380d2ae9
+h
+8resources/views/PSU_Perumahan/monitoring/index.blade.php,b\8\b88ba4096ec76b8756b933f05323e2064e888e02
