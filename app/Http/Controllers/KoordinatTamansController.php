@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\KoordinatTaman;
+use App\Pertamanan;
 use App\Taman;
 use Illuminate\Http\Request;
 
@@ -39,29 +40,35 @@ class KoordinatTamansController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = [
-            'longitude' => 'required',
-            'latitude' => 'required',
-        ];
+//        $rules = [
+//            'longitude' => 'required',
+//            'latitude' => 'required',
+//        ];
+//
+//        $customMessages = [
+//            'required' => 'Masukan Data :attribute ini ?.',
+//        ];
+//
+//        $this->validate($request, $rules, $customMessages);
 
-        $customMessages = [
-            'required' => 'Masukan Data :attribute ini ?.',
-        ];
-
-        $this->validate($request, $rules, $customMessages);
+//        $taman_id = $request->input('taman_id');
+//        $longitude = $request->input('longitude');
+//        $latitude = $request->input('latitude');
+//        $latlong = "[$latitude, $longitude, ],";
+//
+//        $koordinat_taman = new KoordinatTaman();
+//        $koordinat_taman->perumahan_id = $request->input('perumahan_id');
+//        $koordinat_taman->taman_id = $request->input('taman_id');
+//        $koordinat_taman->longitude = $request->input('longitude');
+//        $koordinat_taman->latitude = $request->input('latitude');
+//        $koordinat_taman->latlong = $latlong;
+//        $koordinat_taman->save();
 
         $taman_id = $request->input('taman_id');
-        $longitude = $request->input('longitude');
-        $latitude = $request->input('latitude');
-        $latlong = "[$latitude, $longitude, ],";
 
-        $koordinat_taman = new KoordinatTaman();
-        $koordinat_taman->perumahan_id = $request->input('perumahan_id');
-        $koordinat_taman->taman_id = $request->input('taman_id');
-        $koordinat_taman->longitude = $request->input('longitude');
-        $koordinat_taman->latitude = $request->input('latitude');
-        $koordinat_taman->latlong = $latlong;
-        $koordinat_taman->save();
+        foreach ($request->data_koordinat as $key => $value){
+            KoordinatTaman::create($value);
+        }
 
 
         return redirect()->action('KoordinatTamansController@index', ['id' => $taman_id])
@@ -78,7 +85,8 @@ class KoordinatTamansController extends Controller
     public function show($id)
     {
         $koordinat = KoordinatTaman::where('taman_id',$id)->get();
-        return view ('PSU_Perumahan.taman.koordinat.peta',compact('koordinat'));
+        $perumahans = Pertamanan::select(\DB::raw("SELECT * FROM pertamanans a, koordinatpertamanans b WHERE a.id = b.pertamanan_id"));
+        return view ('PSU_Perumahan.taman.koordinat.peta',compact('koordinat','perumahans'));
     }
 
     /**

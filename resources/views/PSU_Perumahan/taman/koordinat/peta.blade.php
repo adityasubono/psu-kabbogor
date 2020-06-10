@@ -24,9 +24,10 @@
     </div>
 
 
-    <script
-        src="http://maps.google.com/maps/api/js?key=AIzaSyBMbVQJuBRWDV1jFUVZ9Gzsu-nWOEr9LdM">
+    <script src="
+    http://maps.google.com/maps/api/js?key=AIzaSyBMbVQJuBRWDV1jFUVZ9Gzsu-nWOEr9LdM&callback=initMap">
     </script>
+
     <script src="../../assets/js/gmap/gmaps.js"></script>
     <style type="text/css">
         #mymap {
@@ -40,28 +41,86 @@
     <style type="text/css"> .labels { background-color: rgba(0, 0, 0, 0.5); border-radius: 4px; color: white; padding: 4px; } </style>`
 
     <script type="text/javascript">
-        var locations_sarana = <?php print_r(json_encode($koordinat)) ?>;
-        var mymap = new GMaps({
-            el: '#mymap',
-            lat: -6.485213,
-            lng: 106.753537,
-            zoom:12
-        });
+        var locations = <?php print_r(json_encode($koordinat)) ?>;
+        var perumahans = <?php print_r(json_encode($perumahans)) ?>;
+        var polygons={};
+        var infowindow={};
+        var bounds = {};
+        var cords = {};
+        var coord={};
+        const perumahan_id = [];
+        console.log('pertamanans',perumahans)
+        function onlyUnique(value, index, self) {
+            return self.indexOf(value) === index;
+        }
+        for(let perumahan=0; perumahan< locations.length;perumahan++){
+            const perumahanId = locations[perumahan].perumahan_id;
+            perumahan_id.push(perumahanId);
+        }
+        var unique = perumahan_id.filter( onlyUnique );
+        var result = locations.reduce(function (r, a) {
+            r[a.perumahan_id] = r[a.perumahan_id] || [];
+            r[a.perumahan_id].push(a);
+            return r;
+        }, Object.create(null));
+        console.log('result',result);
+        for(let u=0;u< unique.length; u++){
+            cords[u]=[];
+            for (var j=0; j < result[unique[u]].length; j++) {
+                const lt = parseFloat(result[unique[u]][j].latitude);
+                const ltd = parseFloat(result[unique[u]][j].longitude);
+                coord[j] = {lat: lt, lng:ltd};
+                cords[u].push(coord[j]);
+            }
+        }
 
-        $.each( locations_sarana, function( index, value ){
-            mymap.addMarker({
-                lat: value.latitude,
-                lng: value.longitude,
-                title: value.id,
-                infoWindow: {
-                    content: '<h6>'+ value.latitude +', '+ value.longitude+'</h6>',
-                    maxWidth: 400
-                }
+
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('mymap'), {
+                zoom: 12,
+                center: {
+                    lat: -6.485213,
+                    lng: 106.753537,
+                },
             });
-        });
+            // Construction of polygon.
+            for (let u = 0; u < unique.length; u++) {
+                for (var j=0; j < result[unique[u]].length; j++) {
+                    polygons[u] = new google.maps.Polygon({
+                        paths: cords[u],
+                        strokeColor: '#FF0000',
+                        strokeOpacity: 0.6,
+                        strokeWeight: 1,
+                        fillColor: '#FF0000',
+                        fillOpacity: 0.10
+                    });
+                    polygons[u].setMap(map);
+                    bounds[u] = new google.maps.LatLngBounds();
+                    for (var i = 0; i < polygons[u].getPath().getLength(); i++) {
+                        bounds[u].extend(polygons[u].getPath().getAt(i));
+                    }
 
+                    infowindow[u] = new google.maps.InfoWindow();
+                    infowindow[u].opened = false;
+
+                    function mousefn(evt) {
+                        infowindow[u].setContent("<h5> Perumahan ID : "+ result[unique[u]][1].perumahan_id +
+                            "</h5><div>" +
+                            "</div>");
+                        infowindow[u].setPosition(bounds[u].getCenter());
+                        infowindow[u].open(map);
+                    }
+
+                    google.maps.event.addListener(polygons[u], 'mouseover', mousefn);
+                    // google.maps.event.addListener(mrpdPolygon, 'mousemove', mousefn);
+                    google.maps.event.addListener(polygons[u], 'mouseout', function (evt) {
+                        infowindow[u].close();
+                        infowindow[u].opened = false;
+                    });
+                }
+            }
+        }
     </script>
-
     <a href="/koordinattamans/{{$koor->taman_id}}"
        class="btn btn-info btn-icon-split mb-3">
         <span class="icon text-white-50">

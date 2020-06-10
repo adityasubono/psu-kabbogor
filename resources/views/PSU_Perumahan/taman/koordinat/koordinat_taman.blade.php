@@ -30,9 +30,9 @@
             </div>
 
             <div class="card-body">
-                <input type="hidden" name="taman_id"
+                <input type="text" name="taman_id" id="taman_id"
                        value="{{$data_taman->id}}">
-                <input type="hidden" name="perumahan_id"
+                <input type="text" name="perumahan_id" id="perumahan_id"
                        value="{{$data_taman->perumahan_id}}">
 
                 <input type="hidden" id="jumlah-form" value="0">
@@ -118,11 +118,11 @@
             + '<hr class="bg-gradient-primary">'
             + '<div class="row">'
             + '<div class="col-sm-5">'
-            + '<input type="hidden" class="form-control" id="perumahan_id"'
+            + '<input type="text" class="form-control" id="perumahan_id"'
             + 'name="data_koordinat[' + d + '][perumahan_id]" '
             + 'value="' + perumahan_id + '">'
 
-            + '<input type="hidden" class="form-control" id="taman_id"'
+            + '<input type="text" class="form-control" id="taman_id"'
             + 'name="data_koordinat[' + d + '][taman_id]" '
             + 'value="' + taman_id + '">'
 
