@@ -24,9 +24,6 @@
     </div>
 
 
-    <script src="
-    http://maps.google.com/maps/api/js?key=AIzaSyBMbVQJuBRWDV1jFUVZ9Gzsu-nWOEr9LdM&callback=initMap">
-    </script>
 
     <script src="../../assets/js/gmap/gmaps.js"></script>
     <style type="text/css">
@@ -121,6 +118,11 @@
             }
         }
     </script>
+    <script
+        src="
+    http://maps.google.com/maps/api/js?key=AIzaSyBMbVQJuBRWDV1jFUVZ9Gzsu-nWOEr9LdM&callback=initMap">
+    </script>
+
     <a href="/koordinattamans/{{$koor->taman_id}}"
        class="btn btn-info btn-icon-split mb-3">
         <span class="icon text-white-50">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\KoordinatTaman;
 use App\Pertamanan;
+use App\Perumahans;
 use App\Taman;
 use Illuminate\Http\Request;
 
@@ -85,7 +86,8 @@ class KoordinatTamansController extends Controller
     public function show($id)
     {
         $koordinat = KoordinatTaman::where('taman_id',$id)->get();
-        $perumahans = Pertamanan::select(\DB::raw("SELECT * FROM pertamanans a, koordinatpertamanans b WHERE a.id = b.pertamanan_id"));
+        $perumahans = Perumahans::select(\DB::raw("SELECT * FROM perumahans a, koordinatperumahans b WHERE a.id = b.perumahan_id"));
+
         return view ('PSU_Perumahan.taman.koordinat.peta',compact('koordinat','perumahans'));
     }
 
