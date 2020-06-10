@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Koordinattpu;
 use App\Permukiman;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use phpDocumentor\Reflection\DocBlock\Tags\Return_;
 
 class KoordinattpusController extends Controller

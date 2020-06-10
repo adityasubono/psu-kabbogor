@@ -94,7 +94,7 @@
             <span class="icon text-white-50">
                 <i class="fas fa-download"></i>
             </span>
-            <span class="text">Import File</span>
+            <span class="text">Export Excel</span>
         </a>
     </div>
 </div>

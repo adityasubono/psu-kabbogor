@@ -20,7 +20,7 @@
 <style type="text/css">
     #mymap {
         border: 1px solid red;
-        width: 950px;
+        width: 100%;
         height: 500px;
     }
 </style>
@@ -39,7 +39,7 @@
     } </style>`
 
 <script type="text/javascript">
-    var locations = <?php print_r(json_encode($locations)) ?>;
+    var locations = <?php print_r(json_encode($koor_pertamanan)) ?>;
     var mymap = new GMaps({
         el: '#mymap',
         lat: -6.485213,
@@ -53,7 +53,13 @@
             lng: value.longitude,
             title: value.id,
             infoWindow: {
-                content: '<h6>' + value.latitude + ', ' + value.longitude + '</h6>',
+                content: ' <div id="content">' +
+                    '<div id="siteNotice">'+
+                    '<h5 id="firstHeading" class="firstHeading">'+ value.nama_taman +'</h5>'+
+                    '<div id="bodyContent">'+
+                    '<p><b>Lokasi Alamat : </b>'+ value.lokasi + ' ,' + value.kecamatan + ' ,'
+                    + value.kelurahan + ' RW :' + value.RW +' / RT:'+ value.RT +'</p>'+
+                    '</div>'+ '</div>',
                 maxWidth: 400
             }
         });

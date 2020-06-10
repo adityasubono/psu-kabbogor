@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Hardscape;
+use App\KoordinatPertamanan;
 use App\Permukiman;
 use App\RekapitulasiPertamanan;
 
@@ -24,10 +25,12 @@ class RekapitulasiPertamananController extends Controller
 
         $jml_softscape = Softscape::select(\DB::raw("COUNT(*) as count"))->pluck('count');
 
-        $locations =  DB::table('koordinatpertamanans')->get();
-
+        $koordinatpertamanan = new KoordinatPertamanan();
+        $koor_pertamanan = $koordinatpertamanan->join('pertamanans', 'koordinatpertamanans.pertamanan_id',
+            '=', 'pertamanans.id')->select('longitude','latitude','nama_taman','lokasi',
+            'kecamatan','kelurahan','RT','RW')->get();
         return view('PSU_Pertamanan.rekapitulasi.index',
-            compact('jml_hardscape', 'jml_softscape', 'locations'));
+            compact('jml_hardscape', 'jml_softscape', 'koor_pertamanan'));
 
     }
 

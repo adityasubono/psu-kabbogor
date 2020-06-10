@@ -20,17 +20,12 @@
 <style type="text/css">
     #mymap {
         border: 1px solid red;
-        width: 950px;
+        width: 100%;
         height: 500px;
     }
 </style>
 
-<style> #map {
-        display: block;
-        width: 98%;
-        height: 500px;
-        margin: 0 auto;
-    } </style>
+
 <style type="text/css"> .labels {
         background-color: rgba(0, 0, 0, 0.5);
         border-radius: 4px;
@@ -51,10 +46,17 @@
         mymap.addMarker({
             lat: value.latitude,
             lng: value.longitude,
+            name: value.nama_tpu,
             title: value.id,
             infoWindow: {
-                content: '<h6>' + value.latitude + ', ' + value.longitude + '</h6>',
-                maxWidth: 400
+                content: ' <div id="content">' +
+                    '<div id="siteNotice">'+
+                    '<h5 id="firstHeading" class="firstHeading">'+ value.nama_tpu +'</h5>'+
+                    '<div id="bodyContent">'+
+                    '<p><b>Lokasi Alamat : </b>'+ value.lokasi + ' ,' + value.kecamatan + ' ,'
+                    + value.kelurahan + ' RW :' + value.RW +' / RT:'+ value.RT +'</p>'+
+                    '</div>'+ '</div>',
+                maxWidth: 700
             }
         });
     });

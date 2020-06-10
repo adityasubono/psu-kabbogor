@@ -297,3 +297,9 @@ K
 -resources/views/PSU_User/tabel_user.blade.php,3\c\3c379bb85e997158909d8614a1ff671d380d2ae9
 h
 8resources/views/PSU_Perumahan/monitoring/index.blade.php,b\8\b88ba4096ec76b8756b933f05323e2064e888e02
+N
+public/assets/js/player-min.js,9\7\972fef81ebf78eb14d309923d15068c1761a5f58
+X
+(public/assets/js/vxgplayer-1.8.31.min.js,7\6\76acc41d03b0a129b195763de47def5ad29e677e
+Y
+)public/assets/js/vxgplayer-1.8.31.min.css,8\3\8317da8e68114ea11cbc887cd78823bf6c773a34

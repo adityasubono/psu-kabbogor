@@ -26,8 +26,10 @@ class RekapitulasiPermukimanController extends Controller
             ->where('status','Belum Beroperasional')
             ->pluck('count');
 
-        $koordinattpus = Koordinattpu::all();
-
+             $koordinattpu = new Koordinattpu();
+             $koordinattpus = $koordinattpu->join('permukimans', 'koordinattpus.permukiman_id',
+                 '=', 'permukimans.id')->select('longitude','latitude','nama_tpu','lokasi',
+             'kecamatan','kelurahan','RT','RW')->get();
 
         return view('PSU_Permukiman.rekapitulasi.index',
             compact('jml_status_sudah', 'jml_status_belum','koordinattpus'));
