@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\FotoSarana;
 use App\KoordinatPerumahan;
 use App\KoordinatSarana;
+use App\Perumahans;
 use App\Sarana;
 use Illuminate\Http\Request;
 
@@ -44,29 +45,35 @@ class KoordinatSaranasController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = [
-            'longitude' => 'required',
-            'latitude' => 'required',
-        ];
-
-        $customMessages = [
-            'required' => 'Masukan Data :attribute ini ?.',
-        ];
-
-        $this->validate($request, $rules, $customMessages);
+//        $rules = [
+//            'longitude' => 'required',
+//            'latitude' => 'required',
+//        ];
+//
+//        $customMessages = [
+//            'required' => 'Masukan Data :attribute ini ?.',
+//        ];
+//
+//        $this->validate($request, $rules, $customMessages);
+//
+//
+//        $longitude = $request->input('longitude');
+//        $latitude = $request->input('latitude');
+//        $latlong = "[$latitude, $longitude, ],";
+//
+//        $koordinat_sarana = new KoordinatSarana();
+//        $koordinat_sarana->perumahan_id = $request->input('perumahan_id');
+//        $koordinat_sarana->sarana_id = $request->input('sarana_id');
+//        $koordinat_sarana->longitude = $request->input('longitude');
+//        $koordinat_sarana->latitude = $request->input('latitude');
+//        $koordinat_sarana->latlong = $latlong;
+//        $koordinat_sarana->save();
 
         $sarana_id = $request->input('sarana_id');
-        $longitude = $request->input('longitude');
-        $latitude = $request->input('latitude');
-        $latlong = "[$latitude, $longitude, ],";
+        foreach ($request->data_koordinat as $key => $value){
+            KoordinatSarana::create($value);
+        }
 
-        $koordinat_sarana = new KoordinatSarana();
-        $koordinat_sarana->perumahan_id = $request->input('perumahan_id');
-        $koordinat_sarana->sarana_id = $request->input('sarana_id');
-        $koordinat_sarana->longitude = $request->input('longitude');
-        $koordinat_sarana->latitude = $request->input('latitude');
-        $koordinat_sarana->latlong = $latlong;
-        $koordinat_sarana->save();
 
 
         return redirect()->action('KoordinatSaranasController@index', ['id' => $sarana_id])
@@ -84,7 +91,9 @@ class KoordinatSaranasController extends Controller
     {
 
         $koordinat = KoordinatSarana::where('sarana_id',$id)->get();
-        return view ('PSU_Perumahan.sarana.koordinat.peta',compact('koordinat'));
+        $perumahans = Perumahans::select(\DB::raw("SELECT * FROM perumahans a, koordinatperumahans b WHERE a.id = b.perumahan_id"));
+
+        return view ('PSU_Perumahan.sarana.koordinat.peta',compact('koordinat','perumahans'));
     }
 
     /**

@@ -11,9 +11,8 @@
                 <thead class="thead-light">
                 <tr>
                     <th>No.</th>
-                    <th>Longitude</th>
                     <th>Latitude</th>
-                    <th>LatLong</th>
+                    <th>Longitude</th>
                     <th>Aksi</th>
                 </tr>
                 </thead>
@@ -21,9 +20,8 @@
                 @forelse( $data_koordinat as $koordinat_sarana )
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $koordinat_sarana->longitude }}</td>
                     <td>{{ $koordinat_sarana->latitude }}</td>
-                    <td>{{ $koordinat_sarana->latlong }}</td>
+                    <td>{{ $koordinat_sarana->longitude }}</td>
                     <td>
                         <a href="/koordinatsarana/edit/{{ $koordinat_sarana->id }}" class="btn
                         btn-warning

@@ -21,8 +21,6 @@ X
 (resources/views/students/index.blade.php,b\4\b444f0938454e76035c9dea9114f9f4d04e2113d
 b
 2resources/views/PSU_Kegiatan_Fisik/index.blade.php,b\0\b09bbcf15306d5791bff57cfb998c0fd5917ac66
-f
-6resources/views/PSU_Kawasan_Permukiman/index.blade.php,5\a\5a7699f5d48333b87f25bf50e90050cd4e031452
 ^
 .resources/views/PSU_Pertamanan/index.blade.php,e\1\e13e3251ed5bafd758edb0ac077d24d29b93a9c8
 a
