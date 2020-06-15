@@ -68,6 +68,8 @@
                                       class="d-inline">
                                     @method('delete')
                                     @csrf
+                                    <input type="hidden" name="foto" value="{{ $user->foto }}">
+
                                     <button type="submit" class="btn btn-danger btn-ok">Hapus</button>
                                 </form>
                             </div>

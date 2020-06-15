@@ -180,6 +180,7 @@ class UserController extends Controller
             $data->foto = $newName;
         }
 
+        $data->save();
 
         return redirect('/users/edit/' . $id)->with('status', 'Data Berhasil Diupdate');
     }
@@ -210,7 +211,7 @@ class UserController extends Controller
             $file->move('assets/uploads/user/', $newName);
             $data->foto = $newName;
         }
-
+        $data->save();
         return redirect('/users')->with('status', 'Data Berhasil Diupdate');
     }
 
@@ -243,9 +244,18 @@ class UserController extends Controller
      * @param \App\User $user
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        User::destroy($id);
-        return redirect('/users')->with('status', 'Data Success Delete');
+        $filename = $request->input('foto');
+        if(isset($filename)){
+            User::where('id', $id)->delete();
+            $path = public_path('assets/uploads/user/') . $filename;
+            if (file_exists($path)) {
+                unlink($path);
+            }
+            return redirect('/users')->with('status', 'Data Berhasil Dihapus');
+        } else {
+            return redirect('/users')->with('error', 'Data Gagal Dihapus');
+        }
     }
 }

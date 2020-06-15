@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AdministratorMiddleware
@@ -20,25 +21,20 @@ class AdministratorMiddleware
             return redirect()->route('login');
         }
 
-        if (Auth::user()->role == 1) {
+        if (Auth::user()->role == 2) {
             return redirect()->route('administrator');
         }
 
-        if (Auth::user()->role == 2) {
+        if (Auth::user()->role == 3) {
             return redirect()->route('operatorperumahan');
         }
 
-        if (Auth::user()->role == 3) {
+        if (Auth::user()->role == 4) {
             return redirect()->route('operatorpertamanan');
         }
 
-        if (Auth::user()->role == 4) {
+        if (Auth::user()->role == 5) {
             return redirect()->route('operatorpermukiman');
         }
-
-        if (Auth::user()->role == 5) {
-            return $next($request);
-        }
-
     }
 }

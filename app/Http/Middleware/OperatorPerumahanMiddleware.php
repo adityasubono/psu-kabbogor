@@ -15,6 +15,9 @@ class OperatorPerumahanMiddleware
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        if(auth()->user()->role_id == 2){
+            return $next($request);
+        }
+        return redirect('/beranda')->with('error','You have not admin access');
     }
 }
