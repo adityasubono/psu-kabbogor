@@ -54,7 +54,7 @@ class KecamatansController extends Controller
 //            Kelurahan::create($value);
 //        }
 
-        return redirect('/kecamatans')->with('status','Data Success Insert');
+        return redirect('/kecamatans')->with('status','Data Berhasil Disimpan');
 
 
 

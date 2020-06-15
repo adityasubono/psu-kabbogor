@@ -35,7 +35,6 @@
                                          @enderror"
                                id="nama"
                                name="data_kelurahan[0][nama_kelurahan]"
-                               placeholder="Masukan Nama Kelurahan"
                                value="{{ old('nama_kelurahan') }}">
                         @error('nama_kelurahan')
                         <div class="invalid-feedback">

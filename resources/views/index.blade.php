@@ -65,8 +65,8 @@
                     data-toggle="modal"
                     data-target="#loading"
                     data-backdrop="static"
-                    data-keyboard="false">Login</button>
-
+                    data-keyboard="false">Login
+            </button>
         </form>
 
     </div>

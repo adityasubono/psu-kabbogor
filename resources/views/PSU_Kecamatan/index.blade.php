@@ -96,7 +96,7 @@
                             @endforeach
                         </td>
 
-                        <td>{{ $kecamatan->r_kelurahan->count() }}</td>
+                        <td>{{ $kecamatan->r_kelurahan->count() }} Desa / Kelurahan</td>
                         <td>
                             <a href="/kelurahans/edit/{{ $kecamatan->id }}" class="btn btn-warning
                             btn-icon-split">

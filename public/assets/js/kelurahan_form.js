@@ -12,8 +12,7 @@ $("#add_data_kelurahan").click(function () {
         + '<div class="col-sm-3">'
         + '<label for="nama_kelurahan">Nama Kelurahan</label><br>'
         + '<input type="text" class="form-control" id="nama" '
-        + 'name="data_kelurahan[' + a + '][nama_kelurahan]"'
-        + 'placeholder="Nama Kelurahan">'
+        + 'name="data_kelurahan[' + a + '][nama_kelurahan]">'
 
         + '<input type="hidden" class="form-control" id="nama" '
         + 'name="data_kelurahan[' + 0 + '][kecamatan_id]"'

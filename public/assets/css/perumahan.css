@@ -87,4 +87,10 @@ div.desc {
     text-align: center;
 }
 
+#myBar {
+    width: 0%;
+    height: 30px;
+    background-color: #6598fe;
+}
+
 
