@@ -38,18 +38,18 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary btn-icon-split">
-                            <span class="icon text-white-50">
-                                <i class="fas fa-download"></i>
-                            </span>
-                    <span class="text">Submit</span>
-                </button>
+                <a href="/kecamatans" class="btn btn-info btn-icon-split">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-arrow-alt-circle-left"></i>
+                    </span>
+                    <span class="text">Kembali</span>
+                </a>
 
-                <button type="reset" class="btn btn-warning btn-icon-split">
-                            <span class="icon text-white-50">
-                                <i class="fas fa-sync"></i>
-                            </span>
-                    <span class="text">Reset</span>
+                <button type="submit" class="btn btn-primary btn-icon-split">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-download"></i>
+                    </span>
+                    <span class="text">Simpan</span>
                 </button>
             </form>
         </div>

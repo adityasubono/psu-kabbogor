@@ -79,11 +79,13 @@ class KelurahansController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Kelurahan  $kelurahan
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit(Kelurahan $kelurahan)
+    public function edit($id)
     {
-        //
+        $kecamatan = Kecamatan::find($id);
+        $data_kelurahan = Kelurahan::where('kecamatan_id', $id)->get();
+        return view('PSU_Kelurahan.edit', compact('data_kelurahan','kecamatan'));
     }
 
     /**
@@ -91,21 +93,32 @@ class KelurahansController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Kelurahan  $kelurahan
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(Request $request, Kelurahan $kelurahan)
+    public function update(Request $request)
     {
         //
+
+        $data_kelurahan = $request->input('data_kelurahan');
+
+        foreach ($data_kelurahan as $row){
+            $kelurahan = Kelurahan::find($row['id']);
+            $kelurahan->nama_kelurahan = $row['nama_kelurahan'];
+            $kelurahan->save();
+        }
+        return redirect('/kecamatans')->with('status','Data Berhasil Diupdate');
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Kelurahan  $kelurahan
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function destroy(Kelurahan $kelurahan)
+    public function destroy($id)
     {
-        //
+        Kelurahan::destroy($id);
+        return redirect('/kecamatans')->with('status','Data Kelurahan Berhasil Dihapus');
     }
 }

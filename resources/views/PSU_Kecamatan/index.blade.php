@@ -38,6 +38,7 @@
                         <th>No.</th>
                         <th>Nama Kecamatan</th>
                         <th>Nama Kelurahan / Desa</th>
+                        <th></th>
                         <th>Jumlah</th>
                         <th>Aksi</th>
                     </tr>
@@ -46,16 +47,58 @@
                     @foreach( $kecamatans as $kecamatan )
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td> <a href="" class=""> {{ $kecamatan->nama_kecamatan }} </a></td>
+                        <td>{{ $kecamatan->nama_kecamatan }}</td>
 
                         <td>
-                        @foreach( $kecamatan->r_kelurahan as $kel )
-                            <a href="">{{ $kel->nama_kelurahan  }}</a><br>
-                        @endforeach
+                            @foreach( $kecamatan->r_kelurahan as $kel )
+                            {{ $kel->nama_kelurahan }}<hr class="m-1">
+                            @endforeach
                         </td>
+                        <td>
+                            @foreach( $kecamatan->r_kelurahan as $kel )
+                            <a href="/kelurahans/delete/{{ $kel->id }}"
+                               data-toggle="modal"
+                               data-target="#delete_kelurahan{{ $kel->id }}"
+                               data-backdrop="static"
+                               data-keyboard="false">
+                                <i class="fas fa-times-circle"></i></a>
+                            <hr class="m-1">
+
+                            <!-- Delete Kelurahan -->
+                            <div class="modal fade" id="delete_kelurahan{{$kel->id}}">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-danger text-white">
+                                            <i class="fas fa-exclamation-triangle fa-2x">
+                                                Perhatian !</i>
+                                        </div>
+                                        <div class="modal-body">
+                                            <b>Apakah Anda Akan Menghapus Kelurahan
+                                                {{$kel->nama_kelurahan}} ?</b>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-success"
+                                                    data-dismiss="modal">Batal
+                                            </button>
+                                            <form action="/kelurahans/delete/{{ $kel->id}}"
+                                                  method="post"
+                                                  class="d-inline">
+                                                @method('delete')
+                                                @csrf
+                                                <button type="submit" class="btn btn-danger btn-ok">
+                                                    Hapus
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                        </td>
+
                         <td>{{ $kecamatan->r_kelurahan->count() }}</td>
                         <td>
-                            <a href="/kecamatans/edit" class="btn btn-warning
+                            <a href="/kelurahans/edit/{{ $kecamatan->id }}" class="btn btn-warning
                             btn-icon-split">
                             <span class="icon text-white-50">
                                 <i class="fas fa-pen"></i>
@@ -64,12 +107,48 @@
                             </a>
 
                             <button class="btn btn-danger btn-icon-split" data-toggle="modal"
-                                    data-target="#confirm-delete" data-backdrop="static" data-keyboard="false">
+                                    data-target="#confirm-delete{{ $kecamatan->id }}" data-backdrop="static"
+                                    data-keyboard="false">
                             <span class="icon text-white-50">
                                 <i class="fas fa-trash"></i>
                             </span>
                                 <span class="text">Hapus</span>
                             </button>
+
+
+                            <!--Confirm Delete-->
+                            <div class="modal fade" id="confirm-delete{{ $kecamatan->id }}">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-danger text-white">
+                                            <i class="fas fa-exclamation-triangle fa-2x">
+                                                Perhatian !</i>
+                                        </div>
+                                        <div class="modal-body">
+                                            <b>Apakah Anda Akan Menghapus Data Ini Kecamatan
+                                                {{$kecamatan->nama_kecamatan}} ?</b>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-success"
+                                                    data-dismiss="modal">Batal
+                                            </button>
+                                            <form action="/kecamatans/delete/{{ $kecamatan->id }}"
+                                                  method="post"
+                                                  class="d-inline">
+                                                @method('delete')
+                                                @csrf
+                                                <button type="submit" class="btn btn-danger btn-ok">
+                                                    Hapus
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
                         </td>
                     </tr>
                     @endforeach
@@ -81,48 +160,28 @@
 </div>
 
 
-<!--Confirm Delete-->
-<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog"
-     aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header bg-warning">
-                Perhatian !
-            </div>
-            <div class="modal-body">
-                <b>Apakah Anda Akan Menghapus Data Ini ?</b>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
-
-
-                <form action="/kecamatans/" method="post" class="d-inline">
-                    @method('delete')
-                    @csrf
-                    <button type="submit" class="btn btn-danger btn-ok">Delete</button>
-                </form>
-
-
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
 <script type="text/javascript">
-    $('#confirm-delete').on('show.bs.modal', function(e) {
+    $('#confirm-delete').on('show.bs.modal', function (e) {
         $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
     });
     $('#confirm-delete').modal({backdrop: 'static', keyboard: false})
 </script>
 
 <script type="text/javascript">
-    $(document).ready(function() {
-        $('#example').DataTable( {
+    $(document).ready(function () {
+        $('#example').DataTable({
             "scrollX": true
-        } );
-    } );
+        });
+    });
 </script>
+
+<script type="text/javascript">
+    window.setTimeout(function () {
+        $(".alert").fadeTo(500, 0).slideUp(500, function () {
+            $(this).remove();
+        });
+    }, 4000);
+</script>
+
 
 @endsection

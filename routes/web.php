@@ -74,6 +74,7 @@ Route::delete('/rules/delete/{id}','RulesController@destroy');
 Route::get('/kecamatans','KecamatansController@index');
 Route::get('/kecamatans/create', 'KecamatansController@create');
 Route::post('/kecamatans/', 'KecamatansController@store');
+Route::delete('/kecamatans/delete/{id}', 'KecamatansController@destroy');
 
 
 //Data Kelurahan
@@ -82,6 +83,9 @@ Route::get('/kelurahans/create', 'KelurahansController@create');
 Route::post('/kelurahans/', 'KelurahansController@store');
 Route::get('/kelurahans/get/{id}', 'KelurahansController@getKelurahan');
 Route::get('/perumahans/get/{id}', 'KelurahansController@getKelurahan');
+Route::get('/kelurahans/edit/{id}', 'KelurahansController@edit');
+Route::patch('/kelurahans/update/{id}', 'KelurahansController@update');
+Route::delete('/kelurahans/delete/{id}', 'KelurahansController@destroy');
 
 //Data User
 Route::resource('users','UserController');

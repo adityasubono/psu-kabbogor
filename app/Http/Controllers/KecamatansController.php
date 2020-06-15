@@ -99,10 +99,12 @@ class KecamatansController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Kecamatan  $kecamatan
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function destroy(Kecamatan $kecamatan)
+    public function destroy($id)
     {
-        //
+        Kecamatan::destroy($id);
+        Kelurahan::where('kecamatan_id',$id)->delete();
+        return redirect('/kecamatans')->with('status','Data Berhasil Dihapus');
     }
 }

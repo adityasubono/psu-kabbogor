@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @method static where(string $string, $kecamatan)
+ * @method static find($id)
  */
 class Kecamatan extends Model
 {
