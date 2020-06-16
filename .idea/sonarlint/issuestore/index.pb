@@ -301,3 +301,5 @@ X
 (public/assets/js/vxgplayer-1.8.31.min.js,7\6\76acc41d03b0a129b195763de47def5ad29e677e
 Y
 )public/assets/js/vxgplayer-1.8.31.min.css,8\3\8317da8e68114ea11cbc887cd78823bf6c773a34
+q
+Aresources/views/PSU_Permukiman/filter/filter_permukiman.blade.php,9\9\99a9d2750ae060b3ee8aa9726c7e6bc836f87118

@@ -1,6 +1,8 @@
-@if(Session::get('login') == 'TRUE')
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@if(Session::get('login') == 'TRUE')
+
 @include('includes.head')
 
 <body id="page-top">
@@ -46,7 +48,6 @@
 </a>
 
 
-
 <!-- Bootstrap core JavaScript-->
 
 <script src="{!! asset('assets/jquery/jquery.min.js') !!}"></script>
@@ -70,22 +71,23 @@
 <script src="{!! asset('assets/datatables/dataTables.bootstrap4.min.js') !!}"></script>
 <script src="{!! asset('assets/js/demo/datatables-demo.js') !!}"></script>
 
-
-</body>
-</html>
-
 @else
 
-    <h1 style="color: red; text-align: center"> Maaf Anda Tidak Mempunyai Hak Akses Disini
-        <br> <a href="/">Kembali Ke Halaman Login</a>
-        <br>
-        <img src="../../assets/images/403.jpg" style="width: 1000px; height:
+<h1 style="color: red; text-align: center"> Maaf Anda Tidak Mempunyai Hak Akses Disini
+    <br> <a href="/">Kembali Ke Halaman Login</a>
+    <br>
+    <img src="../../assets/images/403.jpg" style="width: 1000px; height:
         500px;
         margin-top:
         30px;">
-    </h1>
+</h1>
 
 
 
 @endif
+
+
+</body>
+</html>
+
 
