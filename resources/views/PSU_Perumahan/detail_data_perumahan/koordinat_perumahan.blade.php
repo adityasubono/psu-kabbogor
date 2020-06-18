@@ -2,7 +2,7 @@
 <h5 class="mt-3">Data Koordinat Perumahan</h5>
 
 <table class="table table-bordered table-striped">
-    <thead>
+    <thead class="bg-gray-400">
     <tr>
         <th scope="col">No.</th>
         <th scope="col">Koordinat Longitude</th>

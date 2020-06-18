@@ -26,6 +26,7 @@ class RekapitulasiPertamananController extends Controller
         $jml_softscape = Softscape::select(\DB::raw("COUNT(*) as count"))->pluck('count');
 
         $koordinatpertamanan = new KoordinatPertamanan();
+
         $koor_pertamanan = $koordinatpertamanan->join('pertamanans', 'koordinatpertamanans.pertamanan_id',
             '=', 'pertamanans.id')->select('longitude','latitude','nama_taman','lokasi',
             'kecamatan','kelurahan','RT','RW')->get();

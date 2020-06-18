@@ -5,87 +5,74 @@
 @section('container-fluid')
 <div class="container-fluid">
 
-    <script
-        src="http://maps.google.com/maps/api/js?key=AIzaSyBMbVQJuBRWDV1jFUVZ9Gzsu-nWOEr9LdM">
-    </script>
-    <script src="../../assets/js/gmap/gmaps.js"></script>
-        <style type="text/css">
-            #mymap {
-                border:1px solid red;
-                width: 800px;
-                height: 500px;
-            }
-        </style>
-
-    <style> #map { display: block; width: 98%; height: 500px; margin: 0 auto; } </style>
-    <style type="text/css"> .labels { background-color: rgba(0, 0, 0, 0.5); border-radius: 4px; color: white; padding: 4px; } </style>`
-
-
-
-
-    <div id="mymap"></div>
+    <div id="map"></div>
+    <style type="text/css">
+        #map {
+            border: 1px solid red;
+            width: 100%;
+            height: 600px;
+        }
+    </style>
 
 
     <script type="text/javascript">
 
+        var loc_permukiman = <?php print_r(json_encode($locations_permukiman))?>;
+        var marker;
+        var infowindow={};
 
-        var locations_pertamanan = <?php print_r(json_encode($locations_pertamanan)) ?>;
-
-        var locations_permukiman = <?php print_r(json_encode($locations_permukiman)) ?>;
-
-        var locations_sarana = <?php print_r(json_encode($locations_sarana)) ?>;
-
-
-        var mymap = new GMaps({
-            el: '#mymap',
-            lat: -6.485213,
-            lng: 106.753537,
-            zoom:9
-        });
-
-        var contentString = '<h5>Hello Dunia!</h5>';
-
-        $.each( locations_permukiman, function( index, value ){
-            mymap.addMarker({
-                lat: value.longitude,
-                lng: value.latitude,
-                title: value.id,
-                icon: "assets/images/icon_2.png",
-                infoWindow: {
-                    content: contentString,
-                    maxWidth: 100
-                },
-                Anchor: new google.maps.Point(3, 30),
-                labelClass: "labels", // the CSS class for the label
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 12,
+                center: {lat: -6.48185947262063, lng: 106.68844918541747}
             });
-        });
+
+            setMarkers(map);
+        }
+
+        function setMarkers(map) {
+
+            for (var i = 0; i < loc_permukiman.length; i++) {
+                // console.log('permukiman', loc_permukiman[i].latitude)
+                var latitude = parseFloat(loc_permukiman[i].latitude);
+                var longitude = parseFloat(loc_permukiman[i].longitude);
+                var contentString = parseFloat(loc_permukiman[i].latitude);
 
 
-        $.each( locations_pertamanan, function( index, value ){
-            mymap.addMarker({
-                lat: value.latitude,
-                lng: value.longitude,
-                title: value.id,
-                infoWindow: {
-                    content: '<h4> Pertamanan'+ value.id +'</h4><div>Pertamanan</div>',
-                    maxWidth: 100
-                }
-            });
-        });
 
-        $.each( locations_sarana, function( index, value ){
-            mymap.addMarker({
-                lat: value.longitude,
-                lng: value.latitude,
-                title: value.id,
-                infoWindow: {
-                    content: '<h4> Sarana'+ value.id +'</h4><div>Sarana</div>',
-                    maxWidth: 100
-                }
-            });
-        });
+                infowindow[i] = new google.maps.InfoWindow();
+
+                    marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(latitude, longitude),
+                        map: map,
+                        content: contentString,
+                });
+                marker.addListener('click', function() {
+                    // read custom data in this.data
+                    infowindow.setContent('<div id="content">'+
+                        '<div id="siteNotice">'+
+                        '</div>'+
+                        '<h1 id="firstHeading" class="firstHeading">'+ latitude +','+ longitude+'</h1>'+
+                        '<div id="bodyContent">'+
+                        '<p>'+ latitude +','+ longitude+'</p>'+
+                        '</div>'+
+                        '</div>');
+
+                    infowindow.open(map, this);
+                    map.setCenter(this.getPosition());
+
+                    // infowindow.open(map, marker);
+                });
+
+            }
+        }
+
+
     </script>
 </div>
 
+<script async defer
+        src="http://maps.google.com/maps/api/js?key=AIzaSyBMbVQJuBRWDV1jFUVZ9Gzsu-nWOEr9LdM&callback=initMap">
+</script>
 
 @endsection

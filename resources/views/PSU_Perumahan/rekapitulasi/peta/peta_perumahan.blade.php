@@ -4,53 +4,139 @@
 <style type="text/css">
     #mymap {
         border: 1px solid red;
-        width: 1080px;
-        height: 500px;
+        width: 100%;
+        height: 600px;
     }
 </style>
 
-<style type="text/css">
-    .labels {
-        background-color: rgba(0, 0, 0, 0.5);
-        border-radius: 4px;
-        color: white;
-        padding: 4px;
-    } </style>`
-
 <script type="text/javascript">
-    var locations = <?php print_r(json_encode($koordinat_perumahan)) ?>;
-    var perumahans = <?php print_r(json_encode($perumahans)) ?>;
-    var polygons={};
-    var infowindow={};
-    var bounds = {};
-    var cords = {};
-    var coord={};
+    //var locations = <?php //print_r(json_encode($koordinat_perumahan)) ?>//;
+    //var perumahans = <?php //print_r(json_encode($perumahans)) ?>//;
+    //var polygons = {};
+    //var infowindow = {};
+    //var bounds = {};
+    //var cords = {};
+    //var coord = {};
+    //const perumahan_id = [];
+    //console.log('perumahans', perumahans)
+    //
+    //function onlyUnique(value, index, self) {
+    //    return self.indexOf(value) === index;
+    //}
+    //
+    //for (let perumahan = 0; perumahan < locations.length; perumahan++) {
+    //    const perumahanId = locations[perumahan].perumahan_id;
+    //    perumahan_id.push(perumahanId);
+    //}
+    //var unique = perumahan_id.filter(onlyUnique);
+    //var result = locations.reduce(function (r, a) {
+    //    r[a.perumahan_id] = r[a.perumahan_id] || [];
+    //    r[a.perumahan_id].push(a);
+    //    return r;
+    //}, Object.create(null));
+    //console.log('result', result);
+    //for (let u = 0; u < unique.length; u++) {
+    //    cords[u] = [];
+    //    for (var j = 0; j < result[unique[u]].length; j++) {
+    //        const lt = parseFloat(result[unique[u]][j].latitude);
+    //        const ltd = parseFloat(result[unique[u]][j].longitude);
+    //        coord[j] = {lat: lt, lng: ltd};
+    //        cords[u].push(coord[j]);
+    //    }
+    //}
+    //
+    //function initMap() {
+    //    var map = new google.maps.Map(document.getElementById('mymap'), {
+    //        zoom: 12,
+    //        center: {
+    //            lat: -6.485213,
+    //            lng: 106.753537,
+    //        },
+    //    });
+    //    // Construction of polygon.
+    //    for (let u = 0; u < unique.length; u++) {
+    //        for (var j = 0; j < result[unique[u]].length; j++) {
+    //            polygons[u] = new google.maps.Polygon({
+    //                paths: cords[u],
+    //                strokeColor: '#0000FF',
+    //                strokeOpacity: 0.6,
+    //                strokeWeight: 1,
+    //                fillColor: '#7FFF00',
+    //                fillOpacity: 0.10
+    //            });
+    //            polygons[u].setMap(map);
+    //            bounds[u] = new google.maps.LatLngBounds();
+    //            for (var i = 0; i < polygons[u].getPath().getLength(); i++) {
+    //                bounds[u].extend(polygons[u].getPath().getAt(i));
+    //            }
+    //
+    //            infowindow[u] = new google.maps.InfoWindow();
+    //            infowindow[u].opened = false;
+    //
+    //            function mousefn(evt) {
+    //                infowindow[u].setContent(
+    //                    '<div id="content">' +
+    //                    '<div id="siteNotice"></div>' +
+    //                    '<h3 id="firstHeading" class="firstHeading">'
+    //                    + result[unique[u]][1].nama_perumahan +
+    //                    '</h3>' +
+    //                    '<div id="bodyContent">' +
+    //                    '<p style="font-size: 15px"><b>Alamat : </b>' + result[unique[u]][1]
+    //                        .lokasi + ' ,'
+    //                    + result[unique[u]][1].kelurahan + ' ,' + result[unique[u]][1].kecamatan
+    //                    + ' ,RT: '
+    //                    + result[unique[u]][1].RT + ' / RW: ' + result[unique[u]][1].RW + '</p>' +
+    //                    '</div></div>');
+    //
+    //                infowindow[u].setPosition(bounds[u].getCenter());
+    //                infowindow[u].open(map);
+    //            }
+    //
+    //            google.maps.event.addListener(polygons[u], 'mouseover', mousefn);
+    //            // google.maps.event.addListener(mrpdPolygon, 'mousemove', mousefn);
+    //            google.maps.event.addListener(polygons[u], 'mouseout', function (evt) {
+    //                infowindow[u].close();
+    //                infowindow[u].opened = false;
+    //            });
+    //        }
+    //    }
+    //}
+
+
+    var sarana = <?php print_r(json_encode($koordinat_sarana)) ?>;
+    var perumahan_saranas = <?php print_r(json_encode($perumahans)) ?>;
+    var polygons_sarana = {};
+    var infowindow_sarana = {};
+    var bounds_sarana = {};
+    var cords_sarana = {};
+    var coord_sarana = {};
     const perumahan_id = [];
-    console.log('perumahans',perumahans)
+    console.log('perumahans', perumahan_saranas)
+
     function onlyUnique(value, index, self) {
         return self.indexOf(value) === index;
     }
-    for(let perumahan=0; perumahan< locations.length;perumahan++){
-        const perumahanId = locations[perumahan].perumahan_id;
+
+    for (let perumahan = 0; perumahan < sarana.length; perumahan++) {
+        const perumahanId = sarana[perumahan].perumahan_id;
         perumahan_id.push(perumahanId);
     }
-    var unique = perumahan_id.filter( onlyUnique );
-    var result = locations.reduce(function (r, a) {
+    var unique = perumahan_id.filter(onlyUnique);
+    var result = sarana.reduce(function (r, a) {
         r[a.perumahan_id] = r[a.perumahan_id] || [];
         r[a.perumahan_id].push(a);
         return r;
     }, Object.create(null));
-    console.log('result',result);
-    for(let u=0;u< unique.length; u++){
-        cords[u]=[];
-        for (var j=0; j < result[unique[u]].length; j++) {
+    console.log('result', result);
+    for (let u = 0; u < unique.length; u++) {
+        cords_sarana[u] = [];
+        for (var j = 0; j < result[unique[u]].length; j++) {
             const lt = parseFloat(result[unique[u]][j].latitude);
             const ltd = parseFloat(result[unique[u]][j].longitude);
-            coord[j] = {lat: lt, lng:ltd};
-            cords[u].push(coord[j]);
+            coord_sarana [j] = {lat: lt, lng: ltd};
+            cords_sarana[u].push(coord_sarana [j]);
         }
     }
-
 
     function initMap() {
         var map = new google.maps.Map(document.getElementById('mymap'), {
@@ -62,43 +148,60 @@
         });
         // Construction of polygon.
         for (let u = 0; u < unique.length; u++) {
-            for (var j=0; j < result[unique[u]].length; j++) {
-            polygons[u] = new google.maps.Polygon({
-                paths: cords[u],
-                strokeColor: '#FF0000',
-                strokeOpacity: 0.6,
-                strokeWeight: 1,
-                fillColor: '#FF0000',
-                fillOpacity: 0.10
-            });
-            polygons[u].setMap(map);
-            bounds[u] = new google.maps.LatLngBounds();
-            for (var i = 0; i < polygons[u].getPath().getLength(); i++) {
-                bounds[u].extend(polygons[u].getPath().getAt(i));
+            for (var j = 0; j < result[unique[u]].length; j++) {
+                polygons_sarana[u] = new google.maps.Polygon({
+                    paths: cords_sarana[u],
+                    strokeColor: '#0000FF',
+                    strokeOpacity: 0.6,
+                    strokeWeight: 1,
+                    fillColor: '#7FFF00',
+                    fillOpacity: 0.10
+                });
+                polygons_sarana[u].setMap(map);
+                bounds_sarana[u] = new google.maps.LatLngBounds();
+                for (var i = 0; i < polygons_sarana[u].getPath().getLength(); i++) {
+                    bounds_sarana[u].extend(polygons_sarana[u].getPath().getAt(i));
+                }
+
+                infowindow_sarana[u] = new google.maps.InfoWindow();
+                infowindow_sarana[u].opened = false;
+
+                function mousefn(evt) {
+                    infowindow_sarana[u].setContent(
+                        '<div id="content">' +
+                        '<div id="siteNotice"></div>' +
+                        '<h3 id="firstHeading" class="firstHeading"> Sarana : '
+                        + result[unique[u]][1].nama_perumahan +
+                        '</h3>' +
+                        '<div id="bodyContent">' +
+                        '<p style="font-size: 15px"><b>Alamat : </b>' + result[unique[u]][1]
+                            .lokasi + ' ,'
+                        + result[unique[u]][1].kelurahan + ' ,' + result[unique[u]][1].kecamatan
+                        + ' ,RT: '
+                        + result[unique[u]][1].RT + ' / RW: ' + result[unique[u]][1].RW + '</p>' +
+                        '</div></div>');
+
+                    infowindow_sarana[u].setPosition(bounds_sarana[u].getCenter());
+                    infowindow_sarana[u].open(map);
+                }
+
+                google.maps.event.addListener(polygons_sarana[u], 'mouseover', mousefn);
+                // google.maps.event.addListener(mrpdPolygon, 'mousemove', mousefn);
+                google.maps.event.addListener(polygons_sarana[u], 'mouseout', function (evt) {
+                    infowindow_sarana[u].close();
+                    infowindow_sarana[u].opened = false;
+                });
             }
-
-            infowindow[u] = new google.maps.InfoWindow();
-            infowindow[u].opened = false;
-
-            function mousefn(evt) {
-                infowindow[u].setContent("<h5> Perumahan ID : "+ result[unique[u]][1].perumahan_id +
-                    "</h5><div>" +
-                    "</div>");
-                infowindow[u].setPosition(bounds[u].getCenter());
-                infowindow[u].open(map);
-            }
-
-            google.maps.event.addListener(polygons[u], 'mouseover', mousefn);
-            // google.maps.event.addListener(mrpdPolygon, 'mousemove', mousefn);
-            google.maps.event.addListener(polygons[u], 'mouseout', function (evt) {
-                infowindow[u].close();
-                infowindow[u].opened = false;
-            });
         }
     }
-    }
 </script>
+
+
+<script type="text/javascript">
+
+</script>
+
+
 <script
-    src="
-    http://maps.google.com/maps/api/js?key=AIzaSyBMbVQJuBRWDV1jFUVZ9Gzsu-nWOEr9LdM&callback=initMap">
+    src="http://maps.google.com/maps/api/js?key=AIzaSyBMbVQJuBRWDV1jFUVZ9Gzsu-nWOEr9LdM&callback=initMap">
 </script>
