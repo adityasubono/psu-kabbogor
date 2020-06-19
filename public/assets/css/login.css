@@ -45,8 +45,8 @@ body {
     }
 
     .login-form{
-        margin-top: 110%;
-        margin-left: -148%;
+        margin-top: 105%;
+        margin-left: -140%;
         border: 5px solid grey;
         border-radius: 15px;
         padding: 13px;
@@ -129,7 +129,7 @@ body {
 
 .modal-content {
     background-color: rgba(0,0,0,.0001) !important;
-    border: none;
+    border: 0;
     position:center;
 }
 
