@@ -3,7 +3,7 @@
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-        <img src="{!! asset('assets/images/logo-header-kab-bogor.jpg') !!}" class="lambang_header">
+        <img src="{!! asset('assets/images/logo-pemkab-bogor.png') !!}" class="lambang_header">
 
         <div class="topbar-divider d-none d-sm-block"></div>
         <h4>Sistem Informasi Prasarana Sarana dan Utilitas Kabupaten Bogor</h4>

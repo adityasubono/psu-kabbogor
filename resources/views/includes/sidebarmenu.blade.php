@@ -27,34 +27,7 @@
 
     <!-- Heading -->
     <div class="sidebar-heading">
-        Menu Kelola User
-    </div>
-
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse"
-           data-target="#collapseTwo1" aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Data User</span>
-        </a>
-        <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo"
-             data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Menu Navigasi:</h6>
-                <a class="collapse-item" href="/users">Kelola Data User</a>
-                <a class="collapse-item" href="/kecamatans">Kelola Data Kecamatan</a>
-            </div>
-        </div>
-    </li>
-
-
-
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-
-    <!-- Heading -->
-    <div class="sidebar-heading">
-        Menu Halaman
+        Aplikasi
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
@@ -71,6 +44,23 @@
                 <a class="collapse-item" href="/perumahans">Kelola Data</a>
                 <a class="collapse-item" href="/monitoring/perumahans">Monitoring</a>
                 <a class="collapse-item" href="/rekapitulasi/perumahans">Rekapitulasi</a>
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed " href="#" data-toggle="collapse"
+           data-target="#collapsePages4" aria-expanded="true" aria-controls="collapsePages">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>PSU Kawasan Permukiman</span>
+        </a>
+        <div id="collapsePages4" class="collapse" aria-labelledby="headingPages"
+             data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Menu:</h6>
+                <a class="collapse-item" href="/permukimans">Kelola Data</a>
+                <a class="collapse-item" href="/monitoring/permukimans">Monitoring</a>
+                <a class="collapse-item" href="/rekapitulasi/permukimans">Rekapitulasi</a>
             </div>
         </div>
     </li>
@@ -96,33 +86,6 @@
 
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse"
-           data-target="#collapsePages4" aria-expanded="true" aria-controls="collapsePages">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>PSU Kawasan Permukiman</span>
-        </a>
-        <div id="collapsePages4" class="collapse" aria-labelledby="headingPages"
-             data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Menu:</h6>
-                <a class="collapse-item" href="/permukimans">Kelola Data</a>
-                <a class="collapse-item" href="/monitoring/permukimans">Monitoring</a>
-                <a class="collapse-item" href="/rekapitulasi/permukimans">Rekapitulasi</a>
-            </div>
-        </div>
-    </li>
-
-
-
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-
-    <!-- Heading -->
-    <div class="sidebar-heading">
-        Menu Kegiatan Fisik
-    </div>
-
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse"
            data-target="#collapsePages5" aria-expanded="true" aria-controls="collapsePages">
             <i class="fas fa-fw fa-folder"></i>
             <span>Kegiatan Fisik</span>
@@ -137,6 +100,28 @@
             </div>
         </div>
     </li>
+
+    <div class="sidebar-heading">
+        Pengaturan
+    </div>
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse"
+           data-target="#collapseTwo1" aria-expanded="true" aria-controls="collapseTwo">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Pengaturan</span>
+        </a>
+        <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo"
+             data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Menu Navigasi:</h6>
+                <a class="collapse-item" href="/users">Data Pengguna</a>
+                <a class="collapse-item" href="/kecamatans">Data Lokasi</a>
+            </div>
+        </div>
+    </li>
+
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>

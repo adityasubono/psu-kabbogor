@@ -303,3 +303,9 @@ Y
 )public/assets/js/vxgplayer-1.8.31.min.css,8\3\8317da8e68114ea11cbc887cd78823bf6c773a34
 q
 Aresources/views/PSU_Permukiman/filter/filter_permukiman.blade.php,9\9\99a9d2750ae060b3ee8aa9726c7e6bc836f87118
+„
+Tresources/views/PSU_Pertamanan/rekapitulasi/koordinat/koordinat_pertamanan.blade.php,4\3\43e51e9b95615ddf01176e4fbb77e34206f23079
+M
+app/RekapitulasiPerumahan.php,1\c\1c5f62124905174332e8e91364255c4d0d8d19a1
+U
+%assets/guzzlehttp/guzzle/CHANGELOG.md,9\9\99576e63ce89a2d3e5cb11ded5799beb1688b452

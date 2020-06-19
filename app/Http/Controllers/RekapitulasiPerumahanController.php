@@ -30,10 +30,7 @@ class RekapitulasiPerumahanController extends Controller
             ->where('status_perumahan','Terlantar')
             ->pluck('count');
 
-//        $surats = \DB::table('surat_masuk')
-//            ->join('jenis_surat', 'surat_masuk.id_jenis_surat', '=','jenis_surat.id_jenis_surat')
-//            ->select('jenis_surat.jenis_surat','surat_masuk.nomor_surat','surat_masuk.perihal','surat_masuk.tanggal_publish')
-//            ->get();
+//
 
         $koordinat_perumahan = \DB::table('koordinatperumahans')
             ->join('perumahans', 'perumahans.id', '=','koordinatperumahans.perumahan_id')
@@ -42,7 +39,7 @@ class RekapitulasiPerumahanController extends Controller
             'perumahans.kecamatan','perumahans.kelurahan','perumahans.RT','perumahans.RW')
             ->get();
 
-        $perumahans = Perumahans::select(\DB::raw("SELECT * FROM perumahans a, koordinatperumahans b WHERE a.id = b.perumahan_id"));
+        $perumahans_gua = Perumahans::select(\DB::raw("SELECT * FROM perumahans a, koordinatperumahans b WHERE a.id = b.perumahan_id"));
 
 
         $koordinat_sarana = \DB::table('koordinatsaranas')
@@ -52,9 +49,11 @@ class RekapitulasiPerumahanController extends Controller
                 'perumahans.kecamatan','perumahans.kelurahan','perumahans.RT','perumahans.RW')
             ->get();
 
+        $saranas = Perumahans::select(\DB::raw("SELECT * FROM perumahans a, koordinatsaranas b WHERE a.id = b.perumahan_id"));
+
 
         return view('PSU_Perumahan.rekapitulasi.index',compact('jml_status_sudah',
-            'jml_status_belum','jml_status_terlantar','koordinat_perumahan','perumahans','koordinat_sarana'));
+            'jml_status_belum','jml_status_terlantar','koordinat_perumahan','perumahans_gua','koordinat_sarana','saranas'));
 
 
     }

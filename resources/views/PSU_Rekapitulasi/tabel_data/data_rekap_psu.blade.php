@@ -3,7 +3,7 @@
         <thead class="thead-light">
         <tr>
             <th>No.</th>
-            <th>Nama Seksi</th>
+            <th>Nama Aplikasi</th>
             <th>Jumlah Aset</th>
         </tr>
         </thead>
@@ -13,16 +13,22 @@
             <td><a href="/perumahans">PSU Perumahan</a></td>
             <td>{{$jml_assets_perumahan}}</td>
         </tr>
+
         <tr>
             <td>2.</td>
+            <td><a href="/permukimans">PSU Kawasan Permukiman</a></td>
+            <td>{{$jml_assets_permukiman}}</td>
+        <tr>
+            <td>3.</td>
             <td><a href="/pertamanans">PSU Pertamanan</a></td>
             <td>{{$jml_assets_pertamanan}}</td>
         </tr>
         <tr>
-            <td>3.</td>
-            <td><a href="/permukimans">PSU Kawasan Permukiman</a></td>
-            <td>{{$jml_assets_permukiman}}</td>
+            <td>4.</td>
+            <td><a href="#">Kegiatan Fisik</a></td>
+            <td>-</td>
         </tr>
+
         </tbody>
     </table>
 </div>

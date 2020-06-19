@@ -71,14 +71,12 @@
 
     </div>
 </div>
-<div class="modal fade" id="loading" tabindex="-1" role="dialog"
-     aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="loading" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header bg-primary text-white text-bold">
-              Loading Data...
-            </div>
             <div class="modal-body">
+                <img src="{!! asset('assets/images/loading.png') !!}"
+                 style="width: 140%; height: 300px;">
                 <div id="myProgress">
                     <div id="myBar" class="text-white text-center"></div>
                 </div>
