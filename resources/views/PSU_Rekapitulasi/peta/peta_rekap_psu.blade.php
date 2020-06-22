@@ -65,6 +65,8 @@
                         icon: icon_pertamanan,
                         title : "Pertamanan",
                     });
+
+
                 }
 
             }

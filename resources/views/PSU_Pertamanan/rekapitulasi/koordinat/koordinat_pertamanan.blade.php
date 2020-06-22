@@ -1,17 +1,4 @@
-<div class="card shadow mb-4">
-    <div class="card-header py-3 bg-gray-500">
-        <div class="row">
-            <div class="col-sm-6">
-                <h6 class="m-0 font-weight-bold text-primary">Data Peta </h6>
-            </div>
-        </div>
-    </div>
-
-    <div class="card-body">
-        <div id="mymap"></div>
-    </div>
-</div>
-
+<div id="mymap"></div>
 
 <script
     src="http://maps.google.com/maps/api/js?key=AIzaSyBMbVQJuBRWDV1jFUVZ9Gzsu-nWOEr9LdM">
@@ -21,22 +8,10 @@
     #mymap {
         border: 1px solid red;
         width: 100%;
-        height: 500px;
+        height: 400px;
     }
 </style>
 
-<style> #map {
-        display: block;
-        width: 98%;
-        height: 500px;
-        margin: 0 auto;
-    } </style>
-<style type="text/css"> .labels {
-        background-color: rgba(0, 0, 0, 0.5);
-        border-radius: 4px;
-        color: white;
-        padding: 4px;
-    } </style>`
 
 <script type="text/javascript">
     var locations = <?php print_r(json_encode($koor_pertamanan)) ?>;
