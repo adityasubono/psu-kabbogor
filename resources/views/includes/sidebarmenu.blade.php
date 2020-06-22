@@ -1,9 +1,14 @@
-@if(Session::get('nama_rule') == 'Administrator')
+
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-        <div class="sidebar-brand-text mx-3">SI PSU</div>
+        <div class="sidebar-brand-text mx-3">
+            <img src="{!! asset('assets/images/logo_dpkpp.png') !!}"
+            style="width: 230px; height: 60px;">
+        </div>
     </a>
+
+    @if(Session::get('nama_rule') == 'Administrator')
 
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
@@ -121,39 +126,13 @@
             </div>
         </div>
     </li>
+    @endif
 
-    <!-- Sidebar Toggler (Sidebar) -->
-    <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-    </div>
-</ul>
+    @if(Session::get('nama_rule') == 'Operator PSU Perumahan')
 
-@endif
-
-
-
-<!--menu perumahan-->
-@if(Session::get('nama_rule') == 'Operator PSU Perumahan')
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-    <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-        <div class="sidebar-brand-text mx-3">SI PSU <br></div>
-    </a>
-
-    <!-- Divider -->
-    <hr class="sidebar-divider my-0">
-
-
-    <!-- Nav Item - Dashboard -->
-
-
-    <!-- Divider -->
     <hr class="sidebar-divider">
-
-    <!-- Heading -->
     <div class="sidebar-heading">
-        Menu Halaman
+        Aplikasi
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
@@ -177,36 +156,15 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
-    <!-- Sidebar Toggler (Sidebar) -->
-    <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-    </div>
-</ul>
-@endif
+    @endif
 
+    @if(Session::get('nama_rule') == 'Operator PSU Pertamanan')
 
-<!--menu pertamanan-->
-@if(Session::get('nama_rule') == 'Operator PSU Pertamanan')
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-    <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-        <div class="sidebar-brand-text mx-3">SI PSU</div>
-    </a>
-
-    <!-- Divider -->
-    <hr class="sidebar-divider my-0">
-
-
-    <!-- Nav Item - Dashboard -->
-
-
-    <!-- Divider -->
     <hr class="sidebar-divider">
 
     <!-- Heading -->
     <div class="sidebar-heading">
-        Menu Halaman
+        Aplikasi
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
@@ -226,28 +184,9 @@
             </div>
         </div>
     </li>
+    @endif
 
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-
-    <!-- Sidebar Toggler (Sidebar) -->
-    <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-    </div>
-</ul>
-@endif
-
-
-<!--menu permukiman-->
-@if(Session::get('nama_rule') == 'Operator PSU Kawasan Permukiman')
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-    <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-        <div class="sidebar-brand-text mx-3">SI PSU</div>
-    </a>
-
-    <!-- Divider -->
+    @if(Session::get('nama_rule') == 'Operator PSU Kawasan Permukiman')
     <hr class="sidebar-divider my-0">
 
 
@@ -259,7 +198,7 @@
 
     <!-- Heading -->
     <div class="sidebar-heading">
-        Menu Halaman
+        Aplikasi
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
@@ -280,15 +219,20 @@
         </div>
     </li>
 
+    @endif
 
-    <!-- Divider -->
-    <hr class="sidebar-divider">
 
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
     </div>
 </ul>
-@endif
+
+
+
+
+
+
+
 
 

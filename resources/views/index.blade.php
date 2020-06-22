@@ -24,9 +24,8 @@
         <h5>{{Session::get('alert')}}</h5>
     </div>
 </div>
-@endif
+@elseif (\Session::has('alert-success'))
 
-@if(\Session::has('alert-success'))
 <div class="toast" data-delay="5000">
     <div class="toast-header bg-info text-white">
         <strong class="mr-auto">Informasi</strong>
@@ -36,10 +35,30 @@
         <h5>{{Session::get('alert-success')}}</h5>
     </div>
 </div>
+@else
+
+<div class="toast" id="wellcome" data-delay="5000">
+    <div class="toast-header bg-info text-white">
+        <h4>
+            <strong class="mr-auto">Selamat Datang</strong>
+        </h4>
+    </div>
+    <div class="toast-body">
+        <img src="{!! asset('assets/images/logo_dpkpp.png') !!}">
+        <hr>
+    </div>
+</div>
+
 @endif
+
+
+
+
+
 
 <div class="main">
     <div class="login-form">
+
         <form method="post" action="/loginpost" id="form_login">
             <meta name="csrf-token" content="{{csrf_token()}}"/>
             {{ csrf_field() }}
@@ -59,7 +78,6 @@
             </div>
 
 
-
             <button onclick="move()"
                     class="btn btn-primary mt-3"
                     data-toggle="modal"
@@ -76,7 +94,7 @@
         <div class="modal-content">
             <div class="modal-body">
                 <img src="{!! asset('assets/images/loading.png') !!}"
-                 style="width: 140%; height: 300px;">
+                     style="width: 140%; height: 300px;">
                 <div id="myProgress">
                     <div id="myBar" class="text-white text-center"></div>
                 </div>
@@ -130,9 +148,16 @@
         }
     }
 </script>
+
+
+
 <script type="text/javascript">
     $(document).ready(function () {
         $('.toast').toast('show');
+    });
+
+    $(document).ready(function () {
+        $('#welcome').toast('show');
     });
 
 </script>
@@ -157,8 +182,9 @@
         curr_hour = checkTime(curr_hour);
         curr_minute = checkTime(curr_minute);
         curr_second = checkTime(curr_second);
-     document.getElementById('clock').innerHTML=curr_hour + ":" + curr_minute + ":" + curr_second + " " + a_p;
-        }
+        document.getElementById('clock').innerHTML = curr_hour + ":" + curr_minute + ":"
+            + curr_second + " " + a_p;
+    }
 
     function checkTime(i) {
         if (i < 10) {
@@ -166,6 +192,7 @@
         }
         return i;
     }
+
     setInterval(showTime, 500);
     //-->
 </script>
@@ -173,19 +200,20 @@
 <!-- Menampilkan Hari, Bulan dan Tahun -->
 
 <div id="kalender">
-<script type='text/javascript'>
-    var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-    var myDays = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum&#39;at', 'Sabtu'];
-    var date = new Date();
-    var day = date.getDate();
-    var month = date.getMonth();
-    var thisDay = date.getDay(),
-        thisDay = myDays[thisDay];
-    var yy = date.getYear();
-    var year = (yy < 1000) ? yy + 1900 : yy;
-    document.write(thisDay + ', ' + day + ' ' + months[month] + ' ' + year);
+    <script type='text/javascript'>
+        var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus',
+            'September', 'Oktober', 'November', 'Desember'];
+        var myDays = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum&#39;at', 'Sabtu'];
+        var date = new Date();
+        var day = date.getDate();
+        var month = date.getMonth();
+        var thisDay = date.getDay(),
+            thisDay = myDays[thisDay];
+        var yy = date.getYear();
+        var year = (yy < 1000) ? yy + 1900 : yy;
+        document.write(thisDay + ', ' + day + ' ' + months[month] + ' ' + year);
 
-</script>
+    </script>
 </div>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 
