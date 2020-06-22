@@ -15,10 +15,11 @@
 
 
 @if(\Session::has('alert'))
-<div class="toast" data-delay="5000">
+<div class="toast" data-delay="5000" id="wellcome" >
     <div class="toast-header bg-warning text-white">
-        <strong class="mr-auto">Peringatan !</strong>
-        <small class="text-muted text-white">SI-PSU KAB.BOGOR</small>
+        <h4>
+            <strong class="mr-auto">Peringatan !</strong>
+        </h4>
     </div>
     <div class="toast-body">
         <h5>{{Session::get('alert')}}</h5>
@@ -26,11 +27,11 @@
 </div>
 @elseif (\Session::has('alert-success'))
 
-<div class="toast" data-delay="5000">
+<div class="toast" data-delay="5000" id="wellcome">
     <div class="toast-header bg-info text-white">
-        <strong class="mr-auto">Informasi</strong>
-        <small class="text-muted text-white">SI-PSU KAB.BOGOR</small>
-    </div>
+        <h4>
+            <strong class="mr-auto">Informasi</strong>
+        </h4>
     <div class="toast-body">
         <h5>{{Session::get('alert-success')}}</h5>
     </div>

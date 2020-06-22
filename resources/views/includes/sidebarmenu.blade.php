@@ -184,6 +184,7 @@
             </div>
         </div>
     </li>
+    <hr class="sidebar-divider">
     @endif
 
     @if(Session::get('nama_rule') == 'Operator PSU Kawasan Permukiman')
@@ -218,6 +219,8 @@
             </div>
         </div>
     </li>
+
+    <hr class="sidebar-divider">
 
     @endif
 

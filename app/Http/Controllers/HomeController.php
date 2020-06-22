@@ -68,10 +68,10 @@ class HomeController extends Controller
 
                 return redirect('/beranda');
             } else {
-                return redirect('/')->with('alert', 'Nik dan Password Salah');
+                return redirect('/')->with('alert', 'NIK dan Password Salah');
             }
         } else {
-            return redirect('/')->with('alert', 'Nik dan Password Salah');
+            return redirect('/')->with('alert', 'NIK dan Password Salah');
         }
     }
 
