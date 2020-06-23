@@ -91,17 +91,6 @@
                         @enderror
 
 
-                        <label for="email" class="mt-3">Email</label>
-                        <input type="email" class="form-control @error('email') is-invalid
-                        @enderror" id="email" name="email"
-                               placeholder="Masukan Email" value="{{ $user->email }}">
-                        @error('email')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                        @enderror
-
-
                         <label for="file_foto" class="mt-3">Upload Foto</label><br>
                         <div class="input-group mb-2">
                             <div class="input-group-prepend">

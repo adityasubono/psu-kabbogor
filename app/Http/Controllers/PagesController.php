@@ -8,8 +8,7 @@ class PagesController extends Controller
 {
     public function index()
     {
-        return view('index')->with('wellcome','Selamat Datang DI Sistem Informasi Prasana
-        Sarana dan Utilitas Kabupaten Bogor');
+        return view('index');
     }
 
     public function about()

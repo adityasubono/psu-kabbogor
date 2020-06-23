@@ -72,6 +72,7 @@
             acceptedFiles: ".jpeg,.jpg,.png,.gif",
             timeout: 5000,
             addRemoveLinks: true,
+
             removedfile: function (file) {
                 var name = file.upload.filename;
                 $.ajax({
@@ -80,7 +81,9 @@
                     },
                     type: 'POST',
                     url: '{{ url("/fotosaranas/delete") }}',
-                    data: {filename: name},
+                    data: {
+                        filename: name
+                    },
                     success: function (data) {
                         console.log("File deleted successfully!!");
                     },

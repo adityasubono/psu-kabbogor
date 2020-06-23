@@ -3,7 +3,7 @@
 @section('title', 'Tambah Data Perumahan')
 
 @section('container-fluid')
-
+<link href="{!! asset('assets/css/perumahan.css') !!}" rel="stylesheet">
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-header py-3 bg-gray-500">
@@ -67,10 +67,8 @@
                             </div>
                             @enderror
                         </div>
-                    </div>
 
 
-                    <div class="row mb-3">
                         <div class="col-sm-3">
                             <label for="luas_perumahan">Luas Perumahan (m2)</label><br>
                             <input type="number" class="form-control @error('luas_perumahan')
@@ -101,32 +99,14 @@
                             </div>
                             @enderror
                         </div>
-                    </div>
 
 
-                    <div class="row mb-3">
-                        <div class="col-sm-12">
-                            <label for="lokasi">Alamat Lokasi</label><br>
-                            <textarea class="form-control @error('lokasi') is-invalid
-                                      @enderror" id="lokasi" name="lokasi" rows="3"
-                                      placeholder="Masukan Alamat Lokasi">{{ old('lokasi') }}</textarea>
-                            <small class="form-text text-danger">* Wajib Diisi</small>
-                            @error('lokasi')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-                    </div>
-
-
-                    <div class="row mb-3">
                         <div class="col-sm-3">
                             <label for="kecamatan">Kecamatan</label><br>
                             <select
                                 class="custom-select @error('kecamatan') is-invalid @enderror"
                                 id="kecamatan" name="kecamatan">
-                                <option value="{{ old('kecamatan') }}"selected>
+                                <option value="{{ old('kecamatan') }}" selected>
                                     {{ old('kecamatan') }}
                                 </option>
                                 @foreach( $kecamatans as $kecamatan )
@@ -145,15 +125,15 @@
                         </div>
 
                         <div class="col-sm-3">
-                            <label for="kelurahan">Kelurahan</label><br>
-                            <select
+                            <label for="keluahan">Kelurahan</label><br>
+                            <selectr
                                 class="custom-select @error('kelurahan') is-invalid @enderror"
                                 id="kelurahan" name="kelurahan"
                                 value="{{ old('kelurahan') }}">
-                                <option value="{{ old('kelurahan') }}"selected>
+                                <option value="{{ old('kelurahan') }}" selected>
                                     {{ old('kelurahan') }}
                                 </option>
-                            </select>
+                            </selectr>
                             <small class="form-text text-danger">* Wajib Diisi</small>
 
                             @error('kelurahan')
@@ -163,38 +143,62 @@
                             @enderror
                         </div>
 
-                        <div class="col-sm-3">
-                            <label for="RT">RT</label><br>
-                            <input type="text" class="form-control"
-                                   id="RT"
-                                   name="RT"
-                                   placeholder="RT"
-                                   value="{{ old('RT') }}">
-<!--                            <small class="form-text text-danger">* Wajib Diisi</small>-->
+
+                        <div class="col-sm-6">
+                            <label for="lokasi">Alamat</label><br>
+                            <textarea class="form-control @error('lokasi') is-invalid @enderror"
+                                      id="lokasi"
+                                      name="lokasi" rows="3"
+                                      placeholder="Masukan Alamat">{{ old('lokasi') }}</textarea>
+                            @error('lokasi')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
 
-                        <div class="col-sm-3">
-                            <label for="RW">RW</label><br>
-                            <input type="text" class="form-control
-                           "
-                                   id="RW"
-                                   name="RW"
-                                   placeholder="RW"
-                                   value="{{ old('RW') }}">
-<!--                            <small class="form-text text-danger">* Wajib Diisi</small>-->
+                        <div class="col-sm-6">
+                            <label for="file_foto" class="mt-3">Upload Foto</label><br>
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Upload</span>
+                                </div>
+                                <div class="custom-file">
+                                    <input type="file" name="file_foto"
+                                           id="gallery-photo-add"
+                                           class="custom-file-input
+                                   @error('file_foto') is-invalid @enderror" multiple>
+                                    <label class="custom-file-label">Pilih
+                                        File Foto....</label>
+                                    @error('file_foto')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
+                                </div>
+                            </div>
                         </div>
-                    </div>
 
 
-                    <div class="row mb-3">
-                        <div class="col-sm-3">
+                        <div class="col-sm-12 mt-3 mb-4">
+                            <div id="galery">
+
+                            </div>
+                        </div>
+
+
+
+
+
+
+                        <div class="col-sm-3 mt-3">
                             <label for="status_perumahan">Status</label><br>
                             <select class="custom-select @error('status_perumahan')
                                     is-invalid @enderror"
                                     id="status_perumahan" name="status_perumahan"
                                     onchange="displayForm
                                     (this)">
-                                <option value="{{ old('status_perumahan') }}"selected>
+                                <option value="{{ old('status_perumahan') }}" selected>
                                     {{ old('status_perumahan') }}
                                 </option>
                                 <option value="Sudah Serah Terima">Sudah Serah Terima</option>
@@ -209,13 +213,11 @@
                             @enderror
 
                         </div>
-                    </div>
 
 
-                    <!--                PSU YANG DISERAHKAN : BILA SUDAH SERAH TERIMA               -->
+                        <!--                PSU YANG DISERAHKAN : BILA SUDAH SERAH TERIMA               -->
 
-                    <div class="form-group" style="display: none" id="tgl_serah_terima">
-                        <div class="row">
+                        <div style="display: none" id="tgl_serah_terima">
                             <div class="col-sm-3">
                                 <label for="tgl_serah_terima">Tanggal Serah Terima</label><br>
                                 <input type="date" class="form-control @error('tgl_serah_terima') is-invalid
@@ -254,41 +256,74 @@
                                 </div>
                                 @enderror
                             </div>
+                        </div>
+                    </div>
 
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <label for="keterangan">Keterangan</label>
+                            <textarea class="form-control @error('keterangan') is-invalid
+                              @enderror" id="keterangan" name="keterangan" rows="3"
+                                      placeholder="Masukan Keterangan">{{ old('keterangan') }}</textarea>
+                            @error('keterangan')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                     </div>
                 </div>
+            </form>
 
-                <div class="form-group">
-                    <label for="keterangan">Keterangan</label>
-                    <textarea class="form-control @error('keterangan') is-invalid
-                              @enderror" id="keterangan" name="keterangan" rows="3"
-                              placeholder="Masukan Keterangan">{{ old('keterangan') }}</textarea>
-                    @error('keterangan')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </div>
 
-                <a href="/perumahans" class="btn btn-info btn-icon-split">
+            <a href="/perumahans" class="btn btn-info btn-icon-split mt-3">
                     <span class="icon text-white-50">
                         <i class="fas fa-arrow-alt-circle-left"></i>
                     </span>
-                    <span class="text">Kembali</span>
-                </a>
+                <span class="text">Kembali</span>
+            </a>
 
-                <button type="submit" class="btn btn-primary btn-icon-split">
+            <button type="submit" class="btn btn-primary btn-icon-split mt-3">
                     <span class="icon text-white-50">
                         <i class="fas fa-download"></i>
                     </span>
-                    <span class="text">Simpan</span>
-                </button>
-            </form>
+                <span class="text">Simpan</span>
+            </button>
         </div>
     </div>
 </div>
 
+
+<script type="text/javascript">
+    $(function () {
+        // Multiple images preview in browser
+        var imagesPreview = function (input, placeToInsertImagePreview) {
+
+            if (input.files) {
+                var filesAmount = input.files.length;
+
+                for (i = 0; i < filesAmount; i++) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (event) {
+                        $($.parseHTML('<img id="review_image">'+
+                            '<input type="text" class="ktr_image">')).attr('src', event.target.result)
+                        .appendTo
+                        (placeToInsertImagePreview);
+                    }
+
+                    reader.readAsDataURL(input.files[i]);
+                }
+            }
+
+        };
+
+        $('#gallery-photo-add').on('change', function () {
+            imagesPreview(this, '#galery');
+        });
+    });
+</script>
 
 <!--Scrpit Data Sarana -->
 <script type="text/javascript" src="../assets/js/getKelurahan.js"></script>

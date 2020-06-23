@@ -42,6 +42,8 @@ class HomeController extends Controller
         $remember_token = $request->input('remember_token');
 
         $data = User::where('nik', $nik)->first();
+
+
         if ($data) {
             $rule = Rules::where('id', $data->role_id)->first();
             echo "rule" . $rule;
@@ -56,7 +58,7 @@ class HomeController extends Controller
             ]);
 
             if (Hash::check($password, $data->password)) {
-                $request->session()->put('id',$data->id);
+                $request->session()->put('id', $data->id);
                 $request->session()->put('nama', $data->nama);
                 $request->session()->put('nik', $data->nik);
                 $request->session()->put('nama_rule', $rule->nama_rule);
@@ -75,8 +77,7 @@ class HomeController extends Controller
         }
     }
 
-    public
-    function logout(Request $request)
+    public function logout(Request $request)
     {
 
         $login = $request->input('login');
@@ -101,7 +102,7 @@ class HomeController extends Controller
             ]);
 
             return redirect('/')->with('alert-success', 'Anda Telah Keluar Pada Tanggal '
-                .$logout_date.' Sampai Jumpa Kembali '.$nama);
+                . $logout_date . ' Sampai Jumpa Kembali ' . $nama);
         } else {
             return abort(403);
         }
