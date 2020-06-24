@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
     $('select[name="kecamatan"]').on('change', function () {
         var kecamatan_id = $(this).val();
         if (kecamatan_id) {
@@ -30,7 +29,5 @@ $(document).ready(function () {
         } else {
             $('select[name="kelurahan"]').empty();
         }
-
     });
-
 });

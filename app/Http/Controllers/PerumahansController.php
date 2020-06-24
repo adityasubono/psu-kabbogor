@@ -119,6 +119,7 @@ class PerumahansController extends Controller
     {
         $perumahan_id = Perumahans::all()->sortByDesc('id')->take(1);
 
+
         $kecamatans = Kecamatan::all()->sortBy('nama_kecamatan');
         return view('PSU_Perumahan.create', compact('kecamatans', 'perumahan_id'));
 
