@@ -11,9 +11,9 @@
         </div>
         <div class="card-body">
             <a href="/perumahans/create" class="btn btn-primary btn-icon-split mb-3">
-                            <span class="icon text-white-50">
-                                <i class="fas fa-plus"></i>
-                            </span>
+                <span class="icon text-white-50">
+                    <i class="fas fa-plus"></i>
+                </span>
                 <span class="text">Tambah Data</span>
             </a>
 

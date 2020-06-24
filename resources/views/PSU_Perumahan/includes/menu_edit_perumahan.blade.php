@@ -105,7 +105,7 @@
                     <button class="btn btn-link"
                             data-toggle="collapse"
                             data-target="#datataman{{ $loop->iteration }}">
-                        Data Taman
+                        Data Taman dan Penghijauan
                     </button>
                     <span class="badge badge-primary text-center rata_kanan">
                         {{$perumahan->r_taman->count()}}
@@ -115,7 +115,7 @@
             <div id="datataman{{ $loop->iteration }}" class="collapse"
                  data-parent="#accordion{{ $loop->iteration }}">
                 <div class="card-body p-3">
-                    <a href="/tamans/{{ $perumahan->id }}">Kelola Data Taman</a><br>
+                    <a href="/tamans/{{ $perumahan->id }}">Kelola Data Taman dan Penghijauan</a><br>
 
                     Data Koordinat Taman
                     <span class="badge badge-primary text-right">
@@ -172,6 +172,52 @@
                  data-parent="#accordion{{ $loop->iteration }}">
                 <div class="card-body p-3">
                     <a href="/cctvperumahans/{{ $perumahan->id }}">Kelola Data CCTV<br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="accordion">
+        <div class="card">
+            <div class="card-header bg-gray-200 p-0" id="headingOne">
+                <h5 class="mb-0">
+                    <button class="btn btn-link"
+                            data-toggle="collapse"
+                            data-target="#datacctv{{ $loop->iteration }}">
+                        Data PJU
+                    </button>
+                    <span class="badge badge-primary text-center rata_kanan">
+                        {{$perumahan->r_cctv_perumahan->count()}}
+                    </span>
+                </h5>
+            </div>
+            <div id="datacctv{{ $loop->iteration }}" class="collapse"
+                 data-parent="#accordion{{ $loop->iteration }}">
+                <div class="card-body p-3">
+                    <a href="/cctvperumahans/{{ $perumahan->id }}">Kelola Data PJU<br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="accordion">
+        <div class="card">
+            <div class="card-header bg-gray-200 p-0" id="headingOne">
+                <h5 class="mb-0">
+                    <button class="btn btn-link"
+                            data-toggle="collapse"
+                            data-target="#datacctv{{ $loop->iteration }}">
+                        Data Saluran Bersih
+                    </button>
+                    <span class="badge badge-primary text-center rata_kanan">
+                        {{$perumahan->r_cctv_perumahan->count()}}
+                    </span>
+                </h5>
+            </div>
+            <div id="datacctv{{ $loop->iteration }}" class="collapse"
+                 data-parent="#accordion{{ $loop->iteration }}">
+                <div class="card-body p-3">
+                    <a href="/cctvperumahans/{{ $perumahan->id }}">Kelola Data Saluran Bersih<br>
                 </div>
             </div>
         </div>

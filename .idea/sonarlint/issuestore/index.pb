@@ -327,3 +327,9 @@ k
 ;resources/views/PSU_Permukiman/rekapitulasi/index.blade.php,f\5\f537729fe198d82e5ec7d0cca92c2ea8e7adeefd
 „
 Tresources/views/PSU_Permukiman/rekapitulasi/koordinat/koordinat_permukiman.blade.php,b\d\bde68d8d2fb7f96061c5fefd48dfd9a263d04dd1
+o
+?database/migrations/2020_06_23_093347_create_salurans_table.php,2\7\27da74881c219be1463cd76a0682eb08989c1f48
+u
+Edatabase/migrations/2020_06_23_093803_create_fotoperumahans_table.php,8\b\8b6ce2eac5112109394c94ae7b5d8bdf0c2fd183
+j
+:database/migrations/2020_06_23_093158_create_pju_table.php,0\9\09205860e00f4dc114b0c14e132940b657aaab9e

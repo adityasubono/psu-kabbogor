@@ -99,12 +99,12 @@ div.desc {
     float: left;
     border: grey solid 2px;
     border-radius: 5px;
-    margin: 5px;
-    display: initial;
+    margin: 100px;
+    display: grid;
 }
 
 .ktr_image{
-    position: absolute;
+    float: left;
     left: 10px;
     bottom: -50px;
     margin-bottom: 10px;

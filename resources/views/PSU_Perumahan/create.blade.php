@@ -5,6 +5,83 @@
 @section('container-fluid')
 <link href="{!! asset('assets/css/perumahan.css') !!}" rel="stylesheet">
 <div class="container-fluid">
+
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active bg-primary text-white" id="home-tab" data-toggle="tab"
+               href="#data_perumahan" role="tab">Data Perumahan</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" id="profile-tab" data-toggle="tab"
+               href="#data_sarana" role="tab"
+               style="background-color: #7b59c0">Data Sarana</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" id="contact-tab" data-toggle="tab"
+               href="#data_jalan_saluran" role="tab"
+               style="background-color: orange">Data Jalan dan Saluran</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" id="contact-tab" data-toggle="tab"
+               href="#data_taman_penghijauan" role="tab"
+               style="background-color: green">Data Taman dan Penghijauan</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" id="profile-tab" data-toggle="tab"
+               href="#data_pju" role="tab"
+               style="background-color: #00cc66">Data PJU </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" id="contact-tab" data-toggle="tab"
+               href="#data_saluran_bersih" role="tab"
+               style="background-color: #00b0e8;">Data Saluran Bersih</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" id="contact-tab" data-toggle="tab"
+               href="#data_cctv" role="tab"
+               style="background-color: #4bb1b1;">Data CCTV</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" id="contact-tab" data-toggle="tab"
+               href="#data_koordinat" role="tab"
+               style="background-color: #9d0006;">Data Koordinat</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="data_perumahan" role="tabpanel">
+            Data Perumahan
+        </div>
+
+        <div class="tab-pane fade" id="data_sarana" role="tabpanel">
+            Data Sarana
+        </div>
+
+        <div class="tab-pane fade" id="data_jalan_saluran" role="tabpanel">
+            Data Jalan dan Saluran
+        </div>
+
+        <div class="tab-pane fade" id="data_taman_penghijauan" role="tabpanel">
+            Data Taman dan Penghijauan
+        </div>
+
+        <div class="tab-pane fade" id="data_pju" role="tabpanel">
+            Data PJU
+        </div>
+
+        <div class="tab-pane fade" id="data_saluran_bersih" role="tabpanel">
+            Data Saluran Bersih
+        </div>
+
+        <div class="tab-pane fade" id="data_cctv" role="tabpanel">
+            Data CCTV
+        </div>
+
+        <div class="tab-pane fade" id="data_koordinat" role="tabpanel">
+            Data Koordinat Perumahan
+        </div>
+
+    </div>
+
     <div class="card shadow mb-4">
         <div class="card-header py-3 bg-gray-500">
             <div class="row">
@@ -158,7 +235,8 @@
                         </div>
 
                         <div class="col-sm-6">
-                            <label for="file_foto" class="mt-3">Upload Foto</label><br>
+                            <label for="file_foto" class="mt-3">Upload Foto Perumahan /
+                                Siteplan</label><br>
                             <div class="input-group mb-2">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">Upload</span>
@@ -187,10 +265,6 @@
                         </div>
 
 
-
-
-
-
                         <div class="col-sm-3 mt-3">
                             <label for="status_perumahan">Status</label><br>
                             <select class="custom-select @error('status_perumahan')
@@ -213,51 +287,64 @@
                             @enderror
 
                         </div>
+                    </div>
 
 
                         <!--                PSU YANG DISERAHKAN : BILA SUDAH SERAH TERIMA               -->
 
                         <div style="display: none" id="tgl_serah_terima">
-                            <div class="col-sm-3">
-                                <label for="tgl_serah_terima">Tanggal Serah Terima</label><br>
-                                <input type="date" class="form-control @error('tgl_serah_terima') is-invalid
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <label for="tgl_serah_terima">Tanggal Serah Terima</label><br>
+                                    <input type="date" class="form-control @error('tgl_serah_terima') is-invalid
                                    @enderror" id="tgl_serah_terima" name="tgl_serah_terima"
-                                       placeholder="Masukan Tanggal Serah Terima"
-                                       value="{{ old('tgl_serah_terima') }}">
-                                @error('tgl_serah_terima')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
+                                           placeholder="Masukan Tanggal Serah Terima"
+                                           value="{{ old('tgl_serah_terima') }}">
+                                    @error('tgl_serah_terima')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                                 </div>
-                                @enderror
-                            </div>
 
-                            <div class="col-sm-5">
-                                <label for="no_bast">No. Berita Acara Serah Terima</label><br>
-                                <input type="text" class="form-control @error('no_bast') is-invalid
+                                <div class="col-sm-4">
+                                    <label for="no_bast">No. Berita Acara Serah Terima</label><br>
+                                    <input type="text" class="form-control @error('no_bast') is-invalid
                                    @enderror" id="no_bast" name="no_bast"
-                                       placeholder="Masukan No. Berita Acara Serah Terima"
-                                       value="{{ old('no_bast') }}">
-                                @error('no_bast')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
+                                           placeholder="Masukan No. Berita Acara Serah Terima"
+                                           value="{{ old('no_bast') }}">
+                                    @error('no_bast')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                                 </div>
-                                @enderror
-                            </div>
 
-                            <div class="col-sm-4">
-                                <label for="sph">No. Surat Pengakuan hak</label><br>
-                                <input type="text" class="form-control @error('sph') is-invalid
+                                <div class="col-sm-3">
+                                    <label for="sph">No. Surat Pengakuan hak</label><br>
+                                    <input type="text" class="form-control @error('sph') is-invalid
                                        @enderror" id="sph" name="sph"
-                                       placeholder="Masukan Surat Pengakuan hak"
-                                       value="{{ old('sph') }}">
-                                @error('sph')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
+                                           placeholder="Masukan Surat Pengakuan hak"
+                                           value="{{ old('sph') }}">
+                                    @error('sph')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                                 </div>
-                                @enderror
+
+                                <div class="col-sm-2">
+                                    <label for="sph">Aksi</label><br>
+                                    <button type="submit" class="btn btn-success btn-icon-split">
+                                     <span class="icon text-white-50">
+                                         <i class="fas fa-plus"></i>
+                                     </span>
+                                        <span class="text">Tambah</span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
+
 
 
                     <div class="row">
@@ -307,8 +394,12 @@
                     var reader = new FileReader();
 
                     reader.onload = function (event) {
-                        $($.parseHTML('<img id="review_image">'+
-                            '<input type="text" class="ktr_image">')).attr('src', event.target.result)
+                        $($.parseHTML(
+                            '<input type="text">' +
+                            '<img id="review_image" class="col-sm-1">' +
+                            '')).attr('src', event
+                            .target
+                            .result)
                         .appendTo
                         (placeToInsertImagePreview);
                     }
