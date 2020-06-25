@@ -38,7 +38,7 @@
 </div>
 @else
 
-<div class="toast" id="wellcome" data-delay="5000">
+<div class="toast" id="wellcome" data-delay="5000" role="alert">
     <div class="toast-header bg-info text-white">
         <h4>
             <strong class="mr-auto">Selamat Datang</strong>

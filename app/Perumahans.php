@@ -63,17 +63,39 @@ class Perumahans extends Model
         return $this->hasMany('App\KoordinatTaman', 'perumahan_id');
     }
 
-
-
     public function r_koordinat_perumahan() {
         return $this->hasMany('App\KoordinatPerumahan', 'perumahan_id');
     }
-
-
 
     public function r_cctv_perumahan() {
         return $this->hasMany('App\CCTVPerumahan', 'perumahan_id');
     }
 
+    public function r_bast() {
+        return $this->hasMany('App\Bast', 'perumahan_id');
+    }
 
+    public function r_basta() {
+        return $this->hasMany('App\Basta', 'perumahan_id');
+    }
+
+    public function r_foto_perumahan() {
+        return $this->hasMany('App\FotoPerumahan', 'perumahan_id');
+    }
+
+    public function r_ippt() {
+        return $this->hasMany('App\Ippt', 'perumahan_id');
+    }
+
+    public function r_izin_lokasi() {
+        return $this->hasMany('App\IzinLokasi', 'perumahan_id');
+    }
+
+    public function r_pju() {
+        return $this->hasMany('App\PJU', 'perumahan_id');
+    }
+
+    public function r_saluran() {
+        return $this->hasMany('App\Saluran', 'perumahan_id');
+    }
 }
