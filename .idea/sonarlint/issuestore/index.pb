@@ -333,3 +333,15 @@ u
 Edatabase/migrations/2020_06_23_093803_create_fotoperumahans_table.php,8\b\8b6ce2eac5112109394c94ae7b5d8bdf0c2fd183
 j
 :database/migrations/2020_06_23_093158_create_pju_table.php,0\9\09205860e00f4dc114b0c14e132940b657aaab9e
+E
+app/CCTVPerumahan.php,b\a\ba891ec3f80b1eb0a229791315d7e76d6e6a1413
+E
+app/FotoPerumahan.php,7\7\776671b79d28efe3ce14f27437055d9c0a52a672
+B
+app/IzinLokasi.php,2\7\27bc312cd3f646c98904bfb30115ced14898f36e
+?
+app/Saluran.php,a\0\a0b187cb363eba38d03184f2324ee5ac68119f49
+;
+app/PJU.php,e\e\ee3dfbe4826176b89e4081f3a6339d275907f860
+<
+app/Bast.php,b\6\b6ef0613c343f2347d3e7c640e90ece69d3ecfb9
