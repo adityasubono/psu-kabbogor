@@ -22,11 +22,16 @@
         </div>
     </div>
     <div class="card-body">
-        <form method="post" action="/perumahans">
+        <form method="post" action="/perumahans" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <div class="row mb-3">
                     <div class="col-sm-6">
+
+                        <input type="hidden" name="id" value="@php echo $id_plus@endphp">
+
+
+
                         <label for="nama_perumahan">Nama Perumahan</label>
                         <br>
                         <input type="text" class="form-control @error('nama_perumahan') is-invalid
@@ -158,7 +163,7 @@
                                 <span class="input-group-text">Upload</span>
                             </div>
                             <div class="custom-file">
-                                <input type="file" name="file_foto"
+                                <input type="file" name="file_foto[]"
                                        id="gallery-photo-add"
                                        class="custom-file-input
                                    @error('file_foto') is-invalid @enderror" multiple>

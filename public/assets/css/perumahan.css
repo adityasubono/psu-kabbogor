@@ -111,3 +111,8 @@ div.desc {
     color: #0E0EFF;
 }
 
+.gallery
+{
+    display: inline-block;
+    margin-top: 20px;
+}

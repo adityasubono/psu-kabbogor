@@ -1,18 +1,4 @@
-
 <div class="card shadow mb-4">
-    <div class="card-header py-3 bg-gray-500">
-        <div class="row">
-            <div class="col-sm-6">
-                <h6 class="m-0 font-weight-bold text-primary">Edit Data Perumahan
-                    : {{$perumahans->nama_perumahan}}</h6>
-            </div>
-            <div class="col-sm-6">
-                <h6 class="m-0 font-weight-bold text-primary text-right">
-                    ID : {{$perumahans->id}}
-                </h6>
-            </div>
-        </div>
-    </div>
     <div class="card-body">
         <form method="post" action="/perumahans/update/{{$perumahans->id}}">
             @method('PATCH')
@@ -39,8 +25,7 @@
 
                     <div class="col-sm-6">
                         <label for="nama_pengembang">Nama Pengembang</label><br>
-                        <input type="text" class="form-control @error('nama_pengembang') is-invalid
-                                   @enderror"
+                        <input type="text" class="form-control @error('nama_pengembang') is-invalid @enderror"
                                id="nama_pengembang"
                                name="nama_pengembang"
                                placeholder="Masukan Nama Pengembang"
@@ -53,10 +38,7 @@
                         </div>
                         @enderror
                     </div>
-                </div>
 
-
-                <div class="row mb-3">
                     <div class="col-sm-3">
                         <label for="luas_perumahan">Luas Perumahan (m2)</label><br>
                         <input type="number" class="form-control @error('luas_perumahan')
@@ -88,27 +70,7 @@
                         </div>
                         @enderror
                     </div>
-                </div>
 
-
-                <div class="row mb-3">
-                    <div class="col-sm-12">
-                        <label for="lokasi">Alamat Lokasi</label><br>
-                        <textarea class="form-control @error('lokasi') is-invalid
-                                      @enderror" id="lokasi" name="lokasi" rows="3"
-                                  placeholder="Masukan Alamat Lokasi">{{
-                                $perumahans->lokasi}}</textarea>
-                        <small class="form-text text-danger">* Wajib Diisi</small>
-                        @error('lokasi')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                        @enderror
-                    </div>
-                </div>
-
-
-                <div class="row mb-3">
                     <div class="col-sm-3">
                         <label for="kecamatan">Kecamatan</label><br>
                         <select
@@ -138,7 +100,7 @@
                         <select
                             class="custom-select @error('kelurahan') is-invalid @enderror"
                             id="kelurahan" name="kelurahan">
-                            <option value="{{$perumahans->kelurahan}}"selected
+                            <option value="{{$perumahans->kelurahan}}" selected
                                     class="bg-primary text-white">
                                 {{$perumahans->kelurahan}}
                             </option>
@@ -152,34 +114,18 @@
                         @enderror
                     </div>
 
-                    <div class="col-sm-3">
-                        <label for="RT">RT</label><br>
-                        <input type="number" class="form-control"
-                               id="RT"
-                               name="RT"
-                               placeholder="RT"
-                               value="{{$perumahans->RT}}">
-                        <!--                            <small class="form-text text-danger">* Wajib Diisi</small>-->
-                        <!--                            @error('RW')-->
-                        <!--                            <div class="invalid-feedback">-->
-                        <!--                                {{ $message }}-->
-                        <!--                            </div>-->
-                        <!--                            @enderror-->
-                    </div>
-
-                    <div class="col-sm-3">
-                        <label for="RW">RW</label><br>
-                        <input type="number" class="form-control"
-                               id="RW"
-                               name="RW"
-                               placeholder="RW"
-                               value="{{$perumahans->RW}}">
-                        <!--                            <small class="form-text text-danger">* Wajib Diisi</small>-->
-                        <!--                            @error('RT')-->
-                        <!--                            <div class="invalid-feedback">-->
-                        <!--                                {{ $message }}-->
-                        <!--                            </div>-->
-                        <!--                            @enderror-->
+                    <div class="col-sm-12">
+                        <label for="lokasi">Alamat Lokasi</label><br>
+                        <textarea class="form-control @error('lokasi') is-invalid
+                                      @enderror" id="lokasi" name="lokasi" rows="3"
+                                  placeholder="Masukan Alamat Lokasi">{{
+                                $perumahans->lokasi}}</textarea>
+                        <small class="form-text text-danger">* Wajib Diisi</small>
+                        @error('lokasi')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                 </div>
 
@@ -193,7 +139,8 @@
                                 onchange="displayForm
                                     (this)">
                             <option value="{{$perumahans->status_perumahan}}">
-                                {{$perumahans->status_perumahan}}</option>
+                                {{$perumahans->status_perumahan}}
+                            </option>
                             <option value="Sudah Serah Terima">Sudah Serah Terima</option>
                             <option value="Belum Serah Terima">Belum Serah Terima</option>
                             <option value="Terlantar">Terlantar</option>
@@ -285,13 +232,12 @@
     </div>
 </div>
 
-
-
 <!--Scrpit Data Sarana -->
 <script type="text/javascript" src="../../assets/js/getKelurahan.js"></script>
 
 <script type="text/javascript">
     var status_perumahan = $('#status_perumahan').val();
+
     function displayForm(elem) {
         if (elem.value === "Sudah Serah Terima") {
             document.getElementById('tgl_serah_terima').style.display = "block";

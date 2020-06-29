@@ -49,7 +49,8 @@
                 </a>
 
                 <button class="btn btn-danger btn-icon-split" data-toggle="modal"
-                        data-target="#confirm-delete" data-backdrop="static"
+                        data-target="#confirm-delete{{ $perumahan->id }}"
+                        data-backdrop="static"
                         data-keyboard="false">
                             <span class="icon text-white-50">
                                 <i class="fas fa-trash"></i>
@@ -57,7 +58,7 @@
                     <span class="text">Hapus</span>
                 </button>
 
-                <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog"
+                <div class="modal fade" id="confirm-delete{{ $perumahan->id }}" tabindex="-1" role="dialog"
                      aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\CCTVPerumahan;
 use App\Exports\PerumahanExcel;
 use App\FotoJalanSaluran;
+use App\FotoPerumahan;
 use App\FotoSarana;
 use App\FotoTaman;
 use App\Imports\PerumahanImport;
@@ -134,13 +135,13 @@ class PerumahansController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_perumahan' => 'required',
-            'nama_pengembang' => 'required',
+//            'nama_perumahan' => 'required',
+//            'nama_pengembang' => 'required',
 //            'luas_perumahan' => 'required',
 //            'jumlah_perumahan' => 'required',
-            'lokasi' => 'required',
-            'kecamatan' => 'required|not_in:0',
-            'kelurahan' => 'required|not_in:0',
+//            'lokasi' => 'required',
+//            'kecamatan' => 'required|not_in:0',
+//            'kelurahan' => 'required|not_in:0',
 //            'RT' => 'required',
 //            'RW' => 'required',
 //            'status_perumahan' => 'required|not_in:0',
@@ -149,8 +150,48 @@ class PerumahansController extends Controller
 //            'tgl_serah_terima' => 'required',
 //            'keterangan' => 'required'
         ]);
-        Perumahans::create($request->all());
 
+//        if($request->hasFile('file_foto')) {
+//            $allowedfileExtension = ['pdf', 'jpg', 'png', 'docx'];
+//            $files = $request->file('file_foto');
+//            foreach ($files as $file) {
+//                $filename = $file->getClientOriginalName();
+//                $extension = $file->getClientOriginalExtension();
+//                $check = in_array($extension, $allowedfileExtension);
+//                //dd($check);
+//                $newName = rand(100000, 1001238912) . "." . $extension;
+//                if ($check) {
+//                    foreach ($request->file_foto as $photo) {
+//                        $filename = $photo->store('/assets/uploads/perumahan/perumahan');
+//                        FotoPerumahan::create([
+//                            'perumahan_id' => $request->input('id'),
+//                            'file_foto' => $filename,
+//                        ]);
+//                    }
+//                }
+//            }
+//        }
+
+
+        $input=$request->all();
+        $images=array();
+        if($files=$request->file('file_foto')){
+            foreach($files as $file){
+                $name=$file->getClientOriginalName();
+                $file->move(public_path().'/assets/uploads/perumahan/perumahan',$name);
+                $images[]=$name;
+
+                FotoPerumahan::create([
+                    'file_foto'=>  implode("|",$images),
+                    'perumahan_id' =>$input['id'],
+                    //you can put other insertion here
+                ]);
+            }
+        }
+        /*Insert your data*/
+
+
+//        Perumahans::create($request->all());
         return redirect('/perumahans')->with('status', 'Data Success Insert');
     }
 
@@ -199,10 +240,14 @@ class PerumahansController extends Controller
      * @param \App\Perumahans $perumahans
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|View
      */
-    public function edit(Perumahans $perumahans)
+    public function edit($id)
     {
         $kecamatans = Kecamatan::all()->sortBy('nama_kecamatan');
-        return view('PSU_Perumahan.perumahan.edit', compact('perumahans', 'kecamatans'));
+        $perumahans = Perumahans::find($id);
+        $data_siteplan = FotoPerumahan::where('perumahan_id', $id)->get();
+        $data_koordinat_perumahan = KoordinatPerumahan::where('perumahan_id', $id)->get();
+
+        return view('PSU_Perumahan.perumahan.edit', compact('perumahans', 'kecamatans','data_siteplan','data_koordinat_perumahan'));
     }
 
     /**
