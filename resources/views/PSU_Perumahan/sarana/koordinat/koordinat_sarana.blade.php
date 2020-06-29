@@ -1,54 +1,29 @@
 @extends('layouts/main')
 
-@section('title', 'Input Data Foto ( Pertamanan )')
+@section('title', 'Edit Data Perumahan')
 
 @section('container-fluid')
 <div class="container-fluid" xmlns="http://www.w3.org/1999/html">
-
-    <div id="googleMap" style="width:100%;height:380px;"></div>
-
-    <form method="post" action="/koordinatsarana/store" enctype="multipart/form-data">
-        @csrf
-        <div class="card shadow mb-4">
-            <div class="card-header py-3 bg-gray-500">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h6 class="m-0 font-weight-bold text-primary">Data Koordinat Sarana :
-                            {{$data_sarana->nama_sarana}}
-                        </h6>
-                    </div>
-                    <div class="col-sm-6">
-                        <h6 class="m-0 font-weight-bold text-primary text-right">ID Sarana:
-                            {{$data_sarana->id}} ||
-                            ID Perumahan:
-                            {{$data_sarana->perumahan_id}}
-                        </h6>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card-body">
-
-                <div class="row mt-3">
-                    <div class="col-sm-6">
-                        <label for="lng">Koordinat Longitude</label><br>
-
-                        <input type="hidden" name="sarana_id" id="sarana_id"
-                               value="{{$data_sarana->id}}">
-
-                        <input type="hidden" name="perumahan_id"  id="perumahan_id"
-                               value="{{$data_sarana->perumahan_id}}">
-
-                    </div>
-                </div>
+    <div class="card mb-3">
+        <div id="googleMap" style="width:100%;height:380px;"></div>
+        <div class="card-body">
+            <form method="post" action="/koordinatsarana/store" enctype="multipart/form-data">
+                @csrf
+                <h5 class="card-title bg-success p-3 text-white">Data Koordinat || ID Perumahan :
+                    {{$data_sarana->perumahan_id}} || ID Sarana : {{$data_sarana->id}}</h5>
                 <input type="hidden" id="jumlah-form" value="0">
                 <div id="sarana-form"></div>
 
-                <button type="submit" class="btn btn-primary btn-icon-split mt-3"
-                        id="reset_data">
-                            <span class="icon text-white-50">
-                                <i class="fas fa-download"></i>
-                            </span>
+                <input type="hidden" name="sarana_id" id="sarana_id"
+                       value="{{$data_sarana->id}}">
+
+                <input type="hidden" name="perumahan_id" id="perumahan_id"
+                       value="{{$data_sarana->perumahan_id}}">
+
+                <button type="submit" class="btn btn-primary btn-icon-split mt-3" id="reset_data">
+                <span class="icon text-white-50">
+                    <i class="fas fa-download"></i>
+                </span>
                     <span class="text">Simpan</span>
                 </button>
 
@@ -58,21 +33,11 @@
                     </span>
                     <span class="text">Reset</span>
                 </button>
-
-            </div>
+            </form>
         </div>
-    </form>
-
+    </div>
     @include('PSU_Perumahan.sarana.koordinat.tabel_koordinat_sarana')
 </div>
-
-
-<style>
-    #map {
-        width: 400px;
-        height: 400px;
-    }
-</style>
 
 <script>
     var poly;
@@ -164,29 +129,23 @@
             + '<span class="text">Hapus</span></button>'
             + '</div></div></div>'
         );
-        $(document).on('click', '.remove-data-taman', function () {
+        $(document).on('click', '.remove-data-koordinat', function () {
             $(this).parents('#data_sarana_append').remove();
         });
 
-        $("#btn-reset-form").click(function(){
+        $("#btn-reset-form").click(function () {
             $("#sarana-form").html(""); // Kita kosongkan isi dari div
             // insert-form
             $("#jumlah-form").val("0"); // Ubah kembali value jumlah form menjadi 1
         });
-
         $("#jumlah-form").val(c);// Ubah value textbox jumlah-form dengan
 
     }
-
     $("#jumlah-form").val(d);
-
-
 </script>
-
 <script
     src="http://maps.google.com/maps/api/js?key=AIzaSyBMbVQJuBRWDV1jFUVZ9Gzsu-nWOEr9LdM&libraries=places&callback=initMap"
     async defer>
 </script>
-
 
 @endsection

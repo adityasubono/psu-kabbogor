@@ -68,7 +68,7 @@
         <span class="icon text-white-50">
             <i class="fas fa-arrow-alt-circle-left"></i>
         </span>
-        <span class="text">Kembali{{$koor->sarana_id}}</span>
+        <span class="text">Kembali</span>
     </a>
     @endforeach
 </div>

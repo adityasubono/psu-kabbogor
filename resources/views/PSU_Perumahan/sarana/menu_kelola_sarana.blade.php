@@ -4,13 +4,14 @@
             {{ $sarana->nama_sarana }}
         </a>
         <div class="dropdown-menu bg-success">
-            <a class="dropdown-item" href="#"
+            <a class="dropdown-item"
+               href="#"
                data-toggle="modal"
                data-target="#foto_sarana{{ $sarana->id }}"
                data-backdrop="static"
                data-keyboard="false">Input Data Foto Sarana </a>
-
-            <a class="dropdown-item" href="#">Input Data Koordinat Sarana</a>
+            <a class="dropdown-item"
+               href="/koordinatsarana/{{ $sarana->id }}">Input Data Koordinat Sarana</a>
         </div>
     </li>
 </ul>

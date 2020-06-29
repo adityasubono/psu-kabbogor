@@ -47,19 +47,33 @@
                 <!--Modal: Name-->
 
 
-
-
-                <div class="card mb-3">
+                <div class="card mb-3 bg-gray-200">
                     <a><img class="img-fluid z-depth-1 d-inline"
                             src="../../assets/uploads/perumahan/sarana/{{$fotosarana->file_foto}}"
                             alt="{{$fotosarana->file_foto}}"
-                            data-toggle="modal" data-target="#modal{{$fotosarana->id}}"
+                            data-toggle="modal"
+                            data-target="#modal{{$fotosarana->id}}"
+                            data-backdrop="static"
+                            data-keyboard="false"
                             style="width:100%; height: 150px; border: #738191 3px solid;
                             border-radius: 5px;">
                     </a>
                     <div class="card-body">
                         <b>{{$sarana->nama_sarana}}</b>
                         <p class="card-text">Keterangan : {{$fotosarana->keterangan}}</p>
+
+                        <a href="/fotosaranas/edit/{{$fotosarana->id}}"
+                           class="btn btn-warning m-3 float-left">
+                            <i class="fas fa-pen"></i>
+                        </a>
+
+                        <button type="button" class="btn btn-danger m-3 float-right"
+                                data-toggle="modal"
+                                data-target="#confirm-delete-foto{{ $loop->iteration }}"
+                                data-backdrop="static"
+                                data-keyboard="false">
+                            <i class="fas fa-trash"></i>
+                        </button>
                     </div>
                 </div>
             </div>
