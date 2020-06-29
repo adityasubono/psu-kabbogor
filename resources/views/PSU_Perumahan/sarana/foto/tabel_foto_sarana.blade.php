@@ -1,81 +1,74 @@
 <link href="{!! asset('assets/css/perumahan.css') !!}" rel="stylesheet">
 <div class="card shadow mb-4">
-    <div class="card-header py-3 bg-gray-500">
-        <h6 class="m-0 font-weight-bold text-primary">Tabel Data Foto</h6>
-    </div>
-
     <div class="card-body" id="data_sarana">
-
         <div class="row">
-            @forelse( $data_foto_sarana as $fotosarana )
-            <div class="col-sm-3">
-                <div class="gallery">
-                    <a href="../../assets/uploads/perumahan/sarana/{{$fotosarana->file_foto}}"
-                       target="_blank">
-                        <img src="../../assets/uploads/perumahan/sarana/{{$fotosarana->file_foto}}">
-                    </a>
-                    <div class="desc bg-gray-200 text-dark">{{$fotosarana->nama_foto}}</div>
+            @foreach( $data_foto_sarana as $fotosarana )
+            @foreach( $data_sarana as $sarana )
+
+            @if($fotosarana->sarana_id == $sarana->id)
 
 
-                    <a href="/fotosaranas/edit/{{$fotosarana->id}}" class="btn btn-warning m-3
-                     float-left">
-                        <i class="fas fa-pen"></i>
-                    </a>
+            <div class="col-sm-4">
+                <!--Modal: Name-->
+                <div class="modal fade" id="modal{{$fotosarana->id}}" tabindex="-1" role="dialog"
+                     aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
 
-                    <button type="button" class="btn btn-danger m-3 float-right"
-                            data-toggle="modal"
-                            data-target="#confirm-delete-foto{{ $loop->iteration }}"
-                            data-backdrop="static"
-                            data-keyboard="false">
-                        <i class="fas fa-trash"></i>
-                    </button>
+                        <!--Content-->
+                        <div class="modal-content">
+                            <!--Body-->
+                            <div class="modal-body mb-0 p-0">
+                                <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                                    <img class="embed-responsive-item"
+                                         src="../../assets/uploads/perumahan/sarana/{{$fotosarana->file_foto}}"
+                                         style="width: 100%;">
+
+                                </div>
+                            </div>
+
+                            <!--Footer-->
+                            <div class="modal-footer justify-content-center">
+                                <textarea class="form-control"
+                                          id="keterangan"
+                                          name="keterangan"
+                                          rows="2"
+                                          placeholder="Masukan Keterangan Gambar Disini"></textarea>
+                                <a href="" class="btn btn-outline-warning btn-lg">Simpan</a>
+
+                                <button type="button"
+                                        class="btn btn-outline-info btn-lg"
+                                        data-dismiss="modal">Batal
+                                </button>
+                            </div>
+                        </div>
+                        <!--/.Content-->
+                    </div>
                 </div>
-            </div>
-            <div class="modal fade" id="confirm-delete-foto{{ $loop->iteration }}" tabindex="-1" role="dialog"
-                 aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header bg-danger">
-                            <i class="fas fa-exclamation-triangle fa-2x text-white"> Perhatian</i>
-                        </div>
-                        <div class="modal-body">
-                            <b>Apakah Anda Akan Menghapus Data Ini ID {{ $fotosarana->id }}?</b>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-success" data-dismiss="modal">
-                                Batal
-                            </button>
-                            <form action="/fotosaranas/delete" method="post"
-                                  class="d-inline">
-                                <input type="hidden" name="filename"
-                                       value="{{$fotosarana->file_foto}}">
-                                <input type="hidden" name="sarana_id"
-                                       value="{{$fotosarana->sarana_id}}">
-                                <input type="hidden" name="id"
-                                       value="{{$fotosarana->id}}">
-                                @csrf
-                                <button type="submit" class="btn btn-danger btn-ok">Hapus</button>
-                            </form>
-                        </div>
+                <!--Modal: Name-->
+
+
+
+
+                <div class="card mb-3">
+                    <a><img class="img-fluid z-depth-1 d-inline"
+                            src="../../assets/uploads/perumahan/sarana/{{$fotosarana->file_foto}}"
+                            alt="{{$fotosarana->file_foto}}"
+                            data-toggle="modal" data-target="#modal{{$fotosarana->id}}"
+                            style="width:100%; height: 150px; border: #738191 3px solid;
+                            border-radius: 5px;">
+                    </a>
+                    <div class="card-body">
+                        <b>{{$sarana->nama_sarana}}</b>
+                        <p class="card-text">Keterangan : {{$fotosarana->keterangan}}</p>
                     </div>
                 </div>
             </div>
-            @empty
+            @else
 
-            <div class="gallery">
-                <a href="">
-                    <img src="../../assets/images/no_picture.jpg" width="600" height="400">
-                </a>
-                <div class="desc text-danger">Data Belum Tersedia</div>
-            </div>
-            @endforelse
+            @endif
+            @endforeach
+            @endforeach
         </div>
-        <a href="/saranas/{{$data_sarana->perumahan_id}}" class="btn btn-info btn-icon-split mt-3">
-        <span class="icon text-white-50">
-            <i class="fas fa-arrow-alt-circle-left"></i>
-        </span>
-            <span class="text">Kembali</span>
-        </a>
     </div>
 </div>
 

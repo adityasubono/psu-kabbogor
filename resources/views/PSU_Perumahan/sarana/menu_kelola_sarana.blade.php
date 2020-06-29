@@ -1,40 +1,111 @@
+<ul class="nav nav-tabs border border-0">
+    <li class="nav-item dropdown border border-0">
+        <a class="nav-link dropdown-toggle text-primary" data-toggle="dropdown" role="link">
+            {{ $sarana->nama_sarana }}
+        </a>
+        <div class="dropdown-menu bg-success">
+            <a class="dropdown-item" href="#"
+               data-toggle="modal"
+               data-target="#foto_sarana{{ $sarana->id }}"
+               data-backdrop="static"
+               data-keyboard="false">Input Data Foto Sarana </a>
 
-<nav class="d-inline">
-    <button class="navbar-toggler border-0" type="button"
-            data-toggle="collapse"
-            data-target="#dataInput{{ $loop->iteration }}">
-        <span class="fas fa-info-circle"></span>
-    </button>
-</nav>
+            <a class="dropdown-item" href="#">Input Data Koordinat Sarana</a>
+        </div>
+    </li>
+</ul>
 
-    {{ $sarana->nama_sarana }}
 
-<div class="collapse bg-light rounded p-2" id="dataInput{{$loop->iteration }}" style="width: 250px">
-    <div id="accordion{{$loop->iteration}}">
-        <div class="card" style="width: 235px">
-            <div class="card-header bg-gray-200 p-0" id="headingOne">
-                <h5 class="mb-0">
-                    <button class="btn btn-link"
-                            data-toggle="collapse"
-                            data-target="#data{{$loop->iteration }}">
-                        Kelola Data Sarana
-                    </button>
+<!-- Modal -->
+<div class="modal fade" id="foto_sarana{{ $sarana->id }}" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="exampleModalScrollableTitle">
+                    Geserlah File Gambar / Foto
                 </h5>
+                <button type="button" class="close bg-danger p-sm-4" data-dismiss="modal"
+                        aria-label="Close">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
-            <div id="data{{$loop->iteration }}" class="collapse"
-                 data-parent="#accordion{{$loop->iteration}}">
-                <div class="card-body p-3">
-                    <a href="/koordinatsarana/{{$sarana->id}}">Tambah Koordinat Sarana</a>
-                    <span class="badge badge-primary text-center rata_kanan">
-                        {{ $sarana->r_koordinat_sarana->count() }}
-                    </span>
+            <div class="modal-body">
+                <h5> ID Sarana : {{ $sarana->id }}</h5>
+                <h5> ID Perumahan : {{ $perumahans->id }}</h5>
+                <h5>Foto Gambar Sarana {{ $sarana->nama_sarana }}</h5>
+
+                <div class="form-group">
+                    <meta name="_token" content="{{csrf_token()}}"/>
+                    <form method="post" action="{{url('/fotosaranas/store')}}"
+                          enctype="multipart/form-data"
+                          class="dropzone" id="dropzone">
+                        <input type="hidden" class="form-control" id="sarana_id"
+                               name="sarana_id"
+                               value=" {{ $sarana->id }}">
+
+                        <input type="hidden" class="form-control" id="perumahan_id"
+                               name="perumahan_id"
+                               value=" {{$perumahans->id}}">
+
+                        @csrf
+                    </form>
+                    <button type="button" class="btn btn-primary btn-icon-split mt-3 float-right"
+                            onClick="window.location.reload()">
+                <span class="icon text-white-50">
+                    <i class="fas fa-download"></i>
+                </span>
+                        <span class="text">Simpan</span>
+                    </button>
                     <br>
-                    <a href="/fotosaranas/{{$sarana->id}}">Tambah Foto Sarana</a>
-                    <span class="badge badge-primary text-center rata_kanan">
-                         {{ $sarana->r_foto_sarana->count() }}
-                    </span>
                 </div>
+
             </div>
         </div>
     </div>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.js"></script>
+<script type="text/javascript">
+    Dropzone.options.dropzone =
+        {
+            maxFilesize: 12,
+            renameFile: function (file) {
+                var dt = new Date();
+                var time = dt.getTime();
+                return file.name;
+            },
+            acceptedFiles: ".jpeg,.jpg,.png,.gif",
+            timeout: 5000,
+            addRemoveLinks: true,
+
+            removedfile: function (file) {
+                var name = file.upload.filename;
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                    },
+                    type: 'POST',
+                    url: '{{ url("/fotosaranas/delete") }}',
+                    data: {
+                        filename: name
+                    },
+                    success: function (data) {
+                        console.log("File deleted successfully!!");
+                    },
+                    error: function (e) {
+                        console.log('gagal dihapus');
+                    }
+                });
+                var fileRef;
+                return (fileRef = file.previewElement) != null ?
+                    fileRef.parentNode.removeChild(file.previewElement) : void 0;
+            },
+            success: function (file, response) {
+                console.log(response);
+            },
+            error: function (file, response) {
+                return false;
+            }
+        };
+</script>

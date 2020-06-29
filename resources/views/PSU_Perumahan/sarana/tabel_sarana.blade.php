@@ -1,10 +1,5 @@
 <div class="card shadow mb-4">
-    <div class="card-header py-3 bg-gray-500">
-        <h6 class="m-0 font-weight-bold text-primary">Tabel Data Sarana</h6>
-    </div>
-
     <div class="card-body" id="data_sarana">
-
         @if (session('status'))
         <div class="alert alert-success">
             {{ session('status') }}
@@ -15,7 +10,7 @@
             <table class="table table-bordered table-hover display nowrap" id="dataTable"
                    cellspacing="0"
                    style="width:100%">
-                <thead class="thead-light">
+                <thead class="thead-dark">
                 <tr>
                     <th>No.</th>
                     <th>Nama Sarana</th>

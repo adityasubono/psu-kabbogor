@@ -5,6 +5,12 @@
 @section('container-fluid')
 
 <div class="container-fluid">
+    @if (session('status'))
+    <div class="alert alert-success fade show" role="alert">
+        {{ session('status') }}
+    </div>
+    @endif
+
     <div class="card shadow mb-4">
         <div class="card-header py-3 bg-gray-500">
             <div class="row">
@@ -63,7 +69,7 @@
                 </div>
 
                 <div class="tab-pane fade" id="sarana_tab" role="tabpanel">
-                    Data Sarana
+                    @include('PSU_Perumahan.sarana.sarana_tab')
                 </div>
 
                 <div class="tab-pane fade" id="data_jalan_saluran" role="tabpanel">
@@ -89,4 +95,13 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    window.setTimeout(function () {
+        $(".alert").fadeTo(500, 0).slideUp(500, function () {
+            $(this).remove();
+        });
+    }, 4000);
+</script>
+
 @endsection

@@ -71,6 +71,7 @@ class FotoSaranasController extends Controller
         $imagemodel->nama_foto="$nama_file_saja";
         $imagemodel->file_foto="$newName";
         $imagemodel->save();
+
         return response()->json(['success'=>$profileImage]);
 
     }

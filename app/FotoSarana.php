@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 class FotoSarana extends Model
 {
     protected $table='fotosaranas';
-    protected $fillable=['sarana_id','perumahan_id','nama_foto','file_foto'];
+    protected $fillable=['sarana_id','perumahan_id','nama_foto','file_foto','keterangan'];
 
 
     public function r_perumahan() {

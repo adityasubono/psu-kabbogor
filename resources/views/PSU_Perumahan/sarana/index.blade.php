@@ -1,33 +1,13 @@
-@extends('layouts/main')
-
-@section('title', 'Input Data Sarana Perumahan')
-
-@section('container-fluid')
 <div class="container-fluid" xmlns="http://www.w3.org/1999/html">
-
     <div class="card shadow mb-4">
         <form method="post" action="/saranas/store">
             @csrf
-            <div class="card-header py-3 bg-gray-500">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h6 class="m-0 font-weight-bold text-primary">Kelola Data Sarana :
-                            {{$data_perumahan->nama_perumahan}}</h6>
-                    </div>
-                    <div class="col-sm-6">
-                        <h6 class="m-0 font-weight-bold text-primary text-right">
-                            ID : {{$data_perumahan->id}}
-                        </h6>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card-body bg-gray-200" id="data_sarana">
+            <div class="card-body" id="data_sarana">
                 <div class="row">
                     <div class="col-sm-3">
                         <input type="hidden" class="form-control" id="perumahan_id"
                                name="data_sarana[0][perumahan_id]"
-                               value="{{$data_perumahan->id}}">
+                               value="{{$perumahans->id}}">
 
                         <label for="nama_sarana">Nama Sarana</label><br>
                         <input type="text" class="form-control @error('nama_sarana') is-invalid
@@ -95,7 +75,6 @@
 
                     </div>
                 </div>
-
                 <input type="hidden" id="jumlah-form" value="0">
                 <div id="sarana-form"></div>
 
@@ -113,14 +92,8 @@
     <!--    Tabel Data Sarana     -->
     @include('PSU_Perumahan.sarana.tabel_sarana')
 
+    @include('PSU_Perumahan.sarana.foto.tabel_foto_sarana')
 
-    <a href="/perumahans" class="btn btn-info btn-icon-split
-        mb-3">
-        <span class="icon text-white-50">
-            <i class="fas fa-arrow-alt-circle-left"></i>
-        </span>
-        <span class="text">Kembali</span>
-    </a>
 
 <!--    <a href="/tampilpetasemua/peta" class="btn btn-primary btn-icon-split mb-3">-->
 <!--        <span class="icon text-white-50">-->
@@ -148,7 +121,7 @@
 </script>
 
 <!--Scrpit Data Sarana -->
-<script type="text/javascript" src="../assets/js/perumahan/sarana/sarana_form.js"></script>
+<script type="text/javascript" src="../../assets/js/perumahan/sarana/sarana_form.js"></script>
 <script type="text/javascript" src="../assets/js/sarana/foto_sarana_form.js"></script>
 
 
@@ -159,4 +132,3 @@
         });
     }, 4000);
 </script>
-@endsection

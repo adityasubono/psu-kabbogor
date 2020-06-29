@@ -64,8 +64,8 @@ class SaranasController extends Controller
         }
 
         $perumahan_id = $request->data_sarana[0]['perumahan_id'];
-        return redirect()->action('SaranasController@index', ['id' => $perumahan_id])
-            ->with('status','Data Berhasil Disimpan');
+        return redirect()->action('PerumahansController@edit', ['id' => $perumahan_id])
+            ->with('status','Data Sarana Berhasil Disimpan');
 
     }
 
@@ -134,7 +134,7 @@ class SaranasController extends Controller
 
         $perumahan_id = $request->get('perumahan_id');
         Sarana::destroy($sarana->id);
-        return redirect()->action('SaranasController@index', ['id' => $perumahan_id])
-            ->with('status','Data Dengan ID '.$sarana->id.' Berhasil Dihapus');
+        return redirect()->action('PerumahansController@edit', ['id' => $perumahan_id])
+            ->with('status','Data Sarana Dengan ID '.$sarana->id.' Berhasil Dihapus');
     }
 }
