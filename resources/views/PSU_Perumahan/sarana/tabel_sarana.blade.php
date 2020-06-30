@@ -1,10 +1,5 @@
 <div class="card shadow mb-4">
     <div class="card-body" id="data_sarana">
-        @if (session('status'))
-        <div class="alert alert-success">
-            {{ session('status') }}
-        </div>
-        @endif
 
         <div class="table-responsive">
             <table class="table table-bordered table-hover display nowrap" id="dataTable"

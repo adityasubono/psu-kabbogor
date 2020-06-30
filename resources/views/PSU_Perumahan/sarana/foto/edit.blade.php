@@ -1,41 +1,30 @@
-@extends('layouts/main')
-
-@section('title', 'Edit Data Foto Sarana')
-
-@section('container-fluid')
-
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<div class="container-fluid" xmlns="http://www.w3.org/1999/html">
-    <div class="card-header bg-gray-500 rounded">
-        <div class="row">
-            <div class="col-sm-6">
-                <h6 class="m-0 font-weight-bold text-primary">Edit Data Foto :
-                    {{$fotoSarana->nama_foto}}
-                </h6>
-            </div>
-            <div class="col-sm-6">
-                <h6 class="m-0 font-weight-bold text-primary text-right">ID :
-                    {{$fotoSarana->id}}
-                </h6>
+
+<form action="/fotosaranas/update/{{ $fotosarana->id }}" method="post" enctype="multipart/form-data">
+    {{ csrf_field() }}
+    {{ method_field('PATCH') }}
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card">
+                <img src="../../assets/uploads/perumahan/sarana/{{ $fotosarana->file_foto }}"
+                     style="width:100%;height:300px;">
+                <div class="card-body">
+                    <b>Gambar / Foto Sebelumnya</b>
+                    <p class="card-text">Keterangan : {{$fotosarana->keterangan}}</p>
+                    <input type="hidden" class="form-control" name="sarana_id"
+                           value="{{ $sarana->id}}">
+                    <input type="hidden" class="form-control" name="perumahan_id"
+                           value="{{ $sarana->perumahan_id}}">
+                </div>
             </div>
         </div>
-    </div>
-    <div class="card-body bg-gray-200">
-        <form action="/fotosaranas/update/{{$fotoSarana->id}}" method="post"
-              enctype="multipart/form-data">
-            {{ csrf_field() }}
-            {{ method_field('PATCH') }}
-
-            <div class="row">
-                <div class="col-sm-6">
-                    <label for="nama_foto">Nama Foto:</label><br>
-                    <input type="hidden" class="form-control" name="sarana_id"
-                           value="{{$fotoSarana->sarana_id }}">
-
-                    <input type="text" class="form-control" id="usr" name="nama_foto"
-                           value="{{$fotoSarana->nama_foto }}">
-                </div>
-                <div class="col-sm-6">
+        <div class="col-sm-6">
+            <div class="card">
+                <img id="image_preview_container" src="../../assets/images/no_picture.jpg"
+                     alt="preview image" style="width:100%;height:300px;">
+                <div class="card-body">
+                    <b>Gambar / Foto Setelah Diganti</b><br>
                     <label for="file_foto">Upload Foto</label><br>
                     <div class="input-group mb-2">
                         <div class="input-group-prepend">
@@ -55,44 +44,24 @@
                             @enderror
                         </div>
                     </div>
-                </div>
-
-                <div class="col-sm-6 bg-light border mt-3 text-center rounded">
-                    <label for="nama"><b>Foto Lama</b></label><br>
-                    <img src="../../assets/uploads/perumahan/sarana/{{$fotoSarana->file_foto}}"
-                         style="width:400px;height:400px;">
-                </div>
-
-                <div class="col-sm-6 bg-light mt-3 text-center rounded">
-                    <label for="nama"><b>Foto Baru</b></label><br>
-                    <img id="image_preview_container" src="../../assets/images/no_picture.jpg"
-                         alt="preview image" style="width:400px;height:400px;">
-                </div>
-
-                <div class="col-sm-4 mt-3">
-
-                    <a href="/fotosaranas/{{$fotoSarana->perumahan_id}}" class="btn btn-danger
-                    btn-icon-split">
+                    <textarea class="form-control"
+                              name="keterangan"
+                              rows="2"
+                              placeholder="Masukan Keterangan Gambar Disini"></textarea>
+                    <button type="submit" class="btn btn-primary btn-icon-split mt-3">
                             <span class="icon text-white-50">
-                                <i class="fas fa-arrow-alt-circle-left"></i>
-                            </span>
-                        <span class="text">Batal</span>
-                    </a>
-
-                    <button type="submit" class="btn btn-primary btn-icon-split">
-                            <span class="icon text-white-50">
-                                <i class="fas fa-download"></i>
-                            </span>
+                               <i class="fas fa-download"></i>
+                               </span>
                         <span class="text">Simpan</span>
                     </button>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
-</div>
+</form>
+
 
 <script type="text/javascript">
-
     $(document).ready(function (e) {
 
         $.ajaxSetup({
@@ -101,7 +70,7 @@
             }
         });
 
-        $('#file_foto').change(function(){
+        $('#file_foto').change(function () {
 
             let reader = new FileReader();
             reader.onload = (e) => {
@@ -111,28 +80,27 @@
 
         });
 
-        $('#upload_image_form').submit(function(e) {
+        $('#upload_image_form').submit(function (e) {
             e.preventDefault();
 
             var formData = new FormData(this);
 
             $.ajax({
-                type:'POST',
+                type: 'POST',
                 url: "{{ url('save-photo')}}",
                 data: formData,
-                cache:false,
+                cache: false,
                 contentType: false,
                 processData: false,
                 success: (data) => {
                     this.reset();
                     alert('Image has been uploaded successfully');
                 },
-                error: function(data){
+                error: function (data) {
                     console.log(data);
                 }
             });
         });
     });
-
 </script>
-@endsection
+

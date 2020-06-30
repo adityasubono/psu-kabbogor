@@ -55,6 +55,7 @@ class FotoSaranasController extends Controller
 
         $sarana_id= $request->input('sarana_id');
         $perumahan_id= $request->input('perumahan_id');
+
         $image = $request->file('file');
         $profileImage = $image->getClientOriginalName();
         $nama_file_saja= pathinfo($profileImage, PATHINFO_FILENAME);
@@ -108,14 +109,13 @@ class FotoSaranasController extends Controller
     public function update(Request $request, $id)
     {
         $data = FotoSarana::find($id);
-        $data->nama_foto = $request->input('nama_foto');
-//        $data->file_foto = $request->file('file_foto');
-        $sarana_id = $request->get('sarana_id');
+        $data->keterangan = $request->input('keterangan');
+        $perumahan_id = $request->get('perumahan_id');
 
-        if (empty($request->file('file_foto'))){
+        if (empty($request->file('file_foto'))) {
             $data->file_foto = $data->file_foto;
-        }
-        else{
+            $data->keterangan = $data->keterangan;
+        } else{
             $path = public_path('/assets/uploads/perumahan/sarana/') . $data->file_foto;
             if (file_exists($path)) {
                 unlink($path);
@@ -126,11 +126,12 @@ class FotoSaranasController extends Controller
             $newName = rand(100000,1001238912).".".$ext;
             $file->move('assets/uploads/perumahan/sarana/',$newName);
             $data->file_foto = $newName;
+            $data->keterangan = $request->input('keterangan');
         }
         $data->save();
 
-        return redirect()->action('FotoSaranasController@index', ['id' => $sarana_id])
-            ->with('status','Data Foto Berhasil Diupdate ');
+        return redirect()->action('PerumahansController@edit', ['id' => $perumahan_id])
+            ->with('status','Data Foto Sarana Berhasil Diupdate ');
 
     }
 
@@ -144,7 +145,7 @@ class FotoSaranasController extends Controller
     {
         $foto_id = $request->get('id');
         $filename = $request->get('filename');
-        $sarana_id = $request->get('sarana_id');
+        $perumahan_id = $request->get('perumahan_id');
 
         if (isset($foto_id) && ($filename)) {
             FotoSarana::where('id', $foto_id)->delete();
@@ -154,8 +155,8 @@ class FotoSaranasController extends Controller
             }
 
             return redirect()->action(
-                'FotoSaranasController@index', ['id' => $sarana_id])
-                ->with('status','Data Foto Berhasil Diupdate ');
+                'PerumahansController@edit', ['id' => $perumahan_id])
+                ->with('status','Data Foto Sarana Berhasil Dihapus ');
         }
     }
 }
