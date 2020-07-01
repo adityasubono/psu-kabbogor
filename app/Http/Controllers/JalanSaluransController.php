@@ -86,22 +86,22 @@ class JalanSaluransController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\JalanSaluran  $jalanSaluran
+     * @param  \App\JalanSaluran  $jalansaluran
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit(JalanSaluran $jalanSaluran)
+    public function edit(JalanSaluran $jalansaluran)
     {
-        return view('PSU_Perumahan.jalansaluran.edit', compact('jalanSaluran'));
+        return view('PSU_Perumahan.jalansaluran.edit', compact('jalansaluran'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\JalanSaluran  $jalanSaluran
+     * @param  \App\JalanSaluran  $jalansaluran
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, JalanSaluran $jalanSaluran)
+    public function update(Request $request, JalanSaluran $jalansaluran)
     {
         $rules = [
             'nama_jalan_saluran' => 'required',
@@ -116,13 +116,14 @@ class JalanSaluransController extends Controller
         $this->validate($request, $rules, $customMessages);
 
         $perumahan_id = $request->get('perumahan_id');
-        JalanSaluran::where('id', $jalanSaluran->id)->update([
+
+        JalanSaluran::where('id', $jalansaluran->id)->update([
             'nama_jalan_saluran' => $request->nama_jalan_saluran,
             'luas_jalan_saluran' => $request->luas_jalan_saluran,
             'kondisi_jalan_saluran' => $request->kondisi_jalan_saluran
         ]);
-        return redirect()->action('JalanSaluransController@index', ['id' => $perumahan_id])
-            ->with('status','Data Dengan ID '.$jalanSaluran->id.' Berhasil Di Update');
+        return redirect()->action('PerumahansController@edit', ['id' => $perumahan_id])
+            ->with('status','Data Dengan ID '.$jalansaluran->id.' Berhasil Di Update');
     }
 
     /**
