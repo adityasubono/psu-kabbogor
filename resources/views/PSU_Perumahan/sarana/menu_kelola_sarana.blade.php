@@ -1,9 +1,9 @@
-<ul class="nav nav-tabs border border-0">
-    <li class="nav-item dropdown border border-0">
+<ul class="nav nav-tabs border border-0 rounded">
+    <li class="nav-item dropdown border border-0 rounded">
         <a class="nav-link dropdown-toggle text-primary" data-toggle="dropdown" role="link">
             {{ $sarana->nama_sarana }}
         </a>
-        <div class="dropdown-menu bg-success">
+        <div class="dropdown-menu bg-gradient-warning rounded">
             <a class="dropdown-item"
                href="#"
                data-toggle="modal"
@@ -22,10 +22,16 @@
                data-backdrop="static"
                data-keyboard="false">Edit Data Sarana
             </a>
+            <a class="dropdown-item"
+               href="#"
+               data-toggle="modal"
+               data-target="#confirm-delete-sarana{{ $sarana->id }}"
+               data-backdrop="static"
+               data-keyboard="false">Hapus Data Sarana
+            </a>
         </div>
     </li>
 </ul>
-
 
 <!-- Modal -->
 <div class="modal fade" id="foto_sarana{{ $sarana->id }}" tabindex="-1" role="dialog"
@@ -42,34 +48,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <h5> ID Sarana : {{ $sarana->id }}</h5>
-                <h5> ID Perumahan : {{ $perumahans->id }}</h5>
-                <h5>Foto Gambar Sarana {{ $sarana->nama_sarana }}</h5>
 
-                <div class="form-group">
-                    <meta name="_token" content="{{csrf_token()}}"/>
-                    <form method="post" action="{{url('/fotosaranas/store')}}"
-                          enctype="multipart/form-data"
-                          class="dropzone" id="dropzone">
-                        <input type="hidden" class="form-control" id="sarana_id"
-                               name="sarana_id"
-                               value=" {{ $sarana->id }}">
-
-                        <input type="hidden" class="form-control" id="perumahan_id"
-                               name="perumahan_id"
-                               value=" {{$perumahans->id}}">
-
-                        @csrf
-                    </form>
-                    <button type="button" class="btn btn-primary btn-icon-split mt-3 float-right"
-                            onClick="window.location.reload()">
-                <span class="icon text-white-50">
-                    <i class="fas fa-download"></i>
-                </span>
-                        <span class="text">Simpan</span>
-                    </button>
-                    <br>
-                </div>
+                @include('PSU_Perumahan.sarana.foto.foto_sarana')
             </div>
         </div>
     </div>
@@ -95,47 +75,31 @@
     </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.js"></script>
-<script type="text/javascript">
-    Dropzone.options.dropzone =
-        {
-            maxFilesize: 12,
-            renameFile: function (file) {
-                var dt = new Date();
-                var time = dt.getTime();
-                return file.name;
-            },
-            acceptedFiles: ".jpeg,.jpg,.png,.gif",
-            timeout: 5000,
-            addRemoveLinks: true,
+<div class="modal fade" id="confirm-delete-sarana{{ $sarana->id }}" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <i class="fas fa-exclamation-triangle fa-2x"> Perhatian</i>
+            </div>
+            <div class="modal-body">
+                <b>Apakah Anda Akan Menghapus Data Ini ID {{ $sarana->id }}?</b>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal">
+                    Batal
+                </button>
+                <form action="/saranas/delete/{{ $sarana->id }}" method="post"
+                      class="d-inline">
+                    @method('delete')
+                    <input type="hidden" name="perumahan_id"
+                           value="{{$sarana->perumahan_id}}">
+                    @csrf
+                    <button type="submit" class="btn btn-danger
+                                    btn-ok">Hapus</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
-            removedfile: function (file) {
-                var name = file.upload.filename;
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-                    },
-                    type: 'POST',
-                    url: '{{ url("/fotosaranas/delete") }}',
-                    data: {
-                        filename: name
-                    },
-                    success: function (data) {
-                        console.log("File deleted successfully!!");
-                    },
-                    error: function (e) {
-                        console.log('gagal dihapus');
-                    }
-                });
-                var fileRef;
-                return (fileRef = file.previewElement) != null ?
-                    fileRef.parentNode.removeChild(file.previewElement) : void 0;
-            },
-            success: function (file, response) {
-                console.log(response);
-            },
-            error: function (file, response) {
-                return false;
-            }
-        };
-</script>

@@ -1,13 +1,16 @@
 <link href="{!! asset('assets/css/perumahan.css') !!}" rel="stylesheet">
 
+<h5> ID Sarana : {{ $sarana->id }} || ID Perumahan : {{ $perumahans->id }}</h5>
+<h5>Kelompok Foto/Gambar Sarana {{ $sarana->nama_sarana }}</h5>
+
 <div class="form-group">
     <meta name="_token" content="{{csrf_token()}}"/>
     <form method="post" action="{{url('/fotosaranas/store')}}"
           enctype="multipart/form-data"
           class="dropzone" id="dropzone">
-        <input type="text" class="form-control" id="sarana_id"
+        <input type="hidden" class="form-control" id="sarana_id"
                name="sarana_id"
-               value=" {{ $perumahans->id }}">
+               value=" {{ $sarana->id }}">
 
         <input type="hidden" class="form-control" id="perumahan_id"
                name="perumahan_id"
@@ -15,6 +18,7 @@
 
         @csrf
     </form>
+    <span class="text-danger">Maksimal Foto/Gambar Yang Dimasukan 12 File</span>
     <button type="button" class="btn btn-primary btn-icon-split mt-3 float-right"
             onClick="window.location.reload()">
                 <span class="icon text-white-50">
