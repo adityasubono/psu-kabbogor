@@ -21,11 +21,11 @@
                                 @method('patch')
                                 @csrf
                                 <div class="modal-body m-0 p-0">
-                                        <div class="container mt-4">
+                                        <div class="imagereview">
                                             <img src="../../assets/uploads/perumahan/sarana/{{$fotosarana->file_foto}}"
                                                  style="width: 100%; height: 600px;">
                                             <div class="content">
-                                                <h1>{{$sarana->nama_sarana}}</h1>
+                                                <h4>{{$sarana->nama_sarana}}</h4>
                                                 <p class="text-justify">{{$fotosarana->keterangan}}</p>
                                             </div>
                                         </div>
@@ -73,7 +73,7 @@
                             @php
                             $p = $fotosarana->keterangan;
                             $word = mb_substr($p,0,50);
-                            echo "$word";
+                            echo "$word...";
                             @endphp
                         </p>
 

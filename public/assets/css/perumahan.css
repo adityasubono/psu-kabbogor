@@ -120,20 +120,22 @@ div.desc {
     box-sizing: border-box;
 }
 
-.container {
+.imagereview {
     position: relative;
     max-width: 100%;
-
+    margin: 0px;
 }
 
-.container img {vertical-align: middle;}
+.imagereview img {
+    vertical-align: middle;
+}
 
-.container .content {
+.imagereview .content {
     position: absolute;
     bottom: 0;
     background: rgb(0, 0, 0); /* Fallback color */
-    background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+    background: rgba(0, 0, 0, 0.6); /* Black background with 0.6 opacity */
     color: #f1f1f1;
-    width: 94%;
+    width: 100%;
     padding: 20px;
 }
