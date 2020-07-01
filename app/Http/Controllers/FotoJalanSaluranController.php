@@ -35,7 +35,7 @@ class FotoJalanSaluranController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -58,7 +58,9 @@ class FotoJalanSaluranController extends Controller
         $imagemodel->nama_foto="$nama_file_saja";
         $imagemodel->file_foto="$newName";
         $imagemodel->save();
-        return response()->json(['success'=>$profileImage]);
+
+        return redirect()->action('PerumahansController@edit', ['id' => $perumahan_id])
+            ->with('status','Data Foto Jalan Saluran Berhasil Disimpan');
     }
 
     /**
@@ -93,12 +95,15 @@ class FotoJalanSaluranController extends Controller
     public function update(Request $request, $id)
     {
         $data = FotoJalanSaluran::find($id);
-        $data->nama_foto = $request->input('nama_foto');
-//        $data->file_foto = $request->file('file_foto');
-        $jalansaluran_id = $request->get('jalansaluran_id');
+        $keterangan = $request->input('keterangan');
+        $perumahan_id = $request->get('perumahan_id');
+        if (isset($keterangan)){
+            $data->keterangan = $keterangan;
+        }
 
-        if (empty($request->file('file_foto'))){
+        if (empty($request->file('file_foto') && $request->input('keterangan'))){
             $data->file_foto = $data->file_foto;
+            $data->keterangan = $data->keterangan;
         }
         else{
             $path = public_path('/assets/uploads/perumahan/jalansaluran/') . $data->file_foto;
@@ -114,8 +119,8 @@ class FotoJalanSaluranController extends Controller
         }
         $data->save();
 
-        return redirect()->action('FotoJalanSaluranController@index', ['id' => $jalansaluran_id])
-            ->with('status','Data Foto Berhasil Diupdate ');
+        return redirect()->action('PerumahansController@edit', ['id' => $perumahan_id])
+            ->with('status','Data Foto Jalan Saluran Berhasil Diupdate ');
     }
 
     /**
@@ -128,7 +133,7 @@ class FotoJalanSaluranController extends Controller
     {
         $foto_id = $request->get('id');
         $filename = $request->get('filename');
-        $jalansaluran_id = $request->get('jalansaluran_id');
+        $perumahan_id = $request->get('perumahan_id');
 
         if (isset($foto_id) && ($filename)) {
             FotoJalanSaluran::where('id', $foto_id)->delete();
@@ -138,8 +143,8 @@ class FotoJalanSaluranController extends Controller
             }
 
             return redirect()->action(
-                'FotoJalanSaluranController@index', ['id' => $jalansaluran_id])
-                ->with('status','Data Foto Berhasil Diupdate ');
+                'PerumahansController@edit', ['id' => $perumahan_id])
+                ->with('status','Data Foto Jalan Saluran Berhasil Dihapus ');
         }
     }
 }

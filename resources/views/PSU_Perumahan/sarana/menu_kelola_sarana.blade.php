@@ -60,7 +60,7 @@
         <div class="modal-content">
             <div class="modal-header bg-primary text-white">
                 <h5 class="modal-title" id="exampleModalScrollableTitle">
-                    Edit Data Sarana {{$sarana->nama_sarana}} || ID Sarana : {{$sarana->id}}
+                    Edit Data Sarana {{$sarana->nama_sarana}}
                 </h5>
                 <button type="button" class="close bg-danger p-sm-4" data-dismiss="modal"
                         aria-label="Close">

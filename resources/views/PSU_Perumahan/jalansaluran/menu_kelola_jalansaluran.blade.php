@@ -34,6 +34,29 @@
     </li>
 </ul>
 
+<div class="modal fade" id="foto_jalansaluran{{ $jalansaluran->id }}" tabindex="-1"
+     role="dialog"
+     aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="exampleModalScrollableTitle">
+                    Edit Data Jalan Saluran {{ $jalansaluran->nama_jalan_saluran }}
+                </h5>
+                <button type="button" class="close bg-danger p-sm-4" data-dismiss="modal"
+                        aria-label="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                @include('PSU_Perumahan.jalansaluran.foto.foto_jalan_saluran')
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 <div class="modal fade" id="edit_data_jalansaluran{{ $jalansaluran->id }}" tabindex="-1" role="dialog"
      aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
@@ -82,8 +105,7 @@
                     <input type="hidden" name="perumahan_id"
                            value="{{$jalansaluran->perumahan_id}}">
                     @csrf
-                    <button type="submit" class="btn btn-danger
-                                    btn-ok">Hapus</button>
+                    <button type="submit" class="btn btn-danger btn-ok">Hapus</button>
                 </form>
             </div>
         </div>

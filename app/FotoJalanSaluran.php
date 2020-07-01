@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 class FotoJalanSaluran extends Model
 {
     protected $table='fotojalansalurans';
-    protected $fillable=['perumahan_id','jalansaluran_id','nama_foto','file_foto'];
+    protected $fillable=['perumahan_id','jalansaluran_id','nama_foto','file_foto','keterangan'];
 
     public function r_perumahan() {
         return $this->belongsTo('App\Perumahans', 'id');

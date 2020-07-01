@@ -136,9 +136,9 @@ Route::get('/koordinatsarana/show/{id}', 'KoordinatSaranasController@show');
 //PSU Data Jalan dan Saluran
 Route::get('/jalansalurans/{id}', 'JalanSaluransController@index');
 Route::post('/jalansalurans/store', 'JalanSaluransController@store');
-Route::get('/jalansalurans/edit/{jalanSaluran}', 'JalanSaluransController@edit');
-Route::patch('/jalansalurans/update/{jalanSaluran}', 'JalanSaluransController@update');
-Route::delete('/jalansalurans/delete/{jalanSaluran}', 'JalanSaluransController@destroy');
+Route::get('/jalansalurans/edit/{jalansaluran}', 'JalanSaluransController@edit');
+Route::patch('/jalansalurans/update/{jalansaluran}', 'JalanSaluransController@update');
+Route::delete('/jalansalurans/delete/{jalansaluran}', 'JalanSaluransController@destroy');
 
 
 //PSU Data Foto Jalan Saluran

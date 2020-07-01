@@ -128,18 +128,22 @@ class JalanSaluransController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\JalanSaluran  $jalanSaluran
+     * @param  \App\JalanSaluran  $jalansaluran
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Request $request, JalanSaluran $jalanSaluran)
+    public function destroy(Request $request, JalanSaluran $jalansaluran)
     {
         $perumahan_id = $request->get('perumahan_id');
-        JalanSaluran::destroy($jalanSaluran->id);
-        KoordinatJalanSaluran::where('jalansaluran_id',$jalanSaluran->id)->delete();
-        FotoJalanSaluran::where('jalansaluran_id', $jalanSaluran->id)->delete();
-
-
-        return redirect()->action('JalanSaluransController@index', ['id' => $perumahan_id])
-            ->with('status','Data Dengan ID '.$jalanSaluran->id.' Berhasil Dihapus');
+        $data_file = FotoJalanSaluran::where('jalansaluran_id', $jalansaluran->id)->get();
+        foreach ($data_file as $file) {
+            $path = public_path('/assets/uploads/perumahan/jalansaluran/'). $file->file_foto;
+            if (file_exists($path)) {
+                unlink($path);
+                FotoJalanSaluran::where('jalansaluran_id', $jalansaluran->id)->delete();
+                JalanSaluran::destroy($jalansaluran->id);
+            }
+        }
+        return redirect()->action('PerumahansController@edit', ['id' => $perumahan_id])
+            ->with('status', 'Data Jalan Saluran Dengan ID ' . $jalansaluran->id . ' Berhasil Dihapus');
     }
 }
