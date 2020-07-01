@@ -40,7 +40,7 @@
                                           id="keterangan"
                                           name="keterangan"
                                           rows="2"
-                                          placeholder="Masukan Keterangan Gambar Disini"></textarea>
+                                          placeholder="Masukan Keterangan Foto/Gambar Disini"></textarea>
                                     <button type="submit"
                                             class="btn btn-outline-primary btn-lg">Simpan
                                     </button>

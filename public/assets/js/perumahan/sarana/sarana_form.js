@@ -39,7 +39,7 @@ $(document).ready(function() {
             + '</select></div>'
 
             + '<div class="col-sm-3">'
-            + '<label for="aksi">Aksi</label><br>'
+            + '<label for="aksi" class="text-center">Aksi</label><br>'
             + '<button type="button" '
             + 'class="btn btn-danger btn-icon-split float-right'
             + ' remove-data-inventaris">'

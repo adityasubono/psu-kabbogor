@@ -249,10 +249,14 @@ class PerumahansController extends Controller
         $data_sarana = Sarana::where('perumahan_id', $id)->get();
         $data_koordinat_sarana = KoordinatSarana::where('perumahan_id', $id);
         $data_foto_sarana = FotoSarana::where('perumahan_id',$id)->get();
+        $data_jalan_saluran = JalanSaluran::where('perumahan_id',$id)->get();
+        $data_foto_jalan_saluran = FotoJalanSaluran::where('perumahan_id',$id)->get();
+        $data_koordinat_jalan_saluran = KoordinatJalanSaluran::where('perumahan_id',$id)->get();
 
-
-        return view('PSU_Perumahan.perumahan.edit', compact('perumahans', 'kecamatans','data_siteplan',
-            'data_koordinat_perumahan','data_sarana','data_foto_sarana','data_koordinat_sarana'));
+        return view('PSU_Perumahan.perumahan.edit', compact('perumahans', 'kecamatans',
+            'data_siteplan', 'data_koordinat_perumahan','data_sarana','data_foto_sarana',
+            'data_koordinat_sarana','data_jalan_saluran','data_foto_jalan_saluran',
+            'data_koordinat_jalan_saluran'));
     }
 
     /**

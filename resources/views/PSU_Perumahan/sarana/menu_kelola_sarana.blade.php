@@ -48,7 +48,6 @@
                 </button>
             </div>
             <div class="modal-body">
-
                 @include('PSU_Perumahan.sarana.foto.foto_sarana')
             </div>
         </div>

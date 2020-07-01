@@ -58,7 +58,7 @@
                 </div>
 
                 <div class="col-sm-3">
-                    <label for="aksi">Aksi</label><br>
+                    <label for="aksi" class="text-center">Aksi</label><br>
                     <button type="button"
                             class="btn btn-success btn-icon-split float-right ml-3"
                             id="add_data_sarana">

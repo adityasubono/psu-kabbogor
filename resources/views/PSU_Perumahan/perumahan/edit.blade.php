@@ -73,7 +73,7 @@
                 </div>
 
                 <div class="tab-pane fade" id="data_jalan_saluran" role="tabpanel">
-                    Data Jalan dan Saluran
+                    @include('PSU_Perumahan.jalansaluran.jalansaluran_tab')
                 </div>
 
                 <div class="tab-pane fade" id="data_taman_penghijauan" role="tabpanel">

@@ -9,15 +9,18 @@ $("#add_jalan_saluran").click(function () {
         + '<div class="col-sm-4">'
         + '<input type="hidden" name="data_jalan_saluran[' + b + '][perumahan_id]" '
         + 'value="'+ perumahan_id +'">'
+
         + '<label for="nama_jalan_saluran">Nama Jalan Saluran</label><br>'
         + '<input type="text" name="data_jalan_saluran[' + b + '][nama_jalan_saluran]" '
         + 'placeholder="Masukan Nama Sarana" '
         + 'class="form-control" /></div>'
+
         + '<div class="col-sm-3">'
         + '<label for="luas_jalan_saluran">Luas Jalan Saluran</label><br>'
         + '<input type="number" name="data_jalan_saluran[' + b + '][luas_jalan_saluran]" '
         + 'placeholder="Masukan Luas Jalan Saluran"'
         + 'class="form-control" /></div>'
+
         + '<div class="col-sm-3"> '
         + '<label for="kondisi_jalan_saluran">Kondisi Jalan Saluran</label> '
         + '<select class="custom-select" id="operator"  '

@@ -68,7 +68,7 @@ class JalanSaluransController extends Controller
         }
         $perumahan_id = $request->data_jalan_saluran[0]['perumahan_id'];
 
-        return redirect()->action('JalanSaluransController@index', ['id' => $perumahan_id])
+        return redirect()->action('PerumahansController@edit', ['id' => $perumahan_id])
             ->with('status','Data Jalan Saluran Berhasil Disimpan');
     }
 

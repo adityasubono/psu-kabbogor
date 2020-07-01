@@ -1,12 +1,12 @@
 <link href="{!! asset('assets/css/perumahan.css') !!}" rel="stylesheet">
-<div class="card shadow mb-4">
-    <div class="card-header py-3 bg-gray-500">
-        <h6 class="m-0 font-weight-bold text-primary">Tabel Data Foto</h6>
+<div class="card shadow mt-3">
+    <div class="card-header text-white bg-primary">
+       Tabel Data Foto Jalan Saluran
     </div>
 
     <div class="card-body" id="data_sarana">
         <div class="row">
-            @forelse( $data_foto_jalansaluran as $fotojalansaluran )
+            @forelse( $data_foto_jalan_saluran as $fotojalansaluran )
             <div class="col-sm-3">
                 <div class="gallery">
                     <a href="../../assets/uploads/perumahan/jalansaluran/{{$fotojalansaluran
@@ -68,13 +68,6 @@
             </div>
             @endforelse
         </div>
-        <a href="/jalansalurans/{{$data_jalansaluran->perumahan_id}}"
-           class="btn btn-info btn-icon-split mt-3">
-        <span class="icon text-white-50">
-            <i class="fas fa-arrow-alt-circle-left"></i>
-        </span>
-            <span class="text">Kembali</span>
-        </a>
     </div>
 </div>
 
