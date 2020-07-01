@@ -1,6 +1,8 @@
 <div class="card shadow mb-4">
+    <div class="card-header bg-primary text-white">
+        Tabel Sarana Perumahan
+    </div>
     <div class="card-body" id="data_sarana">
-
         <div class="table-responsive">
             <table class="table table-bordered table-hover display nowrap" id="dataTable"
                    cellspacing="0"
@@ -22,13 +24,7 @@
                     <td>{{ $sarana->luas_sarana }}</td>
                     <td>{{ $sarana->kondisi_sarana }}</td>
                     <td>
-                        <a href="/saranas/edit/{{$sarana->id }}" class="btn btn-warning
-                            btn-icon-split">
-                            <span class="icon text-white-50">
-                                <i class="fas fa-pen"></i>
-                            </span>
-                            <span class="text">Edit</span>
-                        </a>
+
 
 
                         <button class="btn btn-danger btn-icon-split"

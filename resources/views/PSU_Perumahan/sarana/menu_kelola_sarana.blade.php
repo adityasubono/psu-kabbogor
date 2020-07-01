@@ -9,9 +9,19 @@
                data-toggle="modal"
                data-target="#foto_sarana{{ $sarana->id }}"
                data-backdrop="static"
-               data-keyboard="false">Input Data Foto Sarana </a>
+               data-keyboard="false">
+                Input Data Foto Sarana
+            </a>
             <a class="dropdown-item"
-               href="/koordinatsarana/{{ $sarana->id }}">Input Data Koordinat Sarana</a>
+               href="/koordinatsarana/{{ $sarana->id }}">Input Data Koordinat Sarana
+            </a>
+            <a class="dropdown-item"
+               href="#"
+               data-toggle="modal"
+               data-target="#edit_data_sarana{{ $sarana->id }}"
+               data-backdrop="static"
+               data-keyboard="false">Edit Data Sarana
+            </a>
         </div>
     </li>
 </ul>
@@ -60,7 +70,26 @@
                     </button>
                     <br>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
 
+<div class="modal fade" id="edit_data_sarana{{ $sarana->id }}" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="exampleModalScrollableTitle">
+                    Edit Data Sarana {{$sarana->nama_sarana}} || ID Sarana : {{$sarana->id}}
+                </h5>
+                <button type="button" class="close bg-danger p-sm-4" data-dismiss="modal"
+                        aria-label="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                @include('PSU_Perumahan.sarana.edit')
             </div>
         </div>
     </div>

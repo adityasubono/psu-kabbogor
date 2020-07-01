@@ -148,7 +148,7 @@ class FotoSaranasController extends Controller
         $perumahan_id = $request->get('perumahan_id');
 
         if (isset($foto_id) && ($filename)) {
-            FotoSarana::where('id', $foto_id)->delete();
+            FotoSarana::where('sarana_id', $foto_id)->delete();
             $path = public_path('/assets/uploads/perumahan/sarana/') . $filename;
             if (file_exists($path)) {
                 unlink($path);

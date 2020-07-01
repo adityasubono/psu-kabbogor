@@ -21,7 +21,7 @@ $(document).ready(function() {
             + 'placeholder="Masukan Nama Alat" value="">'
             + '</div>'
 
-            + '<div class="col-sm-2">'
+            + '<div class="col-sm-3">'
             + '<label for="luas_sarana">Luas Sarana</label><br>'
             + '<input type="number" name="data_sarana[' + b + '][luas_sarana]" '
             + 'placeholder="Masukan Luas Sarana" '
@@ -38,10 +38,10 @@ $(document).ready(function() {
             + '<option value="Rusak Berat">Rusak Berat</option>'
             + '</select></div>'
 
-            + '<div class="col-sm-4">'
+            + '<div class="col-sm-3">'
             + '<label for="aksi">Aksi</label><br>'
             + '<button type="button" '
-            + 'class="btn btn-danger btn-icon-split mr-2'
+            + 'class="btn btn-danger btn-icon-split float-right'
             + ' remove-data-inventaris">'
             + '<span class="icon text-white-50">'
             + '<i class="fas fa-minus"></i></span>'

@@ -111,8 +111,29 @@ div.desc {
     color: #0E0EFF;
 }
 
-.gallery
-{
+.gallery {
     display: inline-block;
     margin-top: 20px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.container {
+    position: relative;
+    max-width: 100%;
+
+}
+
+.container img {vertical-align: middle;}
+
+.container .content {
+    position: absolute;
+    bottom: 0;
+    background: rgb(0, 0, 0); /* Fallback color */
+    background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+    color: #f1f1f1;
+    width: 94%;
+    padding: 20px;
 }
