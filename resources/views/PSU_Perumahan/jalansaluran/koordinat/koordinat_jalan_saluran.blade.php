@@ -5,29 +5,16 @@
 @section('container-fluid')
 <div class="container-fluid" xmlns="http://www.w3.org/1999/html">
 
-    <div id="googleMap" style="width:100%;height:380px;"></div>
-
     <form method="post" action="/koordinatjalansalurans/store" enctype="multipart/form-data">
         @csrf
         <div class="card shadow mb-4">
-            <div class="card-header py-3 bg-gray-500">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h6 class="m-0 font-weight-bold text-primary">Data Koordinat Jalan Saluran :
-                            {{$data_jalan_saluran->nama_jalan_saluran}}
-                        </h6>
-                    </div>
-                    <div class="col-sm-6">
-                        <h6 class="m-0 font-weight-bold text-primary text-right">ID Jalan Saluran:
-                            {{$data_jalan_saluran->id}} ||
-                            ID Perumahan:
-                            {{$data_jalan_saluran->perumahan_id}}
-                        </h6>
-                    </div>
-                </div>
-            </div>
+            <div id="googleMap" style="width:100%;height:380px;"></div>
 
             <div class="card-body">
+
+                <h5>Data Koordinat Jalan Saluran {{$data_jalan_saluran->nama_jalan_saluran}}
+                || ID Jalan Saluran : {{$data_jalan_saluran->id}} ||
+                || ID Perumahan : {{$data_jalan_saluran->perumahan_id}}</h5><hr>
                 <input type="hidden" id="jalansaluran_id" name="jalansaluran_id"
                        value="{{$data_jalan_saluran->id}}">
                 <input type="hidden" id="perumahan_id" name="perumahan_id"

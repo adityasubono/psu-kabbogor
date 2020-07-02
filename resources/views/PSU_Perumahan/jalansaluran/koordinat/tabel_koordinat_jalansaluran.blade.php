@@ -1,9 +1,9 @@
 <div class="card shadow mb-4">
-    <div class="card-header py-3 bg-gray-500">
-        <h6 class="m-0 font-weight-bold text-primary">Tabel Koordinat Jalan Saluran</h6>
+    <div class="card-header bg-primary text-white">
+        Tabel Koordinat Jalan Saluran
     </div>
 
-    <div class="card-body" id="data_sarana">
+    <div class="card-body">
         <div class="table-responsive">
             <table class="table table-bordered display nowrap" id="dataTable"
                    cellspacing="0"
@@ -79,7 +79,7 @@
                 </tbody>
             </table>
         </div>
-        <a href="/jalansalurans/{{$data_jalan_saluran->perumahan_id}}" class="btn btn-info
+        <a href="/perumahans/edit/{{$data_jalan_saluran->perumahan_id}}" class="btn btn-info
         btn-icon-split
         mt-3">
         <span class="icon text-white-50">

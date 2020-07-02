@@ -13,7 +13,7 @@
                 Input Data Foto Jalan Saluran
             </a>
             <a class="dropdown-item"
-               href="/koordinatjalansaluran/{{ $jalansaluran->id}}">
+               href="/koordinatjalansalurans/{{ $jalansaluran->id}}">
                 Input Data Koordinat Jalan Saluran
             </a>
             <a class="dropdown-item"
