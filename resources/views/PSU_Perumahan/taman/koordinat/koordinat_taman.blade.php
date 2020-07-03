@@ -15,8 +15,9 @@
                 <div id="googleMap" style="width:100%;height:380px;"></div>
             <div class="card-body">
                 <h5 class="card-title bg-success p-3 text-white">
+                    Koordinat Taman dan Pengijauan {{$data_taman->nama_taman}} ||
                     ID Taman : {{$data_taman->id}} ||
-                    Koordinat Taman dan Pengijauan {{$data_taman->nama_taman}}
+                    ID Perumahan : {{$data_taman->perumahan_id}}
                 </h5><hr>
                 <input type="hidden" name="taman_id" id="taman_id"
                        value="{{$data_taman->id}}">
