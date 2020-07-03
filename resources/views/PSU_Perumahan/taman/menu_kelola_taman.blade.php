@@ -13,7 +13,7 @@
                 Input Foto Data Taman dan Penghijauan
             </a>
             <a class="dropdown-item"
-               href="/koordinatjalansalurans/{{ $taman->id }}">
+               href="/koordinattamans/{{ $taman->id }}">
                 Input Data Koordinat Taman dan Penghijauan
             </a>
             <a class="dropdown-item"
@@ -42,8 +42,7 @@
         <div class="modal-content">
             <div class="modal-header bg-primary text-white">
                 <h5 class="modal-title" id="exampleModalScrollableTitle">
-                    Edit Data Taman {{ $taman->nama_taman }} ||
-                    ID Taman : {{$taman->id}}
+                    Edit Foto Data Taman dan Penghijauan {{ $taman->nama_taman }}
                 </h5>
                 <button type="button"
                         class="close bg-danger p-sm-4"

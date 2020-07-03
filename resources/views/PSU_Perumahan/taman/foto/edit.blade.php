@@ -1,5 +1,5 @@
 <meta name="csrf-token-file-foto-taman" content="{{ csrf_token() }}">
-<form action="/fototamans/update/{{ $fototaman->id }}" method="post" enctype="multipart/form-data">
+<form action="/fototamans/update/{{$fototaman->id}}" method="post" enctype="multipart/form-data">
     {{ csrf_field() }}
     {{ method_field('PATCH') }}
 
@@ -11,6 +11,8 @@
                 <div class="card-body">
                     <b>Gambar / Foto Sebelumnya</b>
                     <p class="card-text">Keterangan : {{$fototaman->keterangan}}</p>
+                    <input type="hidden" class="form-control" name="perumahan_id"
+                           value="{{ $fototaman->id}}">
                     <input type="hidden" class="form-control" name="taman_id"
                            value="{{ $taman->id}}">
                     <input type="hidden" class="form-control" name="perumahan_id"
@@ -21,7 +23,7 @@
         <div class="col-sm-6">
             <div class="card">
                 <img id="blah"
-                     src="#"
+                     src="../../assets/images/no_picture.jpg"
                      alt="preview image" style="width:100%;height:300px;">
                 <div class="card-body">
                     <b>Gambar / Foto Setelah Diganti</b><br>
@@ -60,8 +62,6 @@
         </div>
     </div>
 </form>
-
-
 
 <script type="text/javascript">
     function readURL(input) {

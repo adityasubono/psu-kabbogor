@@ -111,8 +111,8 @@
                     <div class="modal-content">
                         <div class="modal-header bg-primary text-white">
                             <h5 class="modal-title" id="exampleModalScrollableTitle">
-                                Edit Foto / Gambar ID: {{ $fototaman->id }} || ID Taman: {{
-                                $taman->id}} ||
+                                Edit Foto / Gambar ID Foto: {{ $fototaman->id }} ||
+                                ID Taman: {{ $taman->id}} ||
                                 ID Perumahan: {{ $taman->perumahan_id}}
                             </h5>
                             <button type="button"

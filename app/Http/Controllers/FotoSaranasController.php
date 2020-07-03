@@ -116,7 +116,7 @@ class FotoSaranasController extends Controller
             $data->keterangan = $keterangan;
         }
 
-        if (empty($request->file('file_foto') && $request->file('keterangan'))) {
+        if (empty($request->file('file_foto'))) {
             $data->file_foto = $data->file_foto;
             $data->keterangan = $data->keterangan;
         } else{

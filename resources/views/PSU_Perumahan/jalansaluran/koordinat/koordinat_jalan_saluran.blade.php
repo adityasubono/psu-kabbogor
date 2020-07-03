@@ -12,7 +12,8 @@
 
             <div class="card-body">
 
-                <h5>Data Koordinat Jalan Saluran {{$data_jalan_saluran->nama_jalan_saluran}}
+                <h5 class="card-title bg-success p-3 text-white">
+                    Data Koordinat Jalan Saluran {{$data_jalan_saluran->nama_jalan_saluran}}
                 || ID Jalan Saluran : {{$data_jalan_saluran->id}} ||
                 || ID Perumahan : {{$data_jalan_saluran->perumahan_id}}</h5><hr>
                 <input type="hidden" id="jalansaluran_id" name="jalansaluran_id"

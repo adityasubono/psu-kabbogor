@@ -1,19 +1,17 @@
 <div class="card shadow mb-4">
-    <div class="card-header py-3 bg-gray-500">
-        <h6 class="m-0 font-weight-bold text-primary">Tabel Koordinat Taman</h6>
+    <div class="card-header bg-primary text-white">
+        Tabel Koordinat Taman dan Penghijauan
     </div>
 
     <div class="card-body" id="data_sarana">
         <div class="table-responsive">
             <table class="table table-bordered display nowrap" id="dataTable"
-                   cellspacing="0"
                    style="width:100%">
                 <thead class="thead-dark">
                 <tr>
                     <th>No.</th>
                     <th>Latitude</th>
                     <th>Longitude</th>
-                    <th>LatLong</th>
                     <th>Aksi</th>
                 </tr>
                 </thead>
@@ -23,7 +21,6 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $koordinat_taman->latitude }}</td>
                     <td>{{ $koordinat_taman->longitude }}</td>
-                    <td>{{ $koordinat_taman->latlong }}</td>
                     <td>
                         <a href="/koordinattamans/edit/{{ $koordinat_taman->id }}" class="btn
                         btn-warning
@@ -83,7 +80,7 @@
                 </tbody>
             </table>
         </div>
-        <a href="/tamans/{{$data_taman->perumahan_id}}"
+        <a href="/perumahans/edit/{{$data_taman->perumahan_id}}"
            class="btn btn-info btn-icon-split mt-3">
         <span class="icon text-white-50">
             <i class="fas fa-arrow-alt-circle-left"></i>

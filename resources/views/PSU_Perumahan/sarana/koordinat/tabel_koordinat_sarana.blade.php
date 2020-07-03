@@ -78,7 +78,7 @@
 </div>
 
 <a href="/perumahans/edit/{{$data_sarana->perumahan_id}}"
-   class="btn btn-info btn-icon-split mt-3">
+   class="btn btn-info btn-icon-split my-3">
         <span class="icon text-white-50">
             <i class="fas fa-arrow-alt-circle-left"></i>
         </span>
@@ -86,9 +86,8 @@
 </a>
 @if(isset($data_koordinat))
 
-<a href="/koordinatsarana/show/{{$data_sarana->id}}" class="btn btn-primary
-        btn-icon-split
-        mt-3">
+<a href="/koordinatsarana/show/{{$data_sarana->id}}"
+   class="btn btn-primary btn-icon-split my-3">
         <span class="icon text-white-50">
             <i class="fas fa-map"></i>
         </span>
@@ -96,16 +95,11 @@
 </a>
 @else
 
-<a href="/koordinatsarana/show/" class="btn btn-dark
-        btn-icon-split mt-3 disabled">
+<a href="/koordinatsarana/show/"
+   class="btn btn-dark btn-icon-split my-3 disabled">
         <span class="icon text-white-50">
             <i class="fas fa-map"></i>
         </span>
     <span class="text">Lihat Peta</span>
 </a>
 @endif
-
-
-
-
-

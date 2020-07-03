@@ -1,4 +1,4 @@
-<div class="card shadow mb-4">
+<div class="card shadow">
     <div class="card-header bg-primary text-white">
         Tabel Koordinat Jalan Saluran
     </div>
@@ -79,32 +79,26 @@
                 </tbody>
             </table>
         </div>
-        <a href="/perumahans/edit/{{$data_jalan_saluran->perumahan_id}}" class="btn btn-info
-        btn-icon-split
-        mt-3">
-        <span class="icon text-white-50">
-            <i class="fas fa-arrow-alt-circle-left"></i>
-        </span>
-            <span class="text">Kembali</span>
-        </a>
-
-
-
-        @if(isset($koordinat_jalansaluran))
-        <a href="/koordinatjalansalurans/show/{{$koordinat_jalansaluran->jalansaluran_id}}"
-           class="btn
-        btn-primary btn-icon-split mt-3">
-        <span class="icon text-white-50">
-            <i class="fas fa-map"></i>
-        </span>
-            <span class="text">Lihat Peta</span>
-        </a>
-        @endif
-
-
     </div>
 </div>
 
+<a href="/perumahans/edit/{{$data_jalan_saluran->perumahan_id}}"
+   class="btn btn-info btn-icon-split my-3">
+        <span class="icon text-white-50">
+            <i class="fas fa-arrow-alt-circle-left"></i>
+        </span>
+    <span class="text">Kembali</span>
+</a>
 
+@if(isset($koordinat_jalansaluran))
+<a href="/koordinatjalansalurans/show/{{$koordinat_jalansaluran->jalansaluran_id}}"
+   class="btn
+        btn-primary btn-icon-split my-3">
+        <span class="icon text-white-50">
+            <i class="fas fa-map"></i>
+        </span>
+    <span class="text">Lihat Peta</span>
+</a>
+@endif
 
 

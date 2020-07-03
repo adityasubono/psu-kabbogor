@@ -9,8 +9,10 @@
         <div class="card-body">
             <form method="post" action="/koordinatsarana/store" enctype="multipart/form-data">
                 @csrf
-                <h5 class="card-title bg-success p-3 text-white">Data Koordinat || ID Perumahan :
-                    {{$data_sarana->perumahan_id}} || ID Sarana : {{$data_sarana->id}}</h5>
+                <h5 class="card-title bg-success p-3 text-white">
+                    Data Koordinat Sarana Perumahan ||
+                    ID Sarana : {{$data_sarana->id}} ||
+                    ID Perumahan : {{$data_sarana->perumahan_id}} </h5>
                 <input type="hidden" id="jumlah-form" value="0">
                 <div id="sarana-form"></div>
 

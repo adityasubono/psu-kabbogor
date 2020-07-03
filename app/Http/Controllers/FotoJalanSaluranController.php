@@ -97,11 +97,12 @@ class FotoJalanSaluranController extends Controller
         $data = FotoJalanSaluran::find($id);
         $keterangan = $request->input('keterangan');
         $perumahan_id = $request->get('perumahan_id');
+
         if (isset($keterangan)){
             $data->keterangan = $keterangan;
         }
 
-        if (empty($request->file('file_foto') && $request->input('keterangan'))){
+        if (empty($request->file('file_foto'))){
             $data->file_foto = $data->file_foto;
             $data->keterangan = $data->keterangan;
         }

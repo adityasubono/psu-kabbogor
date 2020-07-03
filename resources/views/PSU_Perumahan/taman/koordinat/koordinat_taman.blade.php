@@ -5,34 +5,22 @@
 @section('container-fluid')
 <div class="container-fluid" xmlns="http://www.w3.org/1999/html">
 
-    <div id="googleMap" style="width:100%;height:380px;"></div>
+
 
 
 
     <form method="post" action="/koordinattamans/store" enctype="multipart/form-data">
         @csrf
         <div class="card shadow mb-4">
-            <div class="card-header py-3 bg-gray-500">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h6 class="m-0 font-weight-bold text-primary">Data Koordinat Taman :
-                            {{$data_taman->nama_taman}}
-                        </h6>
-                    </div>
-                    <div class="col-sm-6">
-                        <h6 class="m-0 font-weight-bold text-primary text-right">ID Taman:
-                            {{$data_taman->id}} ||
-                            ID Perumahan:
-                            {{$data_taman->perumahan_id}}
-                        </h6>
-                    </div>
-                </div>
-            </div>
-
+                <div id="googleMap" style="width:100%;height:380px;"></div>
             <div class="card-body">
-                <input type="text" name="taman_id" id="taman_id"
+                <h5 class="card-title bg-success p-3 text-white">
+                    ID Taman : {{$data_taman->id}} ||
+                    Koordinat Taman dan Pengijauan {{$data_taman->nama_taman}}
+                </h5><hr>
+                <input type="hidden" name="taman_id" id="taman_id"
                        value="{{$data_taman->id}}">
-                <input type="text" name="perumahan_id" id="perumahan_id"
+                <input type="hidden" name="perumahan_id" id="perumahan_id"
                        value="{{$data_taman->perumahan_id}}">
 
                 <input type="hidden" id="jumlah-form" value="0">
@@ -118,11 +106,11 @@
             + '<hr class="bg-gradient-primary">'
             + '<div class="row">'
             + '<div class="col-sm-5">'
-            + '<input type="text" class="form-control" id="perumahan_id"'
+            + '<input type="hidden" class="form-control" id="perumahan_id"'
             + 'name="data_koordinat[' + d + '][perumahan_id]" '
             + 'value="' + perumahan_id + '">'
 
-            + '<input type="text" class="form-control" id="taman_id"'
+            + '<input type="hidden" class="form-control" id="taman_id"'
             + 'name="data_koordinat[' + d + '][taman_id]" '
             + 'value="' + taman_id + '">'
 

@@ -3,74 +3,78 @@
 @section('title', 'Halaman Peta Taman')
 
 @section('container-fluid')
+<link href="{!! asset('assets/css/perumahan.css') !!}" rel="stylesheet">
 <div class="container-fluid">
-    <div class="card shadow mb-4">
-        <div class="card-header py-3 bg-gray-500">
-            <div class="row">
-                <div class="col-sm-6">
-                    <h6 class="m-0 font-weight-bold text-primary">Data Peta </h6>
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="card">
+                <div class="card-header text-white bg-primary">
+                    Peta Koordinat Taman dan Penghijauan
+                </div>
+                <div class="card-body">
+                    <div id="mymap"></div>
                 </div>
             </div>
         </div>
+        <div class="col-sm-4">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    Data Koordinat Peta
+                </div>
+                <div class="card-body">
 
-        <div class="card-body">
-
-
-<textarea class="form-control" rows="5" disabled>
-    @foreach( $koordinat as $koor ){{$koor->latitude}},{{$koor->longitude}},
-    @endforeach</textarea>
-            <div id="mymap"></div>
+                    @foreach( $koordinat as $koor )
+                    {{$loop->iteration}}. {{$koor->latitude}},{{$koor->longitude}}<br>
+                    @endforeach
+                </div>
+            </div>
         </div>
     </div>
-
 
 
     <script src="../../assets/js/gmap/gmaps.js"></script>
     <style type="text/css">
         #mymap {
-            border:1px solid red;
-            width: 950px;
-            height: 500px;
+            width: 100%;
+            height: 550px;
         }
     </style>
-
-    <style> #map { display: block; width: 98%; height: 500px; margin: 0 auto; } </style>
-    <style type="text/css"> .labels { background-color: rgba(0, 0, 0, 0.5); border-radius: 4px; color: white; padding: 4px; } </style>`
 
     <script type="text/javascript">
         var locations = <?php print_r(json_encode($koordinat)) ?>;
         var perumahans = <?php print_r(json_encode($perumahans)) ?>;
-        var polygons={};
-        var infowindow={};
+        var polygons = {};
+        var infowindow = {};
         var bounds = {};
         var cords = {};
-        var coord={};
+        var coord = {};
         const perumahan_id = [];
-        console.log('pertamanans',perumahans)
+        console.log('pertamanans', perumahans)
+
         function onlyUnique(value, index, self) {
             return self.indexOf(value) === index;
         }
-        for(let perumahan=0; perumahan< locations.length;perumahan++){
+
+        for (let perumahan = 0; perumahan < locations.length; perumahan++) {
             const perumahanId = locations[perumahan].perumahan_id;
             perumahan_id.push(perumahanId);
         }
-        var unique = perumahan_id.filter( onlyUnique );
+        var unique = perumahan_id.filter(onlyUnique);
         var result = locations.reduce(function (r, a) {
             r[a.perumahan_id] = r[a.perumahan_id] || [];
             r[a.perumahan_id].push(a);
             return r;
         }, Object.create(null));
-        console.log('result',result);
-        for(let u=0;u< unique.length; u++){
-            cords[u]=[];
-            for (var j=0; j < result[unique[u]].length; j++) {
+        console.log('result', result);
+        for (let u = 0; u < unique.length; u++) {
+            cords[u] = [];
+            for (var j = 0; j < result[unique[u]].length; j++) {
                 const lt = parseFloat(result[unique[u]][j].latitude);
                 const ltd = parseFloat(result[unique[u]][j].longitude);
-                coord[j] = {lat: lt, lng:ltd};
+                coord[j] = {lat: lt, lng: ltd};
                 cords[u].push(coord[j]);
             }
         }
-
 
         function initMap() {
             var map = new google.maps.Map(document.getElementById('mymap'), {
@@ -82,7 +86,7 @@
             });
             // Construction of polygon.
             for (let u = 0; u < unique.length; u++) {
-                for (var j=0; j < result[unique[u]].length; j++) {
+                for (var j = 0; j < result[unique[u]].length; j++) {
                     polygons[u] = new google.maps.Polygon({
                         paths: cords[u],
                         strokeColor: '#FF0000',
@@ -101,7 +105,8 @@
                     infowindow[u].opened = false;
 
                     function mousefn(evt) {
-                        infowindow[u].setContent("<h5> Perumahan ID : "+ result[unique[u]][1].perumahan_id +
+                        infowindow[u].setContent(
+                            "<h5> Perumahan ID : " + result[unique[u]][1].perumahan_id +
                             "</h5><div>" +
                             "</div>");
                         infowindow[u].setPosition(bounds[u].getCenter());
@@ -124,7 +129,7 @@
     </script>
 
     <a href="/koordinattamans/{{$koor->taman_id}}"
-       class="btn btn-info btn-icon-split mb-3">
+       class="btn btn-info btn-icon-split my-3">
         <span class="icon text-white-50">
             <i class="fas fa-arrow-alt-circle-left"></i>
         </span>

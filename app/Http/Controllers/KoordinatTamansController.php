@@ -132,11 +132,9 @@ class KoordinatTamansController extends Controller
         $taman_id = $request->get('taman_id');
         $longitude = $request->input('longitude');
         $latitude = $request->input('latitude');
-        $latlong = "[$latitude, $longitude, ],";
         KoordinatTaman::where('id', $koordinatTaman->id)->update([
-            'longitude' => $request->longitude,
-            'latitude' => $request->latitude,
-            'latlong' => $latlong
+            'longitude' => $longitude,
+            'latitude' => $latitude
         ]);
         return redirect()->action('KoordinatTamansController@index', ['id' => $taman_id])
             ->with('status','Data Dengan ID '.$koordinatTaman->id.' Berhasil Di Update');
