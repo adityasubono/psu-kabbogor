@@ -252,11 +252,15 @@ class PerumahansController extends Controller
         $data_jalan_saluran = JalanSaluran::where('perumahan_id',$id)->get();
         $data_foto_jalan_saluran = FotoJalanSaluran::where('perumahan_id',$id)->get();
         $data_koordinat_jalan_saluran = KoordinatJalanSaluran::where('perumahan_id',$id)->get();
+        $data_taman = Taman::where('perumahan_id',$id)->get();
+        $data_foto_taman = FotoTaman::where('perumahan_id',$id)->get();
+        $data_koordinat_taman = KoordinatTaman::where('perumahan_id',$id)->get();
+
 
         return view('PSU_Perumahan.perumahan.edit', compact('perumahans', 'kecamatans',
             'data_siteplan', 'data_koordinat_perumahan','data_sarana','data_foto_sarana',
             'data_koordinat_sarana','data_jalan_saluran','data_foto_jalan_saluran',
-            'data_koordinat_jalan_saluran'));
+            'data_koordinat_jalan_saluran','data_taman','data_foto_taman','data_koordinat_taman'));
     }
 
     /**

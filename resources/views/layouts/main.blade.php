@@ -27,7 +27,6 @@
         @yield('container-fluid')
 
 
-        <div style="height: 300px"></div>
 
 
         <!-- Footer -->

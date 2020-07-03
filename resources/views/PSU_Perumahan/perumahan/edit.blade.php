@@ -77,7 +77,7 @@
                 </div>
 
                 <div class="tab-pane fade" id="data_taman_penghijauan" role="tabpanel">
-                    Data Taman dan Penghijauan
+                    @include('PSU_Perumahan.taman.taman_tab')
                 </div>
 
                 <div class="tab-pane fade" id="data_pju" role="tabpanel">

@@ -123,6 +123,7 @@
                 <h6 class="collapse-header">Menu Navigasi:</h6>
                 <a class="collapse-item" href="/users">Data Pengguna</a>
                 <a class="collapse-item" href="/kecamatans">Data Lokasi</a>
+                <a class="collapse-item" href="/kecamatans">Master Data</a>
             </div>
         </div>
     </li>

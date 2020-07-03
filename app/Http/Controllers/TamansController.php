@@ -65,8 +65,8 @@ class TamansController extends Controller
         }
 
         $perumahan_id = $request->data_taman[0]['perumahan_id'];
-        return redirect()->action('TamansController@index', ['id' => $perumahan_id])
-            ->with('status','Data Berhasil Disimpan');
+        return redirect()->action('PerumahansController@edit', ['id' => $perumahan_id])
+            ->with('status','Data Taman dan Penghijauan Berhasil Disimpan');
     }
 
     /**
@@ -118,8 +118,8 @@ class TamansController extends Controller
             'luas_taman' => $request->luas_taman,
             'kondisi_taman' => $request->kondisi_taman
         ]);
-        return redirect()->action('TamansController@index', ['id' => $perumahan_id])
-            ->with('status','Data Dengan ID '.$taman->id.' Berhasil Di Update');
+        return redirect()->action('PerumahansController@edit', ['id' => $perumahan_id])
+            ->with('status','Data Taman dan Penghijauan dangan ID '.$taman->id.' Berhasil Di Update');
 
     }
 
@@ -132,8 +132,18 @@ class TamansController extends Controller
     public function destroy(Request $request, Taman $taman)
     {
         $perumahan_id = $request->get('perumahan_id');
-        Taman::destroy($taman->id);
-        return redirect()->action('TamansController@index', ['id' => $perumahan_id])
-            ->with('status','Data Dengan ID '.$taman->id.' Berhasil Dihapus');
+
+        $data_file = FotoTaman::where('taman_id', $taman->id)->get();
+        foreach ($data_file as $file) {
+            $path = public_path('/assets/uploads/perumahan/taman/'). $file->file_foto;
+            if (file_exists($path)) {
+                unlink($path);
+                FotoTaman::where('taman_id', $taman->id)->delete();
+                Taman::destroy($taman->id);
+            }
+        }
+
+        return redirect()->action('PerumahansController@edit', ['id' => $perumahan_id])
+            ->with('status','Data Taman dan Penghijauan dengan ID '.$taman->id.' Berhasil Dihapus');
     }
 }

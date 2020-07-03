@@ -5,14 +5,14 @@
 @section('container-fluid')
 <div class="container-fluid">
     <div class="card shadow mb-4">
-        <div class="card-header py-3 bg-gray-400">
-            <h6 class="m-0 font-weight-bold text-primary">Beranda {{Session::get('nama_rule')}}</h6>
+        <div class="card-header bg-primary text-white">
+           Beranda {{Session::get('nama_rule')}}
         </div>
         <div class="card-body">
 
             <div class="table-responsive">
-                <table class="table table-bordered">
-                    <thead class="thead-light">
+                <table class="table table-bordered table-hover">
+                    <thead class="bg-dark text-white">
                     <tr>
                         <th>No.</th>
                         <th>Nama Aplikasi</th>
@@ -81,5 +81,6 @@
         </div>
     </div>
 </div>
+<div style="height: 180px;"></div>
 
 @endsection

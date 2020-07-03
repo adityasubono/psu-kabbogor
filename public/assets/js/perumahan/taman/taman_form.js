@@ -9,7 +9,7 @@ $(document).ready(function() {
             '<div id="data_taman_append" class="mt-3 rounded">'
             + '<h5><b>Data Taman Ke-' + b + '</b></h5>'
             + '<hr class="bg-gradient-primary">'
-            + '<div class="row my-3">'
+            + '<div class="row">'
             + '<div class="col-sm-3">'
             + '<input type="hidden" class="form-control" id="perumahan_id"'
             + 'name="data_taman['+ b +'][perumahan_id]" '
@@ -21,7 +21,7 @@ $(document).ready(function() {
             + 'placeholder="Masukan Nama Taman" value="">'
             + '</div>'
 
-            + '<div class="col-sm-2">'
+            + '<div class="col-sm-3">'
             + '<label for="luas_taman">Luas Taman</label><br>'
             + '<input type="number" name="data_taman[' + b + '][luas_taman]" '
             + 'placeholder="Masukan Luas Taman" '
@@ -38,11 +38,11 @@ $(document).ready(function() {
             + '<option value="Rusak Berat">Rusak Berat</option>'
             + '</select></div>'
 
-            + '<div class="col-sm-4">'
+            + '<div class="col-sm-3">'
             + '<label for="aksi">Aksi</label><br>'
             + '<button type="button" '
-            + 'class="btn btn-danger btn-icon-split mr-2'
-            + ' remove-data-taman">'
+            + 'class="btn btn-danger btn-icon-split'
+            + ' remove-data-taman float-right">'
             + '<span class="icon text-white-50">'
             + '<i class="fas fa-minus"></i></span>'
             + '<span class="text">Hapus</span></button>'
@@ -55,7 +55,7 @@ $(document).ready(function() {
         $(this).parents('#data_taman_append').remove();
     });
 
-    $("#btn-reset-form").click(function(){
+    $("#btn-reset-form-taman").click(function(){
         $("#taman-form").html(""); // Kita kosongkan isi dari div
         // insert-form
         $("#jumlah-form").val("0"); // Ubah kembali value jumlah form menjadi 1

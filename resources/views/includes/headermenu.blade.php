@@ -3,7 +3,7 @@
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-       <h5>SI-PSU <br>({{Session::get('nama_rule')}})</h5>
+       <h5>SI-PSU <br>( {{Session::get('nama_rule')}} )</h5>
         <div class="topbar-divider d-none d-sm-block"></div>
         <h4>Sistem Informasi Prasarana Sarana dan Utilitas Kabupaten Bogor</h4>
 
