@@ -168,8 +168,8 @@ Route::delete('/tamans/delete/{taman}', 'TamansController@destroy');
 //PSU Data Foto Taman
 Route::get('/fototamans/{id}', 'FotoTamansController@index');
 Route::post('/fototamans/store', 'FotoTamansController@store');
-Route::get('/fototamans/edit/{fotoTaman}', 'FotoTamansController@edit');
-Route::patch('/fototamans/update/{fotoTaman}', 'FotoTamansController@update');
+Route::get('/fototamans/edit/{id}', 'FotoTamansController@edit');
+Route::patch('/fototamans/update/{id}', 'FotoTamansController@update');
 Route::post('/fototamans/delete/', 'FotoTamansController@destroy');
 
 //PSU Data Koordinat Taman

@@ -91,16 +91,20 @@ class FotoTamansController extends Controller
      * @param  \App\FotoTaman  $fotoTaman
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $fotoTaman)
+    public function update(Request $request, $id)
     {
         //
-        $data = FotoTaman::find($fotoTaman);
-        $data->nama_foto = $request->input('nama_foto');
-//        $data->file_foto = $request->file('file_foto');
-        $taman_id = $request->get('taman_id');
+        $data = FotoTaman::find($id);
+        $keterangan = $request->input('keterangan');
+        $perumahan_id = $request->get('perumahan_id');
 
-        if (empty($request->file('file_foto'))){
+        if (isset($keterangan)){
+            $data->keterangan = $keterangan;
+        }
+
+        if (empty($request->file('file_foto') && $request->input('keterangan'))){
             $data->file_foto = $data->file_foto;
+            $data->keterangan = $data->keterangan;
         }
         else{
             $path = public_path('/assets/uploads/perumahan/taman/') . $data->file_foto;
@@ -116,8 +120,8 @@ class FotoTamansController extends Controller
         }
         $data->save();
 
-        return redirect()->action('FotoTamansController@index', ['id' => $taman_id])
-            ->with('status','Data Foto Berhasil Diupdate ');
+        return redirect()->action('PerumahansController@edit', ['id' => $perumahan_id])
+            ->with('status','Data Foto Taman dan Penghijauan Berhasil Diupdate ');
     }
 
     /**
@@ -131,7 +135,7 @@ class FotoTamansController extends Controller
         //
         $foto_id = $request->get('id');
         $filename = $request->get('filename');
-        $taman_id = $request->get('taman_id');
+        $perumahan_id = $request->get('perumahan_id');
 
         if (isset($foto_id) && ($filename)) {
             FotoTaman::where('id', $foto_id)->delete();
@@ -141,8 +145,8 @@ class FotoTamansController extends Controller
             }
 
             return redirect()->action(
-                'FotoTamansController@index', ['id' => $taman_id])
-                ->with('status', 'Data Foto Berhasil Diupdate ');
+                'PerumahansController@edit', ['id' => $perumahan_id])
+                ->with('status', 'Data Foto Taman dan Penghijauan Berhasil Dihapus');
         }
     }
 }

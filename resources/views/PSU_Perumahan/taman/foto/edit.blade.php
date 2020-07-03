@@ -1,49 +1,39 @@
-@extends('layouts/main')
+<meta name="csrf-token-file-foto-taman" content="{{ csrf_token() }}">
+<form action="/fototamans/update/{{ $fototaman->id }}" method="post" enctype="multipart/form-data">
+    {{ csrf_field() }}
+    {{ method_field('PATCH') }}
 
-@section('title', 'Edit Data Foto Taman')
-
-@section('container-fluid')
-
-<meta name="csrf-token" content="{{ csrf_token() }}">
-<div class="container-fluid" xmlns="http://www.w3.org/1999/html">
-    <div class="card-header bg-gray-500 rounded">
-        <div class="row">
-            <div class="col-sm-6">
-                <h6 class="m-0 font-weight-bold text-primary">Edit Data Foto :
-                    {{$fotoTaman->nama_foto}}
-                </h6>
-            </div>
-            <div class="col-sm-6">
-                <h6 class="m-0 font-weight-bold text-primary text-right">ID :
-                    {{$fotoTaman->id}}
-                </h6>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card">
+                <img src="../../assets/uploads/perumahan/taman/{{ $fototaman->file_foto }}"
+                     style="width:100%;height:300px;">
+                <div class="card-body">
+                    <b>Gambar / Foto Sebelumnya</b>
+                    <p class="card-text">Keterangan : {{$fototaman->keterangan}}</p>
+                    <input type="hidden" class="form-control" name="taman_id"
+                           value="{{ $taman->id}}">
+                    <input type="hidden" class="form-control" name="perumahan_id"
+                           value="{{ $taman->perumahan_id}}">
+                </div>
             </div>
         </div>
-    </div>
-    <div class="card-body bg-gray-200">
-        <form action="/fototamans/update/{{$fotoTaman->id}}" method="post"
-              enctype="multipart/form-data">
-            {{ csrf_field() }}
-            {{ method_field('PATCH') }}
-
-            <div class="row">
-                <div class="col-sm-6">
-                    <label for="nama_foto">Nama Foto:</label><br>
-                    <input type="hidden" class="form-control" name="taman_id"
-                           value="{{$fotoTaman->taman_id }}">
-
-                    <input type="text" class="form-control" id="usr" name="nama_foto"
-                           value="{{$fotoTaman->nama_foto }}">
-                </div>
-                <div class="col-sm-6">
+        <div class="col-sm-6">
+            <div class="card">
+                <img id="blah"
+                     src="#"
+                     alt="preview image" style="width:100%;height:300px;">
+                <div class="card-body">
+                    <b>Gambar / Foto Setelah Diganti</b><br>
                     <label for="file_foto">Upload Foto</label><br>
                     <div class="input-group mb-2">
                         <div class="input-group-prepend">
                             <span class="input-group-text">Upload</span>
                         </div>
                         <div class="custom-file">
-                            <input type="file" name="file_foto"
-                                   id="file_foto"
+                            <input type="file"
+                                   name="file_foto"
+                                   id="imgInp"
                                    class="custom-file-input
                                    @error('file_foto') is-invalid @enderror">
                             <label class="custom-file-label">Pilih
@@ -55,84 +45,37 @@
                             @enderror
                         </div>
                     </div>
-                </div>
-
-                <div class="col-sm-6 bg-light border mt-3 text-center rounded">
-                    <label for="nama"><b>Foto Lama</b></label><br>
-                    <img src="../../assets/uploads/perumahan/taman/{{$fotoTaman->file_foto}}"
-                         style="width:400px;height:400px;">
-                </div>
-
-                <div class="col-sm-6 bg-light mt-3 text-center rounded">
-                    <label for="nama"><b>Foto Baru</b></label><br>
-                    <img id="image_preview_container" src="../../assets/images/no_picture.jpg"
-                         alt="preview image" style="width:400px;height:400px;">
-                </div>
-
-                <div class="col-sm-4 mt-3">
-
-                    <a href="/fototamans/{{$fotoTaman->taman_id}}" class="btn btn-danger
-                    btn-icon-split">
+                    <textarea class="form-control"
+                              name="keterangan"
+                              rows="2"
+                              placeholder="Masukan Keterangan Gambar Disini"></textarea>
+                    <button type="submit" class="btn btn-primary btn-icon-split mt-3">
                             <span class="icon text-white-50">
-                                <i class="fas fa-arrow-alt-circle-left"></i>
-                            </span>
-                        <span class="text">Batal</span>
-                    </a>
-
-                    <button type="submit" class="btn btn-primary btn-icon-split">
-                            <span class="icon text-white-50">
-                                <i class="fas fa-download"></i>
-                            </span>
+                               <i class="fas fa-download"></i>
+                               </span>
                         <span class="text">Simpan</span>
                     </button>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
-</div>
+</form>
+
+
 
 <script type="text/javascript">
-
-    $(document).ready(function (e) {
-
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#blah').attr('src', e.target.result);
             }
-        });
+            reader.readAsDataURL(input.files[0]); // convert to base64 string
+        }
+    }
 
-        $('#file_foto').change(function(){
-
-            let reader = new FileReader();
-            reader.onload = (e) => {
-                $('#image_preview_container').attr('src', e.target.result);
-            }
-            reader.readAsDataURL(this.files[0]);
-
-        });
-
-        $('#upload_image_form').submit(function(e) {
-            e.preventDefault();
-
-            var formData = new FormData(this);
-
-            $.ajax({
-                type:'POST',
-                url: "{{ url('save-photo')}}",
-                data: formData,
-                cache:false,
-                contentType: false,
-                processData: false,
-                success: (data) => {
-                    this.reset();
-                    alert('Image has been uploaded successfully');
-                },
-                error: function(data){
-                    console.log(data);
-                }
-            });
-        });
+    $("#imgInp").change(function() {
+        readURL(this);
     });
-
 </script>
-@endsection
+

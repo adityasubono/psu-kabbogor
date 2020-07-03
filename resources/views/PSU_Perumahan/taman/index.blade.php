@@ -96,6 +96,8 @@
 
 @include('PSU_Perumahan.taman.tabel_taman')
 
+@include('PSU_Perumahan.taman.foto.tabel_foto_taman')
+
 <script type="text/javascript">
     $('#confirm-delete').on('show.bs.modal', function (e) {
         $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));

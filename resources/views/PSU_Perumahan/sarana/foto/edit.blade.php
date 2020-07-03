@@ -31,7 +31,8 @@
                             <span class="input-group-text">Upload</span>
                         </div>
                         <div class="custom-file">
-                            <input type="file" name="file_foto"
+                            <input type="file"
+                                   name="file_foto"
                                    id="file_foto"
                                    class="custom-file-input
                                    @error('file_foto') is-invalid @enderror">

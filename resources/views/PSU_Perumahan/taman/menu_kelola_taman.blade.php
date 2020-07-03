@@ -42,7 +42,8 @@
         <div class="modal-content">
             <div class="modal-header bg-primary text-white">
                 <h5 class="modal-title" id="exampleModalScrollableTitle">
-                    Edit Data Taman {{ $taman->nama_taman }}
+                    Edit Data Taman {{ $taman->nama_taman }} ||
+                    ID Taman : {{$taman->id}}
                 </h5>
                 <button type="button"
                         class="close bg-danger p-sm-4"
@@ -52,7 +53,7 @@
                 </button>
             </div>
             <div class="modal-body">
-
+                @include('PSU_Perumahan.taman.foto.foto_taman')
             </div>
         </div>
     </div>
@@ -79,7 +80,6 @@
                 </button>
             </div>
             <div class="modal-body">
-
                 @include('PSU_Perumahan.taman.edit')
             </div>
         </div>

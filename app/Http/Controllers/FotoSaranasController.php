@@ -109,10 +109,14 @@ class FotoSaranasController extends Controller
     public function update(Request $request, $id)
     {
         $data = FotoSarana::find($id);
-        $data->keterangan = $request->input('keterangan');
+        $keterangan = $request->input('keterangan');
         $perumahan_id = $request->get('perumahan_id');
 
-        if (empty($request->file('file_foto'))) {
+        if (isset($keterangan)){
+            $data->keterangan = $keterangan;
+        }
+
+        if (empty($request->file('file_foto') && $request->file('keterangan'))) {
             $data->file_foto = $data->file_foto;
             $data->keterangan = $data->keterangan;
         } else{
