@@ -4,11 +4,6 @@
 
 @section('container-fluid')
 <div class="container-fluid" xmlns="http://www.w3.org/1999/html">
-
-
-
-
-
     <form method="post" action="/koordinattamans/store" enctype="multipart/form-data">
         @csrf
         <div class="card shadow mb-4">

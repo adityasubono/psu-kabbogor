@@ -81,11 +81,11 @@
                 </div>
 
                 <div class="tab-pane fade" id="data_pju" role="tabpanel">
-                    Data PJU
+                    @include('PSU_Perumahan.pju.pju_tab')
                 </div>
 
                 <div class="tab-pane fade" id="data_saluran_bersih" role="tabpanel">
-                    Data Saluran Bersih
+                    @include('PSU_Perumahan.saluran_bersih.saluran_tab')
                 </div>
 
                 <div class="tab-pane fade" id="data_cctv" role="tabpanel">
