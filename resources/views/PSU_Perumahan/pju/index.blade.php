@@ -2,7 +2,7 @@
     <div class="card-header text-white bg-primary">
         Input Data PJU
     </div>
-    <div class="card-body" id="data_jalansaluran">
+    <div class="card-body">
         <form method="post" action="/pjus/store">
             @csrf
             <div class="row">

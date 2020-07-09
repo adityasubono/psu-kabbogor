@@ -9,8 +9,8 @@ $(document).ready(function() {
             '<div id="data_cctv_append" class="mt-3 rounded">'
             + '<h5><b>Data CCTV Ke-' + d + '</b></h5>'
             + '<hr class="bg-gradient-primary">'
-            + '<div class="row my-3">'
-            + '<div class="col-sm-4">'
+            + '<div class="row">'
+            + '<div class="col-sm-5">'
             + '<input type="hidden" class="form-control" id="perumahan_id"'
             + 'name="data_cctv['+ d +'][perumahan_id]" '
             + 'value="'+ perumahan_id+'">'
@@ -28,10 +28,10 @@ $(document).ready(function() {
             + 'class="form-control" />'
             + '</div>'
 
-            + '<div class="col-sm-4">'
+            + '<div class="col-sm-3">'
             + '<label for="aksi">Aksi</label><br>'
             + '<button type="button" '
-            + 'class="btn btn-danger btn-icon-split mr-2'
+            + 'class="btn btn-danger btn-icon-split float-right'
             + ' remove-data-cctv">'
             + '<span class="icon text-white-50">'
             + '<i class="fas fa-minus"></i></span>'
@@ -45,7 +45,7 @@ $(document).ready(function() {
         $(this).parents('#data_cctv_append').remove();
     });
 
-    $("#btn-reset-form").click(function(){
+    $("#btn-reset-form_cctv").click(function(){
         $("#cctv_form").html(""); // Kita kosongkan isi dari div
         // insert-form
         $("#jumlah-form").val("0"); // Ubah kembali value jumlah form menjadi 1

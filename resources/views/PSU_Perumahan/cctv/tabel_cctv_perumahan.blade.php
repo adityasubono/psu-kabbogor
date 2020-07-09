@@ -1,16 +1,8 @@
-<div class="card shadow mb-4">
-    <div class="card-header py-3 bg-gray-500">
-        <h6 class="m-0 font-weight-bold text-primary">Tabel Data CCTV Perumahan</h6>
+<div class="card shadow mt-3">
+    <div class="card-header bg-primary text-white">
+        Tabel Data CCTV Perumahan
     </div>
-
-    <div class="card-body bg-gray-200" id="data_sarana">
-
-        @if (session('status'))
-        <div class="alert alert-success fade show" role="alert">
-            {{ session('status') }}
-        </div>
-        @endif
-
+    <div class="card-body">
         <div class="table-responsive">
             <table class="table table-bordered display table-hover nowrap" id="dataTable"
                    cellspacing="0"
@@ -20,66 +12,33 @@
                     <th>No.</th>
                     <th>Nama CCTV</th>
                     <th>IP CCTV</th>
-                    <th>Aksi</th>
+                    <th>Tampilan CCTV</th>
                 </tr>
                 </thead>
                 <tbody class="bg-light">
                 @forelse( $data_cctv_perumahan as $cctv )
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $cctv->nama_cctv }}</td>
+                    <td>@include('PSU_Perumahan.cctv.menu_kelola_cctv')</td>
                     <td>{{ $cctv->ip_cctv }}</td>
-                    <td>
-                        <a href="/cctvperumahans/edit/{{ $cctv->id }}" class="btn btn-warning
-                            btn-icon-split">
-                            <span class="icon text-white-50">
-                                <i class="fas fa-pen"></i>
-                            </span>
-                            <span class="text">Edit</span>
-                        </a>
-
-                        <button class="btn btn-danger btn-icon-split"
-                                data-toggle="modal"
-                                data-target="#confirm-delete-koordinat{{ $loop->iteration }}"
-                                data-backdrop="static"
-                                data-keyboard="false">
-                            <span class="icon text-white-50">
-                                <i class="fas fa-trash"></i>
-                            </span>
-                            <span class="text">Hapus</span>
-                        </button>
-                    </td>
+                    <td> <video width="200"
+                                height="200"
+                                autoplay controls
+                                autoplay="true"
+                                id="video-webcam">
+                            <source src="rtsp://192.168.0.20:554" type="video/mp4">
+                            <object width="320" height="240" type="application/x-shockwave-flash"
+                                    data="http://releases.flowplayer.org/swf/flowplayer-3.2.5.swf">
+                                <param name="movie" value="rtsp://releases.flowplayer.org/swf/flowplayer-3.2.5swf"/>
+                                <param name="flashvars"
+                                       value='config={"clip": {"url":"rtsp://192.168.0.20:554",
+                                       "autoPlay":true,"autoBuffering":true}}'/>
+                                <p><a href="rtsp://192.168.0.20:554">view with external
+                                        app</a></p>
+                            </object>
+                        </video></td>
                 </tr>
 
-                <div class="modal fade"
-                     id="confirm-delete-koordinat{{ $loop->iteration }}"
-                     role="dialog">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header bg-danger text-white">
-                                <i class="fas fa-exclamation-triangle fa-2x"> Perhatian</i>
-                            </div>
-                            <div class="modal-body">
-                                <b>Apakah Anda Akan Menghapus Data Ini ID {{ $cctv->id }}?</b>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-success" data-dismiss="modal">
-                                    Cancel
-                                </button>
-                                <form action="/cctvperumahans/delete/{{ $cctv->id }}"
-                                      method="post"
-                                      class="d-inline">
-                                    @method('delete')
-                                    @csrf
-                                    <input type="hidden" name="perumahan_id"
-                                           value="{{$cctv->perumahan_id}}">
-                                    <button type="submit" class="btn btn-danger
-                                    btn-ok">Hapus</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 @empty
                 <tr>
                     <td colspan="4" class="text-center"><b style="color: red">
@@ -88,12 +47,6 @@
                 @endforelse
                 </tbody>
             </table>
-            <a href="/perumahans" class="btn btn-primary btn-icon-split">
-                <span class="icon text-white-50">
-                <i class="fas fa-arrow-alt-circle-left"></i>
-                </span>
-                <span class="text">Kembali</span>
-            </a>
         </div>
     </div>
 </div>

@@ -89,7 +89,7 @@
                 </div>
 
                 <div class="tab-pane fade" id="data_cctv" role="tabpanel">
-                    Data CCTV
+                    @include('PSU_Perumahan.cctv.cctv_tab')
                 </div>
             </div>
         </div>

@@ -58,8 +58,8 @@ class CCTVPerumahansController extends Controller
 
         $perumahan_id = $request->data_cctv[0]['perumahan_id'];
         return redirect()->action(
-            'CCTVPerumahansController@index', ['id' => $perumahan_id])
-            ->with('status','Data Berhasil Disimpan');
+            'PerumahansController@edit', ['id' => $perumahan_id])
+            ->with('status','Data CCTV Perumahan Berhasil Disimpan');
     }
 
     /**
@@ -109,8 +109,8 @@ class CCTVPerumahansController extends Controller
             'nama_cctv' => $request->nama_cctv,
             'ip_cctv' => $request->ip_cctv
         ]);
-        return redirect()->action('CCTVPerumahansController@index', ['id' => $perumahan_id])
-            ->with('status','Data Dengan ID '.$cCTVPerumahan->id.' Berhasil Di Update');
+        return redirect()->action('PerumahansController@edit', ['id' => $perumahan_id])
+            ->with('status','Data CCTV Perumahan Dengan ID '.$cCTVPerumahan->id.' Berhasil Di Update');
 
     }
 
@@ -125,7 +125,7 @@ class CCTVPerumahansController extends Controller
         $perumahan_id = $request->get('perumahan_id');
         CCTVPerumahan::destroy($cCTVPerumahan->id);
         return redirect()->action(
-            'CCTVPerumahansController@index', ['id' => $perumahan_id])
-            ->with('status','Data Berhasil Dihapus Dengan ID : '.$cCTVPerumahan->id);
+            'PerumahansController@edit', ['id' => $perumahan_id])
+            ->with('status','Data CCTV Perumahan Berhasil Dihapus Dengan ID : '.$cCTVPerumahan->id);
     }
 }
