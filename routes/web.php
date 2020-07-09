@@ -197,6 +197,15 @@ Route::patch('/cctvperumahans/update/{cCTVPerumahan}', 'CCTVPerumahansController
 Route::delete('/cctvperumahans/delete/{cCTVPerumahan}', 'CCTVPerumahansController@destroy');
 
 
+//PSU DATA PJU
+Route::get('/pjus/{id}', 'PJUController@index');
+Route::post('/pjus/store', 'PJUController@store');
+Route::get('/pjus/edit/{id}', 'PJUController@edit');
+Route::patch('/pjus/update/{id}', 'PJUController@update');
+Route::delete('/pjus/delete/{id}', 'PJUController@destroy');
+
+
+
 //PSU PSU Perumahan..../Rekapitulasi
 Route::get('/rekapitulasi/perumahans', 'RekapitulasiPerumahanController@index');
 

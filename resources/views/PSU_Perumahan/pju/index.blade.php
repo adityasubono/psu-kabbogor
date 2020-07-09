@@ -10,7 +10,7 @@
                     <input type="hidden"
                            class="form-control"
                            id="perumahan_id"
-                           name="data_jalan_saluran[0][perumahan_id]"
+                           name="data_pju[0][perumahan_id]"
                            value="{{$perumahans->id}}">
                     <label for="nama_pju">Nama PJU</label><br>
                     <input type="text"
@@ -29,8 +29,7 @@
                 <div class="col-sm-3">
                     <label for="jumlah">Jumlah PJU</label><br>
                     <input type="number"
-                           class="form-control @error('jumlah')
-                                     is-invalid @enderror"
+                           class="form-control @error('jumlah') is-invalid @enderror"
                            id="jumlah"
                            name="data_pju[0][jumlah]"
                            placeholder="Masukan Jumlah"
@@ -43,19 +42,18 @@
                 </div>
 
                 <div class="col-sm-3">
-                    <label for="kondisi_pju">Kondisi PJU</label><br>
+                    <label for="kondisi">Kondisi PJU</label><br>
                     <select
-                        class="custom-select @error('kondisi_pju')
-                            is-invalid @enderror"
-                        id="kondisi_pju"
-                        name="data_pju[0][kondisi_pju]"
-                        value="{{ old('kondisi_pju') }}">
+                        class="custom-select @error('kondisi')is-invalid @enderror"
+                        id="kondisi"
+                        name="data_pju[0][kondisi]"
+                        value="{{ old('kondisi') }}">
                         <option value="">--Pilih Kondisi PJU--</option>
                         <option value="Baik">Baik</option>
                         <option value="Rusak Ringan">Rusak Ringan</option>
                         <option value="Rusak Berat">Rusak Berat</option>
                     </select>
-                    @error('kondisi_pju')
+                    @error('kondisi')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
@@ -74,7 +72,7 @@
                     </button>
                     <button type="button"
                             class="btn btn-info btn-icon-split float-right"
-                            id="btn-reset-pju">
+                            id="btn-reset-form-pju">
                             <span class="icon text-white-50">
                                 <i class="fas fa-plus"></i>
                             </span>
@@ -82,7 +80,7 @@
                     </button>
                 </div>
             </div>
-            <input type="hidden" id="jumlah-form" value="0">
+            <input type="hidden" id="jumlah-form-pju" value="0">
             <div id="pju-form"></div>
 
             <button type="submit"

@@ -13,17 +13,17 @@
                 <tr>
                     <th>No.</th>
                     <th>Nama PJU</th>
-                    <th>Jumlah PJU</th>
+                    <th>Jumlah PJU (unit)</th>
                     <th>Kondisi PJU</th>
                 </tr>
                 </thead>
                 <tbody>
-                @forelse( $data_jalan_saluran as $jalansaluran )
+                @forelse( $data_pju as $pju )
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>@include('PSU_Perumahan.jalansaluran.menu_kelola_jalansaluran')</td>
-                    <td>{{ $jalansaluran->luas_jalan_saluran }} ( m3 )</td>
-                    <td>{{ $jalansaluran->kondisi_jalan_saluran }}</td>
+                    <td>@include('PSU_Perumahan.pju.menu_kelola_pju')</td>
+                    <td>{{ $pju->jumlah}}( unit )</td>
+                    <td>{{ $pju->kondisi }}</td>
                 </tr>
                 @empty
                 <tr>
