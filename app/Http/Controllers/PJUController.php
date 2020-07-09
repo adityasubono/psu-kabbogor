@@ -44,9 +44,9 @@ class PJUController extends Controller
 
         $customMessages = [
             'required' => 'Masukan Data :attribute ini ?.',
-            'data_petugas.*.nama_pju.required' => "Masukan Data Nama PJU ?",
-            'data_petugas.*.jumlah.required' => "Masukan Data Jumlah ?",
-            'data_petugas.*.kondisi.required' => "Masukan Data Pendidikan ?",
+            'data_pju.*.nama_pju.required' => "Masukan Data Nama PJU ?",
+            'data_pju.*.jumlah.required' => "Masukan Data Jumlah ?",
+            'data_pju.*.kondisi.required' => "Masukan Data Pendidikan ?",
         ];
 
         $this->validate($request, $rules, $customMessages);

@@ -50,6 +50,11 @@
                         <td colspan="3">Lokasi</td>
                     </tr>
                     <tr>
+                        <td>Alamat</td>
+                        <td>:</td>
+                        <td>{{$perumahan->lokasi}}</td>
+                    </tr>
+                    <tr>
                         <td>Kecamatan</td>
                         <td>:</td>
                         <td>{{$perumahan->kecamatan}}</td>
@@ -58,16 +63,6 @@
                         <td>Kelurahan/Desa</td>
                         <td>:</td>
                         <td>{{$perumahan->kelurahan}}</td>
-                    </tr>
-                    <tr>
-                        <td>RT</td>
-                        <td>:</td>
-                        <td>{{$perumahan->RT}}</td>
-                    </tr>
-                    <tr>
-                        <td>RW</td>
-                        <td>:</td>
-                        <td>{{$perumahan->RW}}</td>
                     </tr>
                     <tr>
                         <td>Status<br><br><br><br></td>

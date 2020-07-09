@@ -44,17 +44,17 @@
                 <div class="col-sm-3">
                     <label for="kondisi_saluran">Kondisi Saluran Bersih</label><br>
                     <select
-                        class="custom-select @error('kondisi_pju')
+                        class="custom-select @error('kondisi')
                             is-invalid @enderror"
                         id="kondisi_saluran"
-                        name="data_saluran[0][kondisi_saluran]"
+                        name="data_saluran[0][kondisi]"
                         value="{{ old('kondisi_saluran') }}">
                         <option value="">--Pilih Kondisi Saluran--</option>
                         <option value="Baik">Baik</option>
                         <option value="Rusak Ringan">Rusak Ringan</option>
                         <option value="Rusak Berat">Rusak Berat</option>
                     </select>
-                    @error('kondisi_saluran')
+                    @error('kondisi')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
