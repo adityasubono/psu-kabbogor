@@ -18,12 +18,12 @@
                 </tr>
                 </thead>
                 <tbody>
-                @forelse( $data_jalan_saluran as $jalansaluran )
+                @forelse( $data_saluran_bersih as $saluranbersih )
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>@include('PSU_Perumahan.jalansaluran.menu_kelola_jalansaluran')</td>
-                    <td>{{ $jalansaluran->luas_jalan_saluran }} ( m3 )</td>
-                    <td>{{ $jalansaluran->kondisi_jalan_saluran }}</td>
+                    <td>@include('PSU_Perumahan.saluran_bersih.menu_kelola_saluran')</td>
+                    <td>{{ $saluranbersih->jumlah }} ( m3 )</td>
+                    <td>{{ $saluranbersih->kondisi }}</td>
                 </tr>
                 @empty
                 <tr>

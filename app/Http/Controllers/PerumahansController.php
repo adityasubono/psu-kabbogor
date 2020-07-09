@@ -18,6 +18,7 @@ use App\KoordinatSarana;
 use App\KoordinatTaman;
 use App\Perumahans;
 use App\PJU;
+use App\Saluran;
 use App\Sarana;
 use App\Taman;
 use Illuminate\Contracts\Session\Session;
@@ -258,15 +259,13 @@ class PerumahansController extends Controller
         $data_koordinat_taman = KoordinatTaman::where('perumahan_id',$id)->get();
 
         $data_pju = PJU::where('perumahan_id',$id)->get();
-
-
-
+        $data_saluran_bersih = Saluran::where('perumahan_id',$id)->get();
 
         return view('PSU_Perumahan.perumahan.edit', compact('perumahans', 'kecamatans',
             'data_siteplan', 'data_koordinat_perumahan','data_sarana','data_foto_sarana',
             'data_koordinat_sarana','data_jalan_saluran','data_foto_jalan_saluran',
             'data_koordinat_jalan_saluran','data_taman','data_foto_taman','data_koordinat_taman',
-            'data_pju'));
+            'data_pju','data_saluran_bersih'));
     }
 
     /**

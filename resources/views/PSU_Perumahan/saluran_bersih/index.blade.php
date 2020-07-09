@@ -3,7 +3,7 @@
         Input Data Saluran Bersih
     </div>
     <div class="card-body" id="data_jalansaluran">
-        <form method="post" action="/pjus/store">
+        <form method="post" action="/saluranbersih/store">
             @csrf
             <div class="row">
                 <div class="col-sm-3">
@@ -65,7 +65,7 @@
                     <label for="aksi" class="text-center">Aksi</label><br>
                     <button type="button"
                             class="btn btn-success btn-icon-split float-right ml-3"
-                            id="add_data_saluran">
+                            id="add_data_saluran_bersih">
                             <span class="icon text-white-50">
                                 <i class="fas fa-plus"></i>
                             </span>
@@ -73,7 +73,7 @@
                     </button>
                     <button type="button"
                             class="btn btn-info btn-icon-split float-right"
-                            id="btn-reset-saluran">
+                            id="btn_reset_saluran_bersih">
                             <span class="icon text-white-50">
                                 <i class="fas fa-plus"></i>
                             </span>
@@ -81,12 +81,12 @@
                     </button>
                 </div>
             </div>
-            <input type="hidden" id="jumlah-form" value="0">
-            <div id="saluran-form"></div>
+            <input type="hidden" id="jumlah_saluran_bersih_form" value="0">
+            <div id="saluran_bersih_form"></div>
 
             <button type="submit"
                     class="btn btn-primary btn-icon-split mt-3 float-right"
-                    id="add_data_jalan_saluran">
+                    id="add_data_saluran_bersih">
             <span class="icon text-white-50">
                 <i class="fas fa-download"></i>
             </span>
@@ -115,5 +115,5 @@
 
 <!--Scrpit Data Sarana -->
 <script type="text/javascript"
-        src="../../assets/js/perumahan/saluran/saluran_form.js">
+        src="../../assets/js/perumahan/saluranbersih/saluranbersih.js">
 </script>
