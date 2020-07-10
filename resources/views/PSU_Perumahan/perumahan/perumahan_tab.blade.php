@@ -4,23 +4,55 @@
         @include('PSU_Perumahan.perumahan.perumahan_edit')
     </div>
 </div>
-
-<div class="col-12">
-    <div class="tab-content" id="v-pills-tabContent">
-        <div class="tab-pane fade show active" id="v-perumahan" role="tabpanel"
-             aria-labelledby="v-pills-home-tab">
-
-        </div>
-        <div class="tab-pane fade" id="v-siteplan" role="tabpanel"
-             aria-labelledby="v-pills-profile-tab">
-
-        </div>
-        <div class="tab-pane fade" id="v-koordinat" role="tabpanel"
-             aria-labelledby="v-pills-messages-tab">
-            @include('PSU_Perumahan.koordinat_perumahan.koordinat_perumahan')
-        </div>
+<!-- JIKA SUDAH SERAH TERIMA -->
+<div class="card mb-3">
+    <div class="card-body">
+        @include('PSU_Perumahan.bast.index')
     </div>
 </div>
+
+<!-- JIKA BELUM SERAH TERIMA-->
+<div class="card mb-3">
+    <div class="card-body">
+        @include('PSU_Perumahan.basta.index')
+    </div>
+</div>
+
+<div class="card mb-3">
+    <div class="card-body">
+        @include('PSU_Perumahan.izin_lokasi.index')
+    </div>
+</div>
+
+<div class="card mb-3">
+    <div class="card-body">
+        @include('PSU_Perumahan.ippt.index')
+    </div>
+</div>
+
+<div class="card mb-3">
+    <div class="card-body">
+        @include('PSU_Perumahan.sk_siteplan.index')
+    </div>
+</div>
+
+
+<!--<div class="col-12">-->
+<!--    <div class="tab-content" id="v-pills-tabContent">-->
+<!--        <div class="tab-pane fade show active" id="v-perumahan" role="tabpanel"-->
+<!--             aria-labelledby="v-pills-home-tab">-->
+<!---->
+<!--        </div>-->
+<!--        <div class="tab-pane fade" id="v-siteplan" role="tabpanel"-->
+<!--             aria-labelledby="v-pills-profile-tab">-->
+<!---->
+<!--        </div>-->
+<!--        <div class="tab-pane fade" id="v-koordinat" role="tabpanel"-->
+<!--             aria-labelledby="v-pills-messages-tab">-->
+<!--            @include('PSU_Perumahan.koordinat_perumahan.koordinat_perumahan')-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
 
 <!--Scrpit Data Sarana -->
