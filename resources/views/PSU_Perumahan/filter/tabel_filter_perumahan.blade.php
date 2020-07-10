@@ -14,14 +14,13 @@
             <th rowspan="2">Nama Perumahan</th>
             <th rowspan="2">Nama Pengembang</th>
             <th rowspan="2">Luas Perumahan (m2)</th>
-            <th colspan="4">Lokasi</th>
+            <th colspan="3">Lokasi</th>
             <th rowspan="2">Aksi</th>
         </tr>
         <tr>
+            <th>Alamat</th>
             <th>Kecamatan</th>
             <th>Kelurahan/Desa</th>
-            <th>RT</th>
-            <th>RW</th>
         </tr>
         </thead>
         <tbody>
@@ -42,10 +41,9 @@
             <td>@include('PSU_Perumahan.includes.menu_edit_perumahan')</td>
             <td>{{ $perumahan->nama_pengembang }}</td>
             <td>{{ $perumahan->luas_perumahan }}</td>
+            <td>{{ $perumahan->lokasi }}</td>
             <td>{{ $perumahan->kecamatan }}</td>
             <td>{{ $perumahan->kelurahan }}</td>
-            <td>{{ $perumahan->RT }}</td>
-            <td>{{ $perumahan->RW }}</td>
             <td>
 
                 <button class="btn btn-danger btn-icon-split" data-toggle="modal"

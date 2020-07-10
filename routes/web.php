@@ -207,7 +207,12 @@ Route::post('/saluranbersih/store', 'SaluransController@store');
 Route::patch('/saluranbersih/update/{id}', 'SaluransController@update');
 Route::delete('/saluranbersih/delete/{id}', 'SaluransController@destroy');
 
-
+//PSU Data Foto Perumahan/Siteplan
+Route::get('/fotositeplans/{id}', 'FotoPerumahansController@index');
+Route::post('/fotositeplans/store', 'FotoPerumahansController@store');
+Route::get('/fotositeplans/edit/{id}', 'FotoPerumahansController@edit');
+Route::patch('/fotositeplans/update/{id}', 'FotoPerumahansController@update');
+Route::post('/fotositeplans/delete/', 'FotoPerumahansController@destroy');
 
 
 

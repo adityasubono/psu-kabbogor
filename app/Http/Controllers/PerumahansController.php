@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Bast;
 use App\CCTVPerumahan;
 use App\Exports\PerumahanExcel;
 use App\FotoJalanSaluran;
@@ -137,16 +138,16 @@ class PerumahansController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-//            'nama_perumahan' => 'required',
-//            'nama_pengembang' => 'required',
+            'nama_perumahan' => 'required',
+            'nama_pengembang' => 'required',
 //            'luas_perumahan' => 'required',
 //            'jumlah_perumahan' => 'required',
 //            'lokasi' => 'required',
-//            'kecamatan' => 'required|not_in:0',
-//            'kelurahan' => 'required|not_in:0',
+            'kecamatan' => 'required|not_in:0',
+            'kelurahan' => 'required|not_in:0',
 //            'RT' => 'required',
 //            'RW' => 'required',
-//            'status_perumahan' => 'required|not_in:0',
+            'status_perumahan' => 'required|not_in:0',
 //            'no_bast' => 'required',
 //            'sph' => 'required',
 //            'tgl_serah_terima' => 'required',
@@ -175,6 +176,7 @@ class PerumahansController extends Controller
 //        }
 
 
+        $perumahan_id = $request->get('perumahan_id');
         $input=$request->all();
         $images=array();
         if($files=$request->file('file_foto')){
@@ -185,16 +187,22 @@ class PerumahansController extends Controller
 
                 FotoPerumahan::create([
                     'file_foto'=>  implode("|",$images),
-                    'perumahan_id' =>$input['id'],
+                    'perumahan_id' =>$input['perumahan_id'],
                     //you can put other insertion here
                 ]);
             }
         }
         /*Insert your data*/
 
+        Perumahans::create($request->all());
 
-//        Perumahans::create($request->all());
-        return redirect('/perumahans')->with('status', 'Data Success Insert');
+        foreach ($request->data_bast as $key => $value) {
+            Bast::create($value);
+        }
+
+        return redirect()->action('PerumahansController@edit', ['id' => $perumahan_id])
+            ->with('status', 'Data Sarana Berhasil Disimpan');
+
     }
 
     /**

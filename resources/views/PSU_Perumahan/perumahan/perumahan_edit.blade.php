@@ -1,4 +1,7 @@
 <div class="card shadow mb-4">
+    <div class="card-header text-white bg-primary">
+        Data Perumahan
+    </div>
     <div class="card-body">
         <form method="post" action="/perumahans/update/{{$perumahans->id}}">
             @method('PATCH')
@@ -215,13 +218,6 @@
                 @enderror
             </div>
 
-            <a href="/perumahans" class="btn btn-info btn-icon-split">
-                    <span class="icon text-white-50">
-                        <i class="fas fa-arrow-alt-circle-left"></i>
-                    </span>
-                <span class="text">Kembali</span>
-            </a>
-
             <button type="submit" class="btn btn-primary btn-icon-split">
                     <span class="icon text-white-50">
                         <i class="fas fa-download"></i>
@@ -231,6 +227,10 @@
         </form>
     </div>
 </div>
+
+@include('PSU_Perumahan.foto_siteplan.foto_siteplan')
+
+
 
 <!--Scrpit Data Sarana -->
 <script type="text/javascript" src="../../assets/js/getKelurahan.js"></script>

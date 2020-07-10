@@ -3,7 +3,7 @@
     {{ csrf_field() }}
     <div class="row mb-3">
         <div class="col-sm-3">
-            <label for="operator">Filter Kecamatan</label>
+            <label for="kecamatan">Filter Kecamatan</label>
             <select class="custom-select @error('kecamatan') is-invalid @enderror"
                     id="kecamatan" name="kecamatan">
                 <option value="">--Pilih Kecamatan--</option>
@@ -24,7 +24,7 @@
         </div>
 
         <div class="col-sm-3">
-            <label for="operator">Filter Status</label>
+            <label for="status_perumahan">Filter Status</label>
             <select
                 class="custom-select"
                 id="status_perumahan" name="status_perumahan"
@@ -50,10 +50,11 @@
                 <span class="text">Filter</span>
             </button>
 
-            <button type="submit" class="btn btn-info btn-icon-split" id="do-filte">
-                            <span class="icon text-white-50">
-                                <i class="fas fa-sync"></i>
-                            </span>
+            <button type="submit" class="btn btn-info btn-icon-split"
+                    id="do-filte">
+                <span class="icon text-white-50">
+                    <i class="fas fa-sync"></i>
+                </span>
                 <span class="text">Reset</span>
             </button>
 

@@ -65,21 +65,63 @@ class FotoPerumahansController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\FotoPerumahan  $fotoPerumahan
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, FotoPerumahan $fotoPerumahan)
+    public function update(Request $request, $id)
     {
-        //
+        $data = FotoPerumahan::find($id);
+        $keterangan = $request->input('keterangan');
+        $perumahan_id = $request->get('perumahan_id');
+
+        if (isset($keterangan)){
+            $data->keterangan = $keterangan;
+        }
+
+        if (empty($request->file('file_foto'))) {
+            $data->file_foto = $data->file_foto;
+            $data->keterangan = $data->keterangan;
+        } else{
+            $path = public_path('/assets/uploads/perumahan/perumahan/') . $data->file_foto;
+            if (file_exists($path)) {
+                unlink($path);
+            }
+//            unlink('/assets/uploads/permukiman'.$data->file_foto); //menghapus file lama
+            $file = $request->file('file_foto');
+            $ext = $file->getClientOriginalExtension();
+            $newName = rand(100000,1001238912).".".$ext;
+            $file->move('assets/uploads/perumahan/perumahan/',$newName);
+            $data->file_foto = $newName;
+//            $data->keterangan = $request->input('keterangan');
+        }
+        $data->save();
+
+        return redirect()->action('PerumahansController@edit', ['id' => $perumahan_id])
+            ->with('status','Data Foto Sarana Berhasil Diupdate ');
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\FotoPerumahan  $fotoPerumahan
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(FotoPerumahan $fotoPerumahan)
+    public function destroy(Request $request)
     {
-        //
+        $foto_id = $request->get('id');
+        $filename = $request->get('filename');
+        $perumahan_id = $request->get('perumahan_id');
+
+        if (isset($foto_id) && ($filename)) {
+            FotoPerumahan::where('id', $foto_id)->delete();
+            $path = public_path('/assets/uploads/perumahan/perumahan/') . $filename;
+            if (file_exists($path)) {
+                unlink($path);
+            }
+
+            return redirect()->action(
+                'PerumahansController@edit', ['id' => $perumahan_id])
+                ->with('status','Data Foto/Gambar Siteplan Perumahan Berhasil Dihapus ');
+        }
     }
 }
