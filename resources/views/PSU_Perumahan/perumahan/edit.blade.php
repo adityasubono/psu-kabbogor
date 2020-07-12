@@ -15,7 +15,7 @@
         <div class="card-header py-3 bg-gray-500">
             <div class="row">
                 <div class="col-sm-6">
-                    <h6 class="m-0 font-weight-bold text-primary">Edit Data Perumahan
+                    <h6 class="m-0 font-weight-bold text-primary">Data Perumahan
                         : {{$perumahans->nama_perumahan}}</h6>
                 </div>
                 <div class="col-sm-6">
