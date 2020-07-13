@@ -1,221 +1,146 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"
-          id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SI - PSU ( Login )</title>
+
+    <link href="{!! asset('assets/fontawesome-free/css/all.min.css') !!}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <!--    <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">-->
+    <link rel="stylesheet" type="text/css" href="{!! asset('assets/css/sb-admin-2.min.css') !!}">
+    <link href="{!! asset('assets/datatables/dataTables.bootstrap4.min.css') !!}" rel="stylesheet">
     <script src="{!! asset('assets/jquery/jquery.min.js') !!}"></script>
-    <link href="{!! asset('assets/css/login.css') !!}" rel="stylesheet" type="text/css">
-    <!------ Include the above in your HEAD tag ---------->
+    <link rel="stylesheet" href="{!!asset('assets/dropzone/min/dropzone.min.css')!!}">
+    <script src="{!! asset('assets/dropzone/dropzone.js')!!}" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>
+
 </head>
 
-<body id="LoginForm">
-<div id="jam">
-    <div id="clock"></div>
-</div>
+<body class="bg-gradient-primary">
+
+<div class="container">
+
+    <!-- Outer Row -->
+    <div class="row justify-content-center">
+
+        <div class="col-xl-10 col-lg-12 col-md-9">
+
+            <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card-body p-0">
+                    <!-- Nested Row within Card Body -->
+                    <div class="row">
+                        <div class="col-lg-6">
+
+                            <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+                                    <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+                                    <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+                                </ol>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="assets/images/403.jpg"
+                                             class="d-block w-100"
+                                             alt="..."
+                                             style="height: 600px;">
+                                        <div class="carousel-caption d-none d-md-block">
+                                            <h5>First slide label</h5>
+                                            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="assets/images/404.jpg"
+                                             class="d-block w-100"
+                                             alt="..."
+                                             style="height: 600px;">
+                                        <div class="carousel-caption d-none d-md-block">
+                                            <h5>Second slide label</h5>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="assets/images/cover2.png"
+                                             class="d-block w-100"
+                                             alt="..."
+                                             style="height: 600px;">
+                                        <div class="carousel-caption d-none d-md-block">
+                                            <h5>Third slide label</h5>
+                                            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
 
 
-@if(\Session::has('alert'))
-<div class="toast" data-delay="5000" id="wellcome" >
-    <div class="toast-header bg-warning text-white">
-        <h4>
-            <strong class="mr-auto">Peringatan !</strong>
-        </h4>
-    </div>
-    <div class="toast-body">
-        <h5>{{Session::get('alert')}}</h5>
-    </div>
-</div>
-@elseif (\Session::has('alert-success'))
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="p-5">
+                                <div class="text-center">
+                                    <h1 class="h4 text-gray-900 mb-4">SI - PSU Login</h1>
+                                </div>
+                                <form method="post" action="/loginpost" class="user">
+                                    <meta name="csrf-token" content="{{csrf_token()}}"/>
+                                    {{ csrf_field() }}
+                                    <div class="form-group">
+                                        <input type="text"
+                                               class="form-control form-control-user"
+                                               id="exampleInputEmail"
+                                               name="nik"
+                                               aria-describedby="emailHelp"
+                                               placeholder="Enter NIK...">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password"
+                                               class="form-control form-control-user"
+                                               id="exampleInputPassword"
+                                               name="password"
+                                               placeholder="Password">
+                                    </div>
 
-<div class="toast" data-delay="5000" id="wellcome">
-    <div class="toast-header bg-info text-white">
-        <h4>
-            <strong class="mr-auto">Informasi</strong>
-        </h4>
-    <div class="toast-body">
-        <h5>{{Session::get('alert-success')}}</h5>
-    </div>
-</div>
-@else
-
-<div class="toast" id="wellcome" data-delay="5000" role="alert">
-    <div class="toast-header bg-info text-white">
-        <h4>
-            <strong class="mr-auto">Selamat Datang</strong>
-        </h4>
-    </div>
-    <div class="toast-body">
-        <img src="{!! asset('assets/images/logo_dpkpp.png') !!}">
-        <hr>
-    </div>
-</div>
-
-@endif
-
-
-
-
-
-
-<div class="main">
-    <div class="login-form">
-
-        <form method="post" action="/loginpost" id="form_login">
-            <meta name="csrf-token" content="{{csrf_token()}}"/>
-            {{ csrf_field() }}
-
-            <div class="form-group">
-                <h3 class="border_h1">Login Sistem</h3>
-                <hr style="background-color: #00b0e8">
-                <label for="nik">NIK</label>
-                <input type="hidden" name="remember_token" value="{{csrf_token()}}">
-                <input type="number" class="form-control" id="nik" name="nik"
-                       placeholder="Masukan Nik">
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" class="form-control" name="password"
-                       placeholder="Masukan Password">
-            </div>
-
-
-            <button onclick="move()"
-                    class="btn btn-primary mt-3"
-                    data-toggle="modal"
-                    data-target="#loading"
-                    data-backdrop="static"
-                    data-keyboard="false">Login
-            </button>
-        </form>
-
-    </div>
-</div>
-<div class="modal fade" id="loading" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-body">
-                <img src="{!! asset('assets/images/loading.png') !!}"
-                     style="width: 140%; height: 300px;">
-                <div id="myProgress">
-                    <div id="myBar" class="text-white text-center"></div>
+                                    <button type="submit" class="btn btn-primary btn-user btn-block">
+                                        Login
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
         </div>
+
     </div>
+
 </div>
+
+<!-- Bootstrap core JavaScript-->
+<script src="{!! asset('assets/jquery/jquery.min.js') !!}"></script>
+<script src="{!! asset('assets/bootstrap/js/bootstrap.bundle.min.js') !!}"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="{!! asset('assets/jquery-easing/jquery.easing.min.js') !!}"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="{!! asset('assets/js/sb-admin-2.min.js') !!}"></script>
+
 </body>
+
 </html>
-
-<script type="text/javascript">
-    window.setTimeout(function () {
-        $(".alert").fadeTo(500, 0).slideUp(500, function () {
-            $(this).remove();
-        });
-    }, 4000);
-</script>
-<script type="text/javascript">
-    var nik = document.getElementById('nik')
-    var password = document.getElementById('password')
-    var i = 0;
-
-    function move() {
-        if (i == 0) {
-            i = 1;
-            var elem = document.getElementById("myBar");
-            var width = 1;
-            var id = setInterval(frame, 10);
-
-            function frame() {
-                if (width >= 100) {
-                    clearInterval(id);
-                    i = 0;
-                    $.ajaxSetup({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        }
-                    });
-
-                    $.ajax({
-                        url: '/loginpost',
-                        method: 'post',
-                    });
-
-                } else {
-                    width++;
-                    elem.style.width = width + "%";
-                    elem.innerHTML = width + "%";
-                }
-            }
-        }
-    }
-</script>
-
-
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('.toast').toast('show');
-    });
-
-    $(document).ready(function () {
-        $('#welcome').toast('show');
-    });
-
-</script>
-<script type="text/javascript">
-    function showTime() {
-        var a_p = "";
-        var today = new Date();
-        var curr_hour = today.getHours();
-        var curr_minute = today.getMinutes();
-        var curr_second = today.getSeconds();
-        if (curr_hour < 12) {
-            a_p = "AM";
-        } else {
-            a_p = "PM";
-        }
-        if (curr_hour == 0) {
-            curr_hour = 12;
-        }
-        if (curr_hour > 12) {
-            curr_hour = curr_hour - 12;
-        }
-        curr_hour = checkTime(curr_hour);
-        curr_minute = checkTime(curr_minute);
-        curr_second = checkTime(curr_second);
-        document.getElementById('clock').innerHTML = curr_hour + ":" + curr_minute + ":"
-            + curr_second + " " + a_p;
-    }
-
-    function checkTime(i) {
-        if (i < 10) {
-            i = "0" + i;
-        }
-        return i;
-    }
-
-    setInterval(showTime, 500);
-    //-->
-</script>
-
-<!-- Menampilkan Hari, Bulan dan Tahun -->
-
-<div id="kalender">
-    <script type='text/javascript'>
-        var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus',
-            'September', 'Oktober', 'November', 'Desember'];
-        var myDays = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum&#39;at', 'Sabtu'];
-        var date = new Date();
-        var day = date.getDate();
-        var month = date.getMonth();
-        var thisDay = date.getDay(),
-            thisDay = myDays[thisDay];
-        var yy = date.getYear();
-        var year = (yy < 1000) ? yy + 1900 : yy;
-        document.write(thisDay + ', ' + day + ' ' + months[month] + ' ' + year);
-
-    </script>
-</div>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
