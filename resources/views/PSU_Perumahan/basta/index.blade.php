@@ -5,7 +5,7 @@
     <thead class="thead-dark">
     <tr>
         <th>No.</th>
-        <th>No. BASTA</th>
+        <th>No. Basta</th>
         <th>Tanggal</th>
         <th>Aksi</th>
     </tr>
@@ -56,7 +56,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-
+                    @include('PSU_Perumahan.basta.edit')
                 </div>
             </div>
         </div>

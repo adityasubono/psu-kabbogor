@@ -65,21 +65,46 @@ class SiteplanController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Siteplan  $siteplan
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Siteplan $siteplan)
+    public function update(Request $request, $id)
     {
-        //
+        $rules = [
+            'perumahan_id' => 'required',
+            'no_sk_siteplan' => 'required',
+            'tanggal_sk_siteplan' => 'required',
+        ];
+
+        $customMessages = [
+            'required' => 'Masukan Data :attribute ini ?.',
+        ];
+
+        $this->validate($request, $rules, $customMessages);
+
+        $perumahan_id = $request->get('perumahan_id');
+
+        Siteplan::where('id',$id)->update([
+            'perumahan_id' => $request->perumahan_id,
+            'no_sk_siteplan' => $request->no_sk_siteplan,
+            'tanggal' => strftime("%d-%m-%Y", strtotime($request->tanggal_sk_siteplan))
+
+        ]);
+        return redirect()->action('PerumahansController@edit', ['id' => $perumahan_id])
+            ->with('status','Data SK Siteplan Dengan ID '.$id.' Berhasil Di Update');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Siteplan  $siteplan
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Siteplan $siteplan)
+    public function destroy(Request $request, $id)
     {
-        //
+        $perumahan_id = $request->get('perumahan_id');
+        Siteplan::destroy($id);
+
+        return redirect()->action('PerumahansController@edit', ['id' => $perumahan_id])
+            ->with('status', 'Data SK Siteplan Dengan ID ' . $id . ' Berhasil Dihapus');
     }
 }

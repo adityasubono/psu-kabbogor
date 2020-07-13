@@ -159,7 +159,6 @@ class PerumahansController extends Controller
         ]);
 
         $perumahan_id = $request->get('perumahan_id');
-        $input=$request->all();
         $images=array();
         if($files=$request->file('file_foto')){
             foreach($files as $file){
@@ -169,19 +168,32 @@ class PerumahansController extends Controller
 
                 FotoPerumahan::create([
                     'file_foto'=>  implode("|",$images),
-                    'perumahan_id' =>$input['perumahan_id'],
+                    'perumahan_id' => $perumahan_id,
                     //you can put other insertion here
                 ]);
             }
         }
         /*Insert your data*/
 
-        Perumahans::create($request->all());
+
+        Perumahans::create([
+            'nama_perumahan' => $request->get('nama_perumahan'),
+            'nama_pengembang' =>$request->get('nama_pengembang'),
+            'kecamatan' =>$request->get('kecamatan'),
+            'kelurahan' =>$request->get('kelurahan'),
+            'lokasi' =>$request->get('lokasi'),
+            'status_perumahan' =>$request->get('status_perumahan'),
+            'keterangan' =>$request->get('keterangan'),
+        ]);
 
         if ($request['status_perumahan'] == 'Sudah Serah Terima') {
             //BAST
             foreach ($request->data_bast as $key => $value) {
-                Bast::create($value);
+                Bast::create([
+                    'perumahan_id' => $value,
+                    'no_bast' => $value,
+                    'tanggal' => strftime("%d-%m-%Y", strtotime($value))
+                ]);
             }
 
         }
@@ -189,30 +201,30 @@ class PerumahansController extends Controller
         if ($request['status_perumahan'] == 'Belum Serah Terima') {
             //BASTA
             Basta::create([
-                'perumahan_id' => $input['perumahan_id'],
-                'no_basta' => $input['no_basta'],
-                'tanggal' => $input['tanggal_basta'],
+                'perumahan_id' => $request->get('perumahan_id'),
+                'no_basta' => $request->get('no_basta'),
+                'tanggal' => strftime("%d-%m-%Y", strtotime($request->get('tanggal_basta')))
             ]);
 
             //IZIN LOKASI
             IzinLokasi::create([
-                'perumahan_id' => $input['perumahan_id'],
-                'no_izin' => $input['no_izin'],
-                'tanggal' => $input['tanggal_izin'],
+                'perumahan_id' =>  $request->get('perumahan_id'),
+                'no_izin' =>  $request->get('no_izin'),
+                'tanggal' => strftime("%d-%m-%Y", strtotime($request->get('tanggal_izin')))
             ]);
 
             //IPPT
             Ippt::create([
-                'perumahan_id' => $input['perumahan_id'],
-                'no_ippt' => $input['no_ippt'],
-                'tanggal' => $input['tanggal_ippt'],
+                'perumahan_id' => $request->get('perumahan_id'),
+                'no_ippt' => $request->get('no_ippt'),
+                'tanggal' => strftime("%d-%m-%Y", strtotime($request->get('tanggal_ippt')))
             ]);
 
             //SK SITEPLAN
             Siteplan::create([
-                'perumahan_id' => $input['perumahan_id'],
-                'no_sk_siteplan' => $input['no_sk_siteplan'],
-                'tanggal' => $input['tanggal_sk_siteplan'],
+                'perumahan_id' => $request->get('perumahan_id'),
+                'no_sk_siteplan' =>  $request->get('no_sk_siteplan'),
+                'tanggal' => strftime("%d-%m-%Y", strtotime($request->get('tanggal_sk_siteplan')))
             ]);
         }
         return redirect()->action('PerumahansController@edit', ['id' => $perumahan_id])

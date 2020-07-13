@@ -66,11 +66,31 @@ class BastaController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Basta  $basta
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Basta $basta)
+    public function update(Request $request, $id)
     {
-        //
+        $rules = [
+            'perumahan_id' => 'required',
+            'no_basta' => 'required',
+            'tanggal_basta' => 'required',
+        ];
+
+        $customMessages = [
+            'required' => 'Masukan Data :attribute ini ?.',
+        ];
+
+        $this->validate($request, $rules, $customMessages);
+
+        $perumahan_id = $request->get('perumahan_id');
+
+        Basta::where('id',$id)->update([
+            'perumahan_id' => $request->perumahan_id,
+            'no_basta' => $request->no_basta,
+            'tanggal' => strftime("%d-%m-%Y", strtotime($request->tanggal_basta))
+        ]);
+        return redirect()->action('PerumahansController@edit', ['id' => $perumahan_id])
+            ->with('status','Data Basta Dengan ID '.$id.' Berhasil Di Update');
     }
 
     /**
