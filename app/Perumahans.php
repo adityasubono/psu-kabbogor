@@ -98,4 +98,8 @@ class Perumahans extends Model
     public function r_saluran() {
         return $this->hasMany('App\Saluran', 'perumahan_id');
     }
+
+    public function r_siteplan() {
+        return $this->hasMany('App\Siteplan', 'perumahan_id');
+    }
 }

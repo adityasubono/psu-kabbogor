@@ -503,17 +503,11 @@
             document.getElementById('belum_serah_terima').style.display = "block";
             document.getElementById('sudah_serah_terima').style.display = "none";
         } else if (elem.value === "Terlantar") {
-            document.getElementById('tgl_serah_terima').style.display = "none";
-            document.getElementById('keterangan_status').style.display = "none";
-            document.getElementById('psu_data_sarana').style.display = "none";
-            document.getElementById('psu_data_jalan_saluran').style.display = "none";
-            document.getElementById('psu_data_taman').style.display = "none";
+            document.getElementById('sudah_serah_terima').style.display = "none";
+            document.getElementById('belum_serah_terima').style.display = "none";
+
         } else if (elem.value === "") {
-            document.getElementById('tgl_serah_terima').style.display = "none";
-            document.getElementById('keterangan_status').style.display = "none";
-            document.getElementById('psu_data_sarana').style.display = "none";
-            document.getElementById('psu_data_jalan_saluran').style.display = "none";
-            document.getElementById('psu_data_taman').style.display = "none";
+
         }
     }
 </script>

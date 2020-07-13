@@ -5,13 +5,16 @@
     </div>
 </div>
 <!-- JIKA SUDAH SERAH TERIMA -->
+@if ( $perumahans->status_perumahan =='Sudah Serah Terima')
 <div class="card mb-3">
     <div class="card-body">
         @include('PSU_Perumahan.bast.index')
     </div>
 </div>
+@endif
 
 <!-- JIKA BELUM SERAH TERIMA-->
+@if ($perumahans->status_perumahan =='Belum Serah Terima')
 <div class="card mb-3">
     <div class="card-body">
         @include('PSU_Perumahan.basta.index')
@@ -35,6 +38,7 @@
         @include('PSU_Perumahan.sk_siteplan.index')
     </div>
 </div>
+@endif
 
 
 <!--<div class="col-12">-->

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @method static create($value)
+ * @method static where(string $string, $perumahan)
  */
 class Bast extends Model
 {

@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Bast;
-use App\Basta;
+use App\Siteplan;
 use Illuminate\Http\Request;
 
-class BastaController extends Controller
+class SiteplanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -42,10 +41,10 @@ class BastaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Basta  $basta
+     * @param  \App\Siteplan  $siteplan
      * @return \Illuminate\Http\Response
      */
-    public function show(Basta $basta)
+    public function show(Siteplan $siteplan)
     {
         //
     }
@@ -53,10 +52,10 @@ class BastaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Basta  $basta
+     * @param  \App\Siteplan  $siteplan
      * @return \Illuminate\Http\Response
      */
-    public function edit(Basta $basta)
+    public function edit(Siteplan $siteplan)
     {
         //
     }
@@ -65,10 +64,10 @@ class BastaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Basta  $basta
+     * @param  \App\Siteplan  $siteplan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Basta $basta)
+    public function update(Request $request, Siteplan $siteplan)
     {
         //
     }
@@ -76,14 +75,11 @@ class BastaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Basta  $basta
-     * @return \Illuminate\Http\RedirectResponse
+     * @param  \App\Siteplan  $siteplan
+     * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id)
+    public function destroy(Siteplan $siteplan)
     {
-        $perumahan_id = $request->get('perumahan_id');
-        Basta::destroy($id);
-        return redirect()->action('PerumahansController@edit', ['id' => $perumahan_id])
-            ->with('status', 'Data Basta Dengan ID ' . $id . ' Berhasil Dihapus');
+        //
     }
 }

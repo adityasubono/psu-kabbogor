@@ -17,7 +17,13 @@
                 <label>: {{$perumahans->nama_pengembang}}</label><br>
                 <label>: {{$perumahans->luas_perumahan}} / (m2)</label><br>
                 <label>: {{$perumahans->lokasi}} , {{$perumahans->kelurahan}}, {{$perumahans->kecamatan}}</label><br>
-                <label>: {{$perumahans->status_perumahan}}</label><br>
+                @if ($perumahans->status_perumahan == 'Sudah Serah Terima')
+                <label style="color: green">:<b> {{$perumahans->status_perumahan}}</b></label><br>
+                @elseif ($perumahans->status_perumahan == 'Belum Serah Terima')
+                <label style="color: red">:<b> {{$perumahans->status_perumahan}}</b></label><br>
+                @else
+                <label style="color: yellow">:<b> {{$perumahans->status_perumahan}}</b></label><br>
+                @endif
                 <label>: {{$perumahans->keterangan}}</label><br>
 
                 <button type="button"
