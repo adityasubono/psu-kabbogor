@@ -1,30 +1,30 @@
-<form action="/bast/store" method="post">
+<form action="/sksiteplan/store" method="post">
     @csrf
     <div class="row">
         <div class="col-lg-6">
-            <label for="no_bast">No. BAST</label><br>
+            <label for="no_sk_siteplan">No. SK Siteplan</label><br>
             <input type="hidden" name="perumahan_id" value="{{$perumahans->id}}">
             <input type="text"
-                   class="form-control @error('no_bast') is-invalid @enderror"
-                   id="no_bast"
-                   name="no_bast"
-                   placeholder="Masukan No.BAST"
+                   class="form-control @error('no_sk_siteplan') is-invalid @enderror"
+                   id="no_sk_siteplan"
+                   name="no_sk_siteplan"
+                   placeholder="Masukan No.SK Siteplan"
                    value="">
-            @error('no_bast')
+            @error('no_sk_siteplan')
             <div class="invalid-feedback">
                 {{ $message }}
             </div>
             @enderror
         </div>
         <div class="col-lg-6">
-            <label for="tanggal_bast">Tanggal</label><br>
+            <label for="tanggal_sk_siteplan">Tanggal</label><br>
             <input type="date"
-                   class="form-control @error('tanggal_bast') is-invalid @enderror"
-                   id="tanggal_bast"
-                   name="tanggal_bast"
+                   class="form-control @error('tanggal_sk_siteplan') is-invalid @enderror"
+                   id="tanggal_sk_siteplan"
+                   name="tanggal_sk_siteplan"
                    placeholder="Pilih Tanggal"
                    value="">
-            @error('tanggal_bast')
+            @error('tanggal_sk_siteplan')
             <div class="invalid-feedback">
                 {{ $message }}
             </div>

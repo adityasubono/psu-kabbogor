@@ -122,6 +122,12 @@ class FotoPerumahansController extends Controller
             return redirect()->action(
                 'PerumahansController@edit', ['id' => $perumahan_id])
                 ->with('status','Data Foto/Gambar Siteplan Perumahan Berhasil Dihapus ');
+        } else {
+            FotoPerumahan::where('id', $foto_id)->delete();
+
+            return redirect()->action(
+                'PerumahansController@edit', ['id' => $perumahan_id])
+                ->with('status','Data Foto/Gambar Siteplan Perumahan Berhasil Dihapus ');
         }
     }
 }

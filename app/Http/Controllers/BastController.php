@@ -31,11 +31,31 @@ class BastController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'perumahan_id' => 'required',
+            'no_bast' => 'required',
+            'tanggal_bast' => 'required',
+        ];
+
+        $customMessages = [
+            'required' => 'Masukan Data :attribute ini ?.',
+        ];
+
+        $this->validate($request, $rules, $customMessages);
+
+        $perumahan_id = $request->get('perumahan_id');
+        Bast::create([
+            'perumahan_id' => $request->input('perumahan_id'),
+            'no_bast' => $request->input('no_bast'),
+            'tanggal' => strftime("%d-%m-%Y", strtotime($request->get('tanggal_bast')))
+        ]);
+
+        return redirect()->action('PerumahansController@edit', ['id' => $perumahan_id])
+            ->with('status', 'Data BAST Berhasil Disimpan');
     }
 
     /**

@@ -31,11 +31,31 @@ class SiteplanController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'perumahan_id' => 'required',
+            'no_sk_siteplan' => 'required',
+            'tanggal_sk_siteplan' => 'required',
+        ];
+
+        $customMessages = [
+            'required' => 'Masukan Data :attribute ini ?.',
+        ];
+
+        $this->validate($request, $rules, $customMessages);
+
+        $perumahan_id = $request->get('perumahan_id');
+        Siteplan::create([
+            'perumahan_id' => $request->input('perumahan_id'),
+            'no_sk_siteplan' => $request->input('no_sk_siteplan'),
+            'tanggal' => strftime("%d-%m-%Y", strtotime($request->get('tanggal_sk_siteplan')))
+        ]);
+
+        return redirect()->action('PerumahansController@edit', ['id' => $perumahan_id])
+            ->with('status', 'Data SK Siteplan Berhasil Disimpan');
     }
 
     /**

@@ -20,9 +20,9 @@
                 @if ($perumahans->status_perumahan == 'Sudah Serah Terima')
                 <label style="color: green">:<b> {{$perumahans->status_perumahan}}</b></label><br>
                 @elseif ($perumahans->status_perumahan == 'Belum Serah Terima')
-                <label style="color: red">:<b> {{$perumahans->status_perumahan}}</b></label><br>
+                <label style="color: gold">:<b> {{$perumahans->status_perumahan}}</b></label><br>
                 @else
-                <label style="color: yellow">:<b> {{$perumahans->status_perumahan}}</b></label><br>
+                <label style="color: red">:<b> {{$perumahans->status_perumahan}}</b></label><br>
                 @endif
                 <label>: {{$perumahans->keterangan}}</label><br>
 

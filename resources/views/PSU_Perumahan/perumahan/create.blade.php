@@ -168,7 +168,7 @@
                                        id="gallery-photo-add"
                                        class="custom-file-input
                                    @error('file_foto') is-invalid @enderror" multiple>
-                                <label class="custom-file-label">Pilih ile Foto....</label>
+                                <label class="custom-file-label">Pilih File Foto....</label>
                                 @error('file_foto')
                                 <div class="invalid-feedback">
                                     {{ $message }}

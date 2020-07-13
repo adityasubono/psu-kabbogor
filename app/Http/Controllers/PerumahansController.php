@@ -158,27 +158,11 @@ class PerumahansController extends Controller
 //            'keterangan' => 'required'
         ]);
 
-        $perumahan_id = $request->get('perumahan_id');
-        $images=array();
-        if($files=$request->file('file_foto')){
-            foreach($files as $file){
-                $name=$file->getClientOriginalName();
-                $file->move(public_path().'/assets/uploads/perumahan/perumahan',$name);
-                $images[]=$name;
-
-                FotoPerumahan::create([
-                    'file_foto'=>  implode("|",$images),
-                    'perumahan_id' => $perumahan_id,
-                    //you can put other insertion here
-                ]);
-            }
-        }
-        /*Insert your data*/
-
-
         Perumahans::create([
             'nama_perumahan' => $request->get('nama_perumahan'),
             'nama_pengembang' =>$request->get('nama_pengembang'),
+            'luas_perumahan' =>$request->get('luas_perumahan'),
+            'jumlah_perumahan' =>$request->get('jumlah_perumahan'),
             'kecamatan' =>$request->get('kecamatan'),
             'kelurahan' =>$request->get('kelurahan'),
             'lokasi' =>$request->get('lokasi'),
@@ -186,16 +170,32 @@ class PerumahansController extends Controller
             'keterangan' =>$request->get('keterangan'),
         ]);
 
+
+        $perumahan_id = $request->get('perumahan_id');
+        if($files=$request->file('file_foto')){
+            foreach($files as $file){
+                $name=$file->getClientOriginalName();
+                $ext = $file->getClientOriginalExtension();
+                $newName = rand(100000, 1001238912) . "." . $ext;
+                $destinationPath = public_path('/assets/uploads/perumahan/perumahan'); // upload path
+                $file->move($destinationPath, $newName);
+
+                FotoPerumahan::create([
+                    'file_foto'=>  $newName,
+                    'perumahan_id' => $perumahan_id,
+                    //you can put other insertion here
+                ]);
+            }
+        }
+
+
+
         if ($request['status_perumahan'] == 'Sudah Serah Terima') {
             //BAST
             foreach ($request->data_bast as $key => $value) {
-                Bast::create([
-                    'perumahan_id' => $value,
-                    'no_bast' => $value,
-                    'tanggal' => strftime("%d-%m-%Y", strtotime($value))
-                ]);
+                Bast::create($value);
+//            strftime("%d-%m-%Y", strtotime($value))
             }
-
         }
 
         if ($request['status_perumahan'] == 'Belum Serah Terima') {
@@ -228,7 +228,7 @@ class PerumahansController extends Controller
             ]);
         }
         return redirect()->action('PerumahansController@edit', ['id' => $perumahan_id])
-            ->with('status', 'Data Sarana Berhasil Disimpan');
+            ->with('status', 'Data Perumahan Berhasil Disimpan');
 
     }
 
@@ -357,8 +357,8 @@ class PerumahansController extends Controller
 
         ]);
 
-        return redirect()->action('PerumahansController@index')
-            ->with('status', 'Data Dengan ID ' . $perumahans->id . ' Berhasil Di Update');
+        return redirect()->action('PerumahansController@edit', ['id' => $perumahans->id])
+            ->with('status', 'Data Perumahan Berhasil Diupdate');
 
     }
 

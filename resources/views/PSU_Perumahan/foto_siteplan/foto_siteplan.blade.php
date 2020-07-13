@@ -1,9 +1,25 @@
 <link href="{!! asset('assets/css/perumahan.css') !!}" rel="stylesheet">
+
+
+
 <div class="card shadow mb-4">
     <div class="card-header text-white bg-primary">
         Data Foto/Gambar Siteplan Perumahan
+        <button type="submit"
+                class="btn btn-success btn-icon-split float-right"
+                data-toggle="modal"
+                data-target="#input_data_foto-siteplan"
+                data-backdrop="static"
+                data-keyboard="false">
+        <span class="icon text-white-50">
+            <i class="fas fa-plus"></i>
+        </span>
+            <span class="text">Tambah Data</span>
+        </button>
+
     </div>
     <div class="card-body">
+
         <div class="row">
             @foreach( $data_siteplan as $siteplan )
 

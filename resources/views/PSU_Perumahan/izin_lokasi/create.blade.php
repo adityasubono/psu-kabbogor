@@ -1,36 +1,37 @@
-<form action="/bast/store" method="post">
+<form action="/izinlokasi/store" method="post">
     @csrf
     <div class="row">
         <div class="col-lg-6">
-            <label for="no_bast">No. BAST</label><br>
+            <label for="no_izin">No. Izin Lokasi</label><br>
             <input type="hidden" name="perumahan_id" value="{{$perumahans->id}}">
             <input type="text"
-                   class="form-control @error('no_bast') is-invalid @enderror"
-                   id="no_bast"
-                   name="no_bast"
-                   placeholder="Masukan No.BAST"
+                   class="form-control @error('no_izin') is-invalid @enderror"
+                   id="no_izin"
+                   name="no_izin"
+                   placeholder="Masukan No.Izin"
                    value="">
-            @error('no_bast')
+            @error('no_izin')
             <div class="invalid-feedback">
                 {{ $message }}
             </div>
             @enderror
         </div>
         <div class="col-lg-6">
-            <label for="tanggal_bast">Tanggal</label><br>
+            <label for="tanggal_izin">Tanggal</label><br>
             <input type="date"
-                   class="form-control @error('tanggal_bast') is-invalid @enderror"
-                   id="tanggal_bast"
-                   name="tanggal_bast"
+                   class="form-control @error('tanggal_izin') is-invalid @enderror"
+                   id="tanggal_izin"
+                   name="tanggal_izin"
                    placeholder="Pilih Tanggal"
                    value="">
-            @error('tanggal_bast')
+            @error('tanggal_izin')
             <div class="invalid-feedback">
                 {{ $message }}
             </div>
             @enderror
         </div>
     </div>
+
     <button type="submit"
             class="btn btn-primary btn-icon-split float-right mt-3">
         <span class="icon text-white-50">

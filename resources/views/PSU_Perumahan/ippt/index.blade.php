@@ -1,4 +1,37 @@
 <h5>Data IPPT </h5>
+<button type="submit"
+        class="btn btn-primary btn-icon-split center my-3"
+        data-toggle="modal"
+        data-target="#tambah_data_ippt"
+        data-backdrop="static"
+        data-keyboard="false">
+<span class="icon text-white-50">
+        <i class="fas fa-plus"></i>
+    </span>
+    <span class="text">Tambah Data</span>
+</button>
+
+
+<div class="modal fade" id="tambah_data_ippt" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="exampleModalScrollableTitle">
+                    Tambah Data IPPT
+                </h5>
+                <button type="button" class="close bg-danger p-sm-4" data-dismiss="modal"
+                        aria-label="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                @include('PSU_Perumahan.ippt.create')
+            </div>
+        </div>
+    </div>
+</div>
+
 <table class="table table-bordered table-hover display nowrap"
        cellspacing="0"
        style="width:100%">

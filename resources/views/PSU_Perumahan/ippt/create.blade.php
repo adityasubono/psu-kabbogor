@@ -1,30 +1,30 @@
-<form action="/bast/store" method="post">
+<form action="/ippt/store" method="post">
     @csrf
     <div class="row">
         <div class="col-lg-6">
-            <label for="no_bast">No. BAST</label><br>
+            <label for="no_ippt">No. IPPT</label><br>
             <input type="hidden" name="perumahan_id" value="{{$perumahans->id}}">
             <input type="text"
-                   class="form-control @error('no_bast') is-invalid @enderror"
-                   id="no_bast"
-                   name="no_bast"
-                   placeholder="Masukan No.BAST"
+                   class="form-control @error('no_ippt') is-invalid @enderror"
+                   id="no_ippt"
+                   name="no_ippt"
+                   placeholder="Masukan No.BASTA"
                    value="">
-            @error('no_bast')
+            @error('no_ippt')
             <div class="invalid-feedback">
                 {{ $message }}
             </div>
             @enderror
         </div>
         <div class="col-lg-6">
-            <label for="tanggal_bast">Tanggal</label><br>
+            <label for="tanggal_ippt">Tanggal</label><br>
             <input type="date"
-                   class="form-control @error('tanggal_bast') is-invalid @enderror"
-                   id="tanggal_bast"
-                   name="tanggal_bast"
+                   class="form-control @error('tanggal_ippt') is-invalid @enderror"
+                   id="tanggal_ippt"
+                   name="tanggal_ippt"
                    placeholder="Pilih Tanggal"
                    value="">
-            @error('tanggal_bast')
+            @error('tanggal_ippt')
             <div class="invalid-feedback">
                 {{ $message }}
             </div>

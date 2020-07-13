@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static create(array $array)
  * @method static where(string $string, Perumahans $perumahan)
  * @method static find($id)
+ * @method static insert(array $array)
  */
 class FotoPerumahan extends Model
 {

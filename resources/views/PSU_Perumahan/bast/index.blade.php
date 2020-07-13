@@ -2,7 +2,7 @@
 <button type="submit"
         class="btn btn-primary btn-icon-split center my-3"
         data-toggle="modal"
-        data-target="#tambah_data_bast{{ $bast->id }}"
+        data-target="#tambah_data_bast"
         data-backdrop="static"
         data-keyboard="false">
     <span class="icon text-white-50">
@@ -12,7 +12,7 @@
 </button>
 
 
-<div class="modal fade" id="tambah_data_bast{{ $bast->id }}" tabindex="-1" role="dialog"
+<div class="modal fade" id="tambah_data_bast" tabindex="-1" role="dialog"
      aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
         <div class="modal-content">
@@ -42,6 +42,7 @@
     <tr>
         <th>No.</th>
         <th>No. Bast</th>
+        <th>No. SPH</th>
         <th>Tanggal</th>
         <th>Aksi</th>
     </tr>
@@ -51,6 +52,7 @@
     <tr>
         <td>{{ $loop->iteration }}</td>
         <td>{{ $bast->no_bast }}</td>
+        <td>{{ $bast->no_sph }}</td>
         <td>{{ $bast->tanggal }}</td>
         <td>
             <button class="btn btn-warning btn-icon-split"
@@ -128,7 +130,7 @@
 
     @empty
     <tr>
-        <td colspan="4" class="text-center">
+        <td colspan="5" class="text-center">
             <b style="color: red">
                 Data Tidak Tersedia
                 <br>
