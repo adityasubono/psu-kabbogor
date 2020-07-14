@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Rules;
 use App\User;
+use http\Exception;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,8 +36,6 @@ class HomeController extends Controller
 
     public function login(Request $request)
     {
-
-
         $nik = $request->input('nik');
         $password = $request->input('password');
         $remember_token = $request->input('remember_token');
@@ -75,6 +74,8 @@ class HomeController extends Controller
         } else {
             return redirect('/')->with('alert', 'NIK dan Password Salah');
         }
+
+
     }
 
     public function logout(Request $request)

@@ -19,6 +19,8 @@
     <link rel="stylesheet" type="text/css" href="{!! asset('assets/css/sb-admin-2.min.css') !!}">
     <link href="{!! asset('assets/datatables/dataTables.bootstrap4.min.css') !!}" rel="stylesheet">
     <script src="{!! asset('assets/jquery/jquery.min.js') !!}"></script>
+    <link href="{!! asset('assets/css/login.css') !!}"
+          rel="stylesheet">
     <link rel="stylesheet" href="{!!asset('assets/dropzone/min/dropzone.min.css')!!}">
     <script src="{!! asset('assets/dropzone/dropzone.js')!!}" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -26,7 +28,7 @@
 
 </head>
 
-<body class="bg-gradient-primary">
+<body style="background-image: url('assets/images/login/clemens-posch-we1tBosANpU-unsplash.jpg');">
 
 <div class="container">
 
@@ -40,7 +42,6 @@
                     <!-- Nested Row within Card Body -->
                     <div class="row">
                         <div class="col-lg-6">
-
                             <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
                                 <ol class="carousel-indicators">
                                     <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
@@ -49,33 +50,30 @@
                                 </ol>
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <img src="assets/images/403.jpg"
+                                        <img src="assets/images/login/chris-king-3oyIKSz_4cE-unsplash.jpg"
                                              class="d-block w-100"
                                              alt="..."
                                              style="height: 600px;">
                                         <div class="carousel-caption d-none d-md-block">
-                                            <h5>First slide label</h5>
-                                            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+
                                         </div>
                                     </div>
                                     <div class="carousel-item">
-                                        <img src="assets/images/404.jpg"
+                                        <img src="assets/images/login/knoell-marketing-h8c2m599v4U-unsplash.jpg"
                                              class="d-block w-100"
                                              alt="..."
                                              style="height: 600px;">
                                         <div class="carousel-caption d-none d-md-block">
-                                            <h5>Second slide label</h5>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+
                                         </div>
                                     </div>
                                     <div class="carousel-item">
-                                        <img src="assets/images/cover2.png"
+                                        <img src="assets/images/login/grant-ritchie-YRF3nhuZ81s-unsplash (1).jpg"
                                              class="d-block w-100"
                                              alt="..."
                                              style="height: 600px;">
                                         <div class="carousel-caption d-none d-md-block">
-                                            <h5>Third slide label</h5>
-                                            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+
                                         </div>
                                     </div>
                                 </div>
@@ -88,14 +86,21 @@
                                     <span class="sr-only">Next</span>
                                 </a>
                             </div>
-
-
                         </div>
+
                         <div class="col-lg-6">
                             <div class="p-5">
                                 <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4">SI - PSU Login</h1>
+                                    <h5 class="h5 text-gray-900 mb-4">Sistem Informasi Sarana
+                                        Prasarana dan Utilitas Kabupaten Bogor
+                                    </h5>
+                                    <h1 class="h3 text-gray-900 mb-4">SI - PSU Login</h1>
                                 </div>
+                                @if (session('alert'))
+                                <div class="alert alert-danger mt-5">
+                                    {{ session('alert') }}
+                                </div>
+                                @endif
                                 <form method="post" action="/loginpost" class="user">
                                     <meta name="csrf-token" content="{{csrf_token()}}"/>
                                     {{ csrf_field() }}
@@ -130,6 +135,14 @@
     </div>
 
 </div>
+
+<script type="text/javascript">
+    window.setTimeout(function () {
+        $(".alert").fadeTo(500, 0).slideUp(500, function () {
+            $(this).remove();
+        });
+    }, 4000);
+</script>
 
 <!-- Bootstrap core JavaScript-->
 <script src="{!! asset('assets/jquery/jquery.min.js') !!}"></script>
