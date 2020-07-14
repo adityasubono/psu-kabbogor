@@ -5,17 +5,17 @@
                 Input Data Perumahan
             </div>
             <div class="col-sm-6 text-white text-right">
-                    @forelse( $perumahan_id as $id )
-                    @php
-                    $id_plus= $id->id + 1;
-                    echo "ID: $id_plus";
-                    @endphp
-                    @empty
-                    @php
-                    $id_plus= 1;
-                    echo "ID: $id_plus";
-                    @endphp
-                    @endforelse
+                @forelse( $perumahan_id as $id )
+                @php
+                $id_plus= $id->id + 1;
+                echo "ID: $id_plus";
+                @endphp
+                @empty
+                @php
+                $id_plus= 1;
+                echo "ID: $id_plus";
+                @endphp
+                @endforelse
             </div>
         </div>
     </div>
@@ -168,7 +168,7 @@
                                        id="gallery-photo-add"
                                        class="custom-file-input
                                    @error('file_foto') is-invalid @enderror" multiple>
-                                <label class="custom-file-label">Pilih ile Foto....</label>
+                                <label class="custom-file-label">Pilih File Foto....</label>
                                 @error('file_foto')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -191,7 +191,16 @@
                                 name="status_perumahan"
                                 onchange="displayForm(this)">
                             <option value="{{ old('status_perumahan') }}" selected>
+                                @empty('status_perumahan')
                                 {{ old('status_perumahan') }}
+
+                                @else
+
+                                @php
+                                echo "Pilih Status";
+                                @endphp
+
+                                @endempty
                             </option>
                             <option value="Sudah Serah Terima">Sudah Serah Terima</option>
                             <option value="Belum Serah Terima">Belum Serah Terima</option>
@@ -210,7 +219,7 @@
 
                 <!--                PSU YANG DISERAHKAN : BILA SUDAH SERAH TERIMA               -->
 
-                <div style="display: none" id="tgl_serah_terima">
+                <div style="display: none" id="sudah_serah_terima">
                     <div class="row">
                         <div class="col-sm-3">
 
@@ -288,9 +297,131 @@
 
                     <input type="hidden" id="jumlah-form-bast" value="0">
                     <div id="bast-form"></div>
-
                 </div>
-                <div class="row">
+
+                <div style="display: none" id="belum_serah_terima">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <label for="basta">No. BASTA</label><br>
+                            <input type="text"
+                                   class="form-control @error('no_basta') is-invalid @enderror"
+                                   id="basta"
+                                   name="no_basta"
+                                   placeholder="Masukan No.BASTA"
+                                   value="{{ old('no_basta') }}">
+                            @error('no_basta')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="tanggal_basta">Tanggal</label><br>
+                            <input type="date"
+                                   class="form-control @error('tanggal_basta') is-invalid @enderror"
+                                   id="tanggal_basta"
+                                   name="tanggal_basta"
+                                   placeholder="Pilih Tanggal"
+                                   value="{{ old('tanggal_basta') }}">
+                            @error('tanggal_basta')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+
+                        <div class="col-lg-6 mt-3">
+                            <label for="no_izin">Izin Lokasi</label><br>
+                            <input type="text"
+                                   class="form-control @error('no_izin') is-invalid @enderror"
+                                   id="no_izin"
+                                   name="no_izin"
+                                   placeholder="Masukan No. Izin Lokasi"
+                                   value="{{ old('no_izin') }}">
+                            @error('no_izin')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="col-lg-6 mt-3">
+                            <label for="tanggal_izin">Tanggal</label><br>
+                            <input type="date"
+                                   class="form-control @error('tanggal_izin') is-invalid @enderror"
+                                   id="tanggal_izin"
+                                   name="tanggal_izin"
+                                   placeholder="Pilih Tanggal"
+                                   value="{{ old('tanggal_izin') }}">
+                            @error('tanggal_izin')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+
+                        <div class="col-lg-6 mt-3">
+                            <label for="no_ippt">No. IPPT</label><br>
+                            <input type="text"
+                                   class="form-control @error('no_ippt') is-invalid @enderror"
+                                   id="no_ippt"
+                                   name="no_ippt"
+                                   placeholder="Masukan No.IPPT"
+                                   value="{{ old('no_ippt') }}">
+                            @error('no_ippt')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="col-lg-6 mt-3">
+                            <label for="tanggal_ippt">Tanggal</label><br>
+                            <input type="date"
+                                   class="form-control @error('tanggal_ippt') is-invalid @enderror"
+                                   id="tanggal_ippt"
+                                   name="tanggal_ippt"
+                                   placeholder="Pilih Tanggal"
+                                   value="{{ old('tanggal_ippt') }}">
+                            @error('tanggal_ippt')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+
+                        <div class="col-lg-6 mt-3">
+                            <label for="no_sk_siteplan">No. SK Siteplan</label><br>
+                            <input type="text"
+                                   class="form-control @error('no_sk_siteplan') is-invalid
+                                   @enderror"
+                                   id="no_sk_siteplan"
+                                   name="no_sk_siteplan"
+                                   placeholder="Masukan No. SK Siteplan"
+                                   value="{{ old('no_sk_siteplan') }}">
+                            @error('no_sk_siteplan')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="col-lg-6 mt-3">
+                            <label for="tanggal_sk_siteplan">Tanggal</label><br>
+                            <input type="date"
+                                   class="form-control @error('tanggal_sk_siteplan') is-invalid @enderror"
+                                   id="tanggal_sk_siteplan"
+                                   name="tanggal_sk_siteplan"
+                                   placeholder="Pilih Tanggal"
+                                   value="{{ old('tanggal_sk_siteplan') }}">
+                            @error('tanggal_sk_siteplan')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row mt-3">
                     <div class="col-sm-12">
                         <label for="keterangan">Keterangan</label>
                         <textarea class="form-control @error('keterangan') is-invalid @enderror"
@@ -307,22 +438,23 @@
                 </div>
             </div>
 
-        <a href="/perumahans" class="btn btn-info btn-icon-split mt-3">
+            <a href="/perumahans" class="btn btn-info btn-icon-split mt-3">
                     <span class="icon text-white-50">
                         <i class="fas fa-arrow-alt-circle-left"></i>
                     </span>
-            <span class="text">Kembali</span>
-        </a>
+                <span class="text">Kembali</span>
+            </a>
 
-        <button type="submit" class="btn btn-primary btn-icon-split mt-3">
+            <button type="submit" class="btn btn-primary btn-icon-split mt-3">
                     <span class="icon text-white-50">
                         <i class="fas fa-download"></i>
                     </span>
-            <span class="text">Simpan</span>
-        </button>
+                <span class="text">Simpan</span>
+            </button>
         </form>
     </div>
 </div>
+
 
 <script type="text/javascript">
     $(function () {
@@ -361,27 +493,21 @@
 <!--Scrpit Data BAST -->
 <script type="text/javascript" src="../assets/js/perumahan/bast/bast_form.js"></script>
 
+
 <script type="text/javascript">
     function displayForm(elem) {
         if (elem.value === "Sudah Serah Terima") {
-            document.getElementById('tgl_serah_terima').style.display = "block";
+            document.getElementById('sudah_serah_terima').style.display = "block";
+            document.getElementById('belum_serah_terima').style.display = "none";
         } else if (elem.value === "Belum Serah Terima") {
-            document.getElementById('tgl_serah_terima').style.display = "none";
-            document.getElementById('psu_data_sarana').style.display = "none";
-            document.getElementById('psu_data_jalan_saluran').style.display = "none";
-            document.getElementById('psu_data_taman').style.display = "none";
+            document.getElementById('belum_serah_terima').style.display = "block";
+            document.getElementById('sudah_serah_terima').style.display = "none";
         } else if (elem.value === "Terlantar") {
-            document.getElementById('tgl_serah_terima').style.display = "none";
-            document.getElementById('keterangan_status').style.display = "none";
-            document.getElementById('psu_data_sarana').style.display = "none";
-            document.getElementById('psu_data_jalan_saluran').style.display = "none";
-            document.getElementById('psu_data_taman').style.display = "none";
+            document.getElementById('sudah_serah_terima').style.display = "none";
+            document.getElementById('belum_serah_terima').style.display = "none";
+
         } else if (elem.value === "") {
-            document.getElementById('tgl_serah_terima').style.display = "none";
-            document.getElementById('keterangan_status').style.display = "none";
-            document.getElementById('psu_data_sarana').style.display = "none";
-            document.getElementById('psu_data_jalan_saluran').style.display = "none";
-            document.getElementById('psu_data_taman').style.display = "none";
+
         }
     }
 </script>

@@ -31,11 +31,31 @@ class IzinLokasiController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'perumahan_id' => 'required',
+            'no_izin' => 'required',
+            'tanggal_izin' => 'required',
+        ];
+
+        $customMessages = [
+            'required' => 'Masukan Data :attribute ini ?.',
+        ];
+
+        $this->validate($request, $rules, $customMessages);
+
+        $perumahan_id = $request->get('perumahan_id');
+        IzinLokasi::create([
+            'perumahan_id' => $request->input('perumahan_id'),
+            'no_izin' => $request->input('no_izin'),
+            'tanggal' => strftime("%d-%m-%Y", strtotime($request->get('tanggal_izin')))
+        ]);
+
+        return redirect()->action('PerumahansController@edit', ['id' => $perumahan_id])
+            ->with('status', 'Data Izin Lokasi Berhasil Disimpan');
     }
 
     /**
@@ -46,7 +66,7 @@ class IzinLokasiController extends Controller
      */
     public function show(IzinLokasi $izinLokasi)
     {
-        //
+
     }
 
     /**
@@ -65,21 +85,48 @@ class IzinLokasiController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\IzinLokasi  $izinLokasi
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, IzinLokasi $izinLokasi)
+    public function update(Request $request, $id)
     {
-        //
+        $rules = [
+            'perumahan_id' => 'required',
+            'no_izin' => 'required',
+            'tanggal_izin' => 'required',
+        ];
+
+
+        $customMessages = [
+            'required' => 'Masukan Data :attribute ini ?.',
+        ];
+
+        $this->validate($request, $rules, $customMessages);
+
+        $perumahan_id = $request->get('perumahan_id');
+
+        IzinLokasi::where('id',$id)->update([
+            'perumahan_id' => $request->perumahan_id,
+            'no_izin' => $request->no_izin,
+            'tanggal' => strftime("%d-%m-%Y", strtotime($request->tanggal_izin))
+
+        ]);
+        return redirect()->action('PerumahansController@edit', ['id' => $perumahan_id])
+            ->with('status','Data Izin Lokasi Dengan ID '.$id.' Berhasil Di Update');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\IzinLokasi  $izinLokasi
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(IzinLokasi $izinLokasi)
+    public function destroy(Request $request, $id)
     {
-        //
+        $perumahan_id = $request->get('perumahan_id');
+        IzinLokasi::destroy($id);
+
+        return redirect()->action('PerumahansController@edit', ['id' => $perumahan_id])
+            ->with('status', 'Data Izin Lokasi Dengan ID ' . $id . ' Berhasil Dihapus');
+
     }
 }

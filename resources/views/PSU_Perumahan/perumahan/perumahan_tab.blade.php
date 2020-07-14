@@ -5,13 +5,16 @@
     </div>
 </div>
 <!-- JIKA SUDAH SERAH TERIMA -->
+@if ( $perumahans->status_perumahan =='Sudah Serah Terima')
 <div class="card mb-3">
     <div class="card-body">
         @include('PSU_Perumahan.bast.index')
     </div>
 </div>
+@endif
 
 <!-- JIKA BELUM SERAH TERIMA-->
+@if ($perumahans->status_perumahan =='Belum Serah Terima')
 <div class="card mb-3">
     <div class="card-body">
         @include('PSU_Perumahan.basta.index')
@@ -35,6 +38,7 @@
         @include('PSU_Perumahan.sk_siteplan.index')
     </div>
 </div>
+@endif
 
 
 <!--<div class="col-12">-->
@@ -49,32 +53,32 @@
 <!--        </div>-->
 <!--        <div class="tab-pane fade" id="v-koordinat" role="tabpanel"-->
 <!--             aria-labelledby="v-pills-messages-tab">-->
-<!--            @include('PSU_Perumahan.koordinat_perumahan.koordinat_perumahan')-->
+<!--            -->
 <!--        </div>-->
 <!--    </div>-->
 <!--</div>-->
 
 
 <!--Scrpit Data Sarana -->
-<script type="text/javascript" src="../../assets/js/getKelurahan.js"></script>
-
-<script type="text/javascript">
-    var status_perumahan = $('#status_perumahan').val();
-
-    function displayForm(elem) {
-        if (elem.value === "Sudah Serah Terima") {
-            document.getElementById('tgl_serah_terima').style.display = "block";
-
-        } else if (elem.value === "Belum Serah Terima") {
-            document.getElementById('tgl_serah_terima').style.display = "none";
-
-        } else if (elem.value === "Terlantar") {
-            document.getElementById('tgl_serah_terima').style.display = "none";
-
-        } else if (status_perumahan === "{{$perumahans->status_perumahan}}") {
-            document.getElementById('tgl_serah_terima').style.display = "block";
-
-        }
-    }
-</script>
-
+<!--<script type="text/javascript" src="../../assets/js/getKelurahan.js"></script>-->
+<!---->
+<!--<script type="text/javascript">-->
+<!--    var status_perumahan = $('#status_perumahan').val();-->
+<!---->
+<!--    function displayForm(elem) {-->
+<!--        if (elem.value === "Sudah Serah Terima") {-->
+<!--            document.getElementById('tgl_serah_terima').style.display = "block";-->
+<!---->
+<!--        } else if (elem.value === "Belum Serah Terima") {-->
+<!--            document.getElementById('tgl_serah_terima').style.display = "none";-->
+<!---->
+<!--        } else if (elem.value === "Terlantar") {-->
+<!--            document.getElementById('tgl_serah_terima').style.display = "none";-->
+<!---->
+<!--        } else if (status_perumahan === "{{$perumahans->status_perumahan}}") {-->
+<!--            document.getElementById('tgl_serah_terima').style.display = "block";-->
+<!---->
+<!--        }-->
+<!--    }-->
+<!--</script>-->
+<!---->

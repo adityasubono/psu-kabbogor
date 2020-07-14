@@ -214,6 +214,35 @@ Route::get('/fotositeplans/edit/{id}', 'FotoPerumahansController@edit');
 Route::patch('/fotositeplans/update/{id}', 'FotoPerumahansController@update');
 Route::post('/fotositeplans/delete/', 'FotoPerumahansController@destroy');
 
+//PSU DATA BAST
+Route::post('/bast/store', 'BastController@store');
+Route::patch('/bast/update/{id}', 'BastController@update');
+Route::delete('/bast/delete/{id}', 'BastController@destroy');
+
+
+//PSU DATA BASTA
+Route::post('/basta/store', 'BastaController@store');
+Route::patch('/basta/update/{id}', 'BastaController@update');
+Route::delete('/basta/delete/{id}', 'BastaController@destroy');
+
+//PSU DATA IZIN LOKASI
+Route::post('/izinlokasi/store', 'IzinLokasiController@store');
+Route::patch('/izinlokasi/update/{id}', 'IzinLokasiController@update');
+Route::delete('/izinlokasi/delete/{id}', 'IzinLokasiController@destroy');
+
+//PSU DATA IPPT
+Route::post('/ippt/store', 'IpptController@store');
+Route::patch('/ippt/update/{id}', 'IpptController@update');
+Route::delete('/ippt/delete/{id}', 'IpptController@destroy');
+
+//PSU DATA IZIN LOKASI
+Route::post('/sksiteplan/store', 'SiteplanController@store');
+Route::patch('/sksiteplan/update/{id}', 'SiteplanController@update');
+Route::delete('/sksiteplan/delete/{id}', 'SiteplanController@destroy');
+
+
+
+
 
 
 
