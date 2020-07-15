@@ -101,103 +101,10 @@
             }
         }
     }
-
 </script>
 
 
-<!--<script type="text/javascript">-->
-<!--    var sarana = --><?php //print_r(json_encode($koordinat_sarana)) ?>//;
-//    var perumahan_saranas = <?php //print_r(json_encode($saranas)) ?>//;
-//    var polygons_sarana = {};
-//    var infowindow_sarana = {};
-//    var bounds_sarana = {};
-//    var cords_sarana = {};
-//    var coord_sarana = {};
-//    const perumahan_id_sarana = [];
-//    console.log('perumahans_sarana', sarana)
-//
-//    function onlyUniqueSarana(value, index, self) {
-//        return self.indexOf(value) === index;
-//    }
-//
-//    for (let perumahan = 0; perumahan < sarana.length; perumahan++) {
-//        const perumahanId = sarana[perumahan].perumahan_id_sarana;
-//        perumahan_id_sarana.push(perumahanId);
-//    }
-//    var unique_sarana = perumahan_id_sarana.filter(onlyUniqueSarana);
-//    var result_sarana = sarana.reduce(function (r, a) {
-//        r[a.perumahan_id_sarana] = r[a.perumahan_id_sarana] || [];
-//        r[a.perumahan_id_sarana].push(a);
-//        return r;
-//    }, Object.create(null));
-//    console.log('result', result_sarana);
-//    for (let a = 0; a < unique_sarana .length; a++) {
-//        cords_sarana[a] = [];
-//        for (var b = 0; b < result_sarana[unique_sarana [a]].length; b++) {
-//            const lt = parseFloat(result_sarana[unique_sarana[a]][b].latitude);
-//            const ltd = parseFloat(result_sarana[unique_sarana[a]][b].longitude);
-//            coord_sarana [b] = {lat: lt, lng: ltd};
-//            cords_sarana[a].push(coord_sarana [b]);
-//        }
-//    }
-//
-//    function initMap() {
-//        var map = new google.maps.Map(document.getElementById('mymap'), {
-//            zoom: 12,
-//            center: {
-//                lat: -6.485213,
-//                lng: 106.753537,
-//            },
-//        });
-//        // Construction of polygon.
-//        for (let u = 0; u < unique_sarana.length; u++) {
-//            for (var j = 0; j < result_sarana[unique_sarana[u]].length; j++) {
-//                polygons_sarana[u] = new google.maps.Polygon({
-//                    paths: cords_sarana[u],
-//                    strokeColor: '#0000FF',
-//                    strokeOpacity: 0.6,
-//                    strokeWeight: 1,
-//                    fillColor: '#7FFF00',
-//                    fillOpacity: 0.10
-//                });
-//                polygons_sarana[u].setMap(map);
-//                bounds_sarana[u] = new google.maps.LatLngBounds();
-//                for (var i = 0; i < polygons_sarana[u].getPath().getLength(); i++) {
-//                    bounds_sarana[u].extend(polygons_sarana[u].getPath().getAt(i));
-//                }
-//
-//                infowindow_sarana[u] = new google.maps.InfoWindow();
-//                infowindow_sarana[u].opened = false;
-//
-//                function mousefn(evt) {
-//                    infowindow_sarana[u].setContent(
-//                        '<div id="content">' +
-//                        '<div id="siteNotice"></div>' +
-//                        '<h3 id="firstHeading" class="firstHeading"> Sarana : '
-//                        + result_sarana[unique_sarana[u]][1].nama_perumahan +
-//                        '</h3>' +
-//                        '<div id="bodyContent">' +
-//                        '<p style="font-size: 15px"><b>Alamat : </b>' + result_sarana[unique_sarana[u]][1]
-//                            .lokasi + ' ,'
-//                        + result_sarana[unique_sarana[u]][1].kelurahan + ' ,' + result_sarana[unique_sarana[u]][1].kecamatan
-//                        + ' ,RT: '
-//                        + result_sarana[unique_sarana[u]][1].RT + ' / RW: ' + result_sarana[unique_sarana[u]][1].RW + '</p>' +
-//                        '</div></div>');
-//
-//                    infowindow_sarana[u].setPosition(bounds_sarana[u].getCenter());
-//                    infowindow_sarana[u].open(map);
-//                }
-//
-//                google.maps.event.addListener(polygons_sarana[u], 'mouseover', mousefn);
-//                // google.maps.event.addListener(mrpdPolygon, 'mousemove', mousefn);
-//                google.maps.event.addListener(polygons_sarana[u], 'mouseout', function (evt) {
-//                    infowindow_sarana[u].close();
-//                    infowindow_sarana[u].opened = false;
-//                });
-//            }
-//        }
-//    }
-//</script>
+
 
 
 <script

@@ -19,13 +19,6 @@
 
             @include('PSU_Perumahan.filter.index')
 
-
-
-            @if (session('status'))
-            <div class="alert alert-success">
-                {{ session('status') }}
-            </div>
-            @endif
             <!----------------------   Tabel Data Perumahan---------------------------->
 
             @if(isset($perumahan_filter))

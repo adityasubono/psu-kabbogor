@@ -11,6 +11,12 @@
     </div>
     @endif
 
+    @if (session('error'))
+    <div class="alert alert-danger fade show" role="alert">
+        {{ session('error') }}
+    </div>
+    @endif
+
     <div class="card shadow mb-4">
         <div class="card-header py-3 bg-gray-500">
             <div class="row">

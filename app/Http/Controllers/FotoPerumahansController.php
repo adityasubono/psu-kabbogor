@@ -31,11 +31,35 @@ class FotoPerumahansController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            // check validtion for image or file
+            'file_foto' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+        ]);
+
+        $perumahan_id = $request->get('perumahan_id');
+        if($files=$request->file('file_foto')) {
+            foreach ($files as $file) {
+                $ext = $file->getClientOriginalExtension();
+                $newName = rand(100000, 1001238912) . "." . $ext;
+                $destinationPath = public_path('/assets/uploads/perumahan/perumahan'); // upload path
+                $file->move($destinationPath, $newName);
+
+                FotoPerumahan::create([
+                    'file_foto' => $newName,
+                    'perumahan_id' => $perumahan_id,
+                    //you can put other insertion here
+                ]);
+            }
+            return redirect()->action('PerumahansController@edit', ['id' => $perumahan_id])
+                ->with('status', 'Data Foto Siteplan Berhasil Disimpan');
+        }
+
+        return redirect()->action('PerumahansController@edit', ['id' => $perumahan_id])
+            ->with('error', 'Data Perumahan Gagal Disimpan Disimpan');
     }
 
     /**
@@ -96,7 +120,7 @@ class FotoPerumahansController extends Controller
         $data->save();
 
         return redirect()->action('PerumahansController@edit', ['id' => $perumahan_id])
-            ->with('status','Data Foto Sarana Berhasil Diupdate ');
+            ->with('status','Data Foto/Gambar Siteplan Berhasil Diupdate ');
 
     }
 
