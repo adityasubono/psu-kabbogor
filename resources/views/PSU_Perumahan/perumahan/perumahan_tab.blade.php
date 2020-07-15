@@ -40,6 +40,13 @@
 </div>
 @endif
 
+<div class="card mb-3">
+    <div class="card-body">
+        @include('PSU_Perumahan.koordinat_perumahan.tabel_koordinat_perumahan')
+    </div>
+</div>
+
+
 
 <!--<div class="col-12">-->
 <!--    <div class="tab-content" id="v-pills-tabContent">-->

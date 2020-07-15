@@ -185,6 +185,7 @@ Route::get('/koordinattamans/show/{id}', 'KoordinatTamansController@show');
 //PSU Data Koordinat Perumahan
 Route::get('/koordinatperumahans/{id}', 'KoordinatPerumahansController@index');
 Route::post('/koordinatperumahans/store', 'KoordinatPerumahansController@store');
+Route::get('/koordinatperumahans/show/{id}', 'KoordinatPerumahansController@show');
 Route::get('/koordinatperumahans/edit/{koordinatPerumahan}', 'KoordinatPerumahansController@edit');
 Route::patch('/koordinatperumahans/update/{koordinatPerumahan}', 'KoordinatPerumahansController@update');
 Route::delete('/koordinatperumahans/delete/{koordinatPerumahan}', 'KoordinatPerumahansController@destroy');
