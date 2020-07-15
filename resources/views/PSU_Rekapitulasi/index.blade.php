@@ -36,8 +36,7 @@
                     <script
                         src="http://maps.google.com/maps/api/js?key=AIzaSyBMbVQJuBRWDV1jFUVZ9Gzsu-nWOEr9LdM">
                     </script>
-                    <script
-                        src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>
+                    <script src="../../assets/js/gmap/gmaps.js"></script>
 
 
                     <style type="text/css">
@@ -68,7 +67,7 @@
                                 lng: value.longitude,
                                 title: value.id,
                                 click: function (e) {
-                                    alert('This is ' + value.city + ', gujarat from India.');
+                                    alert('This is ' + value.latitude + ', gujarat from India.');
                                 }
                             });
                         });

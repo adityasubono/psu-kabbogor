@@ -37,6 +37,18 @@
                 </span>
                     <span class="text">Edit</span>
                 </button>
+
+                <button type="button"
+                        class="btn btn-success btn-icon-split float-left mr-3"
+                        data-toggle="modal"
+                        data-target="#tambah_koordinat_perumahan{{ $perumahans->id }}"
+                        data-backdrop="static"
+                        data-keyboard="false">
+                <span class="icon text-white-50">
+                    <i class="fas fa-map"></i>
+                </span>
+                    <span class="text">Tambah Koordinat Perumahan</span>
+                </button>
             </div>
         </div>
     </div>
@@ -198,7 +210,7 @@
                                         id="status_perumahan" name="status_perumahan"
                                         onchange="displayForm
                                     (this)">
-                                    <option value="{{$perumahans->status_perumahan}}">
+                                    <option value="{{$perumahans->status_perumahan}}" selected>
                                         {{$perumahans->status_perumahan}}
                                     </option>
                                     <option value="Sudah Serah Terima">Sudah Serah Terima</option>
@@ -276,12 +288,12 @@
                     </div>
 
                     <button type="button"
-                    class="btn btn-danger btn-icon-split float-right ml-3"
-                    data-dismiss="modal">
+                            class="btn btn-danger btn-icon-split float-right ml-3"
+                            data-dismiss="modal">
                     <span class="icon text-white-50">
                         <i class="fas fa-times"></i>
                     </span>
-                    <span class="text">Batal</span>
+                        <span class="text">Batal</span>
                     </button>
 
                     <button type="submit"
@@ -291,11 +303,32 @@
                     </span>
                         <span class="text">Simpan</span>
                     </button>
-
-
                 </form>
+            </div>
+        </div>
+    </div>
+</div>
 
-
+<div class="modal fade" id="tambah_koordinat_perumahan{{ $perumahans->id }}"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="exampleModalScrollableTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="exampleModalScrollableTitle">
+                    Data Koordinat Perumahan {{$perumahans->nama_perumahan}}
+                </h5>
+                <button type="button"
+                        class="close bg-danger p-sm-4"
+                        data-dismiss="modal"
+                        aria-label="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                @include('PSU_Perumahan.koordinat_perumahan.koordinat_perumahan')
             </div>
         </div>
     </div>
@@ -314,7 +347,7 @@
 
     function displayForm(elem) {
         if (elem.value === "Sudah Serah Terima") {
-            document.getElementById('tgl_serah_terima').style.display = "block";
+            document.getElementById('tgl_serah_terima').style.display = "none";
 
         } else if (elem.value === "Belum Serah Terima") {
             document.getElementById('tgl_serah_terima').style.display = "none";

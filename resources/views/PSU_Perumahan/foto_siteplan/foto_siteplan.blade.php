@@ -1,14 +1,11 @@
 <link href="{!! asset('assets/css/perumahan.css') !!}" rel="stylesheet">
-
-
-
 <div class="card shadow mb-4">
     <div class="card-header text-white bg-primary">
         Data Foto/Gambar Siteplan Perumahan
         <button type="submit"
                 class="btn btn-success btn-icon-split float-right"
                 data-toggle="modal"
-                data-target="#input_data_foto-siteplan"
+                data-target="#input_data_foto_siteplan"
                 data-backdrop="static"
                 data-keyboard="false">
         <span class="icon text-white-50">
@@ -16,10 +13,50 @@
         </span>
             <span class="text">Tambah Data</span>
         </button>
-
     </div>
-    <div class="card-body">
 
+    <div class="modal fade"
+         id="input_data_foto_siteplan"
+         tabindex="-1"
+         role="dialog"
+         aria-labelledby="exampleModalScrollableTitle"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="exampleModalScrollableTitle">
+                        Tambah Data Foto/Siteplan Perumahan
+                    </h5>
+                    <button type="button"
+                            class="close bg-danger p-sm-4"
+                            data-dismiss="modal"
+                            aria-label="Close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <form action="/fotositeplans/store" method="post" enctype="multipart/form-data">
+                    @csrf
+
+                    <div class="modal-body">
+                        @include('PSU_Perumahan.foto_siteplan.create')
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit"
+                                class="btn btn-primary btn-icon-split float-right">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-save"></i>
+                        </span>
+                            <span class="text">Simpan</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="card-body">
         <div class="row">
             @foreach( $data_siteplan as $siteplan )
 
@@ -37,8 +74,9 @@
                                 @csrf
                                 <div class="modal-body mb-0 p-0">
                                     <div class="imagereview">
-                                        <img src="../../assets/uploads/perumahan/perumahan/{{$siteplan->file_foto}}"
-                                             style="width: 100%; height: 600px;">
+                                        <img
+                                            src="../../assets/uploads/perumahan/perumahan/{{$siteplan->file_foto}}"
+                                            style="width: 100%; height: 600px;">
                                         <div class="content">
                                             <p class="text-justify">{{$siteplan->keterangan}}</p>
                                         </div>
@@ -166,8 +204,6 @@
                     </div>
                 </div>
             </div>
-
-
             @endforeach
         </div>
     </div>

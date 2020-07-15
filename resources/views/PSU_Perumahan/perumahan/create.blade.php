@@ -227,7 +227,6 @@
                                    name="data_bast[0][perumahan_id]"
                                    value="@php echo $id_plus@endphp">
 
-
                             <label for="tgl_serah_terima">Tanggal Serah Terima</label><br>
                             <input type="date"
                                    class="form-control @error('tgl_serah_terima') is-invalid
@@ -261,7 +260,7 @@
                         <div class="col-sm-3">
                             <label for="sph">No. Surat Pengakuan hak</label><br>
                             <input type="text" class="form-control @error('sph') is-invalid
-                                       @enderror"
+                            @enderror"
                                    id="sph"
                                    name="data_bast[0][no_sph]"
                                    placeholder="Masukan Surat Pengakuan hak"
@@ -439,16 +438,16 @@
             </div>
 
             <a href="/perumahans" class="btn btn-info btn-icon-split mt-3">
-                    <span class="icon text-white-50">
-                        <i class="fas fa-arrow-alt-circle-left"></i>
-                    </span>
+                <span class="icon text-white-50">
+                    <i class="fas fa-arrow-alt-circle-left"></i>
+                </span>
                 <span class="text">Kembali</span>
             </a>
 
             <button type="submit" class="btn btn-primary btn-icon-split mt-3">
-                    <span class="icon text-white-50">
-                        <i class="fas fa-download"></i>
-                    </span>
+                <span class="icon text-white-50">
+                    <i class="fas fa-download"></i>
+                </span>
                 <span class="text">Simpan</span>
             </button>
         </form>
