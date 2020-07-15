@@ -27,9 +27,9 @@ class RekapitulasiPertamananController extends Controller
 
         $koordinatpertamanan = new KoordinatPertamanan();
 
-        $koor_pertamanan = $koordinatpertamanan->join('pertamanans', 'koordinatpertamanans.pertamanan_id',
-            '=', 'pertamanans.id')->select('longitude','latitude','nama_taman','lokasi',
-            'kecamatan','kelurahan','RT','RW')->get();
+        $koor_pertamanan = $koordinatpertamanan->
+        join('pertamanans', 'koordinatpertamanans.pertamanan_id', '=', 'pertamanans.id')
+            ->select('longitude','latitude','nama_taman','lokasi','kecamatan','kelurahan','RT','RW')->get();
         return view('PSU_Pertamanan.rekapitulasi.index',
             compact('jml_hardscape', 'jml_softscape', 'koor_pertamanan'));
 

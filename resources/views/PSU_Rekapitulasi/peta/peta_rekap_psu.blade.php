@@ -35,13 +35,20 @@
     });
 
 
-    $.each( locations, function( index, value ){
+    $.each(locations, function (index, value) {
         mymap.addMarker({
             lat: value.latitude,
             lng: value.longitude,
             title: value.id,
-            click: function(e) {
-                alert('This is '+value.city+', gujarat from India.');
+            infoWindow: {
+                content: ' <div id="content">' +
+                    '<div id="siteNotice">'+
+                    '<h4 id="firstHeading" class="firstHeading">'+ value.nama_taman +'</h4>'+
+                    '<div id="bodyContent">'+
+                    '<p><b>Lokasi Alamat : </b>'+ value.lokasi + ' ,' + value.kecamatan + ' ,'
+                    + value.kelurahan + ' RW :' + value.RW +' / RT:'+ value.RT +'</p>'+
+                    '</div>'+ '</div>',
+                maxWidth: 400
             }
         });
     });

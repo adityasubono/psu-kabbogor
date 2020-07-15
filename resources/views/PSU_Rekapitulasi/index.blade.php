@@ -52,7 +52,9 @@
                     <script type="text/javascript">
 
 
-                        var locations = <?php print_r(json_encode($koor_pertamanan)) ?>;
+                        var locations_pertamanan = <?php print_r(json_encode($koor_pertamanan)) ?>;
+                        var locations_permukiman = <?php print_r(json_encode($koor_permukiman)) ?>;
+                        var locations_perumahan = <?php print_r(json_encode($koor_perumahan)) ?>;
 
                         var mymap = new GMaps({
                             el: '#mymap1',
@@ -61,13 +63,94 @@
                             zoom: 12
                         });
 
-                        $.each(locations, function (index, value) {
+                        //PERTAMANAN
+                        var icon_pertamanan = {
+                            url: "assets/images/pertamanan.png", // url
+                            scaledSize: new google.maps.Size(43, 43), // scaled size
+                            origin: new google.maps.Point(0,0), // origin
+                            anchor: new google.maps.Point(0, 0) // anchor
+                        };
+
+                        $.each(locations_pertamanan, function (index, value) {
                             mymap.addMarker({
                                 lat: value.latitude,
                                 lng: value.longitude,
+                                title: value.nama_taman,
+                                icon: icon_pertamanan,
+                                infoWindow: {
+                                    content: ' <div id="content">' +
+                                        '<div id="siteNotice">'+
+                                        '<h4 id="firstHeading" class="firstHeading">'
+                                        + value.nama_taman +'</h4>'+
+                                        '<div id="bodyContent">'+
+                                        '<p><b>Lokasi Alamat : </b>'+ value.lokasi + ' ,' + value.kecamatan + ' ,'
+                                        + value.kelurahan + ' RW :' + value.RW +' / RT:'+ value.RT +'</p>'+
+                                        '</div>'+ '</div>',
+                                    maxWidth: 400
+                                }
+                            });
+                        });
+
+                        //PERMUKIMAN
+                        var icon_permukiman = {
+                            url: "assets/images/permukiman.png", // url
+                            scaledSize: new google.maps.Size(35, 35), // scaled size
+                            origin: new google.maps.Point(0,0), // origin
+                            anchor: new google.maps.Point(0,0) // anchor
+                        };
+
+                        $.each(locations_permukiman, function (index, value) {
+                            mymap.addMarker({
+                                lat: value.latitude,
+                                lng: value.longitude,
+                                name: value.nama_tpu,
+                                icon: icon_permukiman,
                                 title: value.id,
-                                click: function (e) {
-                                    alert('This is ' + value.latitude + ', gujarat from India.');
+                                infoWindow: {
+                                    content: ' <div id="content">' +
+                                        '<div id="siteNotice">'+
+                                        '<h4 id="firstHeading" class="firstHeading">'
+                                        + value.nama_tpu +'</h4>'+
+                                        '<div id="bodyContent">'+
+                                        '<p><b>Lokasi Alamat : </b>'+ value.lokasi + ' ,' + value.kecamatan + ' ,'
+                                        + value.kelurahan + ' RW :' + value.RW +' / RT:'+ value.RT +'</p>'+
+                                        '</div>'+ '</div>',
+                                    maxWidth: 700
+                                }
+                            });
+                        });
+
+                        //PERUMAHAN
+                        var icon_perumahan = {
+                            url: "assets/images/perumahan.png", // url
+                            scaledSize: new google.maps.Size(30, 35), // scaled size
+                            origin: new google.maps.Point(0,0), // origin
+                            anchor: new google.maps.Point(0,0) // anchor
+                        };
+
+
+                        $.each(locations_perumahan, function (index, value) {
+                            mymap.addMarker({
+                                lat: value.latitude,
+                                lng: value.longitude,
+                                name: value.nama_perumahan,
+                                icon: icon_perumahan,
+                                title: value.id,
+                                infoWindow: {
+                                    content: ' <div id="content">' +
+                                        '<div id="siteNotice">'+
+                                        '<h4 id="firstHeading" class="firstHeading">'
+                                        + value.nama_perumahan +'</h4>'+
+                                        '<div id="bodyContent">'+
+                                        '<p><b>Lokasi Alamat : </b>'+ value.lokasi + ' ,' + value.kecamatan + ' ,'
+                                        + value.kelurahan +'</p>' +
+                                        '<p>Luas Perumahan : '+value.luas_perumahan +'</br>'+
+                                        'Jumlah Perumahan : '+value.jumlah_perumahan + '<br>'+
+                                        'Nama Pengembang : '+value.nama_pengembang + '<br>' +
+                                        'Status Perumahan : '+value.status_perumahan+'</p>'
+                                        +'</div>'
+                                        +'</div>',
+                                    maxWidth: 700
                                 }
                             });
                         });
