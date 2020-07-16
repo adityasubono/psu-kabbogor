@@ -1,4 +1,4 @@
-<h5 class="mt-3">Data Taman</h5>
+<h5 class="mt-3">Data Taman dan Penghijauan</h5>
 
 <table class="table table-bordered table-striped">
     <thead class="bg-gray-400">

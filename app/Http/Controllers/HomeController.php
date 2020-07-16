@@ -42,37 +42,43 @@ class HomeController extends Controller
 
         $data = User::where('nik', $nik)->first();
 
+        $pdo = DB::connection()->getPdo();
+        if($pdo) {
 
-        if ($data) {
-            $rule = Rules::where('id', $data->role_id)->first();
-            echo "rule" . $rule;
 
-            date_default_timezone_set('Asia/Jakarta');
-            $login_date = date('d/m/Y h:i:s a', time());
-            $status = 'Aktif';
-            User::where('nik', $data->nik)->update([
-                'remember_token' => $remember_token,
-                'login_date' => $login_date,
-                'status' => $status
-            ]);
+            if ($data) {
+                $rule = Rules::where('id', $data->role_id)->first();
+                echo "rule" . $rule;
 
-            if (Hash::check($password, $data->password)) {
-                $request->session()->put('id', $data->id);
-                $request->session()->put('nama', $data->nama);
-                $request->session()->put('nik', $data->nik);
-                $request->session()->put('nama_rule', $rule->nama_rule);
-                $request->session()->put('foto', $data->foto);
-                $request->session()->put('login_date', $login_date);
-                $request->session()->put('logout_date', $data->logout_date);
-                $request->session()->put('remember_token', $remember_token);
-                $request->session()->put('login', TRUE);
+                date_default_timezone_set('Asia/Jakarta');
+                $login_date = date('d/m/Y h:i:s a', time());
+                $status = 'Aktif';
+                User::where('nik', $data->nik)->update([
+                    'remember_token' => $remember_token,
+                    'login_date' => $login_date,
+                    'status' => $status
+                ]);
 
-                return redirect('/beranda');
+                if (Hash::check($password, $data->password)) {
+                    $request->session()->put('id', $data->id);
+                    $request->session()->put('nama', $data->nama);
+                    $request->session()->put('nik', $data->nik);
+                    $request->session()->put('nama_rule', $rule->nama_rule);
+                    $request->session()->put('foto', $data->foto);
+                    $request->session()->put('login_date', $login_date);
+                    $request->session()->put('logout_date', $data->logout_date);
+                    $request->session()->put('remember_token', $remember_token);
+                    $request->session()->put('login', TRUE);
+
+                    return redirect('/beranda');
+                } else {
+                    return redirect('/')->with('alert', 'NIK dan Password Salah');
+                }
             } else {
                 return redirect('/')->with('alert', 'NIK dan Password Salah');
             }
-        } else {
-            return redirect('/')->with('alert', 'NIK dan Password Salah');
+        }else{
+            return redirect('/')->with('alert', 'Koneksi Terputus');
         }
 
 

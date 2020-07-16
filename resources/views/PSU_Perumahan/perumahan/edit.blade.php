@@ -68,6 +68,11 @@
                        href="#data_cctv" role="tab"
                        style="background-color: #2a96a5;;">Data CCTV</a>
                 </li>
+                <li class="nav-item ml-1">
+                    <a class="nav-link text-white " id="contact-tab" data-toggle="tab"
+                       href="#data_detail_perumahan" role="tab"
+                       style="background-color: grey;">Detail</a>
+                </li>
             </ul>
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="data_perumahan" role="tabpanel">
@@ -96,6 +101,9 @@
 
                 <div class="tab-pane fade" id="data_cctv" role="tabpanel">
                     @include('PSU_Perumahan.cctv.cctv_tab')
+                </div>
+                <div class="tab-pane fade" id="data_detail_perumahan" role="tabpanel">
+                    @include('PSU_Perumahan.show')
                 </div>
             </div>
             <a href="/perumahans" class="btn btn-info btn-icon-split mt-3">
