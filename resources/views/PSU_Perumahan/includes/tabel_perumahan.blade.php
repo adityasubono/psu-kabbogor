@@ -1,6 +1,6 @@
 
 <div class="table-responsive">
-    <table class="table table-bordered table-striped display nowrap table-perumahan"
+    <table class="table table-bordered display table-hover nowrap table-perumahan"
            id="dataTable"
            cellspacing="0"
            style="width:100%;">
@@ -18,6 +18,7 @@
             <th>Kecamatan</th>
             <th>Kelurahan/Desa</th>
         </tr>
+
         </thead>
         <tbody>
 
