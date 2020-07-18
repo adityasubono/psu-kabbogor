@@ -1,5 +1,10 @@
 <h5 class="mt-3">Data Sarana</h5>
-
+<a href="/koordinatsarana/petasarana/{{$perumahans->id}}" class="btn btn-info btn-icon-split my-3">
+    <span class="icon text-white-50">
+        <i class="fas fa-map"></i>
+    </span>
+    <span class="text">Lihat Peta Persebaran</span>
+</a>
 
 <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item">
@@ -7,9 +12,6 @@
     </li>
     <li class="nav-item">
         <a class="nav-link bg-success text-white" id="profile-tab" data-toggle="tab" href="#data_detail_foto_sarana" role="tab">Data Foto/Gambar</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link bg-warning text-white" id="contact-tab" data-toggle="tab" href="#data_detail_peta_sarana" role="tab">Data Peta</a>
     </li>
 </ul>
 <div class="tab-content" id="myTabContent">
@@ -43,8 +45,5 @@
     </div>
     <div class="tab-pane fade" id="data_detail_foto_sarana" role="tabpanel" aria-labelledby="profile-tab">
         @include('PSU_Perumahan.detail_data_perumahan.detail_foto_sarana')
-    </div>
-    <div class="tab-pane fade" id="data_detail_peta_sarana" role="tabpanel" aria-labelledby="contact-tab">
-        Koordinat Sarana
     </div>
 </div>

@@ -64,12 +64,23 @@ class PerumahansController extends Controller
         $data_koordinat_taman = Taman::all()->count();
 
 
-        return view('PSU_Perumahan.index', compact('perumahans', 'kecamatans',
-            'status_sudah', 'status_belum', 'status_terlantar', 'total_perumahan',
-            'data_sarana', 'data_foto_sarana', 'data_koordinat_sarana',
-            'data_jalan_saluran', 'data_foto_jalan_saluran', 'data_koordinat_jalan_saluran',
-            'data_taman', 'data_foto_taman', 'data_koordinat_taman'));
-
+        return view('PSU_Perumahan.index', compact(
+            'perumahans',
+            'kecamatans',
+            'status_sudah',
+            'status_belum',
+            'status_terlantar',
+            'total_perumahan',
+            'data_sarana',
+            'data_foto_sarana',
+            'data_koordinat_sarana',
+            'data_jalan_saluran',
+            'data_foto_jalan_saluran',
+            'data_koordinat_jalan_saluran',
+            'data_taman',
+            'data_foto_taman',
+            'data_koordinat_taman'
+        ));
     }
 
     /**
@@ -94,8 +105,14 @@ class PerumahansController extends Controller
             $perumahan_filter = Perumahans::where('status_perumahan', 'like', "%" . $status . "%")
                 ->get();
 
-            return view('PSU_Perumahan.index', compact('perumahan_filter', 'kecamatans',
-                'status_belum', 'status_sudah', 'status_terlantar', 'total_perumahan'))
+            return view('PSU_Perumahan.index', compact(
+                'perumahan_filter',
+                'kecamatans',
+                'status_belum',
+                'status_sudah',
+                'status_terlantar',
+                'total_perumahan'
+            ))
                 ->with('dapat', 'Data Ditemukan');
         }
 
@@ -104,8 +121,14 @@ class PerumahansController extends Controller
             $perumahan_filter = Perumahans::where('kecamatan', 'like', "%" . $nama_kecamatan . "%")
                 ->where('kelurahan', 'like', "%" . $nama_kelurahan . "%")->get();
 
-            return view('PSU_Perumahan.index', compact('perumahan_filter', 'kecamatans',
-                'status_belum', 'status_sudah', 'status_terlantar', 'total_perumahan'));
+            return view('PSU_Perumahan.index', compact(
+                'perumahan_filter',
+                'kecamatans',
+                'status_belum',
+                'status_sudah',
+                'status_terlantar',
+                'total_perumahan'
+            ));
         }
 
         if (isset($nama_kecamatan) && isset($nama_kelurahan) && isset($status)) {
@@ -114,8 +137,14 @@ class PerumahansController extends Controller
                 ->where('kelurahan', 'like', "%" . $nama_kelurahan . "%")
                 ->where('status_perumahan', 'like', "%" . $status . "%")->get();
 
-            return view('PSU_Perumahan.index', compact('perumahan_filter', 'kecamatans',
-                'status_belum', 'status_sudah', 'status_terlantar', 'total_perumahan'));
+            return view('PSU_Perumahan.index', compact(
+                'perumahan_filter',
+                'kecamatans',
+                'status_belum',
+                'status_sudah',
+                'status_terlantar',
+                'total_perumahan'
+            ));
         }
 
         if (empty($nama_kecamatan) && empty($nama_kelurahan) && empty($status)) {
@@ -130,7 +159,6 @@ class PerumahansController extends Controller
 
         $kecamatans = Kecamatan::all()->sortBy('nama_kecamatan');
         return view('PSU_Perumahan.create', compact('kecamatans', 'perumahan_id'));
-
     }
 
     /**
@@ -144,44 +172,44 @@ class PerumahansController extends Controller
         $request->validate([
             'nama_perumahan' => 'required',
             'nama_pengembang' => 'required',
-//            'luas_perumahan' => 'required',
-//            'jumlah_perumahan' => 'required',
-//            'lokasi' => 'required',
+            //            'luas_perumahan' => 'required',
+            //            'jumlah_perumahan' => 'required',
+            //            'lokasi' => 'required',
             'kecamatan' => 'required|not_in:0',
             'kelurahan' => 'required|not_in:0',
-//            'RT' => 'required',
-//            'RW' => 'required',
+            //            'RT' => 'required',
+            //            'RW' => 'required',
             'status_perumahan' => 'required|not_in:0',
-//            'no_bast' => 'required',
-//            'sph' => 'required',
-//            'tgl_serah_terima' => 'required',
-//            'keterangan' => 'required'
+            //            'no_bast' => 'required',
+            //            'sph' => 'required',
+            //            'tgl_serah_terima' => 'required',
+            //            'keterangan' => 'required'
         ]);
 
         Perumahans::create([
             'nama_perumahan' => $request->get('nama_perumahan'),
-            'nama_pengembang' =>$request->get('nama_pengembang'),
-            'luas_perumahan' =>$request->get('luas_perumahan'),
-            'jumlah_perumahan' =>$request->get('jumlah_perumahan'),
-            'kecamatan' =>$request->get('kecamatan'),
-            'kelurahan' =>$request->get('kelurahan'),
-            'lokasi' =>$request->get('lokasi'),
-            'status_perumahan' =>$request->get('status_perumahan'),
-            'keterangan' =>$request->get('keterangan'),
+            'nama_pengembang' => $request->get('nama_pengembang'),
+            'luas_perumahan' => $request->get('luas_perumahan'),
+            'jumlah_perumahan' => $request->get('jumlah_perumahan'),
+            'kecamatan' => $request->get('kecamatan'),
+            'kelurahan' => $request->get('kelurahan'),
+            'lokasi' => $request->get('lokasi'),
+            'status_perumahan' => $request->get('status_perumahan'),
+            'keterangan' => $request->get('keterangan'),
         ]);
 
 
         $perumahan_id = $request->get('perumahan_id');
-        if($files=$request->file('file_foto')){
-            foreach($files as $file){
-                $name=$file->getClientOriginalName();
+        if ($files = $request->file('file_foto')) {
+            foreach ($files as $file) {
+                $name = $file->getClientOriginalName();
                 $ext = $file->getClientOriginalExtension();
                 $newName = rand(100000, 1001238912) . "." . $ext;
                 $destinationPath = public_path('/assets/uploads/perumahan/perumahan'); // upload path
                 $file->move($destinationPath, $newName);
 
                 FotoPerumahan::create([
-                    'file_foto'=>  $newName,
+                    'file_foto' =>  $newName,
                     'perumahan_id' => $perumahan_id,
                     //you can put other insertion here
                 ]);
@@ -194,7 +222,7 @@ class PerumahansController extends Controller
             //BAST
             foreach ($request->data_bast as $key => $value) {
                 Bast::create($value);
-//            strftime("%d-%m-%Y", strtotime($value))
+                //            strftime("%d-%m-%Y", strtotime($value))
             }
         }
 
@@ -229,7 +257,6 @@ class PerumahansController extends Controller
         }
         return redirect()->action('PerumahansController@edit', ['id' => $perumahan_id])
             ->with('status', 'Data Perumahan Berhasil Disimpan');
-
     }
 
     /**
@@ -268,12 +295,27 @@ class PerumahansController extends Controller
         $data_izin_lokasi = IzinLokasi::where('perumahan_id', $perumahan)->get();
         $data_ippt = Ippt::where('perumahan_id', $perumahan)->get();
         $data_sk_siteplan = Siteplan::where('perumahan_id', $perumahan)->get();
+
+
         return view('PSU_Perumahan.show', compact(
-            'data_perumahan','data_sarana','data_koordinat_sarana','data_foto_sarana',
-            'data_jalan_saluran','data_jalan_saluran_koordinat','data_jalan_saluran_foto',
-            'data_taman','data_taman_koordinat','data_taman_foto',
-            'data_koordinat_perumahan', 'data_cctv','data_basta','data_izin_lokasi','data_ippt',
-            'data_sk_siteplan','data_bast'));
+            'data_perumahan',
+            'data_sarana',
+            'data_koordinat_sarana',
+            'data_foto_sarana',
+            'data_jalan_saluran',
+            'data_jalan_saluran_koordinat',
+            'data_jalan_saluran_foto',
+            'data_taman',
+            'data_taman_koordinat',
+            'data_taman_foto',
+            'data_koordinat_perumahan',
+            'data_cctv',
+            'data_basta',
+            'data_izin_lokasi',
+            'data_ippt',
+            'data_sk_siteplan',
+            'data_bast'
+        ));
     }
 
 
@@ -290,30 +332,49 @@ class PerumahansController extends Controller
         $data_siteplan = FotoPerumahan::where('perumahan_id', $id)->get();
         $data_koordinat_perumahan = KoordinatPerumahan::where('perumahan_id', $id)->get();
         $data_sarana = Sarana::where('perumahan_id', $id)->get();
-        $data_koordinat_sarana = KoordinatSarana::where('perumahan_id', $id);
-        $data_foto_sarana = FotoSarana::where('perumahan_id',$id)->get();
-        $data_jalan_saluran = JalanSaluran::where('perumahan_id',$id)->get();
-        $data_foto_jalan_saluran = FotoJalanSaluran::where('perumahan_id',$id)->get();
-        $data_koordinat_jalan_saluran = KoordinatJalanSaluran::where('perumahan_id',$id)->get();
-        $data_taman = Taman::where('perumahan_id',$id)->get();
-        $data_foto_taman = FotoTaman::where('perumahan_id',$id)->get();
-        $data_koordinat_taman = KoordinatTaman::where('perumahan_id',$id)->get();
-        $data_cctv_perumahan = CCTVPerumahan::where('perumahan_id',$id)->get();
+        $data_koordinat_sarana = KoordinatSarana::where('perumahan_id', $id)->get();
+        $data_foto_sarana = FotoSarana::where('perumahan_id', $id)->get();
+        $data_jalan_saluran = JalanSaluran::where('perumahan_id', $id)->get();
+        $data_foto_jalan_saluran = FotoJalanSaluran::where('perumahan_id', $id)->get();
+        $data_koordinat_jalan_saluran = KoordinatJalanSaluran::where('perumahan_id', $id)->get();
+        $data_taman = Taman::where('perumahan_id', $id)->get();
+        $data_foto_taman = FotoTaman::where('perumahan_id', $id)->get();
+        $data_koordinat_taman = KoordinatTaman::where('perumahan_id', $id)->get();
+        $data_cctv_perumahan = CCTVPerumahan::where('perumahan_id', $id)->get();
 
-        $data_pju = PJU::where('perumahan_id',$id)->get();
-        $data_saluran_bersih = Saluran::where('perumahan_id',$id)->get();
+        $data_pju = PJU::where('perumahan_id', $id)->get();
+        $data_saluran_bersih = Saluran::where('perumahan_id', $id)->get();
         $data_bast = Bast::where('perumahan_id', $id)->get();
         $data_basta = Basta::where('perumahan_id', $id)->get();
         $data_izin_lokasi = IzinLokasi::where('perumahan_id', $id)->get();
         $data_ippt = Ippt::where('perumahan_id', $id)->get();
         $data_sk_siteplan = Siteplan::where('perumahan_id', $id)->get();
 
-        return view('PSU_Perumahan.perumahan.edit', compact('perumahans', 'kecamatans',
-            'data_siteplan', 'data_koordinat_perumahan','data_sarana','data_foto_sarana',
-            'data_koordinat_sarana','data_jalan_saluran','data_foto_jalan_saluran',
-            'data_koordinat_jalan_saluran','data_taman','data_foto_taman','data_koordinat_taman',
-            'data_pju','data_saluran_bersih','data_cctv_perumahan','data_basta','data_izin_lokasi',
-            'data_ippt','data_sk_siteplan','data_bast'));
+        $data_perumahan = Perumahans::select(\DB::raw("SELECT * FROM perumahans a, koordinatsaranas b WHERE a.id = b.perumahan_id"));
+        return view('PSU_Perumahan.perumahan.edit', compact(
+            'perumahans',
+            'kecamatans',
+            'data_siteplan',
+            'data_koordinat_perumahan',
+            'data_sarana',
+            'data_foto_sarana',
+            'data_koordinat_sarana',
+            'data_jalan_saluran',
+            'data_foto_jalan_saluran',
+            'data_koordinat_jalan_saluran',
+            'data_taman',
+            'data_foto_taman',
+            'data_koordinat_taman',
+            'data_pju',
+            'data_saluran_bersih',
+            'data_cctv_perumahan',
+            'data_basta',
+            'data_izin_lokasi',
+            'data_ippt',
+            'data_sk_siteplan',
+            'data_bast',
+            'data_perumahan'
+        ));
     }
 
     /**
@@ -328,18 +389,18 @@ class PerumahansController extends Controller
         $request->validate([
             'nama_perumahan' => 'required',
             'nama_pengembang' => 'required',
-//            'luas_perumahan' => 'required',
-//            'jumlah_perumahan' => 'required',
+            //            'luas_perumahan' => 'required',
+            //            'jumlah_perumahan' => 'required',
             'lokasi' => 'required',
             'kecamatan' => 'required|not_in:0',
             'kelurahan' => 'required|not_in:0',
-//            'RT' => 'required',
-//            'RW' => 'required',
-//            'status_perumahan' => 'required|not_in:0',
-//            'no_bast' => 'required',
-//            'sph' => 'required',
-//            'tgl_serah_terima' => 'required',
-//            'keterangan' => 'required'
+            //            'RT' => 'required',
+            //            'RW' => 'required',
+            //            'status_perumahan' => 'required|not_in:0',
+            //            'no_bast' => 'required',
+            //            'sph' => 'required',
+            //            'tgl_serah_terima' => 'required',
+            //            'keterangan' => 'required'
         ]);
 
         Perumahans::where('id', $perumahans->id)->update([
@@ -359,7 +420,6 @@ class PerumahansController extends Controller
 
         return redirect()->action('PerumahansController@edit', ['id' => $perumahans->id])
             ->with('status', 'Data Perumahan Berhasil Diupdate');
-
     }
 
     /**
@@ -405,13 +465,13 @@ class PerumahansController extends Controller
         $file = $request->file('file_import');
 
         // membuat nama file unik
-        $nama_file = rand().$file->getClientOriginalName();
+        $nama_file = rand() . $file->getClientOriginalName();
 
         // upload ke folder file_siswa di dalam folder public
-        $path = $file->move('assets/import_data/perumahan/',$nama_file);
+        $path = $file->move('assets/import_data/perumahan/', $nama_file);
 
         // import data
-        Excel::import(new PerumahanImport, public_path('assets/import_data/perumahan/'.$nama_file));
+        Excel::import(new PerumahanImport, public_path('assets/import_data/perumahan/' . $nama_file));
 
         if (file_exists($path)) {
             unlink($path);
@@ -420,7 +480,6 @@ class PerumahansController extends Controller
 
 
         // alihkan halaman kembali
-        return redirect('/perumahans')->with('status','Data Perumahan Sukses Diimports');
+        return redirect('/perumahans')->with('status', 'Data Perumahan Sukses Diimports');
     }
-
 }

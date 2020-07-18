@@ -125,7 +125,7 @@ Route::post('/fotosaranas/delete','FotoSaranasController@destroy');
 
 //PSU Data Koordinat Sarana
 Route::get('/koordinatsarana/{id}', 'KoordinatSaranasController@index');
-Route::get('/tampilpetasemua/', 'KoordinatSaranasController@showallmaps');
+Route::get('/koordinatsarana/petasarana/{perumahan_id}', 'KoordinatSaranasController@petasarana');
 Route::post('/koordinatsarana/store', 'KoordinatSaranasController@store');
 Route::get('/koordinatsarana/edit/{koordinatSarana}', 'KoordinatSaranasController@edit');
 Route::patch('/koordinatsarana/update/{koordinatSarana}', 'KoordinatSaranasController@update');
