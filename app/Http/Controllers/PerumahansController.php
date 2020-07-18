@@ -280,8 +280,8 @@ class PerumahansController extends Controller
         $data_foto_sarana = FotoSarana::where('perumahan_id', $perumahan)->get();
 
         $data_jalan_saluran = JalanSaluran::where('perumahan_id', $perumahan)->get();
-        $data_jalan_saluran_koordinat = JalanSaluran::where('perumahan_id', $perumahan)->get();
-        $data_jalan_saluran_foto = JalanSaluran::where('perumahan_id', $perumahan)->get();
+        $data_jalan_saluran_koordinat = KoordinatJalanSaluran::where('perumahan_id', $perumahan)->get();
+        $data_jalan_saluran_foto = FotoJalanSaluran::where('perumahan_id', $perumahan)->get();
 
         $data_taman = Taman::where('perumahan_id', $perumahan)->get();
         $data_taman_koordinat = KoordinatTaman::where('perumahan_id', $perumahan)->get();

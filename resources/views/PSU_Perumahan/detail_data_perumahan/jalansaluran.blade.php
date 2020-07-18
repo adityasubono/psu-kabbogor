@@ -1,13 +1,17 @@
 <h5 class="mt-3">Data Jalan dan Saluran</h5>
+<a href="/koordinatsarana/petasarana/{{$perumahans->id}}" class="btn btn-info btn-icon-split my-3">
+    <span class="icon text-white-50">
+        <i class="fas fa-map"></i>
+    </span>
+    <span class="text">Lihat Data Peta Persebaran Jalan Saluran Perumahan</span>
+</a>
+
 <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item" role="presentation">
         <a class="nav-link bg-primary text-white active" id="home-tab" data-toggle="tab" href="#data_detail_jalan_saluran" role="tab" aria-controls="home" aria-selected="true">Data Jalan Saluran</a>
     </li>
     <li class="nav-item" role="presentation">
         <a class="nav-link bg-success text-white" id="profile-tab" data-toggle="tab" href="#data_detail_foto_jalan_saluran" role="tab" aria-controls="profile" aria-selected="false">Data Foto/Gambar</a>
-    </li>
-    <li class="nav-item" role="presentation">
-        <a class="nav-link bg-warning text-white" id="contact-tab" data-toggle="tab" href="#data_detail_koordinat_jalan_saluran" role="tab" aria-controls="contact" aria-selected="false">Data Koordinat</a>
     </li>
 </ul>
 <div class="tab-content" id="myTabContent">
@@ -39,9 +43,6 @@
         </table>
     </div>
     <div class="tab-pane fade" id="data_detail_foto_jalan_saluran" role="tabpanel" aria-labelledby="profile-tab">
-        foto
-    </div>
-    <div class="tab-pane fade" id="data_detail_koordinat_jalan_saluran" role="tabpanel" aria-labelledby="contact-tab">
-        koordinat
+        @include('PSU_Perumahan.detail_data_perumahan.detail_foto_jalan_saluran')
     </div>
 </div>
