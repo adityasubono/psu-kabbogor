@@ -3,7 +3,7 @@
     <span class="icon text-white-50">
         <i class="fas fa-map"></i>
     </span>
-    <span class="text">Lihat Peta Persebaran</span>
+    <span class="text">Lihat Data Peta Persebaran Sarana Perumahan</span>
 </a>
 
 <ul class="nav nav-tabs" id="myTab" role="tablist">

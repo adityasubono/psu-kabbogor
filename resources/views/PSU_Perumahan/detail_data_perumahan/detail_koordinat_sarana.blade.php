@@ -7,39 +7,14 @@
 <div class="card">
     <h4 class="ml-3">Peta Persebaran Data Sarana Perumahan</h4>
     <div id="peta_persebaran_sarana"></div>
-    <div class="card-body">
-        <table class="table table-bordered table-striped">
-            <thead class="bg-dark text-white">
-            <tr>
-                <th scope="col" rowspan="2">No.</th>
-                <th scope="col" rowspan="2">Nama Sarana</th>
-                <th scope="col" rowspan="2">Luas Sarana</th>
-                <th scope="col" rowspan="2">Kondisi Sarana</th>
-                <th scope="col" colspan="2" class="text-center">Koordinat</th>
-            </tr>
-            <tr>
-                <th scope="col">Latitude</th>
-                <th scope="col">Longitude</th>
-            </tr>
-            </thead>
-            <tbody>
-
-            @foreach( $data_koordinat_sarana as $koordinat_sarana )
-
-            <tr>
-                <th scope="row">{{$loop->iteration}}</th>
-                <td>{{$koordinat_sarana->nama_sarana}}</td>
-                <td>{{$koordinat_sarana->luas_sarana}}</td>
-                <td>{{$koordinat_sarana->kondisi_sarana}}</td>
-                <td>{{$koordinat_sarana->latitude}}</td>
-                <td>{{$koordinat_sarana->longitude}}</td>
-            </tr>
-            @endforeach
-            </tbody>
-        </table>
-    </div>
 </div>
-
+<a href="/perumahans/edit/{{$perumahans->id}}"
+   class="btn btn-info btn-icon-split ml-2">
+        <span class="icon text-white-50">
+            <i class="fas fa-arrow-alt-circle-left"></i>
+        </span>
+    <span class="text">Kembali</span>
+</a>
 
 <script
     src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -76,7 +51,6 @@
     var latitude;
     var longitude;
     var saranaId = []
-    console.log("data_koordinat_sarana",data_koordinat_sarana_group_by)
 
     function onlyUnique(value, index, self) {
         return self.indexOf(value) === index;
@@ -87,7 +61,7 @@
         saranaId.push(sarana_id);
     }
     var unique = saranaId.filter(onlyUnique);
-    console.log('unique', unique)
+    // console.log('unique', unique)
 
     var result = data_koordinat_sarana.reduce(function (r, a) {
         r[a.sarana_id] = r[a.sarana_id] || [];
@@ -108,22 +82,51 @@
     $.each(unique, function (index, value) {
         $.each(path, function (i, v) {
             console.log(v)
-                mymap.drawPolygon({
-                    paths: v,
-                    strokeColor: '#000000',
-                    strokeOpacity: 0.3,
-                    strokeWeight: 2,
-                    fillColor: '#00e676',
-                    fillOpacity: 0.4,
-                    click: function () {
-                        alert('Nama Sarana ' + data_koordinat_sarana_group_by[i].nama_sarana)
-                    }
-                })
+            mymap.drawPolygon({
+                paths: v,
+                strokeColor: '#a9a9a9',
+                strokeOpacity: 0.5,
+                strokeWeight: 2,
+                fillColor: '#6495ed',
+                fillOpacity: 0.5,
+                click: function () {
+                    $("#review_sarana"+data_koordinat_sarana_group_by[i].sarana_id).modal('show');
 
+                }
+            });
         })
     })
 
 </script>
+
+@foreach($data_koordinat_sarana_group_by as $groupby)
+<div class="modal fade" id="review_sarana{{$groupby->sarana_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="exampleModalLabel">{{$groupby->nama_sarana}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p><b>Alamat Lokasi :</b><br>
+                {{$groupby->nama_perumahan}}, {{$groupby->kecamatan}}, {{$groupby->kelurahan}},  {{$groupby->lokasi}}
+                </p>
+
+                <p>
+                    <b>Koordinat : </b> {{$groupby->latitude}} ,  {{$groupby->longitude}}
+                </p>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
 
 @if(isset( $koordinat))
 <a href="/koordinatsarana/{{$koor->sarana_id}}" class="btn btn-info btn-icon-split my-3">
