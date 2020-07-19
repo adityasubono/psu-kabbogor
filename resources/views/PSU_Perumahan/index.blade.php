@@ -21,6 +21,11 @@
 
             <!----------------------   Tabel Data Perumahan---------------------------->
 
+            @if (session('status'))
+            <div class="alert alert-success fade show" role="alert">
+                {{ session('status') }}
+            </div>
+            @endif
             @if(isset($perumahan_filter))
             @include('PSU_Perumahan.includes.tabel_perumahan')
             @else

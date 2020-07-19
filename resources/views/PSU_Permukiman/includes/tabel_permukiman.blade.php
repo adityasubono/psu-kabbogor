@@ -10,14 +10,12 @@
             <th rowspan="2">Luas TPU (m2)</th>
             <th rowspan="2">Daya Tampung TPU</th>
             <th rowspan="2" class="d-none">Status</th>
-            <th colspan="4">Lokasi</th>
+            <th colspan="2">Lokasi</th>
             <th rowspan="2">Aksi</th>
         </tr>
         <tr>
             <th>Kecamatan</th>
             <th>Kelurahan/Desa</th>
-            <th>RT</th>
-            <th>RW</th>
         </tr>
         </thead>
         <tbody class="table-bordered">
@@ -37,8 +35,6 @@
             <td class="d-none">{{ $permukiman->status }}</td>
             <td>{{ $permukiman->kecamatan }}</td>
             <td>{{ $permukiman->kelurahan }}</td>
-            <td>{{ $permukiman->RT }}</td>
-            <td>{{ $permukiman->RW }}</td>
             <td>
                 <button class="btn btn-danger btn-icon-split"
                         data-toggle="modal"

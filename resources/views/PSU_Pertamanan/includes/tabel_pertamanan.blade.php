@@ -12,7 +12,7 @@
             <th rowspan="2">Luas Taman (m2)</th>
             <th rowspan="2" class="d-none">Tahun Diangun</th>
             <th colspan="2">Jumlah</th>
-            <th colspan="4">Lokasi</th>
+            <th colspan="2">Lokasi</th>
             <th rowspan="2">Aksi</th>
         </tr>
         <tr>
@@ -20,8 +20,7 @@
             <th>Softscape</th>
             <th>Kecamatan</th>
             <th>Kelurahan/Desa</th>
-            <th>RT</th>
-            <th>RW</th>
+
         </tr>
         </thead>
         <tbody class="table-bordered">
@@ -38,8 +37,6 @@
             <td>{{$pertamanan->r_softscape->count()}}</td>
             <td>{{ $pertamanan->kecamatan }}</td>
             <td>{{ $pertamanan->kelurahan }}</td>
-            <td>{{ $pertamanan->RT }}</td>
-            <td>{{ $pertamanan->RW }}</td>
             <td>
                 <button class="btn btn-danger btn-icon-split"
                         data-toggle="modal"

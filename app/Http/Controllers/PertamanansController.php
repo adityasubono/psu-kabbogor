@@ -68,11 +68,11 @@ class PertamanansController extends Controller
             'nama_taman' => 'required',
             'nama_pelaksana' => 'required',
 //            'luas_taman' => 'required',
-            'lokasi' => 'required',
+//            'lokasi' => 'required',
             'kecamatan' => 'required|not_in:0',
             'kelurahan' => 'required|not_in:0',
-            'RT' => 'required',
-            'RW' => 'required',
+//            'RT' => 'required',
+//            'RW' => 'required',
             'tahun_dibangun' => 'required|not_in:0',
 //            'keterangan' => 'required',
         ];
@@ -138,8 +138,8 @@ class PertamanansController extends Controller
             'lokasi' => 'required',
             'kecamatan' => 'required|not_in:0',
             'kelurahan' => 'required|not_in:0',
-            'RT' => 'required',
-            'RW' => 'required',
+//            'RT' => 'required',
+//            'RW' => 'required',
             'tahun_dibangun' => 'required|not_in:0',
             'keterangan' => 'required',
         ];
@@ -155,11 +155,11 @@ class PertamanansController extends Controller
             'nama_pelaksana' => $request->nama_pelaksana,
 //            'luas_taman' => $request->luas_taman,
             'tahun_dibangun' => $request->tahun_dibangun,
-            'lokasi' => $request->lokasi,
+//            'lokasi' => $request->lokasi,
             'kecamatan' => $request->kecamatan,
             'kelurahan' => $request->kelurahan,
-            'RT' => $request->RT,
-            'RW' => $request->RW,
+//            'RT' => $request->RT,
+//            'RW' => $request->RW,
 //            'keterangan' => $request->keterangan
 
         ]);

@@ -36,7 +36,7 @@
                         <tr>
                             <td>Status</td>
                             <td>:</td>
-                            <td>{{$perumahans->status_perumahan}}</td>
+                            <td><b>{{$perumahans->status_perumahan}}</b></td>
                         </tr>
                     </table>
                     <hr>
