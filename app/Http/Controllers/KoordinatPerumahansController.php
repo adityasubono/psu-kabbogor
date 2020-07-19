@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\KoordinatPerumahan;
 use App\Perumahans;
 use Illuminate\Http\Request;
+use Symfony\Component\Finder\Finder;
 
 class KoordinatPerumahansController extends Controller
 {
@@ -16,10 +17,12 @@ class KoordinatPerumahansController extends Controller
     public function index($id)
     {
         $data_perumahan = Perumahans::find($id);
-        $data_koordinat_perumahan = KoordinatPerumahan::where('perumahan_id',$id)->get();
+        $data_koordinat_perumahan = KoordinatPerumahan::where('perumahan_id', $id)->get();
 
-        return view('PSU_Perumahan.koordinat_perumahan.koordinat_perumahan',
-            compact('data_perumahan', 'data_koordinat_perumahan'));
+        return view(
+            'PSU_Perumahan.koordinat_perumahan.koordinat_perumahan',
+            compact('data_perumahan', 'data_koordinat_perumahan')
+        );
     }
 
     /**
@@ -54,25 +57,46 @@ class KoordinatPerumahansController extends Controller
 
         $this->validate($request, $rules, $customMessages);
 
-        foreach ($request->data_koordinat as $key => $value){
+        foreach ($request->data_koordinat as $key => $value) {
             KoordinatPerumahan::create($value);
         }
 
         $perumahan_id = $request->data_koordinat[0]['perumahan_id'];
 
-        return redirect()->action('KoordinatPerumahansController@index', ['id' => $perumahan_id])
-            ->with('status','Data Dengan ID '.$perumahan_id.' Berhasil Di Update');
+        return redirect()->action('PerumahansController@edit', ['id' => $perumahan_id])
+            ->with('status', 'Data Dengan ID ' . $perumahan_id . ' Berhasil Di Update');
     }
 
     /**
      * Display the specified resource.
      *
      * @param  \App\KoordinatPerumahan  $koordinatPerumahan
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show(KoordinatPerumahan $koordinatPerumahan)
+    public function show($id)
     {
-        //
+
+        $koordinat = \DB::table('koordinatperumahans')
+            ->join('perumahans', 'perumahans.id', '=', 'koordinatperumahans.perumahan_id')
+            ->select(
+                'koordinatperumahans.perumahan_id',
+                'koordinatperumahans.latitude',
+                'koordinatperumahans.longitude',
+                'perumahans.id',
+                'perumahans.nama_perumahan',
+                'perumahans.nama_perumahan',
+                'perumahans.lokasi',
+                'perumahans.kecamatan',
+                'perumahans.kelurahan',
+                'perumahans.status_perumahan'
+            )
+            ->where('koordinatperumahans.perumahan_id', $id)
+            ->get();
+
+        $perumahans = Perumahans::select(\DB::raw("SELECT * FROM perumahans a, koordinatperumahans b WHERE a.id = b.perumahan_id"));
+
+        $data_perumahan = Perumahans::find($id);
+        return view('PSU_Perumahan.koordinat_perumahan.show', compact('koordinat', 'perumahans', 'data_perumahan'));
     }
 
     /**
@@ -114,8 +138,7 @@ class KoordinatPerumahansController extends Controller
             'latitude' => $request->latitude
         ]);
         return redirect()->action('KoordinatPerumahansController@index', ['id' => $perumahan_id])
-            ->with('status','Data Dengan ID '.$koordinatPerumahan->id.' Berhasil Di Update');
-
+            ->with('status', 'Data Dengan ID ' . $koordinatPerumahan->id . ' Berhasil Di Update');
     }
 
     /**
@@ -130,7 +153,9 @@ class KoordinatPerumahansController extends Controller
         $perumahan_id = $request->get('perumahan_id');
         KoordinatPerumahan::destroy($koordinatPerumahan->id);
         return redirect()->action(
-            'KoordinatPerumahansController@index', ['id' => $perumahan_id])
-            ->with('status','Data Berhasil Dihapus Dengan ID : '.$koordinatPerumahan->id);
+            'PerumahansController@edit',
+            ['id' => $perumahan_id]
+        )
+            ->with('status', 'Data Berhasil Dihapus Dengan ID : ' . $koordinatPerumahan->id);
     }
 }

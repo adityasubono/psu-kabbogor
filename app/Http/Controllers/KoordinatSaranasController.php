@@ -8,6 +8,7 @@ use App\KoordinatSarana;
 use App\Perumahans;
 use App\Sarana;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class KoordinatSaranasController extends Controller
 {
@@ -157,10 +158,22 @@ class KoordinatSaranasController extends Controller
     }
 
 
-    public function tampilsemuapeta(Request $request)
+    public function petasarana($perumahan_id)
     {
-        $koordinat_lengkap = KoordinatSarana::all();
-        return view ('PSU_Perumahan.sarana.koordinat.peta_lengkap',compact('koordinat_lengkap'));
+        $perumahans = Perumahans::find($perumahan_id);
+        $data_koordinat_sarana = DB::select('SELECT * FROM saranas JOIN koordinatsaranas ON saranas.id = koordinatsaranas.sarana_id
+                                             WHERE koordinatsaranas.perumahan_id='.$perumahan_id);
+
+        $data_koordinat_sarana_group_by = DB::select("SELECT sarana_id, nama_sarana, nama_perumahan, lokasi, kecamatan, kelurahan,
+                                                      kondisi_sarana,longitude,latitude,COUNT(sarana_id)
+                                                      FROM saranas
+                                                      JOIN koordinatsaranas ON saranas.id = koordinatsaranas.sarana_id
+                                                      JOIN perumahans ON saranas.perumahan_id = perumahans.id
+                                                      WHERE koordinatsaranas.perumahan_id ='$perumahan_id'
+                                                      GROUP BY koordinatsaranas.sarana_id
+                                                      HAVING COUNT(sarana_id > 1)");
+        return view ('PSU_Perumahan.detail_data_perumahan.detail_koordinat_sarana',
+               compact('data_koordinat_sarana','data_koordinat_sarana_group_by','perumahans'));
     }
 
 }

@@ -30,7 +30,7 @@
             infoWindow: {
                 content: ' <div id="content">' +
                     '<div id="siteNotice">'+
-                    '<h5 id="firstHeading" class="firstHeading">'+ value.nama_taman +'</h5>'+
+                    '<h4 id="firstHeading" class="firstHeading">'+ value.nama_taman +'</h4>'+
                     '<div id="bodyContent">'+
                     '<p><b>Lokasi Alamat : </b>'+ value.lokasi + ' ,' + value.kecamatan + ' ,'
                     + value.kelurahan + ' RW :' + value.RW +' / RT:'+ value.RT +'</p>'+

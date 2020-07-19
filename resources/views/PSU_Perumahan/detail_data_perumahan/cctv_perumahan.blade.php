@@ -2,7 +2,7 @@
 <hr>
 <h5 class="mt-3">Data CCTV Perumahan</h5>
 <div class="row">
-    @forelse( $data_cctv as $cctv )
+    @forelse( $data_cctv_perumahan as $cctv )
     <div class="col-sm-4">
         Nama CCTV : {{ $cctv->nama_cctv }} <br>
         IP CCTV : {{ $cctv->ip_cctv }}<br>

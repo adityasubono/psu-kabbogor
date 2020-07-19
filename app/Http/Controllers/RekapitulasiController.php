@@ -54,28 +54,27 @@ class RekapitulasiController extends Controller
             ->where('status','Belum Beroperasional')
             ->pluck('count');
 
-        $locations_permukiman =  Koordinattpu::all();
-
-        $locations_pertamanan =  KoordinatPertamanan::all();
-
-        $koordinat = Koordinattpu::where('permukiman_id',4)->get();
-
 
         $koordinatpertamanan = new KoordinatPertamanan();
-
         $koor_pertamanan = $koordinatpertamanan->join('pertamanans', 'koordinatpertamanans.pertamanan_id',
             '=', 'pertamanans.id')->select('longitude','latitude','nama_taman','lokasi',
             'kecamatan','kelurahan','RT','RW')->get();
 
-        $koordinat_perumahan = KoordinatPerumahan::all();
-        $perumahans = Perumahans::select(\DB::raw("SELECT * FROM perumahans a, koordinatperumahans b WHERE a.id = b.perumahan_id"));
+        $koordinattpu = new Koordinattpu();
+        $koor_permukiman = $koordinattpu->join('permukimans', 'koordinattpus.permukiman_id',
+            '=', 'permukimans.id')->select('longitude','latitude','nama_tpu','lokasi',
+            'kecamatan','kelurahan','RT','RW')->get();
 
+        $koor_perumahan = DB::select('SELECT nama_perumahan, perumahan_id, longitude, latitude, status_perumahan,
+                               lokasi, luas_perumahan, jumlah_perumahan, nama_pengembang, kecamatan, kelurahan,
+                               COUNT(perumahan_id) FROM  perumahans JOIN koordinatperumahans
+                               ON perumahans.id = koordinatperumahans.perumahan_id GROUP BY perumahan_id
+                               HAVING COUNT(perumahan_id > 1)');
 
         return view('PSU_Rekapitulasi.index',compact('jml_status_sudah','jml_status_belum',
             'jml_status_terlantar','jml_assets_perumahan','jml_assets_pertamanan','jml_assets_permukiman',
-            'jml_softscape','jml_hardscape','jml_status_belum_tpu','jml_status_sudah_tpu','locations_permukiman'
-        ,'locations_pertamanan', 'koordinat','koordinat_perumahan','perumahans','koor_pertamanan'));
-
+            'jml_softscape','jml_hardscape','jml_status_belum_tpu','jml_status_sudah_tpu','koor_pertamanan',
+            'koor_permukiman','koor_perumahan'));
     }
 
 

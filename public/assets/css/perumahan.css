@@ -1,5 +1,5 @@
-.table-perumahan thead > tr > th {
-   text-align: center;
+.table-perumahan thead>tr>th {
+    text-align: center;
     vertical-align: middle;
     padding: 6px;
 }
@@ -15,19 +15,22 @@
 
 
 .center {
-    margin-top:50px;
+    margin-top: 50px;
 }
 
-.btn:focus, .btn:active, button:focus, button:active {
+.btn:focus,
+.btn:active,
+button:focus,
+button:active {
     outline: none !important;
     box-shadow: none !important;
 }
 
-#image-gallery .modal-footer{
+#image-gallery .modal-footer {
     display: block;
 }
 
-.thumb{
+.thumb {
     margin-top: 15px;
     margin-bottom: 15px;
 }
@@ -50,18 +53,21 @@ fieldset.data-border {
     border: 1px groove #ddd !important;
     padding: 0 1.4em 1.4em 1.4em !important;
     margin: 0 0 1.5em 0 !important;
-    -webkit-box-shadow:  0px 0px 0px 0px #000;
-    box-shadow:  0px 0px 0px 0px #000;
+    -webkit-box-shadow: 0px 0px 0px 0px #000;
+    box-shadow: 0px 0px 0px 0px #000;
     border-radius: 10px;
 }
 
 legend.legend-border {
-    width:300px; /* Or auto */
-    padding:0 5px; /* To give a bit of padding on the left and right */
-    border-bottom:none;
+    width: 300px;
+    /* Or auto */
+    padding: 0 5px;
+    /* To give a bit of padding on the left and right */
+    border-bottom: none;
     font-size: 15px;
 
 }
+
 #accordion {
     width: 300px;
 }
@@ -103,7 +109,7 @@ div.desc {
     display: grid;
 }
 
-.ktr_image{
+.ktr_image {
     float: left;
     left: 10px;
     bottom: -50px;
@@ -133,9 +139,46 @@ div.desc {
 .imagereview .content {
     position: absolute;
     bottom: 0;
-    background: rgb(0, 0, 0); /* Fallback color */
-    background: rgba(0, 0, 0, 0.6); /* Black background with 0.6 opacity */
+    background: rgb(0, 0, 0);
+    /* Fallback color */
+    background: rgba(0, 0, 0, 0.6);
+    /* Black background with 0.6 opacity */
     color: #f1f1f1;
     width: 100%;
     padding: 20px;
+}
+
+.imagereview .content_sarana {
+    position: absolute;
+    bottom: 0;
+    background: rgb(45, 3, 114);
+    /* Fallback color */
+    background: rgba(0, 0, 0, 0.6);
+    /* Black background with 0.6 opacity */
+    color: #f1f1f1;
+    width: 100%;
+    padding: 5px;
+}
+.view {
+    margin: auto;
+    width: 100%;
+}
+
+.wrapper {
+    position: relative;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.sticky-col {
+    position: sticky;
+    position: -webkit-sticky;
+    background-color: #c6c8ca;
+}
+
+.first-col {
+    width: 235px;
+    min-width: 235px;
+    max-width: 235px;
+    right: 0px;
 }

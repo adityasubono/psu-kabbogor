@@ -3,6 +3,7 @@
     {{ session('dapat') }}
 </div>
 @endif
+
 <div class="table-responsive">
     <table class="table table-bordered table-striped display nowrap table-perumahan"
            id="dataTable"
