@@ -1,4 +1,6 @@
 @foreach( $perumahans as $perumahan )
+<link href="https://vjs.zencdn.net/7.2.3/video-js.css" rel="stylesheet">
+
 <div class="modal fade" id="informasi-perumahan{{ $loop->iteration }}" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -16,13 +18,8 @@
                         <td class="titik-dua">:</td>
                         <td width="500">{{$perumahan->nama_pengembang}}</td>
                         <td rowspan="9" width="300">
-                            <video width="300" height="300" autoplay controls>
-                                <source src="%StreamURL%" type="video/mp4">
-                                <object width="320" height="240" type="application/x-shockwave-flash" data="http://releases.flowplayer.org/swf/flowplayer-3.2.5.swf">
-                                    <param name="movie" value="http://releases.flowplayer.org/swf/flowplayer-3.2.5.swf" />
-                                    <param name="flashvars" value='config={"clip": {"url": "%StreamURL%", "autoPlay":true, "autoBuffering":true}}' />
-                                    <p><a href="%StreamURL%">view with external app</a></p>
-                                </object>
+                            <video class="video-js vjs-default-skin" width="400" height="300" controls autoplay="true" id="hls-example">
+                                <source src="../../assets/video/test1.m3u8" type="application/x-mpegURL">
                             </video>
                         </td>
                     </tr>
@@ -75,7 +72,6 @@
                             <br>
                             Jumlah PSU yang Diserahkan :
 
-
                         </td>
                     </tr>
 
@@ -87,8 +83,8 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3"><a href="/perumahans/{{ $perumahan->id }}">
-                                Selengkapnya...</a></td>
+                        <td colspan="3"><a href="/perumahans/edit/{{ $perumahan->id }}">
+                                Data Selengkapnya...</a></td>
                     </tr>
                 </table>
             </div>
@@ -103,9 +99,9 @@
 
 @foreach( $perumahans as $perumahan )
 <div class="modal" tabindex="-1" role="dialog" id="informasi-foto-perumahan{{$perumahan->id}}">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-header bg-gray-200 text-primary text-bold">
+            <div class="modal-header bg-primary text-white text-bold">
                 <h5 class="modal-title">Galery Foto </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -124,7 +120,7 @@
                                data-target="#image-gallery-sarana{{$loop->iteration}}">
                                 <img class="img-thumbnail"
                                      src="../assets/uploads/perumahan/sarana/{{$foto->file_foto}}"
-                                     alt="{{$foto->nama_foto}}">
+                                     alt="{{$foto->nama_foto}}" style="width: 150px; height: 100px;">
                             </a>
                         </div>
                     </div>
@@ -144,7 +140,8 @@
                                data-target="#image-gallery-jalansaluran{{$loop->iteration}}">
                                 <img class="img-thumbnail"
                                      src="../assets/uploads/perumahan/jalansaluran/{{$foto->file_foto}}"
-                                     alt="{{$foto->nama_foto}}">
+                                     alt="{{$foto->nama_foto}}"
+                                     style="width: 150px; height: 100px;">
                             </a>
                         </div>
                     </div>
@@ -163,7 +160,8 @@
                                data-target="#image-gallery-taman{{$loop->iteration}}">
                                 <img class="img-thumbnail"
                                      src="../assets/uploads/perumahan/taman/{{$foto->file_foto}}"
-                                     alt="{{$foto->nama_foto}}">
+                                     alt="{{$foto->nama_foto}}"
+                                     style="width: 150px; height: 100px;">
                             </a>
                         </div>
                     </div>
@@ -189,15 +187,15 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="image-gallery-title">{{$foto->nama_foto}}</h4>
+                <h5 class="modal-title" id="image-gallery-title">Keterangan : {{$foto->keterangan}}</h5>
                 <button type="button" class="close" data-dismiss="modal"><span
                         aria-hidden="true">×</span><span class="sr-only">Close</span>
                 </button>
             </div>
 
             <div class="modal-body">
-                <img id="image-gallery-image" class="img-responsive col-md-12"
-                     src="../assets/uploads/perumahan/sarana/{{$foto->file_foto}}">
+                <img src="../assets/uploads/perumahan/sarana/{{$foto->file_foto}}"
+                style="width: 500px; height=300px">
             </div>
         </div>
     </div>
@@ -219,8 +217,9 @@
             </div>
 
             <div class="modal-body">
-                <img id="image-gallery-image" class="img-responsive col-md-12" src="
-                ../assets/uploads/perumahan/jalansaluran/{{$foto->file_foto}}">
+                <img id="image-gallery-image" class="img-responsive col-md-6" src="
+                ../assets/uploads/perumahan/jalansaluran/{{$foto->file_foto}}"
+                     style="width: 500px; height=300px">
             </div>
         </div>
     </div>
@@ -245,7 +244,8 @@
 
             <div class="modal-body">
                 <img id="image-gallery-image" class="img-responsive col-md-12" src="
-                ../assets/uploads/perumahan/taman/{{$foto->file_foto}}">
+                ../assets/uploads/perumahan/taman/{{$foto->file_foto}}"
+                     style="width: 500px; height=300px">
             </div>
         </div>
     </div>
@@ -351,4 +351,15 @@
 
 </script>
 
+<link href="https://vjs.zencdn.net/7.8.2/video-js.css" rel="stylesheet" />
+<!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
+<script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+<script src="https://vjs.zencdn.net/7.8.2/video.js"></script>
+<script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-hls/5.14.1/videojs-contrib-hls.js"></script>
+<script src="https://vjs.zencdn.net/7.2.3/video.js"></script>
+<script>
+    var player = videojs('hls-example');
+    player.play();
+</script>
 

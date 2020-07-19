@@ -436,7 +436,6 @@ class PerumahansController extends Controller
     {
         Perumahans::destroy($perumahans->id);
         DB::table("saranas")->where("perumahan_id", $perumahans->id)->delete();
-        DB::table("fotosaranas")->where("perumahan_id", $perumahans->id)->delete();
         DB::table("koordinatsaranas")->where("perumahan_id", $perumahans->id)->delete();
 
         DB::table("jalansalurans")->where("perumahan_id", $perumahans->id)->delete();
@@ -449,6 +448,52 @@ class PerumahansController extends Controller
 
         DB::table("cctvperumahans")->where("perumahan_id", $perumahans->id)->delete();
         DB::table("koordinatperumahans")->where("perumahan_id", $perumahans->id)->delete();
+
+        DB::table("pju")->where("perumahan_id", $perumahans->id)->delete();
+        DB::table("bast")->where("perumahan_id", $perumahans->id)->delete();
+        DB::table("basta")->where("perumahan_id", $perumahans->id)->delete();
+        DB::table("ippt")->where("perumahan_id", $perumahans->id)->delete();
+        DB::table("izin_lokasi")->where("perumahan_id", $perumahans->id)->delete();
+        DB::table("jalansalurans")->where("perumahan_id", $perumahans->id)->delete();
+        DB::table("siteplan")->where("perumahan_id", $perumahans->id)->delete();
+        DB::table("fotoperumahans")->where("perumahan_id", $perumahans->id)->delete();
+
+        $foto_sarana = FotoSarana::where('perumahan_id', $perumahans->id)->get();
+        foreach ($foto_sarana as $file_sarana) {
+            $path1 = public_path('/assets/uploads/perumahan/sarana/'). $file_sarana->file_foto;
+            if (file_exists($path1)) {
+                unlink($path1);
+                FotoSarana::where('perumahan_id', $perumahans->id)->delete();
+            }
+        }
+
+        $data_jalan_saluran = FotoJalanSaluran::where('perumahan_id', $perumahans->id)->get();
+        foreach ($data_jalan_saluran as $file_jalan) {
+            $path2 = public_path('/assets/uploads/perumahan/jalansaluran/'). $file_jalan->file_foto;
+            if (file_exists($path2)) {
+                unlink($path2);
+                FotoJalanSaluran::where('perumahan_id', $perumahans->id)->delete();
+            }
+        }
+
+        $data_taman = FotoTaman::where('perumahan_id', $perumahans->id)->get();
+        foreach ($data_taman as $file_taman) {
+            $path3 = public_path('/assets/uploads/perumahan/taman/'). $file_taman->file_foto;
+            if (file_exists($path3)) {
+                unlink($path3);
+                FotoTaman::where('perumahan_id', $file_taman->id)->delete();
+            }
+        }
+
+        $data_perumahan = FotoPerumahan::where('perumahan_id', $perumahans->id)->get();
+        foreach ($data_perumahan as $file_perumahan) {
+            $path4 = public_path('/assets/uploads/perumahan/sarana/'). $file_perumahan->file_foto;
+            if (file_exists($path4)) {
+                unlink($path4);
+                FotoPerumahan::where('perumahan_id', $perumahans->id)->delete();
+
+            }
+        }
 
         return redirect()->action('PerumahansController@index')->with('status', 'Data Berhasil Dihapus Dengan ID : ' . $perumahans->id);
     }

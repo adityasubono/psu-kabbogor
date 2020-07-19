@@ -181,4 +181,5 @@ div.desc {
     min-width: 235px;
     max-width: 235px;
     right: 0px;
+    z-index: 1;
 }

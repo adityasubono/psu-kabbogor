@@ -104,12 +104,6 @@
                             <textarea class="form-control @error('lokasi') is-invalid
                                       @enderror" id="lokasi" name="lokasi" rows="3"
                                       placeholder="Masukan Alamat Lokasi">{{ old('lokasi') }}</textarea>
-                            <small class="form-text text-danger">* Wajib Diisi</small>
-                            @error('lokasi')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
                         </div>
                     </div>
 
@@ -149,38 +143,6 @@
                             </select>
                             <small class="form-text text-danger">* Wajib Diisi</small>
                             @error('kelurahan')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-
-                        <div class="col-sm-3">
-                            <label for="RT">RT</label><br>
-                            <input type="text" class="form-control
-                            @error('RW') is-invalid @enderror"
-                                   id="RW"
-                                   name="RW"
-                                   placeholder="RW"
-                                   value="{{ old('RW') }}">
-                            <small class="form-text text-danger">* Wajib Diisi</small>
-                            @error('RW')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-
-                        <div class="col-sm-3">
-                            <label for="RW">RW</label><br>
-                            <input type="text" class="form-control
-                            @error('RT') is-invalid @enderror"
-                                   id="RT"
-                                   name="RT"
-                                   placeholder="RT"
-                                   value="{{ old('RT') }}">
-                            <small class="form-text text-danger">* Wajib Diisi</small>
-                            @error('RT')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
