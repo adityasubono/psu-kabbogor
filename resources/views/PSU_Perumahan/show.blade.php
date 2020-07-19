@@ -39,37 +39,39 @@
                             <td>{{$perumahans->status_perumahan}}</td>
                         </tr>
                     </table>
+                    <hr>
+
+                    @include('PSU_Perumahan.detail_data_perumahan.pju')
+
+                    @include('PSU_Perumahan.detail_data_perumahan.saluran_bersih')
+
                 </div>
                 <div class="col-6">
-                    Data BAST <br>
-                    Data BASTA <br>
-                    Data Izin Lokasi <br>
-                    Data IPPT <br>
-                    Data Siteplan <br>
+                    @if($perumahans->status_perumahan == 'Sudah Serah Terima')
+
+                    @include('PSU_Perumahan.detail_data_perumahan.bast')
+
+                    @elseif ($perumahans->status_perumahan == 'Belum Serah Terima')
+
+                    @include('PSU_Perumahan.detail_data_perumahan.basta')
+
+                    @include('PSU_Perumahan.detail_data_perumahan.izin_lokasi')
+
+                    @include('PSU_Perumahan.detail_data_perumahan.ippt')
+
+                    @include('PSU_Perumahan.detail_data_perumahan.sk_siteplan')
+
+                    @else
+
+                    @endif
                 </div>
             </div>
-
-
 
             @include('PSU_Perumahan.detail_data_perumahan.sarana')
 
             @include('PSU_Perumahan.detail_data_perumahan.jalansaluran')
 
             @include('PSU_Perumahan.detail_data_perumahan.taman')
-
-            @include('PSU_Perumahan.detail_data_perumahan.bast')
-
-            @include('PSU_Perumahan.detail_data_perumahan.basta')
-
-            @include('PSU_Perumahan.detail_data_perumahan.izin_lokasi')
-
-            @include('PSU_Perumahan.detail_data_perumahan.ippt')
-
-            @include('PSU_Perumahan.detail_data_perumahan.sk_siteplan')
-
-            @include('PSU_Perumahan.detail_data_perumahan.pju')
-
-            @include('PSU_Perumahan.detail_data_perumahan.saluran_bersih')
 
             @include('PSU_Perumahan.detail_data_perumahan.koordinat_perumahan')
 

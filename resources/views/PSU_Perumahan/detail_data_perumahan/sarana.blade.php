@@ -1,10 +1,5 @@
 <h5 class="mt-3">Data Sarana</h5>
-<a href="/koordinatsarana/petasarana/{{$perumahans->id}}" class="btn btn-info btn-icon-split my-3">
-    <span class="icon text-white-50">
-        <i class="fas fa-map"></i>
-    </span>
-    <span class="text">Lihat Data Peta Persebaran Sarana Perumahan</span>
-</a>
+
 
 <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item">
@@ -42,6 +37,12 @@
                 @endforelse
             </tbody>
         </table>
+        <a href="/koordinatsarana/petasarana/{{$perumahans->id}}">
+            <span class="icon text-white-50">
+                <i class="fas fa-map"></i>
+            </span>
+            <span class="text">Lihat Data Peta Persebaran Sarana Perumahan</span>
+        </a>
     </div>
     <div class="tab-pane fade" id="data_detail_foto_sarana" role="tabpanel" aria-labelledby="profile-tab">
         @include('PSU_Perumahan.detail_data_perumahan.detail_foto_sarana')

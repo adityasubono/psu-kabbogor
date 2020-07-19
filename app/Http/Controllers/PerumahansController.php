@@ -102,11 +102,11 @@ class PerumahansController extends Controller
 
         if (isset($status) && empty($request->kecamatan) && empty($request->kelurahan)) {
             $kecamatans = Kecamatan::all()->sortBy("nama_kecamatan");
-            $perumahan_filter = Perumahans::where('status_perumahan', 'like', "%" . $status . "%")
+            $perumahans = Perumahans::where('status_perumahan', 'like', "%" . $status . "%")
                 ->get();
 
             return view('PSU_Perumahan.index', compact(
-                'perumahan_filter',
+                'perumahans',
                 'kecamatans',
                 'status_belum',
                 'status_sudah',
@@ -118,11 +118,11 @@ class PerumahansController extends Controller
 
         if (isset($nama_kecamatan) && isset($nama_kelurahan) && empty($status)) {
             $kecamatans = Kecamatan::all()->sortBy("nama_kecamatan");
-            $perumahan_filter = Perumahans::where('kecamatan', 'like', "%" . $nama_kecamatan . "%")
+            $perumahans = Perumahans::where('kecamatan', 'like', "%" . $nama_kecamatan . "%")
                 ->where('kelurahan', 'like', "%" . $nama_kelurahan . "%")->get();
 
             return view('PSU_Perumahan.index', compact(
-                'perumahan_filter',
+                'perumahans',
                 'kecamatans',
                 'status_belum',
                 'status_sudah',
@@ -133,12 +133,12 @@ class PerumahansController extends Controller
 
         if (isset($nama_kecamatan) && isset($nama_kelurahan) && isset($status)) {
             $kecamatans = Kecamatan::all()->sortBy("nama_kecamatan");
-            $perumahan_filter = Perumahans::where('kecamatan', 'like', "%" . $nama_kecamatan . "%")
+            $perumahans = Perumahans::where('kecamatan', 'like', "%" . $nama_kecamatan . "%")
                 ->where('kelurahan', 'like', "%" . $nama_kelurahan . "%")
                 ->where('status_perumahan', 'like', "%" . $status . "%")->get();
 
             return view('PSU_Perumahan.index', compact(
-                'perumahan_filter',
+                'perumahans',
                 'kecamatans',
                 'status_belum',
                 'status_sudah',
@@ -331,15 +331,19 @@ class PerumahansController extends Controller
         $perumahans = Perumahans::find($id);
         $data_siteplan = FotoPerumahan::where('perumahan_id', $id)->get();
         $data_koordinat_perumahan = KoordinatPerumahan::where('perumahan_id', $id)->get();
+
         $data_sarana = Sarana::where('perumahan_id', $id)->get();
         $data_koordinat_sarana = KoordinatSarana::where('perumahan_id', $id)->get();
         $data_foto_sarana = FotoSarana::where('perumahan_id', $id)->get();
+
         $data_jalan_saluran = JalanSaluran::where('perumahan_id', $id)->get();
         $data_foto_jalan_saluran = FotoJalanSaluran::where('perumahan_id', $id)->get();
         $data_koordinat_jalan_saluran = KoordinatJalanSaluran::where('perumahan_id', $id)->get();
+
         $data_taman = Taman::where('perumahan_id', $id)->get();
         $data_foto_taman = FotoTaman::where('perumahan_id', $id)->get();
         $data_koordinat_taman = KoordinatTaman::where('perumahan_id', $id)->get();
+
         $data_cctv_perumahan = CCTVPerumahan::where('perumahan_id', $id)->get();
 
         $data_pju = PJU::where('perumahan_id', $id)->get();

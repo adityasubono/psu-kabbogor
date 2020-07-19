@@ -22,7 +22,7 @@
             <!----------------------   Tabel Data Perumahan---------------------------->
 
             @if(isset($perumahan_filter))
-            @include('PSU_Perumahan.filter.tabel_filter_perumahan')
+            @include('PSU_Perumahan.includes.tabel_perumahan')
             @else
             @include('PSU_Perumahan.includes.tabel_perumahan')
             @endif

@@ -6,9 +6,6 @@
     <li class="nav-item" role="presentation">
         <a class="nav-link bg-success text-white" id="" data-toggle="tab" href="#detail_gambar_penghijauan" role="tab" aria-controls="profile" aria-selected="false">Data Foto/Gambar</a>
     </li>
-    <li class="nav-item" role="presentation">
-        <a class="nav-link bg-warning text-white" id="" data-toggle="tab" href="#detail_koordinat_penghijauan" role="tab" aria-controls="contact" aria-selected="false">Data Koordinat</a>
-    </li>
 </ul>
 <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="detail_data_taman_penghijauan" role="tabpanel" aria-labelledby="home-tab">
@@ -37,11 +34,14 @@
                 @endforelse
             </tbody>
         </table>
+        <a href="/koordinattamans/show/{{$perumahans->id}}">
+            <span class="icon text-white-50">
+                <i class="fas fa-map"></i>
+            </span>
+            <span class="text">Lihat Data Peta Taman dan Penghijauan</span>
+        </a>
     </div>
     <div class="tab-pane fade" id="detail_gambar_penghijauan" role="tabpanel" aria-labelledby="profile-tab">
-        foto_taman
-    </div>
-    <div class="tab-pane fade" id="detail_koordinat_penghijauan" role="tabpanel" aria-labelledby="contact-tab">
-        koordinat_taman
+        @include('PSU_Perumahan.detail_data_perumahan.detail_foto_taman_penghijauan')
     </div>
 </div>

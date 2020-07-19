@@ -159,3 +159,26 @@ div.desc {
     width: 100%;
     padding: 5px;
 }
+.view {
+    margin: auto;
+    width: 100%;
+}
+
+.wrapper {
+    position: relative;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.sticky-col {
+    position: sticky;
+    position: -webkit-sticky;
+    background-color: #c6c8ca;
+}
+
+.first-col {
+    width: 235px;
+    min-width: 235px;
+    max-width: 235px;
+    right: 0px;
+}
