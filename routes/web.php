@@ -178,7 +178,7 @@ Route::post('/koordinattamans/store', 'KoordinatTamansController@store');
 Route::get('/koordinattamans/edit/{koordinatTaman}', 'KoordinatTamansController@edit');
 Route::patch('/koordinattamans/update/{koordinatTaman}', 'KoordinatTamansController@update');
 Route::delete('/koordinattamans/delete/{koordinatTaman}', 'KoordinatTamansController@destroy');
-Route::get('/tampilpetasemua/', 'KoordinatTamansController@showallmaps');
+Route::get('/tampilpetasemua/petataman/{perumahan_id}', 'KoordinatTamansController@showallmaps');
 Route::get('/koordinattamans/show/{id}', 'KoordinatTamansController@show');
 
 

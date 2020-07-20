@@ -486,3 +486,7 @@ Wresources/views/PSU_Perumahan/detail_data_perumahan/detail_foto_jalan_saluran.b
 [resources/views/PSU_Perumahan/detail_data_perumahan/detail_foto_taman_penghijauan.blade.php,0\5\05a4e731623c462e7a1821c10670535151a64e94
 p
 @resources/views/PSU_Perumahan/includes/popup_perumahan.blade.php,f\d\fd7b308171b6492bb95ec45be29acd7039472337
+h
+8resources/views/PSU_Permukiman/permukiman/edit.blade.php,0\e\0eee407fa8aa26b359c657eebb4aa7c766194db6
+_
+/resources/views/PSU_Permukiman/create.blade.php,5\2\52d496fd7f4e33b074c464dbab34b068e25b6981
