@@ -101,13 +101,6 @@
         zoom: 12
     });
 
-
-    // var path = [
-    //     [-6.496133351274992, 106.66407282984021],
-    //     [-6.495451113916965, 106.70355494653943],
-    //     [-6.467137449036391, 106.73754389917615]
-    // ];
-
     var path = {};
     var latitude;
     var longitude;
@@ -119,7 +112,7 @@
 
     for (let jalansaluran = 0; jalansaluran < data_koordinat_jalansaluran.length; jalansaluran++) {
         const jalansaluran_id = data_koordinat_jalansaluran[jalansaluran].jalansaluran_id;
-        console.log('jalansaluran_id', jalansaluran_id)
+        // console.log('jalansaluran_id', jalansaluran_id)
         jalansaluranId.push(jalansaluran_id);
     }
 
@@ -128,10 +121,10 @@
         r[a.jalansaluran_id].push(a);
         return r;
     }, Object.create(null));
-    console.log('result', result);
+    // console.log('result', result);
 
     var unique = jalansaluranId.filter(onlyUnique);
-    console.log('unique', unique)
+    // console.log('unique', unique)
 
     for (let u = 0; u < unique.length; u++) {
         var coord = {};
@@ -174,7 +167,7 @@
                 mymap.drawPolyline({
                     path: v,
                     strokeColor: '#ffd700',
-                    strokeOpacity: 1,
+                    strokeOpacity: 0.5,
                     strokeWeight: 6,
                     click: function () {
                         $("#review_jalansaluran" + data_koordinat_jalansaluran_group_by[i].jalansaluran_id).modal('show');
@@ -195,8 +188,6 @@
             }
         })
     })
-
-
 </script>
 
 @foreach($data_koordinat_jalansaluran_group_by as $groupby)

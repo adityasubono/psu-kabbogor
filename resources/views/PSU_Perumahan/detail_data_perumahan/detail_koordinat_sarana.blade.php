@@ -7,14 +7,65 @@
 <div class="card">
     <h4 class="ml-3">Peta Persebaran Data Sarana Perumahan</h4>
     <div id="peta_persebaran_sarana"></div>
+    <div class="card-body">
+        <h5>Legenda</h5>
+
+        <div class="row">
+            <div class="col-4">
+                <div class="card mb-3">
+                    <div class="row no-gutters">
+                        <div class="col-md-4 bg-success">
+
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Warna Hijau</h5>
+                                <p class="card-text">Kondisi jalan dan saluran dalam keadaan baik.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-4">
+                <div class="card mb-3">
+                    <div class="row no-gutters">
+                        <div class="col-md-4 bg-warning">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Warna Kuning</h5>
+                                <p class="card-text">Kondisi jalan dan saluran dalam keadaan rusak ringan.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-4">
+                <div class="card mb-3">
+                    <div class="row no-gutters">
+                        <div class="col-md-4 bg-danger">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Warna Merah</h5>
+                                <p class="card-text">Kondisi jalan dan saluran dalam keadaan rusak berat</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="/perumahans/edit/{{$perumahans->id}}"
+               class="btn btn-info btn-icon-split mt-3 ml-3">
+                <span class="icon text-white-50">
+                    <i class="fas fa-arrow-alt-circle-left"></i>
+                </span>
+                <span class="text">Kembali</span>
+            </a>
+        </div>
+    </div>
 </div>
-<a href="/perumahans/edit/{{$perumahans->id}}"
-   class="btn btn-info btn-icon-split ml-2">
-        <span class="icon text-white-50">
-            <i class="fas fa-arrow-alt-circle-left"></i>
-        </span>
-    <span class="text">Kembali</span>
-</a>
 
 <script
     src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -81,26 +132,56 @@
     }
     $.each(unique, function (index, value) {
         $.each(path, function (i, v) {
-            console.log(v)
-            mymap.drawPolygon({
-                paths: v,
-                strokeColor: '#a9a9a9',
-                strokeOpacity: 0.5,
-                strokeWeight: 2,
-                fillColor: '#6495ed',
-                fillOpacity: 0.5,
-                click: function () {
-                    $("#review_sarana"+data_koordinat_sarana_group_by[i].sarana_id).modal('show');
+            if (data_koordinat_sarana_group_by[i].kondisi_sarana === 'Baik') {
+                mymap.drawPolygon({
+                    paths: v,
+                    strokeColor: '#a9a9a9',
+                    strokeOpacity: 0.5,
+                    strokeWeight: 2,
+                    fillColor: '#008000',
+                    fillOpacity: 0.5,
+                    click: function () {
+                        $("#review_sarana" + data_koordinat_sarana_group_by[i].sarana_id).modal('show');
 
-                }
-            });
+                    }
+                });
+            } else if (data_koordinat_sarana_group_by[i].kondisi_sarana === 'Rusak Ringan') {
+                mymap.drawPolygon({
+                    paths: v,
+                    strokeColor: '#a9a9a9',
+                    strokeOpacity: 0.5,
+                    strokeWeight: 2,
+                    fillColor: '#ffd700',
+                    fillOpacity: 0.5,
+                    click: function () {
+                        $("#review_sarana" + data_koordinat_sarana_group_by[i].sarana_id).modal('show');
+
+                    }
+                });
+            } else {
+                mymap.drawPolygon({
+                    paths: v,
+                    strokeColor: '#a9a9a9',
+                    strokeOpacity: 0.5,
+                    strokeWeight: 2,
+                    fillColor: '#ff0000',
+                    fillOpacity: 0.5,
+                    click: function () {
+                        $("#review_sarana" + data_koordinat_sarana_group_by[i].sarana_id).modal('show');
+
+                    }
+                });
+            }
+
         })
     })
+
 
 </script>
 
 @foreach($data_koordinat_sarana_group_by as $groupby)
-<div class="modal fade" id="review_sarana{{$groupby->sarana_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="review_sarana{{$groupby->sarana_id}}" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -112,11 +193,11 @@
             </div>
             <div class="modal-body">
                 <p><b>Alamat Lokasi :</b><br>
-                {{$groupby->nama_perumahan}}, {{$groupby->kecamatan}}, {{$groupby->kelurahan}},  {{$groupby->lokasi}}
+                    {{$groupby->nama_perumahan}}, {{$groupby->kecamatan}}, {{$groupby->kelurahan}}, {{$groupby->lokasi}}
                 </p>
 
                 <p>
-                    <b>Koordinat : </b> {{$groupby->latitude}} ,  {{$groupby->longitude}}
+                    <b>Koordinat : </b> {{$groupby->latitude}} , {{$groupby->longitude}}
                 </p>
 
             </div>

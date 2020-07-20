@@ -7,6 +7,7 @@ use App\KoordinatSarana;
 use App\Perumahans;
 use App\RekapitulasiPerumahan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RekapitulasiPerumahanController extends Controller
 {
@@ -30,30 +31,14 @@ class RekapitulasiPerumahanController extends Controller
             ->where('status_perumahan','Terlantar')
             ->pluck('count');
 
-//
 
-        $koordinat_perumahan = \DB::table('koordinatperumahans')
-            ->join('perumahans', 'perumahans.id', '=','koordinatperumahans.perumahan_id')
-            ->select('koordinatperumahans.perumahan_id','koordinatperumahans.latitude','koordinatperumahans.longitude',
-                'perumahans.id','perumahans.nama_perumahan','perumahans.nama_perumahan','perumahans.lokasi',
-            'perumahans.kecamatan','perumahans.kelurahan','perumahans.RT','perumahans.RW')
-            ->get();
-
-        $perumahans_gua = Perumahans::select(\DB::raw("SELECT * FROM perumahans a, koordinatperumahans b WHERE a.id = b.perumahan_id"));
-
-
-        $koordinat_sarana = \DB::table('koordinatsaranas')
-            ->join('perumahans', 'perumahans.id', '=','koordinatsaranas.perumahan_id')
-            ->select('koordinatsaranas.perumahan_id','koordinatsaranas.latitude','koordinatsaranas.longitude',
-                'perumahans.id','perumahans.nama_perumahan','perumahans.nama_perumahan','perumahans.lokasi',
-                'perumahans.kecamatan','perumahans.kelurahan','perumahans.RT','perumahans.RW')
-            ->get();
-
-        $saranas = Perumahans::select(\DB::raw("SELECT * FROM perumahans a, koordinatsaranas b WHERE a.id = b.perumahan_id"));
+        $data_koordinat_perumahan = DB::select('SELECT * FROM koordinatperumahans
+                                                JOIN perumahans
+                                                ON perumahans.id = koordinatperumahans.perumahan_id');
 
 
         return view('PSU_Perumahan.rekapitulasi.index',compact('jml_status_sudah',
-            'jml_status_belum','jml_status_terlantar','koordinat_perumahan','perumahans_gua','koordinat_sarana','saranas'));
+            'jml_status_belum','jml_status_terlantar','data_koordinat_perumahan'));
 
 
     }
