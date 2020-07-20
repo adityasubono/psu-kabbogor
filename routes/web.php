@@ -156,6 +156,7 @@ Route::get('/koordinatjalansalurans/edit/{koordinatJalanSaluran}', 'KoordinatJal
 Route::patch('/koordinatjalansalurans/update/{koordinatJalanSaluran}', 'KoordinatJalanSaluranController@update');
 Route::delete('/koordinatjalansalurans/delete/{koordinatJalanSaluran}', 'KoordinatJalanSaluranController@destroy');
 Route::get('/koordinatjalansalurans/show/{id}', 'KoordinatJalanSaluranController@show');
+Route::get('/koordinatjalansalurans/tampilkanpeta/{perumahan_id}', 'KoordinatJalanSaluranController@showallmaps');
 
 
 //PSU Data Taman

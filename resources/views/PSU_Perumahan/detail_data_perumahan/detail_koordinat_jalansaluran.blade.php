@@ -1,13 +1,13 @@
 @extends('layouts/main')
 
-@section('title', 'Peta Koordinat Taman dan Penghijauan ')
+@section('title', 'Peta Koordinat Jalan dan Saluran ')
 
 @section('container-fluid')
 
 
 <div class="card">
-    <h4 class="ml-3">Peta Persebaran Data Taman dan Penghijauan</h4>
-    <div id="peta_persebaran_taman"></div>
+    <h4 class="ml-3">Peta Persebaran Data Jalan dan Saluran</h4>
+    <div id="peta_persebaran_jalansaluran"></div>
     <div class="card-body">
         <h5>Legenda</h5>
 
@@ -21,7 +21,7 @@
                         <div class="col-md-8">
                             <div class="card-body">
                                 <h5 class="card-title">Warna Hijau</h5>
-                                <p class="card-text">Kondisi taman dan penghijauan dalam keadaan baik.</p>
+                                <p class="card-text">Kondisi jalan dan saluran dalam keadaan baik.</p>
                             </div>
                         </div>
                     </div>
@@ -36,7 +36,7 @@
                         <div class="col-md-8">
                             <div class="card-body">
                                 <h5 class="card-title">Warna Kuning</h5>
-                                <p class="card-text">Kondisi taman dan penghijauan dalam keadaan rusak ringan.</p>
+                                <p class="card-text">Kondisi jalan dan saluran dalam keadaan rusak ringan.</p>
                             </div>
                         </div>
                     </div>
@@ -51,7 +51,7 @@
                         <div class="col-md-8">
                             <div class="card-body">
                                 <h5 class="card-title">Warna Merah</h5>
-                                <p class="card-text">Kondisi taman dan penghijauan dalam keadaan rusak berat</p>
+                                <p class="card-text">Kondisi jalan dan saluran dalam keadaan rusak berat</p>
                             </div>
                         </div>
                     </div>
@@ -80,7 +80,7 @@
 
 
 <style type="text/css">
-    #peta_persebaran_taman {
+    #peta_persebaran_jalansaluran {
         border: 5px solid #6c757d;
         border-radius: 10px;
         width: 100%;
@@ -92,38 +92,47 @@
 
 <script type="text/javascript">
 
-    var data_koordinat_taman = <?php print_r(json_encode($data_koordinat_taman)) ?>;
-    var data_koordinat_taman_group_by = <?php print_r(json_encode($data_koordinat_taman_group_by)) ?>;
+    var data_koordinat_jalansaluran = <?php print_r(json_encode($data_koordinat_jalansaluran)) ?>;
+    var data_koordinat_jalansaluran_group_by = <?php print_r(json_encode($data_koordinat_jalansaluran_group_by)) ?>;
     var mymap = new GMaps({
-        el: '#peta_persebaran_taman',
+        el: '#peta_persebaran_jalansaluran',
         lat: -6.485213,
         lng: 106.753537,
         zoom: 12
     });
 
 
+    // var path = [
+    //     [-6.496133351274992, 106.66407282984021],
+    //     [-6.495451113916965, 106.70355494653943],
+    //     [-6.467137449036391, 106.73754389917615]
+    // ];
+
     var path = {};
     var latitude;
     var longitude;
-    var tamanId = []
+    var jalansaluranId = []
 
     function onlyUnique(value, index, self) {
         return self.indexOf(value) === index;
     }
 
-    for (let taman = 0; taman < data_koordinat_taman.length; taman++) {
-        const taman_id = data_koordinat_taman[taman].taman_id;
-        tamanId.push(taman_id);
+    for (let jalansaluran = 0; jalansaluran < data_koordinat_jalansaluran.length; jalansaluran++) {
+        const jalansaluran_id = data_koordinat_jalansaluran[jalansaluran].jalansaluran_id;
+        console.log('jalansaluran_id', jalansaluran_id)
+        jalansaluranId.push(jalansaluran_id);
     }
-    var unique = tamanId.filter(onlyUnique);
-    // console.log('unique', unique)
 
-    var result = data_koordinat_taman.reduce(function (r, a) {
-        r[a.taman_id] = r[a.taman_id] || [];
-        r[a.taman_id].push(a);
+    var result = data_koordinat_jalansaluran.reduce(function (r, a) {
+        r[a.jalansaluran_id] = r[a.jalansaluran_id] || [];
+        r[a.jalansaluran_id].push(a);
         return r;
     }, Object.create(null));
     console.log('result', result);
+
+    var unique = jalansaluranId.filter(onlyUnique);
+    console.log('unique', unique)
+
     for (let u = 0; u < unique.length; u++) {
         var coord = {};
         path[u] = [];
@@ -134,46 +143,52 @@
             path[u].push(coord[j]);
         }
     }
+
     $.each(unique, function (index, value) {
         $.each(path, function (i, v) {
-            // console.log(v)
-
-            if(data_koordinat_taman_group_by[i].kondisi_taman == 'Baik'){
-                mymap.drawPolygon({
-                    paths: v,
-                    strokeColor: '#778899',
+            if (data_koordinat_jalansaluran_group_by[i].kondisi_jalan_saluran_id === 'Baik') {
+                mymap.drawPolyline({
+                    path: v,
+                    strokeColor: '#008000',
                     strokeOpacity: 0.5,
-                    strokeWeight: 2,
-                    fillColor: '#008000',
-                    fillOpacity: 0.25,
+                    strokeWeight: 6,
                     click: function () {
-                        $("#review_taman" + data_koordinat_taman_group_by[i].taman_id).modal('show');
+                        $("#review_jalansaluran" + data_koordinat_jalansaluran_group_by[i].jalansaluran_id).modal('show');
 
                     }
                 });
-            }else if (data_koordinat_taman_group_by[i].kondisi_taman == 'Rusak Ringan'){
-                mymap.drawPolygon({
-                    paths: v,
-                    strokeColor: '#778899',
+            }
+
+            if (data_koordinat_jalansaluran_group_by[i].kondisi_jalan_saluran === 'Baik') {
+                mymap.drawPolyline({
+                    path: v,
+                    strokeColor: '#008000',
                     strokeOpacity: 0.5,
-                    strokeWeight: 2,
-                    fillColor: '#ffff00',
-                    fillOpacity: 0.25,
+                    strokeWeight: 6,
                     click: function () {
-                        $("#review_taman" + data_koordinat_taman_group_by[i].taman_id).modal('show');
+                        $("#review_jalansaluran" + data_koordinat_jalansaluran_group_by[i].jalansaluran_id).modal('show');
 
                     }
                 });
-            }else {
-                mymap.drawPolygon({
-                    paths: v,
-                    strokeColor: '#778899',
-                    strokeOpacity: 0.5,
-                    strokeWeight: 2,
-                    fillColor: '#ff0000',
-                    fillOpacity: 0.25,
+            } else if (data_koordinat_jalansaluran_group_by[i].kondisi_jalan_saluran === 'Rusak Ringan') {
+                mymap.drawPolyline({
+                    path: v,
+                    strokeColor: '#ffd700',
+                    strokeOpacity: 1,
+                    strokeWeight: 6,
                     click: function () {
-                        $("#review_taman" + data_koordinat_taman_group_by[i].taman_id).modal('show');
+                        $("#review_jalansaluran" + data_koordinat_jalansaluran_group_by[i].jalansaluran_id).modal('show');
+
+                    }
+                });
+            } else {
+                mymap.drawPolyline({
+                    path: v,
+                    strokeColor: '#ff0000',
+                    strokeOpacity: 0.5,
+                    strokeWeight: 6,
+                    click: function () {
+                        $("#review_jalansaluran" + data_koordinat_jalansaluran_group_by[i].jalansaluran_id).modal('show');
 
                     }
                 });
@@ -181,35 +196,36 @@
         })
     })
 
+
 </script>
 
-@foreach($data_koordinat_taman_group_by as $groupby)
-<div class="modal fade" id="review_taman{{$groupby->taman_id}}" tabindex="-1" role="dialog"
+@foreach($data_koordinat_jalansaluran_group_by as $groupby)
+<div class="modal fade" id="review_jalansaluran{{$groupby->jalansaluran_id}}" tabindex="-1" role="dialog"
      aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-primary text-white">
-                <h5 class="modal-title" id="exampleModalLabel">Kawasan: {{$groupby->nama_taman}}</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Nama Jalan : {{$groupby->nama_jalan_saluran}}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <p><b>ID Taman dan Penghijauan : </b>{{$groupby->taman_id}}</p>
+                <p><b>ID Jalan Saluran: </b>{{$groupby->jalansaluran_id}}</p>
                 <p><b>Alamat Lokasi :</b><br>
                     {{$groupby->nama_perumahan}}, {{$groupby->kecamatan}}, {{$groupby->kelurahan}}, {{$groupby->lokasi}}
                 </p>
 
-                <p><b>Luas Taman :</b> {{$groupby->luas_taman}} /(m2)<br>
-                    <b>Kondisi Taman :</b> {{$groupby->kondisi_taman}}
+                <p><b>Luas Taman :</b> {{$groupby->luas_jalan_saluran}} /(m2)<br>
+                    <b>Kondisi Taman :</b> {{$groupby->kondisi_jalan_saluran}}
                 </p>
 
                 <p>
                     <b>Koordinat : </b><br>
-                    @foreach($data_koordinat_taman as $koordinat_taman)
-                    @if($koordinat_taman->taman_id === $groupby->taman_id)
-                    {{$koordinat_taman->latitude}} , {{$koordinat_taman->longitude}}
+                    @foreach($data_koordinat_jalansaluran as $koordinat_jalansaluran)
+                    @if($koordinat_jalansaluran->jalansaluran_id === $groupby->jalansaluran_id)
+                    {{$koordinat_jalansaluran->latitude}} , {{$koordinat_jalansaluran->longitude}}
                     @endif
                     @endforeach
                 </p>

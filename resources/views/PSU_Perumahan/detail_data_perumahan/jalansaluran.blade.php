@@ -36,7 +36,7 @@
                 @endforelse
             </tbody>
         </table>
-        <a href="/koordinatsarana/petasarana/{{$perumahans->id}}">
+        <a href="/koordinatjalansalurans/tampilkanpeta/{{$perumahans->id}}" target="_blank">
             <span class="icon text-white-50">
                 <i class="fas fa-map"></i>
             </span>

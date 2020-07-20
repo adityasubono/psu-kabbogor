@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\FotoJalanSaluran;
 use App\JalanSaluran;
 use App\KoordinatJalanSaluran;
+use App\Perumahans;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class KoordinatJalanSaluranController extends Controller
 {
@@ -76,10 +78,25 @@ class KoordinatJalanSaluranController extends Controller
         return view ('PSU_Perumahan.jalansaluran.koordinat.peta',compact('koordinat'));
     }
 
-    public function showallmaps()
+    public function showallmaps($perumahan_id)
     {
-        $koordinat = KoordinatJalanSaluran::all();
-        return view ('PSU_Perumahan.sarana.koordinat.peta',compact('koordinat'));
+        $perumahans = Perumahans::find($perumahan_id);
+        $data_koordinat_jalansaluran = DB::select('SELECT * FROM jalansalurans
+                                                   JOIN koordinatjalansalurans ON jalansalurans.id = koordinatjalansalurans.jalansaluran_id
+                                                   WHERE koordinatjalansalurans.perumahan_id='.$perumahan_id);
+
+        $data_koordinat_jalansaluran_group_by = DB::select("SELECT jalansaluran_id, nama_jalan_saluran, nama_perumahan,
+                                                      lokasi, kecamatan, kelurahan, luas_jalan_saluran,
+                                                      kondisi_jalan_saluran, longitude, latitude,COUNT(jalansaluran_id)
+                                                      FROM jalansalurans
+                                                      JOIN koordinatjalansalurans ON jalansalurans.id = koordinatjalansalurans.jalansaluran_id
+                                                      JOIN perumahans ON jalansalurans.perumahan_id = perumahans.id
+                                                      WHERE koordinatjalansalurans.perumahan_id ='$perumahan_id'
+                                                      GROUP BY koordinatjalansalurans.jalansaluran_id
+                                                      HAVING COUNT(jalansaluran_id > 1)");
+        return view ('PSU_Perumahan.detail_data_perumahan.detail_koordinat_jalansaluran',
+            compact('data_koordinat_jalansaluran','data_koordinat_jalansaluran_group_by','perumahans'));
+
     }
 
     /**
