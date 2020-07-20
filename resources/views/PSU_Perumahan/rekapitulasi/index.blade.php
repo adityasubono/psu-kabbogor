@@ -40,6 +40,7 @@
 
         <script type="text/javascript">
             var data_koordinat_perumahan = <?php print_r(json_encode($data_koordinat_perumahan)) ?>;
+            var data_koordinat_perumahan_group_by = <?php print_r(json_encode($data_koordinat_perumahan_group_by)) ?>;
 
             var mymap = new GMaps({
                 el: '#peta_persebaran_perumahan',
@@ -95,7 +96,11 @@
                         strokeOpacity: 0.5,
                         strokeWeight: 1,
                         fillColor: '#a4c639',
-                        fillOpacity: 0.2
+                        fillOpacity: 0.2,
+                        click: function () {
+                            $("#review_perumahan" + data_koordinat_perumahan_group_by[i].id).modal('show');
+
+                        }
                     });
                 });
             })
@@ -103,7 +108,57 @@
 
         </script>
 
+        @foreach($data_koordinat_perumahan_group_by as $koordinat_perumahan)
+        <p>ID Perumaha {{$koordinat_perumahan->id}}</p>
 
+        <div class="modal fade" id="review_perumahan{{$koordinat_perumahan->id}}" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title" id="exampleModalLabel">{{$koordinat_perumahan->nama_perumahan}}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p><b>Perumahan ID:</b>
+                            {{$koordinat_perumahan->id}}
+                        </p>
+
+                        <p><b>Alamat Lokasi :</b><br>
+                            {{$koordinat_perumahan->nama_perumahan}}, {{$koordinat_perumahan->kecamatan}},
+                            {{$koordinat_perumahan->kelurahan}}, {{$koordinat_perumahan->lokasi}}
+                        </p>
+
+                        <p><b>Status Perumahan :</b>
+                            {{$koordinat_perumahan->status_perumahan}}
+                        </p>
+                        <p><b>Informasi Perumahan</b><br>
+                            Nama Pengembang :  {{$koordinat_perumahan->nama_pengembang }}<br>
+                            Luas Perumahan :  {{$koordinat_perumahan->luas_perumahan }} /(m2)<br>
+                            Jumlah Perumahan : {{$koordinat_perumahan->jumlah_perumahan }}<br>
+                        </p>
+                        <p>
+                            <b>Koordinat : </b><br>
+                            @foreach($data_koordinat_perumahan as $perumahan)
+                            @if($perumahan->id == $koordinat_perumahan->perumahan_id)
+
+                            {{$perumahan->latitude}} , {{$perumahan->longitude}}
+
+                            @endif
+                            @endforeach
+                        </p>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endforeach
 
     </div>
     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
