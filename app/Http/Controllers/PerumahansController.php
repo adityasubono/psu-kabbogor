@@ -64,6 +64,14 @@ class PerumahansController extends Controller
         $data_koordinat_taman = Taman::all()->count();
 
 
+        $data_pju = PJU::all();
+        $data_saluran_bersih = Saluran::all();
+        $data_bast = Bast::all();
+        $data_basta = Basta::all();
+        $data_izin_lokasi = IzinLokasi::all();
+        $data_ippt = Ippt::all();
+        $data_sk_siteplan = Siteplan::all();
+
         return view('PSU_Perumahan.index', compact(
             'perumahans',
             'kecamatans',
@@ -79,7 +87,9 @@ class PerumahansController extends Controller
             'data_koordinat_jalan_saluran',
             'data_taman',
             'data_foto_taman',
-            'data_koordinat_taman'
+            'data_koordinat_taman',
+            'data_basta',
+            'data_bast'
         ));
     }
 
