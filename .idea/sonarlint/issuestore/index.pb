@@ -490,3 +490,7 @@ h
 8resources/views/PSU_Permukiman/permukiman/edit.blade.php,0\e\0eee407fa8aa26b359c657eebb4aa7c766194db6
 _
 /resources/views/PSU_Permukiman/create.blade.php,5\2\52d496fd7f4e33b074c464dbab34b068e25b6981
+‹
+[resources/views/PSU_Perumahan/detail_data_perumahan/detail_koordinat_jalansaluran.blade.php,3\a\3ab1f5eef36063cddc69e5023811ac774dc5b852
+„
+Tresources/views/PSU_Perumahan/detail_data_perumahan/detail_koordinat_taman.blade.php,4\d\4d32b386c5a06ace0273ac431c15370f66d939ac
