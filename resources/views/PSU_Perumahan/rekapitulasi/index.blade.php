@@ -19,7 +19,71 @@
 </ul>
 <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-        <div id="peta_persebaran_perumahan"></div>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="ml-2 mb-3">Peta Persebaran Perumahan, Sarana, Jalan Saluran dan Taman Penghijauan</h5>
+
+                <div class="row">
+                    <div class="col-9">
+                        <div id="peta_persebaran_perumahan"></div>
+                    </div>
+                    <div class="col-3">
+                        <div class="card mb-3 mt-2">
+                            <div class="row no-gutters">
+                                <div class="col-md-2" style="background-color:#2bcfff;">
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Warna Biru</h5>
+                                        <p class="card-text">Kawasan Perumahan</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mb-3">
+                            <div class="row no-gutters">
+                                <div class="col-md-2" style="background-color: #f2e02b">
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Warna Kuning</h5>
+                                        <p class="card-text">Kawasan Sarana Perumahan</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mb-3">
+                            <div class="row no-gutters">
+                                <div class="col-md-2" style="background-color:#6b6b6b">
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Warna Abu Abu</h5>
+                                        <p class="card-text">Jalan dan Saluran Perumahan</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mb-3">
+                            <div class="row no-gutters">
+                                <div class="col-md-2" style="background-color:#008000">
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Warna Hijau</h5>
+                                        <p class="card-text">Kawasan Taman Penghijauan</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <script
             src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script
@@ -32,7 +96,7 @@
                 border: 5px solid #6c757d;
                 border-radius: 10px;
                 width: 100%;
-                height: 700px;
+                height: 500px;
                 margin: 5px;
             }
         </style>
@@ -133,7 +197,7 @@
                 x[y.sarana_id].push(y);
                 return x;
             }, Object.create(null));
-            console.log('result', result_sarana);
+            console.log('result_sarana', result_sarana);
             for (let p = 0; p < unique_sarana.length; p++) {
                 var coord_sarana = {};
                 path_sarana[p] = [];
@@ -282,8 +346,6 @@
 
         <!--    POPUP KOORDINAT PERUMAHAN -->
         @foreach($data_koordinat_perumahan_group_by as $koordinat_perumahan)
-        <p>ID Perumaha {{$koordinat_perumahan->id}}</p>
-
         <div class="modal fade" id="review_perumahan{{$koordinat_perumahan->id}}" tabindex="-1" role="dialog"
              aria-labelledby="exampleModalLabel"
              aria-hidden="true">
@@ -333,6 +395,128 @@
         </div>
         @endforeach
 
+         <!-- POPUP SARANA -->
+        @foreach($data_koordinat_sarana_group_by as $groupby_sarana)
+
+        <div class="modal fade" id="review_sarana{{$groupby_sarana->sarana_id}}" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title" id="exampleModalLabel">{{$groupby_sarana->nama_sarana}}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p><b>ID Sarana : </b>
+                            {{$groupby_sarana->sarana_id}}
+                        </p>
+                        <p><b>Alamat Lokasi :</b><br>
+                            {{$groupby_sarana->nama_perumahan}}, {{$groupby_sarana->kecamatan}},
+                            {{$groupby_sarana->kelurahan}}, {{$groupby_sarana->lokasi}}
+                        </p>
+
+                        <p>
+                            <b>Koordinat : </b> {{$groupby_sarana->latitude}} , {{$groupby_sarana->longitude}}
+                        </p>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endforeach
+
+        <!--        POPUP JALANSALURAN    -->
+        @foreach($data_koordinat_jalansaluran_group_by as $groupby_jalansaluran)
+
+        <div class="modal fade" id="review_jalansaluran{{$groupby_jalansaluran->jalansaluran_id}}" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title" id="exampleModalLabel">Nama Jalan : {{$groupby_jalansaluran->nama_jalan_saluran}}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p><b>ID Jalan Saluran: </b>{{$groupby_jalansaluran->jalansaluran_id}}</p>
+                        <p><b>Alamat Lokasi :</b><br>
+                            {{$groupby_jalansaluran->nama_perumahan}}, {{$groupby_jalansaluran->kecamatan}},
+                            {{$groupby_jalansaluran->kelurahan}}, {{$groupby_jalansaluran->lokasi}}
+                        </p>
+
+                        <p> <b>Luas Jalan Saluran :</b> {{$groupby_jalansaluran->luas_jalan_saluran}} /(m2)<br>
+                            <b>Kondisi Jalan Saluran :</b> {{$groupby_jalansaluran->kondisi_jalan_saluran}}
+                        </p>
+
+                        <p>
+                            <b>Koordinat : </b><br>
+                            @foreach($data_koordinat_jalansaluran as $koordinat_jalansaluran)
+                            @if($koordinat_jalansaluran->jalansaluran_id === $groupby_jalansaluran->jalansaluran_id)
+                            {{$koordinat_jalansaluran->latitude}} , {{$koordinat_jalansaluran->longitude}}
+                            @endif
+                            @endforeach
+                        </p>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endforeach
+
+       <!--POPUP KOORDINAT TAMAN DAN PENGHIJAUAN-->
+
+        @foreach($data_koordinat_taman_group_by as $groupby_taman)
+
+        <div class="modal fade" id="review_taman{{$groupby_taman->taman_id}}" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title" id="exampleModalLabel">Kawasan: {{$groupby_taman->nama_taman}}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p><b>ID Taman dan Penghijauan : </b>{{$groupby_taman->taman_id}}</p>
+                        <p><b>Alamat Lokasi :</b><br>
+                            {{$groupby_taman->nama_perumahan}}, {{$groupby_taman->kecamatan}},
+                            {{$groupby_taman->kelurahan}}, {{$groupby_taman->lokasi}}
+                        </p>
+
+                        <p><b>Luas Taman :</b> {{$groupby_taman->luas_taman}} /(m2)<br>
+                            <b>Kondisi Taman :</b> {{$groupby_taman->kondisi_taman}}
+                        </p>
+
+                        <p>
+                            <b>Koordinat : </b><br>
+                            @foreach($data_koordinat_taman as $koordinat_taman)
+                            @if($koordinat_taman->taman_id === $groupby_taman->taman_id)
+                            {{$koordinat_taman->latitude}} , {{$koordinat_taman->longitude}}
+                            @endif
+                            @endforeach
+                        </p>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endforeach
     </div>
     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
         @include('PSU_Perumahan.rekapitulasi.grafik.grafik_perumahan')

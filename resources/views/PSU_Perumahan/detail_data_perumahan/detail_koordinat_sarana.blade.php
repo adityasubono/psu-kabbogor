@@ -180,6 +180,7 @@
 </script>
 
 @foreach($data_koordinat_sarana_group_by as $groupby)
+<p>Sarana : {{$groupby->sarana_id}}</p><br>
 <div class="modal fade" id="review_sarana{{$groupby->sarana_id}}" tabindex="-1" role="dialog"
      aria-labelledby="exampleModalLabel"
      aria-hidden="true">
@@ -192,6 +193,11 @@
                 </button>
             </div>
             <div class="modal-body">
+
+                <p>
+                    <b>ID Sarana : </b> {{$groupby->sarana_id}}
+                </p>
+
                 <p><b>Alamat Lokasi :</b><br>
                     {{$groupby->nama_perumahan}}, {{$groupby->kecamatan}}, {{$groupby->kelurahan}}, {{$groupby->lokasi}}
                 </p>

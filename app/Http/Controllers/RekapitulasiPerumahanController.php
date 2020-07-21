@@ -50,12 +50,12 @@ class RekapitulasiPerumahanController extends Controller
                                              ON perumahans.id = koordinatsaranas.perumahan_id');
 
 
-        $data_koordinat_sarana_group_by = DB::select('SELECT *, COUNT(sarana_id)
-                                                    FROM saranas
-                                                    JOIN koordinatsaranas
-                                                    ON saranas.id = koordinatsaranas.sarana_id
-                                                    GROUP BY koordinatsaranas.sarana_id
-                                                    HAVING COUNT(sarana_id > 1)');
+        $data_koordinat_sarana_group_by = DB::select('SELECT * FROM koordinatsaranas
+                                                      JOIN perumahans
+                                                      ON perumahans.id = koordinatsaranas.perumahan_id
+                                                      JOIN saranas
+                                                      ON saranas.perumahan_id = perumahans.id
+                                                      GROUP BY koordinatsaranas.sarana_id');
 
 
         $data_koordinat_jalansaluran = DB::select('SELECT * FROM koordinatjalansalurans
@@ -63,22 +63,23 @@ class RekapitulasiPerumahanController extends Controller
                                                    ON jalansalurans.id = koordinatjalansalurans.jalansaluran_id');
 
 
-        $data_koordinat_jalansaluran_group_by = DB::select('SELECT *, COUNT(jalansaluran_id)
-                                                            FROM jalansalurans
-                                                            JOIN koordinatjalansalurans
+        $data_koordinat_jalansaluran_group_by = DB::select('SELECT * FROM koordinatjalansalurans
+                                                            JOIN jalansalurans
                                                             ON jalansalurans.id = koordinatjalansalurans.jalansaluran_id
-                                                            GROUP BY koordinatjalansalurans.jalansaluran_id
-                                                            HAVING COUNT(jalansaluran_id > 1)');
+                                                            JOIN perumahans
+                                                            ON perumahans.id = jalansalurans.perumahan_id
+                                                            GROUP BY koordinatjalansalurans.jalansaluran_id');
 
         $data_koordinat_taman = DB::select('SELECT * FROM koordinattamans
                                             JOIN tamans
                                             ON tamans.id = koordinattamans.taman_id');
 
 
-        $data_koordinat_taman_group_by = DB::select('SELECT *
-                                                     FROM tamans
-                                                     JOIN koordinattamans
-                                                     ON koordinattamans.taman_id = tamans.id
+        $data_koordinat_taman_group_by = DB::select('SELECT * FROM koordinattamans
+                                                     JOIN tamans
+                                                     ON tamans.id = koordinattamans.taman_id
+                                                     JOIN perumahans
+                                                     ON perumahans.id = tamans.perumahan_id
                                                      GROUP BY koordinattamans.taman_id');
 
         return view('PSU_Perumahan.rekapitulasi.index',compact('jml_status_sudah',
