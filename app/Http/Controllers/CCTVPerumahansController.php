@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\CCTVPerumahan;
 use App\Perumahans;
+use Illuminate\Http\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 
 class CCTVPerumahansController extends Controller
 {
@@ -52,11 +55,29 @@ class CCTVPerumahansController extends Controller
 
         $this->validate($request, $rules, $customMessages);
 
+
         foreach ($request->data_cctv as $key => $value){
             CCTVPerumahan::create($value);
+
+        }
+        $perumahan_id = $request->data_cctv[0]['perumahan_id'];
+        $data_cctv = CCTVPerumahan::where('perumahan_id',$perumahan_id)->get();
+
+
+        foreach ($data_cctv as $cctv){
+            $newName = rand(100000, 1001238912).".m3u8";
+            $cctv->title = $newName;
+            $id_folder = $request->data_cctv[0]['perumahan_id'];
+
+          Storage::disk('video_cctv_perumahan')->put('/'.$id_folder.'/'.'/'.$cctv->id.'/'.$newName, '
+            VIDSOURCE="rtsp://{username}:{password}@{ip_address}:554/cam/realmonitor?channel=1&subtype=0"
+            AUDIO_OPTS="-c:a aac -b:a 160000 -ac 2"
+            VIDEO_OPTS="-s 854x480 -c:v libx264 -b:v 800000"
+            OUTPUT_HLS="-hls_time 10 -hls_list_size 10 -start_number 1"
+            ffmpeg -i "$VIDSOURCE" -y $AUDIO_OPTS $VIDEO_OPTS $OUTPUT_HLS mystream.m3u8');
+            $cctv->save();
         }
 
-        $perumahan_id = $request->data_cctv[0]['perumahan_id'];
         return redirect()->action(
             'PerumahansController@edit', ['id' => $perumahan_id])
             ->with('status','Data CCTV Perumahan Berhasil Disimpan');

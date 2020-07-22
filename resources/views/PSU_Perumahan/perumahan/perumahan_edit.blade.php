@@ -38,17 +38,13 @@
                     <span class="text">Edit</span>
                 </button>
 
-                <button type="button"
-                        class="btn btn-success btn-icon-split float-left mr-3"
-                        data-toggle="modal"
-                        data-target="#tambah_koordinat_perumahan{{ $perumahans->id }}"
-                        data-backdrop="static"
-                        data-keyboard="false">
+                <a href="/koordinatperumahans/{{$perumahans->id}}"
+                        class="btn btn-success btn-icon-split float-left mr-3" target="_blank">
                 <span class="icon text-white-50">
                     <i class="fas fa-map"></i>
                 </span>
                     <span class="text">Tambah Koordinat Perumahan</span>
-                </button>
+                </a>
             </div>
         </div>
     </div>

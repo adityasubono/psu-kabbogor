@@ -13,7 +13,7 @@
         </div>
         <div class="card-body">
             <video class="video-js vjs-default-skin" width="400" height="300" controls autoplay="true" id="hls-example">
-                <source src="../../assets/video/test1.m3u8" type="application/x-mpegURL">
+                <source src="../../assets/video/1/tes1.m3u8" type="application/x-mpegURL">
             </video>
         </div>
     </div>
@@ -32,4 +32,8 @@
     var player = videojs('hls-example');
     player.play();
 </script>
+
+<div style="height: 200px">
+
+</div>
 @endsection

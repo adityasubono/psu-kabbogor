@@ -28,8 +28,6 @@
 
 
 
-
-        <div style="height: 275px"></div>
         <!-- Footer -->
         @include('includes.footer')
         <!-- End of Footer -->

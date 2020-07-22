@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2b7c29d99de9fc8080f1199a515d1fb4",
+    "content-hash": "fc8d3a72f47eb34a14df73072238b1f9",
     "packages": [
         {
             "name": "alchemy/binary-driver",
@@ -67,6 +67,88 @@
                 "driver"
             ],
             "time": "2020-02-12T19:35:11+00:00"
+        },
+        {
+            "name": "aminyazdanpanah/php-ffmpeg-video-streaming",
+            "version": "v1.2.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aminyazdanpanah/PHP-FFmpeg-video-streaming.git",
+                "reference": "3a6957fca647dcf164450292dcdda6c65d079f66"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aminyazdanpanah/PHP-FFmpeg-video-streaming/zipball/3a6957fca647dcf164450292dcdda6c65d079f66",
+                "reference": "3a6957fca647dcf164450292dcdda6c65d079f66",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2",
+                "php-ffmpeg/php-ffmpeg": "^0.15 || 0.16",
+                "symfony/filesystem": "^4.0 || ^5.0"
+            },
+            "require-dev": {
+                "aws/aws-sdk-php": "^3.0@dev",
+                "google/cloud-storage": "dev-master",
+                "microsoft/azure-storage-blob": "dev-master",
+                "phpunit/phpunit": "^8.4"
+            },
+            "suggest": {
+                "aminyazdanpanah/handling-file-uploads": "aminyazdanpanah/handling-file-uploads is suggested for uploading and validating a new video.",
+                "aminyazdanpanah/php-shaka": "aminyazdanpanah/php-shaka is suggested for using DRM and encryption",
+                "aws/aws-sdk-php": "Allow sending stream content to AWS services like S3",
+                "google/cloud-storage": "Allow sending stream content to Google services like Google Storage",
+                "microsoft/azure-storage-blob": "Allow sending stream content to Google services like Google Storage"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "Streaming\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Amin Yazdanpanah",
+                    "email": "contact@aminyazdanpanah.com",
+                    "homepage": "https://www.aminyazdanpanah.com"
+                }
+            ],
+            "description": "📼 PHP FFMpeg - Video Streaming - DASH, HLS http://video.aminyazdanpanah.com",
+            "homepage": "https://github.com/aminyazdanpanah/PHP-FFmpeg-video-streaming",
+            "keywords": [
+                "DRM",
+                "MPD",
+                "adaptive-http-streaming",
+                "amazons3",
+                "clearkey",
+                "cloud",
+                "clouds",
+                "dash",
+                "dynamic-adaptive-streaming-over-http",
+                "encoding",
+                "encryption",
+                "google-cloud-storage",
+                "hls",
+                "http-liv-streaming",
+                "key-rotation",
+                "live-streaming",
+                "m3u8",
+                "microsoft-azure",
+                "mp4",
+                "mpeg-dash",
+                "s3",
+                "streaming",
+                "video",
+                "video-streaming"
+            ],
+            "time": "2020-05-04T19:44:43+00:00"
         },
         {
             "name": "asm89/stack-cors",
@@ -1855,16 +1937,16 @@
         },
         {
             "name": "pbmedia/laravel-ffmpeg",
-            "version": "7.0.4",
+            "version": "7.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pascalbaljetmedia/laravel-ffmpeg.git",
-                "reference": "1323e47a1f0124d0834b5ad587fb91f4ad2ad071"
+                "reference": "fd18b65088c25df70fe6160266d610fc3027b46c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pascalbaljetmedia/laravel-ffmpeg/zipball/1323e47a1f0124d0834b5ad587fb91f4ad2ad071",
-                "reference": "1323e47a1f0124d0834b5ad587fb91f4ad2ad071",
+                "url": "https://api.github.com/repos/pascalbaljetmedia/laravel-ffmpeg/zipball/fd18b65088c25df70fe6160266d610fc3027b46c",
+                "reference": "fd18b65088c25df70fe6160266d610fc3027b46c",
                 "shasum": ""
             },
             "require": {
@@ -1925,7 +2007,7 @@
                 "protone media",
                 "protonemedia"
             ],
-            "time": "2020-06-03T07:22:42+00:00"
+            "time": "2020-07-06T14:35:42+00:00"
         },
         {
             "name": "php-ffmpeg/php-ffmpeg",

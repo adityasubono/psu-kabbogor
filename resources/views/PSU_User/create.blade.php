@@ -71,10 +71,8 @@
                             <div class="custom-file">
                                 <input type="file" name="file_foto"
                                        id="file_foto"
-                                       class="custom-file-input
-                                   @error('file_foto') is-invalid @enderror">
-                                <label class="custom-file-label">Pilih
-                                    File Foto....</label>
+                                       class="custom-file-input @error('file_foto') is-invalid @enderror">
+                                <label class="custom-file-label">Pilih File Foto....</label>
                                 @error('file_foto')
                                 <div class="invalid-feedback">
                                     {{ $message }}

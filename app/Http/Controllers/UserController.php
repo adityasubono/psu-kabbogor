@@ -50,6 +50,20 @@ class UserController extends Controller
 //            'operator' => 'required|not_in:0'
 //        ]);
 
+        $rules = [
+            'nik' => 'required',
+            'nama' => 'required',
+            'file_foto' => 'required',
+            'email' => 'required|min:4|email|unique:users',
+            'password' => 'required',
+            'operator' => 'required|not_in:0'
+        ];
+
+        $customMessages = [
+            'required' => 'Masukan Data :attribute ini ?.'
+        ];
+        $this->validate($request, $rules, $customMessages);
+
         $image = $request->file('file_foto');
         $ext = $image->getClientOriginalExtension();
         $nama_file = $image->getClientOriginalName();

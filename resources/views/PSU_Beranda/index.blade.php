@@ -81,6 +81,9 @@
         </div>
     </div>
 </div>
-<div style="height: 180px;"></div>
+
+<div style="height: 325px;">
+
+</div>
 
 @endsection

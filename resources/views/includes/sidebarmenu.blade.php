@@ -100,8 +100,8 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Menu:</h6>
                 <a class="collapse-item" href="/kegiatanfisik">Kelola Data</a>
-                <a class="collapse-item" href="/kegiatan_fisik/monitoring">Monitoring</a>
-                <a class="collapse-item" href="/kegiatan_fisik/rekapitulasi">Rekapitulasi</a>
+                <a class="collapse-item" href="/kegiatanfisik">Monitoring</a>
+                <a class="collapse-item" href="/kegiatanfisik">Rekapitulasi</a>
             </div>
         </div>
     </li>
@@ -123,7 +123,7 @@
                 <h6 class="collapse-header">Menu Navigasi:</h6>
                 <a class="collapse-item" href="/users">Data Pengguna</a>
                 <a class="collapse-item" href="/kecamatans">Data Lokasi</a>
-                <a class="collapse-item" href="/kecamatans">Master Data</a>
+                <a class="collapse-item" href="/masterdata">Master Data</a>
             </div>
         </div>
     </li>
