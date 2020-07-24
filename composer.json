@@ -18,7 +18,8 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
         "maatwebsite/excel": "^3.1",
-        "pbmedia/laravel-ffmpeg": "^7.0"
+        "pbmedia/laravel-ffmpeg": "^7.0",
+        "symfony/process": "^4.0"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
@@ -65,8 +66,7 @@
             "@php artisan key:generate --ansi"
         ],
         "post-install-cmd": [
-            "php artisan clear-compiled",
-            "chmod -R 777 public/"
+            "php artisan clear-compiled"
         ]
     }
 }

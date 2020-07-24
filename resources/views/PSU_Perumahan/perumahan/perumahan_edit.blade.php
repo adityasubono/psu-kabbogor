@@ -39,7 +39,7 @@
                 </button>
 
                 <a href="/koordinatperumahans/{{$perumahans->id}}"
-                        class="btn btn-success btn-icon-split float-left mr-3" target="_blank">
+                        class="btn btn-success btn-icon-split float-left mr-3">
                 <span class="icon text-white-50">
                     <i class="fas fa-map"></i>
                 </span>
@@ -305,30 +305,6 @@
     </div>
 </div>
 
-<div class="modal fade" id="tambah_koordinat_perumahan{{ $perumahans->id }}"
-     tabindex="-1"
-     role="dialog"
-     aria-labelledby="exampleModalScrollableTitle"
-     aria-hidden="true">
-    <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-primary text-white">
-                <h5 class="modal-title" id="exampleModalScrollableTitle">
-                    Data Koordinat Perumahan {{$perumahans->nama_perumahan}}
-                </h5>
-                <button type="button"
-                        class="close bg-danger p-sm-4"
-                        data-dismiss="modal"
-                        aria-label="Close">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                @include('PSU_Perumahan.koordinat_perumahan.koordinat_perumahan')
-            </div>
-        </div>
-    </div>
-</div>
 
 
 

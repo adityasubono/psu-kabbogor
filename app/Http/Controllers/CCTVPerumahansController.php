@@ -7,6 +7,8 @@ use App\Perumahans;
 use Illuminate\Http\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Exception\ProcessFailedException;
 
 
 class CCTVPerumahansController extends Controller
@@ -65,17 +67,22 @@ class CCTVPerumahansController extends Controller
 
 
         foreach ($data_cctv as $cctv){
-            $newName = rand(100000, 1001238912).".m3u8";
-            $cctv->title = $newName;
+            $newName_m3u8 = rand(100000, 1001238912).".m3u8";
+            $newName_sh = rand(100000, 1001238912).".sh";
+            $cctv->title = $newName_m3u8;
             $id_folder = $request->data_cctv[0]['perumahan_id'];
+            $ffmpeg = 'ffmpeg -v info -i '.$cctv->ip_cctv.' -c:v copy -c:a copy -bufsize 1835k -pix_fmt yuv420p -flags -global_header -hls_time 10 -hls_list_size 6 -hls_wrap 10 -start_number 1 public/assets/video/cctv_perumanhan/'.$cctv->perumahan_id.'/'.$cctv->id.'/'.$newName_m3u8;
 
-          Storage::disk('video_cctv_perumahan')->put('/'.$id_folder.'/'.'/'.$cctv->id.'/'.$newName, '
-            VIDSOURCE="rtsp://{username}:{password}@{ip_address}:554/cam/realmonitor?channel=1&subtype=0"
-            AUDIO_OPTS="-c:a aac -b:a 160000 -ac 2"
-            VIDEO_OPTS="-s 854x480 -c:v libx264 -b:v 800000"
-            OUTPUT_HLS="-hls_time 10 -hls_list_size 10 -start_number 1"
-            ffmpeg -i "$VIDSOURCE" -y $AUDIO_OPTS $VIDEO_OPTS $OUTPUT_HLS mystream.m3u8');
+            Storage::disk('video_cctv_perumahan')->put('/'.$id_folder.'/'.'/'.$cctv->id.'/'.$newName_sh, $ffmpeg);
+            $process = new Process([$ffmpeg]);
+            $process->run();
+            if(!$process->isSuccessful()){
+                throw new ProcessFailedException($process);
+            }
+            dd($process->getOutput());
+//            dd($process);
             $cctv->save();
+
         }
 
         return redirect()->action(

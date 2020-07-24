@@ -37,12 +37,10 @@ class RekapitulasiPerumahanController extends Controller
                                                 ON perumahans.id = koordinatperumahans.perumahan_id');
 
 
-        $data_koordinat_perumahan_group_by = DB::select("SELECT *, COUNT(perumahan_id)
-                                                         FROM perumahans
-                                                         JOIN koordinatperumahans
-                                                         ON perumahans.id = koordinatperumahans.perumahan_id
-                                                         GROUP BY koordinatperumahans.perumahan_id
-                                                         HAVING COUNT(perumahan_id > 1)");
+        $data_koordinat_perumahan_group_by = DB::select("SELECT * FROM koordinatperumahans
+                                                          JOIN perumahans
+                                                          ON perumahans.id = koordinatperumahans.perumahan_id
+                                                          GROUP BY koordinatperumahans.perumahan_id");
 
 
         $data_koordinat_sarana = DB::select('SELECT * FROM koordinatsaranas

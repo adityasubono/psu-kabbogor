@@ -138,22 +138,24 @@
             }, Object.create(null));
             console.log('result', result);
 
+
             for (let u = 0; u < unique.length; u++) {
                 var coord = {};
-                path[u] = [];
+                path[unique[u]] = [];
                 for (var j = 0; j < result[unique[u]].length; j++) {
                     const lt = parseFloat(result[unique[u]][j].latitude);
                     const ltd = parseFloat(result[unique[u]][j].longitude);
                     coord[j] = [lt, ltd];
-                    path[u].push(coord[j]);
+                    path[unique[u]].push(coord[j]);
                 }
             }
 
             // console.log("PATH", path)
 
             $.each(unique, function (index, value) {
+                console.log("value unique",value)
                 $.each(path, function (i, v) {
-                    console.log("PATH V", v)
+                    console.log("path v",i,"v "+v)
                     mymap.drawPolygon({
                         paths: v,
                         strokeColor: '#878787',
@@ -162,9 +164,11 @@
                         fillColor: '#2bcfff',
                         fillOpacity: 0.2,
                         click: function () {
-                            $("#review_perumahan" + data_koordinat_perumahan_group_by[i].id).modal('show');
+                            console.log('ini',i+'valueee'+v)
+                            $("#review_perumahan" + i).modal('show');
 
                         }
+
                     });
                 });
             })
@@ -346,7 +350,8 @@
 
         <!--    POPUP KOORDINAT PERUMAHAN -->
         @foreach($data_koordinat_perumahan_group_by as $koordinat_perumahan)
-        <div class="modal fade" id="review_perumahan{{$koordinat_perumahan->id}}" tabindex="-1" role="dialog"
+        <p>{{$koordinat_perumahan->perumahan_id}}</p>
+        <div class="modal fade" id="review_perumahan{{$koordinat_perumahan->perumahan_id}}" tabindex="-1" role="dialog"
              aria-labelledby="exampleModalLabel"
              aria-hidden="true">
             <div class="modal-dialog">

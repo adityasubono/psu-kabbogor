@@ -113,9 +113,7 @@ class KoordinatPerumahansController extends Controller
         foreach ($request->data_koordinat as $key => $value) {
             KoordinatPerumahan::create($value);
         }
-
         $perumahan_id = $request->data_koordinat[0]['perumahan_id'];
-
         return redirect()->action('PerumahansController@edit', ['id' => $perumahan_id])
             ->with('status', 'Data Dengan ID ' . $perumahan_id . ' Berhasil Di Update');
     }

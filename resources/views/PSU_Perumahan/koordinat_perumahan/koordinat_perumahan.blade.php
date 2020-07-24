@@ -12,7 +12,7 @@
                 border: 5px solid #6c757d;
                 border-radius: 10px;
                 width: 100%;
-                height: 500px;
+                height: 600px;
                 margin: 5px;
             }
         </style>
@@ -23,41 +23,38 @@
         </div>
         @endif
 
-        <div class="row">
-            <div class="col-8">
-                <div id="mymap"></div>
-            </div>
-            <div class="col-4">
-                <input type="hidden" id="jumlah-form" value="0">
-                <div id="koordinat_perumahan_form"></div>
-            </div>
-            <input type="hidden" id="jumlah-form" value="0">
-            <div id="koordinat_perumahan_form"></div>
+        <form action="/koordinatperumahans/store" method="post">
+            @csrf
+            <div class="row">
+                <div class="col-8">
+                    <div id="mymap"></div>
+                </div>
+                <div class="col-4">
+                    <input type="hidden"
+                           id="jumlah-form"
+                           value="0">
+                    <input type="hidden" id="perumahan_id" value="{{$data_perumahan->id}}">
+                    <div id="koordinat_perumahan_form"></div>
+                </div>
 
-            <a href="/perumahans/edit/{{$data_perumahan->id}}"
-               class="btn btn-info btn-icon-split ml-3">
-                    <span class="icon text-white-50">
-                        <i class="fas fa-download"></i>
-                    </span>
-                <span class="text">Simpan</span>
-            </a>
+                <button type="button" class="btn btn-info btn-icon-split ml-3"
+                        onclick="window.location.reload()">
+                       <span class="icon text-white-50">
+                           <i class="fas fa-sync"></i>
+                       </span>
+                    <span class="text">Reset</span>
+                </button>
 
-            <button class="btn btn-info btn-icon-split ml-3"
-                    onclick="window.location.reload()">
-            <span class="icon text-white-50">
-                <i class="fas fa-sync"></i>
-            </span>
-                <span class="text">Reset</span>
-            </button>
-
-            <button type="submit" class="btn btn-primary btn-icon-split ml-3"
-                    id="submit_pengelolah">
+                <button type="submit"
+                        class="btn btn-primary btn-icon-split ml-3"
+                        id="submit_pengelolah">
                         <span class="icon text-white-50">
                             <i class="fas fa-download"></i>
                         </span>
-                <span class="text">Simpan</span>
-            </button>
-        </div>
+                    <span class="text">Simpan</span>
+                </button>
+            </div>
+        </form>
     </div>
 </div>
 
@@ -82,12 +79,12 @@
         mymap.addMarker({
             lat: value.latitude,
             lng: value.longitude,
-            label: '' + index,
+            label: '' + value.nama_perumahan + value.perumahan_id,
             title: 'Titik Ke - ' + index,
             infoWindow: {
                 content: ' <div id="content">' +
                     '<div id="siteNotice">' +
-                    '<h5 id="firstHeading" class="firstHeading"> Titik Ke -' + index + '</h5>' +
+                    '<h5 id="firstHeading" class="firstHeading">Perumahan Titik Ke -' + index + '</h5>' +
                     '<p>' + value.latitude + ',' + value.longitude + '</p>' +
                     '</div>',
                 maxWidth: 400
@@ -101,7 +98,7 @@
         mymap.addMarker({
             lat: value.latitude,
             lng: value.longitude,
-            label: 'Sarana' + index,
+            label: 'Sarana' + value.nama_perumahan,
             title: 'Titik Ke - ' + index,
             infoWindow: {
                 content: ' <div id="content">' +
@@ -152,7 +149,6 @@
             }
         });
     });
-
 
 
 </script>
@@ -210,6 +206,7 @@
                 strokeOpacity: 0.5,
                 strokeWeight: 1,
                 fillColor: '#2bcfff',
+                label:'Perumahan',
                 fillOpacity: 0.2,
                 click: function () {
                     $("#review_perumahan" + data_koordinat_perumahan_group_by[i].id).modal('show');
@@ -413,6 +410,8 @@
             + '<input type="hidden" class="form-control"'
             + 'id="nama"name="data_koordinat[' + d + '][latitude]"'
             + 'value="' + event.latLng.lat() + '">'
+
+
             + '<p>' + event.latLng.lat() + ' , ' + event.latLng.lng()
             + '<button type="button" '
             + 'class="btn btn-danger btn-sm btn-icon-split mr-2'
