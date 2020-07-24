@@ -118,7 +118,7 @@
                             '<h4 id="firstHeading" class="firstHeading"> '+
                             result[unique[u]][1].nama_perumahan + '</h4>'+
                             '<div id="bodyContent">'+
-                            '<p><b>'+result[unique[u]][1].nama_perumahan+' </b>, berlokasi di ' +
+                            '<p><b> ID Perumahan '+result[unique[u]][1].id+'</b><br><b>'+result[unique[u]][1].nama_perumahan+' </b>, berlokasi di ' +
                             '<b>'+result[unique[u]][1].lokasi+'</b>'+
                             '<p><b>Status Perumahan : '+result[unique[u]][1].status_perumahan +
                             '</div>');

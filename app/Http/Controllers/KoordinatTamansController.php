@@ -7,6 +7,7 @@ use App\Pertamanan;
 use App\Perumahans;
 use App\Taman;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class KoordinatTamansController extends Controller
 {
@@ -103,10 +104,23 @@ class KoordinatTamansController extends Controller
         return view('PSU_Perumahan.taman.koordinat.edit', compact('koordinatTaman'));
     }
 
-    public function showallmaps()
+    public function showallmaps($perumahan_id)
     {
-        $koordinat = KoordinatTaman::all();
-        return view ('PSU_Perumahan.sarana.koordinat.peta',compact('koordinat'));
+        $perumahans = Perumahans::find($perumahan_id);
+        $data_koordinat_taman = DB::select('SELECT * FROM tamans JOIN koordinattamans ON tamans.id = koordinattamans.taman_id
+                                             WHERE koordinattamans.perumahan_id='.$perumahan_id);
+
+        $data_koordinat_taman_group_by = DB::select("SELECT taman_id, nama_taman, nama_perumahan, lokasi, kecamatan,
+                                                      kelurahan, luas_taman,
+                                                      kondisi_taman,longitude,latitude,COUNT(taman_id)
+                                                      FROM tamans
+                                                      JOIN koordinattamans ON tamans.id = koordinattamans.taman_id
+                                                      JOIN perumahans ON tamans.perumahan_id = perumahans.id
+                                                      WHERE koordinattamans.perumahan_id ='$perumahan_id'
+                                                      GROUP BY koordinattamans.taman_id
+                                                      HAVING COUNT(taman_id > 1)");
+        return view ('PSU_Perumahan.detail_data_perumahan.detail_koordinat_taman',
+            compact('data_koordinat_taman','data_koordinat_taman_group_by','perumahans'));
     }
 
     /**

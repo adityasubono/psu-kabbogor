@@ -12,6 +12,7 @@
                     <th>No.</th>
                     <th>Nama CCTV</th>
                     <th>IP CCTV</th>
+                    <th>Title</th>
                     <th>Tampilan CCTV</th>
                 </tr>
                 </thead>
@@ -21,9 +22,10 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>@include('PSU_Perumahan.cctv.menu_kelola_cctv')</td>
                     <td>{{ $cctv->ip_cctv }}</td>
+                    <td>{{ $cctv->title }}</td>
                     <td> <video width="200"
                                 height="200"
-                                autoplay controls
+                                controls
                                 autoplay="true"
                                 id="video-webcam">
                             <source src="rtsp://192.168.0.20:554" type="video/mp4">

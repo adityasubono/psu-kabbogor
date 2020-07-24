@@ -1,5 +1,10 @@
+<div class="card">
+    <div class="card-body">
+        <div id="jml_status"></div>
+    </div>
+</div>
 
-<div id="jml_status"></div>
+
 <script type="text/javascript" src="{{ url('../assets/js/highchart/code/highcharts.js')}}"></script>
 <script type="text/javascript">
     var jml_status_sudah =  <?php echo json_encode($jml_status_sudah) ?>;

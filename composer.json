@@ -10,6 +10,7 @@
     "require": {
         "php": "^7.2.5",
         "ext-json": "*",
+        "aminyazdanpanah/php-ffmpeg-video-streaming": "^1.2",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
@@ -17,7 +18,8 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
         "maatwebsite/excel": "^3.1",
-        "pbmedia/laravel-ffmpeg": "^7.0"
+        "pbmedia/laravel-ffmpeg": "^7.0",
+        "symfony/process": "^4.0"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
@@ -64,8 +66,7 @@
             "@php artisan key:generate --ansi"
         ],
         "post-install-cmd": [
-            "php artisan clear-compiled",
-            "chmod -R 777 public/"
+            "php artisan clear-compiled"
         ]
     }
 }

@@ -156,6 +156,7 @@ Route::get('/koordinatjalansalurans/edit/{koordinatJalanSaluran}', 'KoordinatJal
 Route::patch('/koordinatjalansalurans/update/{koordinatJalanSaluran}', 'KoordinatJalanSaluranController@update');
 Route::delete('/koordinatjalansalurans/delete/{koordinatJalanSaluran}', 'KoordinatJalanSaluranController@destroy');
 Route::get('/koordinatjalansalurans/show/{id}', 'KoordinatJalanSaluranController@show');
+Route::get('/koordinatjalansalurans/tampilkanpeta/{perumahan_id}', 'KoordinatJalanSaluranController@showallmaps');
 
 
 //PSU Data Taman
@@ -178,7 +179,7 @@ Route::post('/koordinattamans/store', 'KoordinatTamansController@store');
 Route::get('/koordinattamans/edit/{koordinatTaman}', 'KoordinatTamansController@edit');
 Route::patch('/koordinattamans/update/{koordinatTaman}', 'KoordinatTamansController@update');
 Route::delete('/koordinattamans/delete/{koordinatTaman}', 'KoordinatTamansController@destroy');
-Route::get('/tampilpetasemua/', 'KoordinatTamansController@showallmaps');
+Route::get('/tampilpetasemua/petataman/{perumahan_id}', 'KoordinatTamansController@showallmaps');
 Route::get('/koordinattamans/show/{id}', 'KoordinatTamansController@show');
 
 

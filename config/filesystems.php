@@ -65,6 +65,11 @@ return [
             'endpoint' => env('AWS_ENDPOINT'),
         ],
 
+        'video_cctv_perumahan' => [
+            'driver' => 'local',
+            'root'   => public_path() . '/assets/video/cctv_perumanhan/',
+        ],
+
     ],
 
     /*

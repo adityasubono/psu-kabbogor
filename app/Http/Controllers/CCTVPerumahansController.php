@@ -4,7 +4,12 @@ namespace App\Http\Controllers;
 
 use App\CCTVPerumahan;
 use App\Perumahans;
+use Illuminate\Http\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+
 
 class CCTVPerumahansController extends Controller
 {
@@ -52,11 +57,34 @@ class CCTVPerumahansController extends Controller
 
         $this->validate($request, $rules, $customMessages);
 
+
         foreach ($request->data_cctv as $key => $value){
             CCTVPerumahan::create($value);
+
+        }
+        $perumahan_id = $request->data_cctv[0]['perumahan_id'];
+        $data_cctv = CCTVPerumahan::where('perumahan_id',$perumahan_id)->get();
+
+
+        foreach ($data_cctv as $cctv){
+            $newName_m3u8 = rand(100000, 1001238912).".m3u8";
+            $newName_sh = rand(100000, 1001238912).".sh";
+            $cctv->title = $newName_m3u8;
+            $id_folder = $request->data_cctv[0]['perumahan_id'];
+            $ffmpeg = 'ffmpeg -v info -i '.$cctv->ip_cctv.' -c:v copy -c:a copy -bufsize 1835k -pix_fmt yuv420p -flags -global_header -hls_time 10 -hls_list_size 6 -hls_wrap 10 -start_number 1 public/assets/video/cctv_perumanhan/'.$cctv->perumahan_id.'/'.$cctv->id.'/'.$newName_m3u8;
+
+            Storage::disk('video_cctv_perumahan')->put('/'.$id_folder.'/'.'/'.$cctv->id.'/'.$newName_sh, $ffmpeg);
+            $process = new Process([$ffmpeg]);
+            $process->run();
+            if(!$process->isSuccessful()){
+                throw new ProcessFailedException($process);
+            }
+            dd($process->getOutput());
+//            dd($process);
+            $cctv->save();
+
         }
 
-        $perumahan_id = $request->data_cctv[0]['perumahan_id'];
         return redirect()->action(
             'PerumahansController@edit', ['id' => $perumahan_id])
             ->with('status','Data CCTV Perumahan Berhasil Disimpan');

@@ -1,12 +1,13 @@
 @extends('layouts/main')
 
-@section('title', 'Peta Koordinat Sarana ')
+@section('title', 'Peta Koordinat Jalan dan Saluran ')
 
 @section('container-fluid')
 
+
 <div class="card">
-    <h4 class="ml-3">Peta Persebaran Data Sarana Perumahan</h4>
-    <div id="peta_persebaran_sarana"></div>
+    <h4 class="ml-3">Peta Persebaran Data Jalan dan Saluran</h4>
+    <div id="peta_persebaran_jalansaluran"></div>
     <div class="card-body">
         <h5>Legenda</h5>
 
@@ -56,16 +57,19 @@
                     </div>
                 </div>
             </div>
-            <a href="/perumahans/edit/{{$perumahans->id}}"
-               class="btn btn-info btn-icon-split mt-3 ml-3">
-                <span class="icon text-white-50">
-                    <i class="fas fa-arrow-alt-circle-left"></i>
-                </span>
-                <span class="text">Kembali</span>
-            </a>
         </div>
+
+        <a href="/perumahans/edit/{{$perumahans->id}}"
+           class="btn btn-info btn-icon-split mt-3">
+        <span class="icon text-white-50">
+            <i class="fas fa-arrow-alt-circle-left"></i>
+        </span>
+            <span class="text">Kembali</span>
+        </a>
+
     </div>
 </div>
+
 
 <script
     src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -76,7 +80,7 @@
 
 
 <style type="text/css">
-    #peta_persebaran_sarana {
+    #peta_persebaran_jalansaluran {
         border: 5px solid #6c757d;
         border-radius: 10px;
         width: 100%;
@@ -88,38 +92,40 @@
 
 <script type="text/javascript">
 
-    var data_koordinat_sarana = <?php print_r(json_encode($data_koordinat_sarana)) ?>;
-    var data_koordinat_sarana_group_by = <?php print_r(json_encode($data_koordinat_sarana_group_by)) ?>;
+    var data_koordinat_jalansaluran = <?php print_r(json_encode($data_koordinat_jalansaluran)) ?>;
+    var data_koordinat_jalansaluran_group_by = <?php print_r(json_encode($data_koordinat_jalansaluran_group_by)) ?>;
     var mymap = new GMaps({
-        el: '#peta_persebaran_sarana',
+        el: '#peta_persebaran_jalansaluran',
         lat: -6.485213,
         lng: 106.753537,
         zoom: 12
     });
 
-
     var path = {};
     var latitude;
     var longitude;
-    var saranaId = []
+    var jalansaluranId = []
 
     function onlyUnique(value, index, self) {
         return self.indexOf(value) === index;
     }
 
-    for (let sarana = 0; sarana < data_koordinat_sarana.length; sarana++) {
-        const sarana_id = data_koordinat_sarana[sarana].sarana_id;
-        saranaId.push(sarana_id);
+    for (let jalansaluran = 0; jalansaluran < data_koordinat_jalansaluran.length; jalansaluran++) {
+        const jalansaluran_id = data_koordinat_jalansaluran[jalansaluran].jalansaluran_id;
+        // console.log('jalansaluran_id', jalansaluran_id)
+        jalansaluranId.push(jalansaluran_id);
     }
-    var unique = saranaId.filter(onlyUnique);
-    // console.log('unique', unique)
 
-    var result = data_koordinat_sarana.reduce(function (r, a) {
-        r[a.sarana_id] = r[a.sarana_id] || [];
-        r[a.sarana_id].push(a);
+    var result = data_koordinat_jalansaluran.reduce(function (r, a) {
+        r[a.jalansaluran_id] = r[a.jalansaluran_id] || [];
+        r[a.jalansaluran_id].push(a);
         return r;
     }, Object.create(null));
-    console.log('result', result);
+    // console.log('result', result);
+
+    var unique = jalansaluranId.filter(onlyUnique);
+    // console.log('unique', unique)
+
     for (let u = 0; u < unique.length; u++) {
         var coord = {};
         path[u] = [];
@@ -130,80 +136,89 @@
             path[u].push(coord[j]);
         }
     }
+
     $.each(unique, function (index, value) {
         $.each(path, function (i, v) {
-            if (data_koordinat_sarana_group_by[i].kondisi_sarana === 'Baik') {
-                mymap.drawPolygon({
-                    paths: v,
-                    strokeColor: '#a9a9a9',
+            if (data_koordinat_jalansaluran_group_by[i].kondisi_jalan_saluran_id === 'Baik') {
+                mymap.drawPolyline({
+                    path: v,
+                    strokeColor: '#008000',
                     strokeOpacity: 0.5,
-                    strokeWeight: 2,
-                    fillColor: '#008000',
-                    fillOpacity: 0.5,
+                    strokeWeight: 6,
                     click: function () {
-                        $("#review_sarana" + data_koordinat_sarana_group_by[i].sarana_id).modal('show');
-
-                    }
-                });
-            } else if (data_koordinat_sarana_group_by[i].kondisi_sarana === 'Rusak Ringan') {
-                mymap.drawPolygon({
-                    paths: v,
-                    strokeColor: '#a9a9a9',
-                    strokeOpacity: 0.5,
-                    strokeWeight: 2,
-                    fillColor: '#ffd700',
-                    fillOpacity: 0.5,
-                    click: function () {
-                        $("#review_sarana" + data_koordinat_sarana_group_by[i].sarana_id).modal('show');
-
-                    }
-                });
-            } else {
-                mymap.drawPolygon({
-                    paths: v,
-                    strokeColor: '#a9a9a9',
-                    strokeOpacity: 0.5,
-                    strokeWeight: 2,
-                    fillColor: '#ff0000',
-                    fillOpacity: 0.5,
-                    click: function () {
-                        $("#review_sarana" + data_koordinat_sarana_group_by[i].sarana_id).modal('show');
+                        $("#review_jalansaluran" + data_koordinat_jalansaluran_group_by[i].jalansaluran_id).modal('show');
 
                     }
                 });
             }
 
+            if (data_koordinat_jalansaluran_group_by[i].kondisi_jalan_saluran === 'Baik') {
+                mymap.drawPolyline({
+                    path: v,
+                    strokeColor: '#008000',
+                    strokeOpacity: 0.5,
+                    strokeWeight: 6,
+                    click: function () {
+                        $("#review_jalansaluran" + data_koordinat_jalansaluran_group_by[i].jalansaluran_id).modal('show');
+
+                    }
+                });
+            } else if (data_koordinat_jalansaluran_group_by[i].kondisi_jalan_saluran === 'Rusak Ringan') {
+                mymap.drawPolyline({
+                    path: v,
+                    strokeColor: '#ffd700',
+                    strokeOpacity: 0.5,
+                    strokeWeight: 6,
+                    click: function () {
+                        $("#review_jalansaluran" + data_koordinat_jalansaluran_group_by[i].jalansaluran_id).modal('show');
+
+                    }
+                });
+            } else {
+                mymap.drawPolyline({
+                    path: v,
+                    strokeColor: '#ff0000',
+                    strokeOpacity: 0.5,
+                    strokeWeight: 6,
+                    click: function () {
+                        $("#review_jalansaluran" + data_koordinat_jalansaluran_group_by[i].jalansaluran_id).modal('show');
+
+                    }
+                });
+            }
         })
     })
-
-
 </script>
 
-@foreach($data_koordinat_sarana_group_by as $groupby)
-<p>Sarana : {{$groupby->sarana_id}}</p><br>
-<div class="modal fade" id="review_sarana{{$groupby->sarana_id}}" tabindex="-1" role="dialog"
+@foreach($data_koordinat_jalansaluran_group_by as $groupby)
+<div class="modal fade" id="review_jalansaluran{{$groupby->jalansaluran_id}}" tabindex="-1" role="dialog"
      aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-primary text-white">
-                <h5 class="modal-title" id="exampleModalLabel">{{$groupby->nama_sarana}}</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Nama Jalan : {{$groupby->nama_jalan_saluran}}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-
-                <p>
-                    <b>ID Sarana : </b> {{$groupby->sarana_id}}
-                </p>
-
+                <p><b>ID Jalan Saluran: </b>{{$groupby->jalansaluran_id}}</p>
                 <p><b>Alamat Lokasi :</b><br>
                     {{$groupby->nama_perumahan}}, {{$groupby->kecamatan}}, {{$groupby->kelurahan}}, {{$groupby->lokasi}}
                 </p>
 
+                <p><b>Luas Taman :</b> {{$groupby->luas_jalan_saluran}} /(m2)<br>
+                    <b>Kondisi Taman :</b> {{$groupby->kondisi_jalan_saluran}}
+                </p>
+
                 <p>
-                    <b>Koordinat : </b> {{$groupby->latitude}} , {{$groupby->longitude}}
+                    <b>Koordinat : </b><br>
+                    @foreach($data_koordinat_jalansaluran as $koordinat_jalansaluran)
+                    @if($koordinat_jalansaluran->jalansaluran_id === $groupby->jalansaluran_id)
+                    {{$koordinat_jalansaluran->latitude}} , {{$koordinat_jalansaluran->longitude}}
+                    @endif
+                    @endforeach
                 </p>
 
             </div>
@@ -214,13 +229,5 @@
     </div>
 </div>
 @endforeach
-
-@if(isset( $koordinat))
-<a href="/koordinatsarana/{{$koor->sarana_id}}" class="btn btn-info btn-icon-split my-3">
-    <span class="icon text-white-50">
-        <i class="fas fa-arrow-alt-circle-left"></i>
-    </span>
-    <span class="text">Kembali</span>
-</a>
-@endif
 @endsection
+

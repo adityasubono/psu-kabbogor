@@ -34,7 +34,7 @@
                 @endforelse
             </tbody>
         </table>
-        <a href="/koordinattamans/show/{{$perumahans->id}}">
+        <a href="/tampilpetasemua/petataman/{{$perumahans->id}}" target="_blank">
             <span class="icon text-white-50">
                 <i class="fas fa-map"></i>
             </span>

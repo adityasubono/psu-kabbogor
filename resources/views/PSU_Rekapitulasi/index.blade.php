@@ -26,12 +26,12 @@
              aria-labelledby="nav-home-tab">
 
             <div class="row">
-                <div class="col-8">
+                <div class="col-9">
                     <div class="card shadow mb-4">
-                        <div class="card-header bg-primary text-white py-3">
-                            Peta Persebaran
-                        </div>
                         <div class="card-body">
+
+                            <div id="mymap1"></div>
+
                             <script
                                 src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
                             <script
@@ -42,13 +42,14 @@
 
                             <style type="text/css">
                                 #mymap1 {
-                                    border: 1px solid red;
+                                    border: 3px solid grey;
                                     width: 100%;
-                                    height: 700px;
+                                    border-radius: 10px;
+                                    height: 530px;
                                 }
                             </style>
 
-                            <div id="mymap1"></div>
+
 
                             <script type="text/javascript">
 
@@ -190,71 +191,79 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-4">
-                    <div class="card shadow mb-4">
-                        <div class="card-header bg-primary text-white py-3">
-                            Legenda
-                        </div>
-                        <div class="card-body">
 
-                            <p style="font-size: 16px; font-weight: 100">
+                <div class="col-3">
+                    <div class="card mb-3" style="background-color: #50ceff">
+                        <div class="row no-gutters">
+                            <div class="col-md-2">
                                 <img src="../../assets/images/sudah_serah_terima.png"
-                                     style="width: 40px; height: 40px;">
-                                : Status Perumahan Sudah Serah Terima
-                            </p>
+                                     style="width: 40px; height: 40px;" class="card-img m-3">
+                            </div>
+                            <div class="col-md-10">
+                                <div class="card-body">
+                                    <h5 class="card-title">Status Perumahan Sudah Serah Terima</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                            <p style="font-size: 16px; font-weight: 100">
+                    <div class="card mb-3" style="background-color: #f8ff8c">
+                        <div class="row no-gutters">
+                            <div class="col-md-2">
                                 <img src="../../assets/images/belum_serah_terima.png"
-                                     style="width: 50px; height: 50px;">
-                                : Status Perumahan Belum Serah Terima
-                            </p>
+                                     style="width: 50px; height: 50px;" class="card-img m-3">
+                            </div>
+                            <div class="col-md-10">
+                                <div class="card-body">
+                                    <h5 class="card-title">Status Perumahan Sudah Serah Terima</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                            <p style="font-size: 16px; font-weight: 100">
+                    <div class="card mb-3" style="background-color: #ffba8c">
+                        <div class="row no-gutters">
+                            <div class="col-md-2">
                                 <img src="../../assets/images/terlantar.png"
-                                     style="width: 50px; height: 50px;">
-                                : Status Perumahan Terlantar
-                            </p>
+                                     style="width: 40px; height: 40px;" class="card-img m-3">
+                            </div>
+                            <div class="col-md-10">
+                                <div class="card-body">
+                                    <h5 class="card-title">Status Perumahan Sudah Serah Terima</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                            <p style="font-size: 16px; font-weight: 100">
+                    <div class="card mb-3" style="background-color: #8aff8a">
+                        <div class="row no-gutters">
+                            <div class="col-md-2">
                                 <img src="../../assets/images/pertamanan.png"
-                                     style="width: 50px; height: 50px;">
-                                : Kawasan Pertamanan
-                            </p>
+                                     style="width: 40px; height: 40px;" class="card-img m-3">
+                            </div>
+                            <div class="col-md-10">
+                                <div class="card-body">
+                                    <h5 class="card-title">Status Perumahan Sudah Serah Terima</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                            <p style="font-size: 16px; font-weight: 100">
+                    <div class="card mb-3" style="background-color: #d2d2d2">
+                        <div class="row no-gutters">
+                            <div class="col-md-2">
                                 <img src="../../assets/images/permukiman.png"
-                                     style="width: 50px; height: 40px;">
-                                : Kawasan Permukiman
-                            </p>
+                                     style="width: 40px; height: 40px;" class="card-img m-3">
+                            </div>
+                            <div class="col-md-10">
+                                <div class="card-body">
+                                    <h5 class="card-title">Status Perumahan Sudah Serah Terima</h5>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="card shadow mb-4">
-                        <div class="card-header bg-primary text-white py-3">
-                            Rekap Data
-                        </div>
-                        <div class="card-body">
-                            <h6>Status Perumahan Sudah Serah Terima
-                                <span class="badge badge-primary"></span>
-                            </h6>
 
-                            <h6>Status Perumahan Belum Serah Terima
-                                <span class="badge badge-warning"></span>
-                            </h6>
 
-                            <h6>Status Perumahan Terlantar
-                                <span class="badge badge-danger"></span>
-                            </h6>
-
-                            <h6>Kawasan Pertamanan
-                                <span class="badge badge-success"></span>
-                            </h6>
-
-                            <h6>Kawasan Permukiman
-                                <span class="badge badge-secondary"></span>
-                            </h6>
-
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

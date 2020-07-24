@@ -12,7 +12,7 @@ class CCTVPermukiman extends Model
 {
     //
     protected $table='cctvpermukimans';
-    protected $fillable=['permukiman_id','nama_cctv','ip_cctv'];
+    protected $fillable=['permukiman_id','nama_cctv','ip_cctv','title'];
 
     public function r_permukiman() {
         return $this->belongsTo('App\Permukiman', 'id');

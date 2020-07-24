@@ -35,6 +35,11 @@
                         {{ $message }}
                     </div>
                     @enderror
+
+                    <input type="hidden" id="title" name="data_cctv[0][title]" value="<?php
+                    $timestamp = now();
+                    echo $timestamp;
+                    ?>">
                 </div>
 
                 <div class="col-sm-3">
