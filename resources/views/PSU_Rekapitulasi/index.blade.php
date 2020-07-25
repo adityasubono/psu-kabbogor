@@ -240,7 +240,7 @@
                 </div>
 
                 <div class="col-3">
-                    <div class="card mb-3" style="background-color: #8aff8a">
+                    <div class="card mb-3" style="background-color: #4cd213">
                         <div class="row no-gutters">
                             <div class="col-md-2">
                                 <img src="../../assets/images/pertamanan.png"
@@ -256,7 +256,7 @@
                 </div>
 
                 <div class="col-3">
-                    <div class="card mb-3" style="background-color: #d2d2d2">
+                    <div class="card mb-3" style="background-color: #5f5e4e">
                         <div class="row no-gutters">
                             <div class="col-md-2">
                                 <img src="../../assets/images/permukiman.png"

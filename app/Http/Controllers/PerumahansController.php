@@ -115,13 +115,29 @@ class PerumahansController extends Controller
             $perumahans = Perumahans::where('status_perumahan', 'like', "%" . $status . "%")
                 ->get();
 
+            $data_pju = PJU::all();
+            $data_saluran_bersih = Saluran::all();
+            $data_bast = Bast::all();
+            $data_basta = Basta::all();
+            $data_izin_lokasi = IzinLokasi::all();
+            $data_ippt = Ippt::all();
+            $data_sk_siteplan = Siteplan::all();
+
+
             return view('PSU_Perumahan.index', compact(
                 'perumahans',
                 'kecamatans',
                 'status_belum',
                 'status_sudah',
                 'status_terlantar',
-                'total_perumahan'
+                'total_perumahan',
+                'data_bast',
+                'data_pju',
+                'data_saluran_bersih',
+                'data_basta',
+                'data_izin_lokasi',
+                'data_ippt',
+                'data_sk_siteplan'
             ))
                 ->with('dapat', 'Data Ditemukan');
         }
@@ -131,13 +147,28 @@ class PerumahansController extends Controller
             $perumahans = Perumahans::where('kecamatan', 'like', "%" . $nama_kecamatan . "%")
                 ->where('kelurahan', 'like', "%" . $nama_kelurahan . "%")->get();
 
+            $data_pju = PJU::all();
+            $data_saluran_bersih = Saluran::all();
+            $data_bast = Bast::all();
+            $data_basta = Basta::all();
+            $data_izin_lokasi = IzinLokasi::all();
+            $data_ippt = Ippt::all();
+            $data_sk_siteplan = Siteplan::all();
+
             return view('PSU_Perumahan.index', compact(
                 'perumahans',
                 'kecamatans',
                 'status_belum',
                 'status_sudah',
                 'status_terlantar',
-                'total_perumahan'
+                'total_perumahan',
+                'data_bast',
+                'data_pju',
+                'data_saluran_bersih',
+                'data_basta',
+                'data_izin_lokasi',
+                'data_ippt',
+                'data_sk_siteplan'
             ));
         }
 
@@ -147,13 +178,29 @@ class PerumahansController extends Controller
                 ->where('kelurahan', 'like', "%" . $nama_kelurahan . "%")
                 ->where('status_perumahan', 'like', "%" . $status . "%")->get();
 
+            $data_pju = PJU::all();
+            $data_saluran_bersih = Saluran::all();
+            $data_bast = Bast::all();
+            $data_basta = Basta::all();
+            $data_izin_lokasi = IzinLokasi::all();
+            $data_ippt = Ippt::all();
+            $data_sk_siteplan = Siteplan::all();
+
             return view('PSU_Perumahan.index', compact(
                 'perumahans',
                 'kecamatans',
                 'status_belum',
                 'status_sudah',
                 'status_terlantar',
-                'total_perumahan'
+                'total_perumahan',
+                'data_bast',
+                'data_pju',
+                'data_saluran_bersih',
+                'data_basta',
+                'data_izin_lokasi',
+                'data_ippt',
+                'data_sk_siteplan'
+
             ));
         }
 

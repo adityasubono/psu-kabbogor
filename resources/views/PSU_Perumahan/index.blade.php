@@ -26,11 +26,9 @@
                 {{ session('status') }}
             </div>
             @endif
-            @if(isset($perumahan_filter))
+
             @include('PSU_Perumahan.includes.tabel_perumahan')
-            @else
-            @include('PSU_Perumahan.includes.tabel_perumahan')
-            @endif
+
 
             <!-----------------               Card Status Data     -------------------->
             @include('PSU_Perumahan.includes.card_label_data')
