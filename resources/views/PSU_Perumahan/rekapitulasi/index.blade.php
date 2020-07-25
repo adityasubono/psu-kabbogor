@@ -8,11 +8,11 @@
     <div class="card-body">
         <div class="row">
             <div class="col-6">
-                <h5>Grafik Data Perumahan</h5>
+                <h4Grafik Data Perumahan</h4>
                 @include('PSU_Perumahan.rekapitulasi.grafik.grafik_perumahan')
             </div>
             <div class="col-6">
-                <h5>Peta Persebaran Perumahan</h5>
+                <h4>Peta Persebaran Perumahan</h4>
                 <div id="peta_persebaran_perumahan"></div>
             </div>
         </div>

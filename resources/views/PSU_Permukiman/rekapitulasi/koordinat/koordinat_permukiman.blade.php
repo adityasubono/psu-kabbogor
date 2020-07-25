@@ -1,17 +1,4 @@
-<div class="card shadow mb-4">
-    <div class="card-header py-3 bg-gray-500">
-        <div class="row">
-            <div class="col-sm-6">
-                <h6 class="m-0 font-weight-bold text-primary">Data Peta </h6>
-            </div>
-        </div>
-    </div>
-
-    <div class="card-body">
-        <div id="mymap"></div>
-    </div>
-</div>
-
+<div id="mymap"></div>
 
 <script
     src="http://maps.google.com/maps/api/js?key=AIzaSyBMbVQJuBRWDV1jFUVZ9Gzsu-nWOEr9LdM">
@@ -19,9 +6,10 @@
 <script src="../../assets/js/gmap/gmaps.js"></script>
 <style type="text/css">
     #mymap {
-        border: 1px solid red;
+        border: 5px solid #6c757d;
+        border-radius: 10px;
         width: 100%;
-        height: 400px;
+        height: 620px;
     }
 </style>
 

@@ -8,7 +8,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-sm-6">
-                    <h5>Grafik Data Pertamanan</h5>
+                    <h4>Grafik Data Pertamanan</h4>
                     <div id="jml_hardscape_softscape"></div>
                     <style type="text/css">
                         #jml_hardscape_softscape {
@@ -21,7 +21,7 @@
                 </div>
 
                 <div class="col-sm-6">
-                    <h5>Peta Persebaran Pertamanan</h5>
+                    <h4>Peta Persebaran Pertamanan</h4>
                     @include('PSU_Pertamanan.rekapitulasi.koordinat.koordinat_pertamanan')
                 </div>
             </div>

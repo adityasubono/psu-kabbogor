@@ -1,24 +1,29 @@
 @extends('layouts/main')
 
-@section('title', 'Web Rekapitulasi')
+@section('title', 'Web Rekapitulasi Kawasan Permukiman')
 
 @section('container-fluid')
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="card shadow mb-4">
-                <div class="card-header py-3 bg-gray-500">
-                    <h6 class="m-0 font-weight-bold text-primary">Grafik Rekapitulasi PSU
-                        Kawasan Permukiman</h6>
-                </div>
-                <div class="card-body">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h4>Grafik Kawasan Permukiman</h4>
                     <div id="jml_status"></div>
+                    <style type="text/css">
+                        #jml_status {
+                            border: 5px solid #6c757d;
+                            border-radius: 10px;
+                            width: 100%;
+                            height: 620px;
+                        }
+                    </style>
+                </div>
+                <div class="col-sm-6">
+                    <h4>Peta Persebaran Kawasan Permukiman</h4>
+                    @include('PSU_Permukiman.rekapitulasi.koordinat.koordinat_permukiman')
                 </div>
             </div>
-        </div>
-
-        <div class="col-sm-6">
-            @include('PSU_Permukiman.rekapitulasi.koordinat.koordinat_permukiman')
         </div>
     </div>
 </div>
@@ -59,12 +64,12 @@
             }
         },
         series: [{
-            name: 'Jumlah Yang Sudah Serah Terima',
+            name: 'Jumlah Status Sudah Beroperasional',
             data: jml_status_sudah,
             backgrounColor: 'red'
         },
             {
-                name: 'Jumlah Yang Belum Serah Terima',
+                name: 'Jumlah Satus Belum Beroperasional',
                 data: jml_status_belum,
             },
 
