@@ -26,7 +26,7 @@
              aria-labelledby="nav-home-tab">
 
             <div class="row">
-                <div class="col-9">
+                <div class="col-12">
                     <div class="card shadow mb-4">
                         <div class="card-body">
 
@@ -45,10 +45,9 @@
                                     border: 3px solid grey;
                                     width: 100%;
                                     border-radius: 10px;
-                                    height: 530px;
+                                    height: 600px;
                                 }
                             </style>
-
 
 
                             <script type="text/javascript">
@@ -201,13 +200,15 @@
                             </div>
                             <div class="col-md-10">
                                 <div class="card-body">
-                                    <h5 class="card-title">Status Perumahan Sudah Serah Terima</h5>
+                                    <h5 class="card-title text-white">Status Perumahan Sudah Serah Terima</h5>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="card mb-3" style="background-color: #f8ff8c">
+                <div class="col-3">
+                    <div class="card mb-3" style="background-color: gold">
                         <div class="row no-gutters">
                             <div class="col-md-2">
                                 <img src="../../assets/images/belum_serah_terima.png"
@@ -215,12 +216,14 @@
                             </div>
                             <div class="col-md-10">
                                 <div class="card-body">
-                                    <h5 class="card-title">Status Perumahan Sudah Serah Terima</h5>
+                                    <h5 class="card-title text-white">Status Perumahan Belum Serah Terima</h5>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
 
+                <div class="col-3">
                     <div class="card mb-3" style="background-color: #ffba8c">
                         <div class="row no-gutters">
                             <div class="col-md-2">
@@ -229,12 +232,14 @@
                             </div>
                             <div class="col-md-10">
                                 <div class="card-body">
-                                    <h5 class="card-title">Status Perumahan Sudah Serah Terima</h5>
+                                    <h5 class="card-title text-white">Status Perumahan <br> Terlantar</h5>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
 
+                <div class="col-3">
                     <div class="card mb-3" style="background-color: #8aff8a">
                         <div class="row no-gutters">
                             <div class="col-md-2">
@@ -243,12 +248,14 @@
                             </div>
                             <div class="col-md-10">
                                 <div class="card-body">
-                                    <h5 class="card-title">Status Perumahan Sudah Serah Terima</h5>
+                                    <h5 class="card-title text-white">Daerah Kawasan <br>Pertamanan</h5>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
 
+                <div class="col-3">
                     <div class="card mb-3" style="background-color: #d2d2d2">
                         <div class="row no-gutters">
                             <div class="col-md-2">
@@ -257,16 +264,15 @@
                             </div>
                             <div class="col-md-10">
                                 <div class="card-body">
-                                    <h5 class="card-title">Status Perumahan Sudah Serah Terima</h5>
+                                    <h5 class="card-title text-white">Daerah Kawasan <br> Permukiman</h5>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
+
 
         <div class="tab-pane fade" id="nav-profile" role="tabpanel"
              aria-labelledby="nav-profile-tab">

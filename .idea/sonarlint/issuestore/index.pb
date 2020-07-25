@@ -516,25 +516,15 @@ b
 2resources/views/PSU_Perumahan/cctv/index.blade.php,1\c\1c30576def6ee9c0a488e784ca75b1ed0b4ebf92
 \
 ,public/assets/js/perumahan/cctv/cctv_form.js,8\0\8084b56502751bb47a25094459d7bb1d4bfe3f9a
-O
-storage/app/public/filename.txt,6\c\6c299dfdddd901efefd21d67a3ef26f297bc595d
 F
 config/filesystems.php,0\8\0851bcf6cd0903bba3a25c52b3b65e4e473a57d6
 O
 public/assets/video/1/tes1.m3u8,f\d\fdb1cd08c34a9781f9a78e0ebc2837a13fe0f1dd
 Å
 Qresources/views/PSU_Perumahan/detail_data_perumahan/koordinat_perumahan.blade.php,a\a\aa4dc5414a26030e88c1f54c81e2111f894dfa51
-g
-7public/assets/video/cctv_perumanhan/11/37/81030146.m3u8,1\8\18ead52e201d4f09f0985b047cc5dd6939c8d392
-f
-6public/assets/video/cctv_perumanhan/11/50/251247789.sh,d\8\d85ca75d228c7eb909a1fa50f27ce6529898feaf
 =
 composer.json,3\9\3957b91a0d8450cea0115cfd5af69eac90d75897
-f
-6public/assets/video/cctv_perumanhan/11/54/610462564.sh,6\1\61e7bc5a8514306ace64e40ef0ac670d28974f3f
-f
-6public/assets/video/cctv_perumanhan/11/55/248554453.sh,c\9\c9f9b59076f158a932d3fc7c68e4e3ccc231e958
-f
-6public/assets/video/cctv_perumanhan/11/61/343017847.sh,5\e\5ef9f519c99f9c7ba36666a7d5aeb66c150912bf
 a
 1app/Http/Controllers/CCTVPerumahansController.php,5\2\529c302154525db01168e486eeb619a2abe6f45e
+p
+@resources/views/PSU_Perumahan/koordinat_perumahan/edit.blade.php,2\5\25c51a33a74dcc92cbc38a383eb78d280a55d698
