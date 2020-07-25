@@ -98,6 +98,14 @@
 
 @include('PSU_Perumahan.taman.foto.tabel_foto_taman')
 
+<a href="/tampilpetasemua/petataman/{{$perumahans->id}}" target="_blank"
+class="mt-3">
+            <span class="icon text-white-50">
+                <i class="fas fa-map"></i>
+            </span>
+    <span class="text">Lihat Data Peta Taman dan Penghijauan</span>
+</a>
+
 <script type="text/javascript">
     $('#confirm-delete').on('show.bs.modal', function (e) {
         $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));

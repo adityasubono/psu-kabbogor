@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\JalanSaluran;
+use App\KoordinatJalanSaluran;
 use App\KoordinatTaman;
 use App\Pertamanan;
 use App\Perumahans;
@@ -19,9 +21,66 @@ class KoordinatTamansController extends Controller
     public function index($id)
     {
         $data_taman = Taman::find($id);
-        $data_koordinat_taman = KoordinatTaman::where('taman_id',$id)->get();
+        $koordinat_taman_penghijauan = KoordinatTaman::where('taman_id',$id)->get();
+        $data_jalan_saluran= JalanSaluran::find($id);
+        $koordinat_jalan_saluran = KoordinatJalanSaluran::where('jalansaluran_id',$id)->get();
+
+        $data_perumahan = Perumahans::find($id);
+        $data_koordinat_perumahan = DB::select('SELECT * FROM koordinatperumahans
+                                                JOIN perumahans
+                                                ON perumahans.id = koordinatperumahans.perumahan_id');
+
+
+        $data_koordinat_perumahan_group_by = DB::select("SELECT *, COUNT(perumahan_id)
+                                                         FROM perumahans
+                                                         JOIN koordinatperumahans
+                                                         ON perumahans.id = koordinatperumahans.perumahan_id
+                                                         GROUP BY koordinatperumahans.perumahan_id
+                                                         HAVING COUNT(perumahan_id > 1)");
+
+
+        $data_koordinat_sarana = DB::select('SELECT * FROM koordinatsaranas
+                                             JOIN perumahans
+                                             ON perumahans.id = koordinatsaranas.perumahan_id');
+
+
+        $data_koordinat_sarana_group_by = DB::select('SELECT * FROM koordinatsaranas
+                                                      JOIN perumahans
+                                                      ON perumahans.id = koordinatsaranas.perumahan_id
+                                                      JOIN saranas
+                                                      ON saranas.perumahan_id = perumahans.id
+                                                      GROUP BY koordinatsaranas.sarana_id');
+
+
+        $data_koordinat_jalansaluran = DB::select('SELECT * FROM koordinatjalansalurans
+                                                   JOIN jalansalurans
+                                                   ON jalansalurans.id = koordinatjalansalurans.jalansaluran_id');
+
+
+        $data_koordinat_jalansaluran_group_by = DB::select('SELECT * FROM koordinatjalansalurans
+                                                            JOIN jalansalurans
+                                                            ON jalansalurans.id = koordinatjalansalurans.jalansaluran_id
+                                                            JOIN perumahans
+                                                            ON perumahans.id = jalansalurans.perumahan_id
+                                                            GROUP BY koordinatjalansalurans.jalansaluran_id');
+
+        $data_koordinat_taman = DB::select('SELECT * FROM koordinattamans
+                                            JOIN tamans
+                                            ON tamans.id = koordinattamans.taman_id');
+
+
+        $data_koordinat_taman_group_by = DB::select('SELECT * FROM koordinattamans
+                                                     JOIN tamans
+                                                     ON tamans.id = koordinattamans.taman_id
+                                                     JOIN perumahans
+                                                     ON perumahans.id = tamans.perumahan_id
+                                                     GROUP BY koordinattamans.taman_id');
+
         return view('PSU_Perumahan.taman.koordinat.koordinat_taman',
-            compact('data_taman','data_koordinat_taman'));
+            compact('data_taman','koordinat_taman_penghijauan','data_jalan_saluran','data_koordinat_perumahan','data_koordinat_perumahan_group_by',
+                'data_koordinat_taman','data_koordinat_taman_group_by','data_koordinat_jalansaluran',
+                'data_koordinat_sarana','data_koordinat_sarana_group_by','koordinat_jalan_saluran',
+                'data_koordinat_jalansaluran_group_by','data_koordinat_taman','data_koordinat_taman_group_by'));
     }
 
     /**

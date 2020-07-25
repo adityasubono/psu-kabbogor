@@ -17,7 +17,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @forelse( $data_koordinat_jalansaluran as $koordinat_jalansaluran )
+                @forelse( $koordinat_jalan_saluran as $koordinat_jalansaluran )
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $koordinat_jalansaluran->latitude }}</td>

@@ -1,6 +1,6 @@
 @extends('layouts/main')
 
-@section('title', 'Edit Data Perumahan')
+@section('title', 'Input Data Perumahan')
 
 @section('container-fluid')
 
@@ -35,28 +35,28 @@
 
             <ul class="nav nav-tabs mt-0" id="myTab" role="tablist">
                 <li class="nav-item ml-1">
-                    <a class="nav-link active bg-danger text-white" id="home-tab" data-toggle="tab" href="#data_perumahan" role="tab">Data Perumahan</a>
+                    <a class="nav-link bg-danger text-white active" id="home-tab" data-toggle="tab_perumahan" href="#data_perumahan" role="tab">Data Perumahan</a>
                 </li>
                 <li class="nav-item ml-1">
-                    <a class="nav-link text-white " id="data_sarana" data-toggle="tab" href="#sarana_tab" role="tab" style="background-color: darkgoldenrod;">Data Sarana </a>
+                    <a class="nav-link text-white " id="data_sarana" data-toggle="tab_sarana" href="#sarana_tab" role="tab" style="background-color: darkgoldenrod;">Data Sarana </a>
                 </li>
                 <li class="nav-item ml-1">
-                    <a class="nav-link text-white" id="contact-tab" data-toggle="tab" href="#data_jalan_saluran" role="tab" style="background-color:olive;">Data Jalan dan Saluran</a>
+                    <a class="nav-link text-white" id="contact-tab" data-toggle="tab_jalansalurab" href="#data_jalan_saluran" role="tab" style="background-color:olive;">Data Jalan dan Saluran</a>
                 </li>
                 <li class="nav-item ml-1">
-                    <a class="nav-link text-white" id="contact-tab" data-toggle="tab" href="#data_taman_penghijauan" role="tab" style="background-color: #0E9A00;">Data Taman dan Penghijauan</a>
+                    <a class="nav-link text-white" id="contact-tab" data-toggle="data_taman_penghijauan" href="#data_taman_penghijauan" role="tab" style="background-color: #0E9A00;">Data Taman dan Penghijauan</a>
                 </li>
                 <li class="nav-item ml-1">
-                    <a class="nav-link text-white " id="profile-tab" data-toggle="tab" href="#data_pju" role="tab" style="background-color: #1c294e;">Data PJU </a>
+                    <a class="nav-link text-white " id="profile-tab" data-toggle="data_pju" href="#data_pju" role="tab" style="background-color: #1c294e;">Data PJU </a>
                 </li>
                 <li class="nav-item ml-1">
-                    <a class="nav-link text-white" id="contact-tab" data-toggle="tab" href="#data_saluran_bersih" role="tab" style="background-color: darkmagenta;">Data Saluran Bersih</a>
+                    <a class="nav-link text-white" id="contact-tab" data-toggle="data_saluran_bersih" href="#data_saluran_bersih" role="tab" style="background-color: darkmagenta;">Data Saluran Bersih</a>
                 </li>
                 <li class="nav-item ml-1">
-                    <a class="nav-link text-white " id="contact-tab" data-toggle="tab" href="#data_cctv" role="tab" style="background-color: #2a96a5;;">Data CCTV</a>
+                    <a class="nav-link text-white " id="contact-tab" data-toggle="data_cctv" href="#data_cctv" role="tab" style="background-color: #2a96a5;;">Data CCTV</a>
                 </li>
                 <li class="nav-item ml-1">
-                    <a class="nav-link text-white " id="contact-tab" data-toggle="tab" href="#data_detail_perumahan" role="tab" style="background-color: grey;">Detail</a>
+                    <a class="nav-link text-white " id="contact-tab" data-toggle="data_detail_perumahan" href="#data_detail_perumahan" role="tab" style="background-color: grey;">Detail</a>
                 </li>
             </ul>
             <div class="tab-content" id="myTabContent">
@@ -87,6 +87,7 @@
                 <div class="tab-pane fade" id="data_cctv" role="tabpanel">
                     @include('PSU_Perumahan.cctv.cctv_tab')
                 </div>
+
                 <div class="tab-pane fade" id="data_detail_perumahan" role="tabpanel">
                     @include('PSU_Perumahan.show')
                 </div>
@@ -100,6 +101,15 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function(){
+        $("#myTab a").click(function(e){
+            e.preventDefault();
+            $(this).tab('show');
+        });
+    });
+</script>
 
 <script type="text/javascript">
     window.setTimeout(function() {

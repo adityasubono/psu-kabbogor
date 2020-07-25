@@ -98,7 +98,12 @@
 @include('PSU_Perumahan.jalansaluran.tabel_jalansaluran')
 
 @include('PSU_Perumahan.jalansaluran.foto.tabel_foto_jalan_saluran')
-
+<a href="/koordinatjalansalurans/tampilkanpeta/{{$perumahans->id}}" target="_blank" class="mt-3">
+            <span class="icon text-white-50">
+                <i class="fas fa-map"></i>
+            </span>
+    <span class="text">Lihat Data Peta Persebaran Jalan Saluran Perumahan</span>
+</a>
 <script type="text/javascript">
     $('#confirm-delete').on('show.bs.modal', function (e) {
         $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));

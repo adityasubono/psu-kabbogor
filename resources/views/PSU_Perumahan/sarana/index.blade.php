@@ -110,6 +110,12 @@
 
 @include('PSU_Perumahan.sarana.foto.tabel_foto_sarana')
 
+<a href="/koordinatsarana/petasarana/{{$perumahans->id}}" target="_blank">
+            <span class="icon text-white-50">
+                <i class="fas fa-map"></i>
+            </span>
+    <span class="text">Lihat Data Peta Persebaran Sarana Perumahan</span>
+</a>
 
 <script type="text/javascript">
     $('#confirm-delete').on('show.bs.modal', function (e) {

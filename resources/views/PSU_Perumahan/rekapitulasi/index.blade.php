@@ -8,7 +8,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-6">
-                <h4Grafik Data Perumahan</h4>
+                <h4>Grafik Data Perumahan</h4>
                 @include('PSU_Perumahan.rekapitulasi.grafik.grafik_perumahan')
             </div>
             <div class="col-6">
@@ -61,17 +61,17 @@
         const perumahan_id = data_koordinat_perumahan[perumahan].perumahan_id;
         perumahanId.push(perumahan_id);
     }
-    console.log('perumahan_id', perumahanId)
+    // console.log('perumahan_id', perumahanId)
 
     var unique = perumahanId.filter(onlyUnique);
-    console.log('unique', unique)
+    // console.log('unique', unique)
 
     var result = data_koordinat_perumahan.reduce(function (r, a) {
         r[a.perumahan_id] = r[a.perumahan_id] || [];
         r[a.perumahan_id].push(a);
         return r;
     }, Object.create(null));
-    console.log('result', result);
+    // console.log('result', result);
 
 
     for (let u = 0; u < unique.length; u++) {
@@ -88,9 +88,9 @@
     // console.log("PATH", path)
 
     $.each(unique, function (index, value) {
-        console.log("value unique", value)
+        // console.log("value unique", value)
         $.each(path, function (i, v) {
-            console.log("path v", i, "v " + v)
+            // console.log("path v", i, "v " + v)
             mymap.drawPolygon({
                 paths: v,
                 strokeColor: '#878787',
@@ -99,7 +99,7 @@
                 fillColor: '#2bcfff',
                 fillOpacity: 0.2,
                 click: function () {
-                    console.log('ini', i + 'valueee' + v)
+                    // console.log('ini', i + 'valueee' + v)
                     $("#review_perumahan" + i).modal('show');
 
                 }
@@ -136,19 +136,21 @@
         x[y.sarana_id].push(y);
         return x;
     }, Object.create(null));
-    console.log('result_sarana', result_sarana);
+    // console.log('result_sarana', result_sarana);
     for (let p = 0; p < unique_sarana.length; p++) {
         var coord_sarana = {};
-        path_sarana[p] = [];
+        path_sarana[unique_sarana[p]] = [];
         for (var s = 0; s < result_sarana[unique_sarana[p]].length; s++) {
             const lt_sarana = parseFloat(result_sarana[unique_sarana[p]][s].latitude);
             const ltd_sarana = parseFloat(result_sarana[unique_sarana[p]][s].longitude);
             coord_sarana[s] = [lt_sarana, ltd_sarana];
-            path_sarana[p].push(coord_sarana[s]);
+            path_sarana[unique_sarana[p]].push(coord_sarana[s]);
         }
     }
     $.each(unique_sarana, function (index, value) {
+        // console.log('sarana_uniq',value)
         $.each(path_sarana, function (i, v) {
+            // console.log('sarana_i,',i +''+ v)
             mymap.drawPolygon({
                 paths: v,
                 strokeColor: '#a9a9a9',
@@ -157,7 +159,8 @@
                 fillColor: '#f2e02b',
                 fillOpacity: 0.2,
                 click: function () {
-                    $("#review_sarana" + data_koordinat_sarana_group_by[i].sarana_id).modal('show');
+
+                    $("#review_sarana" + i).modal('show');
 
                 }
             });
@@ -199,12 +202,12 @@
 
     for (let u = 0; u < unique.length; u++) {
         var coord = {};
-        path[u] = [];
+        path[unique[u]] = [];
         for (var j = 0; j < result[unique[u]].length; j++) {
             const lt = parseFloat(result[unique[u]][j].latitude);
             const ltd = parseFloat(result[unique[u]][j].longitude);
             coord[j] = [lt, ltd];
-            path[u].push(coord[j]);
+            path[unique[u]].push(coord[j]);
         }
     }
 
@@ -216,7 +219,7 @@
                 strokeOpacity: 0.5,
                 strokeWeight: 6,
                 click: function () {
-                    $("#review_jalansaluran" + data_koordinat_jalansaluran_group_by[i].jalansaluran_id).modal('show');
+                    $("#review_jalansaluran" + i).modal('show');
 
                 }
             });
@@ -251,15 +254,15 @@
         r[a.taman_id].push(a);
         return r;
     }, Object.create(null));
-    console.log('result', result);
+    // console.log('result', result);
     for (let u = 0; u < unique.length; u++) {
         var coord = {};
-        path[u] = [];
+        path[unique[u]] = [];
         for (var j = 0; j < result[unique[u]].length; j++) {
             const lt = parseFloat(result[unique[u]][j].latitude);
             const ltd = parseFloat(result[unique[u]][j].longitude);
             coord[j] = [lt, ltd];
-            path[u].push(coord[j]);
+            path[unique[u]].push(coord[j]);
         }
     }
     $.each(unique, function (index, value) {
@@ -273,7 +276,7 @@
                 fillColor: '#008000',
                 fillOpacity: 0.25,
                 click: function () {
-                    $("#review_taman" + data_koordinat_taman_group_by[i].taman_id).modal('show');
+                    $("#review_taman" + i).modal('show');
 
                 }
             });
@@ -337,7 +340,7 @@
 
 <!-- POPUP SARANA -->
 @foreach($data_koordinat_sarana_group_by as $groupby_sarana)
-
+<!--<p>{{$groupby_sarana->sarana_id}}</p>-->
 <div class="modal fade" id="review_sarana{{$groupby_sarana->sarana_id}}" tabindex="-1" role="dialog"
      aria-labelledby="exampleModalLabel"
      aria-hidden="true">
@@ -458,6 +461,5 @@
     </div>
 </div>
 @endforeach
-
 
 @endsection

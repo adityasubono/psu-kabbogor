@@ -105,6 +105,7 @@
                     '<div id="siteNotice">' +
                     '<h5 id="firstHeading" class="firstHeading"> Titik Ke -' + index + '</h5>' +
                     '<p>' + value.latitude + ',' + value.longitude + '</p>' +
+                    '<p>' + value.id + ',' + value.nama_sarana+ '</p>' +
                     '</div>',
                 maxWidth: 400
             }
