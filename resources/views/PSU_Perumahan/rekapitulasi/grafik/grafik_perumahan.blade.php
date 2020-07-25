@@ -1,9 +1,14 @@
-<div class="card">
-    <div class="card-body">
-        <div id="jml_status"></div>
-    </div>
-</div>
 
+<div id="jml_status"></div>
+
+<style type="text/css">
+    #jml_status {
+        border: 5px solid #6c757d;
+        border-radius: 10px;
+        width: 100%;
+        height: 620px;
+    }
+</style>
 
 <script type="text/javascript" src="{{ url('../assets/js/highchart/code/highcharts.js')}}"></script>
 <script type="text/javascript">
@@ -58,7 +63,8 @@
         responsive: {
             rules: [{
                 condition: {
-                    maxWidth: 500
+                    maxWidth: 500,
+                    maxHeight: 700
                 },
                 chartOptions: {
                     legend: {
