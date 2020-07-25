@@ -1,14 +1,14 @@
 <div id="mymap"></div>
-
 <script
     src="http://maps.google.com/maps/api/js?key=AIzaSyBMbVQJuBRWDV1jFUVZ9Gzsu-nWOEr9LdM">
 </script>
 <script src="../../assets/js/gmap/gmaps.js"></script>
 <style type="text/css">
     #mymap {
-        border: 1px solid red;
+        border: 5px solid #6c757d;
+        border-radius: 10px;
         width: 100%;
-        height: 400px;
+        height: 620px;
     }
 </style>
 
