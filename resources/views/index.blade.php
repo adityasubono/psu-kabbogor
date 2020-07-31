@@ -12,7 +12,9 @@
     <title>SI - PSU ( Login )</title>
 
     <link href="{!! asset('assets/fontawesome-free/css/all.min.css') !!}" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <!--    <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">-->
@@ -28,113 +30,61 @@
 
 </head>
 
-<body style="background-image: url('assets/images/login/clemens-posch-we1tBosANpU-unsplash.jpg');">
+<body>
+<div class="jumbotron" id="jumbotron_index">
+    <div class="card p-3 text-left" id="card_title">
+        <blockquote class="blockquote mb-0">
+            <footer class="blockquote-footer" id="strip">
+                <small class="text-muted">
+                   SI - PSU KAB BOGOR
+                </small>
+            </footer>
+           <h1 id="judul">Sistem Informasi Prasarana Sarana dan Utilitas Kabupaten Bogor</h1>
 
-<div class="container">
-
-    <!-- Outer Row -->
-    <div class="row justify-content-center">
-
-        <div class="col-xl-10 col-lg-12 col-md-9">
-
-            <div class="card o-hidden border-0 shadow-lg my-5">
-                <div class="card-body p-0">
-                    <!-- Nested Row within Card Body -->
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-                                <ol class="carousel-indicators">
-                                    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-                                    <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-                                    <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-                                </ol>
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <img src="assets/images/login/chris-king-3oyIKSz_4cE-unsplash.jpg"
-                                             class="d-block w-100"
-                                             alt="..."
-                                             style="height: 600px;">
-                                        <div class="carousel-caption d-none d-md-block">
-
-                                        </div>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="assets/images/login/knoell-marketing-h8c2m599v4U-unsplash.jpg"
-                                             class="d-block w-100"
-                                             alt="..."
-                                             style="height: 600px;">
-                                        <div class="carousel-caption d-none d-md-block">
-
-                                        </div>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="assets/images/login/grant-ritchie-YRF3nhuZ81s-unsplash (1).jpg"
-                                             class="d-block w-100"
-                                             alt="..."
-                                             style="height: 600px;">
-                                        <div class="carousel-caption d-none d-md-block">
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                                <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6">
-                            <div class="p-5">
-                                <div class="text-center">
-                                    <h5 class="h5 text-gray-900 mb-4">Sistem Informasi Sarana
-                                        Prasarana dan Utilitas Kabupaten Bogor
-                                    </h5>
-                                    <h1 class="h3 text-gray-900 mb-4">SI - PSU Login</h1>
-                                </div>
-                                @if (session('alert'))
-                                <div class="alert alert-danger mt-5">
-                                    {{ session('alert') }}
-                                </div>
-                                @endif
-                                <form method="post" action="/loginpost" class="user">
-                                    <meta name="csrf-token" content="{{csrf_token()}}"/>
-                                    {{ csrf_field() }}
-                                    <div class="form-group">
-                                        <input type="text"
-                                               class="form-control form-control-user"
-                                               id="exampleInputEmail"
-                                               name="nik"
-                                               aria-describedby="emailHelp"
-                                               placeholder="Enter NIK...">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="password"
-                                               class="form-control form-control-user"
-                                               id="exampleInputPassword"
-                                               name="password"
-                                               placeholder="Password">
-                                    </div>
-
-                                    <button type="submit" class="btn btn-primary btn-user btn-block">
-                                        Login
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
+            <p id="tanggal">31 Juli 2020 08:00</p>
+        </blockquote>
     </div>
 
+    <div class="card p-3 text-right" id="login_form">
+        <form method="post" action="/loginpost" class="user">
+            <meta name="csrf-token" content="{{csrf_token()}}"/>
+            {{ csrf_field() }}
+            <div class="text-center">
+                <h1 class="h3 text-gray-900 mb-4">Login</h1>
+                @if (session('alert'))
+                <div class="alert alert-danger mt-5">
+                    {{ session('alert') }}
+                </div>
+                @endif
+            </div>
+
+            <div class="form-group">
+                <input type="text"
+                       class="form-control form-control-user"
+                       id="exampleInputEmail"
+                       name="nik"
+                       aria-describedby="emailHelp"
+                       placeholder="Enter NIK...">
+            </div>
+            <div class="form-group">
+                <input type="password"
+                       class="form-control form-control-user"
+                       id="exampleInputPassword"
+                       name="password"
+                       placeholder="Password">
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-user btn-block">
+                Login
+            </button>
+        </form>
+    </div>
 </div>
+
+
+</body>
+</html>
+
 
 <script type="text/javascript">
     window.setTimeout(function () {
@@ -154,6 +104,3 @@
 <!-- Custom scripts for all pages-->
 <script src="{!! asset('assets/js/sb-admin-2.min.js') !!}"></script>
 
-</body>
-
-</html>

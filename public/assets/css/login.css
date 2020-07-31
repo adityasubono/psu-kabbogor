@@ -1,150 +1,54 @@
 body {
     font-family: "Lato", sans-serif;
-    background: url("../../assets/images/login/clemens-posch-we1tBosANpU-unsplash.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 
+#jumbotron_index{
+    height: 730px;
+    background: url("../../assets/images/login/login.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-bottom: 0;
+}
 
-/*.main-head{*/
-/*    height: 150px;*/
-/*    background: #FFF;*/
+#card_title{
+    width: 800px;
+    margin-left: 40px;
+    border-radius: 0;
+    position: absolute;
+    bottom: 120px;
+    border: transparent;
+    background: transparent;
+    border-left: 10px solid #ffd700;
+    border-bottom: 10px solid #ffd700;
+}
+#judul {
+    margin-left: 30px;
+    color: #696969;
+    font-weight: lighter;
+}
 
-/*}*/
+#tanggal{
+    margin-top: 20px;
+    margin-left: 30px;
+    font-size: 23px;
+    color: initial;
+}
+#strip {
+    color: #ffd700;
+    font-size: 20px;
+}
 
-/*.sidenav {*/
-/*    height: 100%;*/
-/*    background-image: url("../../assets/images/side.png");*/
-/*    overflow-x: hidden;*/
-/*    padding-top: 20px;*/
-/*    background-repeat: no-repeat;*/
-/*    background-size: cover;*/
-
-/*}*/
-
-
-/*.main {*/
-/*    padding: 0px 10px;*/
-/*}*/
-
-/*@media screen and (max-height: 450px) {*/
-/*    .sidenav {padding-top: 15px;}*/
-/*}*/
-
-
-/*.border_h1 {*/
-/*    color: black;*/
-/*    text-align: left;*/
-/*}*/
-
-/*@media screen and (min-width: 500px){*/
-/*    .main{*/
-/*        margin-left: 25%;*/
-/*        position: absolute;*/
-/*        z-index: 0;*/
-/*    }*/
-
-/*    .login-form{*/
-/*        margin-top: 105%;*/
-/*        margin-left: -140%;*/
-/*        border: 5px solid grey;*/
-/*        border-radius: 15px;*/
-/*        padding: 13px;*/
-/*        !*opacity: 0.7;*!*/
-/*        background: url("../../assets/images/login_cover.png");*/
-/*        background-size: cover;*/
-/*        font-family: "Lato", sans-serif;*/
-/*        font-size: 20px;*/
-/*        z-index: 1;*/
-/*    }*/
-
-/*    .register-form{*/
-/*        margin-top: 20%;*/
-/*    }*/
-/*}*/
-
-/*.login-main-text{*/
-/*    margin-top: 20%;*/
-/*    padding: 60px;*/
-/*    color: #fff;*/
-/*}*/
-
-/*.login-main-text h2{*/
-/*    font-weight: 300;*/
-/*}*/
-
-/*.btn-black{*/
-/*    background-color: blue !important;*/
-/*    color: #fff;*/
-/*}*/
-/*#myProgress {*/
-/*    width: 140%;*/
-/*    background-color: transparent;*/
-/*}*/
-
-/*#myBar {*/
-/*    width: 140%;*/
-/*    height: 30px;*/
-/*    background-color: #6598fe;*/
-/*}*/
-
-
-/*.toast {*/
-/*    width: auto;*/
-/*    position: absolute;*/
-/*    top: 67px;*/
-/*    left: 300px;*/
-/*}*/
-
-/*#jam {*/
-/*    position: absolute;*/
-/*    top: 200px;*/
-/*    right: 100px;*/
-/*    color: black;*/
-/*    font-family: "Dosis", Arial, Helvetica, sans-serif;*/
-/*    font-size: 40px;*/
-/*    background-color: #fdfef2;*/
-/*    opacity: 0.6;*/
-/*    border-radius: 10px;*/
-/*    border: grey solid 5px;*/
-/*    padding: 10px;*/
-
-/*}*/
-/*#kalender{*/
-/*    position: absolute;*/
-/*    top: 100px;*/
-/*    right: 100px;*/
-/*    color: black;*/
-/*    font-family: "Dosis", Arial, Helvetica, sans-serif;*/
-/*    font-size: 40px;*/
-/*    background-color: #fdfef2;*/
-/*    opacity: 0.6;*/
-/*    border-radius: 10px;*/
-/*    border: grey solid 5px;*/
-/*    padding: 10px;*/
-/*}*/
-
-/*.modal-body {*/
-/*    border-radius: 10px;*/
-/*    padding: 0;*/
-/*}*/
-
-/*.modal-content {*/
-/*    background-color: rgba(0,0,0,.0001) !important;*/
-/*    border: 0;*/
-/*    position:center;*/
-/*}*/
-
-/*#wellcome{*/
-/*    text-align: center;*/
-/*    background-color: lightcyan;*/
-/*    opacity: 0.75;*/
-/*    border-radius: 20px;*/
-/*    position: absolute;*/
-/*    min-width: 980px;*/
-/*    width: auto;*/
-/*    top: 30%;*/
-/*    z-index: 2;*/
-/*}*/
-
-
+#login_form{
+    margin-right: 40px;
+    width: 457px;
+    height: 357px;
+    position: absolute;
+    right: 0;
+    bottom: 220px;
+    background: transparent;
+    border-top: gold solid 10px;
+    border-right: gold solid 10px;
+    border-radius: 0;
+    border-left: transparent;
+    border-bottom: transparent;
+}
