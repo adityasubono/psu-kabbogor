@@ -530,3 +530,15 @@ p
 @resources/views/PSU_Perumahan/koordinat_perumahan/edit.blade.php,2\5\25c51a33a74dcc92cbc38a383eb78d280a55d698
 `
 0public/assets/js/perumahan/sarana/sarana_form.js,b\b\bbb8527b2b68502494f32d33e3dbfcf1d2548e7a
+Y
+)public/assets/js/getKelurahanPerumahan.js,a\e\ae50c5b1877f16d486e592101bd35b903b1f6023
+q
+Aresources/views/PSU_Pertamanan/filter/filter_pertamanan.blade.php,b\2\b24139bc2aa873a0b93156ca5e63e052439e45d7
+r
+Bdatabase/migrations/2020_05_12_230115_create_permukimans_table.php,d\c\dc50aca73443c1640c953e73263fb60fac2872ab
+N
+resources/views/home.blade.php,a\2\a2a516abb04bf3dd73ba4b569b16cc453e3ac2bb
+Z
+*app/Http/Controllers/PetugasController.php,0\f\0fa3a5747fff41ec36bf871ccbc88cfbb1ec6c05
+Y
+)resources/views/includes/footer.blade.php,0\2\024427022630d44b38149b7a63a4f33ef98d1593
